@@ -1,0 +1,80 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace _2D_Roguelike
+{
+    public class PlayerAttack : MonoBehaviour
+    {
+        [SerializeField] private float _damage = 10f;
+        [SerializeField] private float _attackCooldown = 0.5f;
+        [SerializeField] private Vector2 _hitboxSize = new Vector2(1.2f, 0.8f);
+        [SerializeField] private Vector2 _hitboxOffset = new Vector2(0.7f, 0f);
+        [SerializeField] private LayerMask _enemyLayer;
+
+        private Animator _animator;
+        private SpriteRenderer _spriteRenderer;
+
+        private bool _isAttacking;
+        private bool _canAttack = true;
+
+        private static readonly int AnimAttack = Animator.StringToHash("Attack");
+
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        private void Update()
+        {
+            if (_isAttacking) return;
+
+            var keyboard = Keyboard.current;
+            if (keyboard == null) return;
+
+            if (keyboard.xKey.wasPressedThisFrame && _canAttack)
+                StartCoroutine(AttackCoroutine());
+        }
+
+        private IEnumerator AttackCoroutine()
+        {
+            _isAttacking = true;
+            _canAttack = false;
+
+            _animator?.SetTrigger(AnimAttack);
+
+            // 공격 모션 중간(0.2초 후)에 히트박스 판정
+            yield return new WaitForSeconds(0.2f);
+            ApplyHitbox();
+
+            // 쿨타임 대기
+            yield return new WaitForSeconds(_attackCooldown - 0.2f);
+
+            _isAttacking = false;
+            _canAttack = true;
+        }
+
+        private void ApplyHitbox()
+        {
+            float dir = (_spriteRenderer != null && _spriteRenderer.flipX) ? -1f : 1f;
+            Vector2 center = (Vector2)transform.position + new Vector2(_hitboxOffset.x * dir, _hitboxOffset.y);
+
+            Collider2D[] hits = Physics2D.OverlapBoxAll(center, _hitboxSize, 0f, _enemyLayer);
+            foreach (var hit in hits)
+            {
+                var stats = hit.GetComponent<EnemyStats>();
+                stats?.TakeDamage(_damage);
+            }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            // 공격 히트박스 시각화
+            Gizmos.color = Color.red;
+            float dir = (_spriteRenderer != null && _spriteRenderer.flipX) ? -1f : 1f;
+            Vector2 center = (Vector2)transform.position + new Vector2(_hitboxOffset.x * dir, _hitboxOffset.y);
+            Gizmos.DrawWireCube(center, _hitboxSize);
+        }
+    }
+}

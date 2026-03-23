@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <Style src="PlayerHUD.uss" />
+    <ui:VisualElement name="root">
+        <ui:VisualElement name="hp-container">
+            <ui:Label name="hp-icon-label" text="❤" />
+            <ui:VisualElement name="hp-bar-bg">
+                <ui:VisualElement name="hp-bar-fill" />
+            </ui:VisualElement>
+            <ui:Label name="hp-label" text="100 / 100" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
