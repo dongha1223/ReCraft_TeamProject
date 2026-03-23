@@ -63,7 +63,7 @@ namespace _2D_Roguelike
             if (_rb.linearVelocity.y > 0.1f)
             {
                 _isGrounded   = false;
-                _isOnPlatform = false;
+                
                 return;
             }
 
@@ -125,19 +125,20 @@ namespace _2D_Roguelike
         }
 
         // ─── 플랫폼 통과 낙하 ─────────────────────────────────────────────
-        // Rigidbody2D.excludeLayers 를 사용 → PlatformEffector2D 에 관계없이 작동
+        // 발 아래 플랫폼 콜라이더를 isTrigger로 전환 → 즉시 통과 가능
         private IEnumerator DropThroughPlatform()
         {
-            // 플랫폼 레이어를 이 Rigidbody2D의 충돌 제외 목록에 추가
-            _rb.excludeLayers = _rb.excludeLayers | _platformLayer;
+            Collider2D[] cols = Physics2D.OverlapBoxAll(FeetCenter, FeetBoxSize, 0f, _platformLayer);
 
-            // 즉시 아래 방향 속도 부여
+            foreach (var col in cols)
+                col.isTrigger = true;
+
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -4f);
 
             yield return new WaitForSeconds(0.4f);
 
-            // 충돌 제외 목록에서 플랫폼 레이어 제거
-            _rb.excludeLayers = _rb.excludeLayers & ~_platformLayer;
+            foreach (var col in cols)
+                col.isTrigger = false;
         }
 
         // ─── 시각화 ───────────────────────────────────────────────────────
