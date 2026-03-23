@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__UnityMCP__manage_scene",
+      "mcp__UnityMCP__manage_script",
+      "mcp__UnityMCP__manage_editor",
+      "mcp__UnityMCP__manage_gameobject",
+      "mcp__UnityMCP__manage_components",
+      "mcp__UnityMCP__read_console",
+      "mcp__UnityMCP__apply_text_edits",
+      "mcp__UnityMCP__refresh_unity",
+      "mcp__UnityMCP__execute_menu_item",
+      "mcp__UnityMCP__batch_execute",
+      "Bash(grep -r c6ed19110157e4527b2fb1e78ed81484 C:/ReCraft_TeamProject/Assets/sanctum_pixel/ --include=*.meta -l)",
+      "Bash(grep -r faf2accdcbbd542fd8a78c80f9fc6756 C:/ReCraft_TeamProject/Assets/sanctum_pixel/ --include=*.meta -l)",
+      "mcp__UnityMCP__manage_prefabs"
+    ]
+  }
+}
