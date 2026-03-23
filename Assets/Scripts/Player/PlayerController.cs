@@ -15,33 +15,35 @@ namespace _2D_Roguelike
         [SerializeField] private int _maxJumpCount = 2;
 
         [Header("발 감지")]
-        [SerializeField] private Vector2 _feetOffset  = new Vector2(0f, -0.32f);  // 발 감지 박스 중심 오프셋 (직접 조정)
-        [SerializeField] private float _feetWidth     = 0.40f;  // 감지 박스 너비
-        [SerializeField] private float _feetHeight    = 0.04f;  // 감지 박스 높이 (얇게)
+        [SerializeField] private Vector2 _feetOffset  = new Vector2(0f, -0.32f);
+        [SerializeField] private float _feetWidth     = 0.40f;
+        [SerializeField] private float _feetHeight    = 0.04f;
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _platformLayer;
 
-        private Rigidbody2D _rb;
+        private Rigidbody2D    _rb;
         private SpriteRenderer _spriteRenderer;
-        private Animator _animator;
-        private PlayerDash _playerDash;
+        private Animator       _animator;
+        private PlayerDash     _playerDash;
+        private PlayerSkill    _playerSkill;
 
-        private int _jumpCount;
+        private int  _jumpCount;
         private bool _isGrounded;
         private bool _isOnPlatform;
 
         private static readonly int AnimIsMoving = Animator.StringToHash("IsMoving");
 
         // ─── 발 감지 박스 중심 (월드 좌표) ───────────────────────────────
-        private Vector2 FeetCenter => (Vector2)transform.position + _feetOffset;
+        private Vector2 FeetCenter  => (Vector2)transform.position + _feetOffset;
         private Vector2 FeetBoxSize => new Vector2(_feetWidth, _feetHeight);
 
         private void Awake()
         {
-            _rb = GetComponent<Rigidbody2D>();
+            _rb             = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _animator = GetComponent<Animator>();
-            _playerDash = GetComponent<PlayerDash>();
+            _animator       = GetComponent<Animator>();
+            _playerDash     = GetComponent<PlayerDash>();
+            _playerSkill    = GetComponent<PlayerSkill>();
         }
 
         private void Update()
@@ -83,7 +85,9 @@ namespace _2D_Roguelike
         // ─── 좌우 이동 ────────────────────────────────────────────────────
         private void HandleMovement()
         {
-            if (_playerDash != null && _playerDash.IsDashing) return;
+            // 대시 / 롤링 슬레쉬 중에는 이동 입력 차단
+            if (_playerDash  != null && _playerDash.IsDashing)   return;
+            if (_playerSkill != null && _playerSkill.IsRolling)   return;
 
             var keyboard = Keyboard.current;
             if (keyboard == null) return;
@@ -125,42 +129,31 @@ namespace _2D_Roguelike
         }
 
         // ─── 플랫폼 통과 낙하 ─────────────────────────────────────────────
-        // Rigidbody2D.excludeLayers 를 사용 → PlatformEffector2D 에 관계없이 작동
         private IEnumerator DropThroughPlatform()
         {
-            // 플랫폼 레이어를 이 Rigidbody2D의 충돌 제외 목록에 추가
-            _rb.excludeLayers = _rb.excludeLayers | _platformLayer;
-
-            // 즉시 아래 방향 속도 부여
+            _rb.excludeLayers  = _rb.excludeLayers | _platformLayer;
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -4f);
 
             yield return new WaitForSeconds(0.4f);
 
-            // 충돌 제외 목록에서 플랫폼 레이어 제거
             _rb.excludeLayers = _rb.excludeLayers & ~_platformLayer;
         }
 
         // ─── 시각화 ───────────────────────────────────────────────────────
-        // Game 뷰에서도 보이게 Debug.DrawLine 사용 (Gizmos 버튼 ON 필요)
         private void DrawDebugGizmos()
         {
             Color col = _isOnPlatform ? Color.cyan
                       : _isGrounded   ? Color.green
                                       : Color.red;
 
-            Vector2 c = FeetCenter;
-            float hw = _feetWidth  * 0.5f;
-            float hh = _feetHeight * 0.5f;
+            Vector2 c  = FeetCenter;
+            float   hw = _feetWidth  * 0.5f;
+            float   hh = _feetHeight * 0.5f;
 
-            Vector3 tl = new Vector3(c.x - hw, c.y + hh);
-            Vector3 tr = new Vector3(c.x + hw, c.y + hh);
-            Vector3 br = new Vector3(c.x + hw, c.y - hh);
-            Vector3 bl = new Vector3(c.x - hw, c.y - hh);
-
-            Debug.DrawLine(tl, tr, col);
-            Debug.DrawLine(tr, br, col);
-            Debug.DrawLine(br, bl, col);
-            Debug.DrawLine(bl, tl, col);
+            Debug.DrawLine(new Vector3(c.x - hw, c.y + hh), new Vector3(c.x + hw, c.y + hh), col);
+            Debug.DrawLine(new Vector3(c.x + hw, c.y + hh), new Vector3(c.x + hw, c.y - hh), col);
+            Debug.DrawLine(new Vector3(c.x + hw, c.y - hh), new Vector3(c.x - hw, c.y - hh), col);
+            Debug.DrawLine(new Vector3(c.x - hw, c.y - hh), new Vector3(c.x - hw, c.y + hh), col);
         }
 
         // Editor Scene 뷰 — 항상 표시
