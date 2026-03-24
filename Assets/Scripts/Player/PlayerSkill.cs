@@ -29,16 +29,16 @@ namespace _2D_Roguelike
         [SerializeField] private float     _energy_VertOffset  = 0.25f;
         [SerializeField] private LayerMask _enemyLayer;
 
-        // ── 롤링 슬레쉬 설정 ─────────────────────────────────────────
+        // ── 롤링 슬래쉬 설정 ─────────────────────────────────────────
         [Header("롤링 슬레쉬 (S 키)")]
-        [SerializeField] private float   _roll_Damage    = 25f;
+        [SerializeField] private float   _roll_Damage    = 6f;
         [Tooltip("1회 구르기당 전진 거리")]
-        [SerializeField] private float   _roll_Distance  = 2.2f;
+        [SerializeField] private float   _roll_Distance  = 0.5f;
         [Tooltip("1회 구르기 소요 시간 (초)")]
-        [SerializeField] private float   _roll_RollTime  = 0.22f;
+        [SerializeField] private float   _roll_RollTime  = 0.5f;
         [SerializeField] private float   _roll_Cooldown  = 2.2f;
-        [Tooltip("가로 타원 크기 (width > height)")]
-        [SerializeField] private Vector2 _roll_OvalSize  = new Vector2(2.6f, 1.0f);
+        [Tooltip("가로 타원 크기 (width < height)")]
+        [SerializeField] private Vector2 _roll_OvalSize  = new Vector2(2.6f, 0.7f);
         [Tooltip("텀블링 회전 속도 (deg/sec)")]
         [SerializeField] private float   _roll_SpinSpeed = 720f;
 
@@ -110,7 +110,7 @@ namespace _2D_Roguelike
         }
 
         // ═════════════════════════════════════════════════════════════
-        //  스킬 2 – 롤링 슬레쉬
+        //  스킬 2 – 롤링 슬래쉬
         // ═════════════════════════════════════════════════════════════
         private IEnumerator Skill2_RollingSlash()
         {
@@ -178,8 +178,8 @@ namespace _2D_Roguelike
             if (_enemyLayer.value != 0)
             {
                 Collider2D[] hits = Physics2D.OverlapCapsuleAll(
-                    center, _roll_OvalSize,
-                    CapsuleDirection2D.Horizontal, 0f, _enemyLayer);
+                    center, new Vector2(_roll_OvalSize.y, _roll_OvalSize.x),
+                    CapsuleDirection2D.Vertical, 0f, _enemyLayer);
                 foreach (var col in hits)
                 {
                     if (alreadyHit.Contains(col)) continue;
@@ -190,7 +190,7 @@ namespace _2D_Roguelike
 
             // 2차 폴백: 태그 "Enemy" 기반 감지
             Collider2D[] allCols = Physics2D.OverlapCapsuleAll(
-                center, _roll_OvalSize, CapsuleDirection2D.Horizontal, 0f);
+                center, new Vector2(_roll_OvalSize.y, _roll_OvalSize.x), CapsuleDirection2D.Vertical, 0f);
             foreach (var col in allCols)
             {
                 if (alreadyHit.Contains(col)) continue;

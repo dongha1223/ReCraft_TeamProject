@@ -5,9 +5,8 @@ using UnityEngine;
 namespace _2D_Roguelike
 {
     /// <summary>
-    /// 롤링 슬레쉬 참격 이펙트
+    /// 롤링 슬래쉬 참격 이펙트
     /// - 가로로 넓은 타원 고리 (너비 > 높이)
-    /// - 두께 2배 적용 (thickness = 0.22f)
     /// - 푸른빛 색상 + 빠른 확장 후 페이드아웃
     /// </summary>
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
@@ -24,11 +23,11 @@ namespace _2D_Roguelike
             var mf = GetComponent<MeshFilter>();
             var mr = GetComponent<MeshRenderer>();
 
-            // ── 가로 타원 링 메시 (두께 2배: 0.22f) ─────────────────
+            // ── 가로 타원 링 메시 (두께 2배: 0.35f) ─────────────────
             mf.mesh = BuildOvalRingMesh(
-                halfW    : ovalSize.x * 0.5f,
-                halfH    : ovalSize.y * 0.5f,
-                thickness: 0.22f,                // ← 원래 0.11의 2배
+                halfW    : ovalSize.y * 0.5f,
+                halfH    : ovalSize.x * 0.5f,
+                thickness: 0.35f,                //검기 두께
                 segments : 48
             );
 
@@ -50,8 +49,8 @@ namespace _2D_Roguelike
             var glowMr = glowGO.AddComponent<MeshRenderer>();
 
             glowMf.mesh = BuildOvalRingMesh(
-                halfW    : ovalSize.x * 0.5f,
-                halfH    : ovalSize.y * 0.5f,
+                halfW    : ovalSize.y * 0.5f,
+                halfH    : ovalSize.x * 0.5f,
                 thickness: 0.30f,
                 segments : 48
             );
