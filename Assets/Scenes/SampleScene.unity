@@ -905,11 +905,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _roll_Damage: 25
-  _roll_Distance: 4.5
+  _roll_Distance: 1.1
   _roll_RollTime: 0.22
   _roll_Cooldown: 2.2
   _roll_OvalSize: {x: 1.8, y: 2.4}
-  _roll_SpinSpeed: 720
 --- !u!114 &1288828159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1135,7 +1134,7 @@ MonoBehaviour:
   _hitboxOffset: {x: 0.7, y: 0}
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
 --- !u!114 &1288828167
 MonoBehaviour:
   m_ObjectHideFlags: 0
