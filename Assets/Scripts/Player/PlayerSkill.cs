@@ -9,14 +9,14 @@ namespace _2D_Roguelike
     /// 플레이어 스킬 컨트롤러
     ///
     /// [A 키] 검기 발산
-    ///   - 흰색+노랑 2중 레이어 그라데이션 초승달 투사체
-    ///   - 상현달(우측) + 하현달(좌측) 연속 발사
+    ///   - 흰색+노랑 그라데이션 초승달 투사체 (바라보는 방향)
     ///   - 적 명중 시 흰/노랑 파티클 임팩트 + 즉시 소멸
+    ///   - LayerMask + 태그("Enemy") 이중 감지
     ///
     /// [S 키] 롤링 슬레쉬
     ///   - 3연속 앞구르기 전진
-    ///   - 앞구르기 1회전당 → 전진 1회 + 푸른빛 가로 타원 참격 이펙트 1회
-    ///   - 캡슐 OverlapAll로 피해 판정
+    ///   - 1회전당 → 가로 타원 참격 이펙트 1회 + 피해 판정
+    ///   - LayerMask + 태그("Enemy") 이중 감지
     /// </summary>
     public class PlayerSkill : MonoBehaviour
     {
@@ -52,12 +52,10 @@ namespace _2D_Roguelike
         private bool  _canSkill2   = true;
         private float _rollDirSign = 1f;
 
-        /// <summary>롤링 중 PlayerController 이동 차단용</summary>
         public bool IsRolling { get; private set; }
 
         private static readonly int AnimRollingSlash = Animator.StringToHash("RollingSlash");
 
-        // ═════════════════════════════════════════════════════════════
         private void Awake()
         {
             _sr   = GetComponent<SpriteRenderer>();
@@ -84,21 +82,22 @@ namespace _2D_Roguelike
         {
             _canSkill1 = false;
 
-            // 플레이어가 바라보는 방향으로만 발사
             bool facingLeft = (_sr != null && _sr.flipX);
             Vector2 dir = facingLeft ? Vector2.left : Vector2.right;
-            SpawnCrescent(dir, upper: !facingLeft);
+
+            // 상현달(위 오프셋) + 하현달(아래 오프셋) 동시 발사
+            SpawnCrescent(dir, yOffset:  _energy_VertOffset);
+            SpawnCrescent(dir, yOffset: -_energy_VertOffset);
 
             yield return new WaitForSeconds(_energy_Cooldown);
             _canSkill1 = true;
         }
 
-        private void SpawnCrescent(Vector2 dir, bool upper)
+        private void SpawnCrescent(Vector2 dir, float yOffset)
         {
-            float yOff   = upper ? _energy_VertOffset : -_energy_VertOffset;
-            Vector2 pos  = (Vector2)transform.position + new Vector2(0f, yOff);
+            Vector2 pos = (Vector2)transform.position + new Vector2(0f, yOffset);
 
-            var go = new GameObject(upper ? "SwordEnergy_상현달" : "SwordEnergy_하현달");
+            var go = new GameObject(yOffset > 0 ? "SwordEnergy_상현달" : "SwordEnergy_하현달");
             go.transform.position = pos;
 
             var p = go.AddComponent<SwordEnergyProjectile>();
@@ -112,7 +111,6 @@ namespace _2D_Roguelike
 
         // ═════════════════════════════════════════════════════════════
         //  스킬 2 – 롤링 슬레쉬
-        //  구조: 3회 반복 { 360° 전진 → 이펙트+피해 }
         // ═════════════════════════════════════════════════════════════
         private IEnumerator Skill2_RollingSlash()
         {
@@ -124,17 +122,14 @@ namespace _2D_Roguelike
 
             _anim?.SetTrigger(AnimRollingSlash);
 
-            // Rigidbody 회전 잠금 해제 → 텀블링 허용
             var saved = _rb != null ? _rb.constraints : RigidbodyConstraints2D.FreezeRotation;
             if (_rb != null)
                 _rb.constraints = RigidbodyConstraints2D.None;
 
             var alreadyHit = new HashSet<Collider2D>();
 
-            // ── 앞구르기 3번 ────────────────────────────────────────
             for (int roll = 0; roll < 3; roll++)
             {
-                // ① 1회 구르기 이동 (360° 회전하며 전진)
                 float elapsed = 0f;
                 while (elapsed < _roll_RollTime)
                 {
@@ -148,16 +143,14 @@ namespace _2D_Roguelike
                     yield return null;
                 }
 
-                // ② 구르기 1회 완료 → 가로 타원 참격 이펙트 + 피해
-                SpawnSlashVFX((Vector2)transform.position);
-                ApplyOvalHit((Vector2)transform.position, alreadyHit);
+                Vector2 center = transform.position;
+                SpawnSlashVFX(center);
+                ApplyOvalHit(center, alreadyHit);
 
-                // 구르기 사이 짧은 정지감 (0.04초)
                 if (_rb != null) _rb.angularVelocity = 0f;
                 yield return new WaitForSeconds(0.04f);
             }
 
-            // ── 종료 정리 ────────────────────────────────────────────
             if (_rb != null)
             {
                 _rb.linearVelocity  = new Vector2(0f, _rb.linearVelocity.y);
@@ -172,7 +165,6 @@ namespace _2D_Roguelike
             _canSkill2 = true;
         }
 
-        // ── 가로 타원 참격 이펙트 생성 ───────────────────────────────
         private void SpawnSlashVFX(Vector2 pos)
         {
             var go = new GameObject("RollingSlash_VFX");
@@ -180,23 +172,34 @@ namespace _2D_Roguelike
             go.AddComponent<RollingSlashVisual>().Initialize(_roll_OvalSize, _rollDirSign);
         }
 
-        // ── 가로 캡슐 피해 판정 ─────────────────────────────────────
         private void ApplyOvalHit(Vector2 center, HashSet<Collider2D> alreadyHit)
         {
-            // 가로 타원 → CapsuleDirection2D.Horizontal
-            Collider2D[] hits = Physics2D.OverlapCapsuleAll(
-                center, _roll_OvalSize,
-                CapsuleDirection2D.Horizontal, 0f, _enemyLayer);
+            // 1차: LayerMask 기반 감지
+            if (_enemyLayer.value != 0)
+            {
+                Collider2D[] hits = Physics2D.OverlapCapsuleAll(
+                    center, _roll_OvalSize,
+                    CapsuleDirection2D.Horizontal, 0f, _enemyLayer);
+                foreach (var col in hits)
+                {
+                    if (alreadyHit.Contains(col)) continue;
+                    alreadyHit.Add(col);
+                    col.GetComponent<EnemyStats>()?.TakeDamage(_roll_Damage);
+                }
+            }
 
-            foreach (var col in hits)
+            // 2차 폴백: 태그 "Enemy" 기반 감지
+            Collider2D[] allCols = Physics2D.OverlapCapsuleAll(
+                center, _roll_OvalSize, CapsuleDirection2D.Horizontal, 0f);
+            foreach (var col in allCols)
             {
                 if (alreadyHit.Contains(col)) continue;
+                if (!col.CompareTag("Enemy")) continue;
                 alreadyHit.Add(col);
                 col.GetComponent<EnemyStats>()?.TakeDamage(_roll_Damage);
             }
         }
 
-        // ── 기즈모 (에디터 시각화) ────────────────────────────────────
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = new Color(0.2f, 0.65f, 1f, 0.4f);

@@ -1135,7 +1135,7 @@ MonoBehaviour:
   _hitboxOffset: {x: 0.7, y: 0}
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
 --- !u!114 &1288828167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1513,6 +1513,10 @@ PrefabInstance:
     - target: {fileID: 1036847029876307339, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
       propertyPath: m_Name
       value: Enemy_Orc
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036847029876307339, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5104436306453706002, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
       propertyPath: m_LocalPosition.x
