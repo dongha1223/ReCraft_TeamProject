@@ -908,7 +908,7 @@ MonoBehaviour:
   _roll_Distance: 1.1
   _roll_RollTime: 0.22
   _roll_Cooldown: 2.2
-  _roll_OvalSize: {x: 1.8, y: 2.4}
+  _roll_OvalSize: {x: 2.6, y: 1}
 --- !u!114 &1288828159
 MonoBehaviour:
   m_ObjectHideFlags: 0
