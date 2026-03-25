@@ -31,6 +31,8 @@ namespace _2D_Roguelike
         private bool _isGrounded;
         private bool _isOnPlatform;
 
+        public bool IsGrounded => _isGrounded;
+
         private static readonly int AnimIsMoving = Animator.StringToHash("IsMoving");
 
         // ─── 발 감지 박스 중심 (월드 좌표) ───────────────────────────────

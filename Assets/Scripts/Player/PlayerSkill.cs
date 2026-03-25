@@ -50,6 +50,10 @@ namespace _2D_Roguelike
 
         public bool IsRolling { get; private set; }
 
+        /// <summary>0 = 사용 가능, 1 = 방금 사용(쿨타임 시작), 사이값 = 남은 비율</summary>
+        public float Skill1CooldownRatio { get; private set; } = 0f;
+        public float Skill2CooldownRatio { get; private set; } = 0f;
+
         private static readonly int AnimRollingSlash = Animator.StringToHash("RollingSlash");
 
         // ═════════════════════════════════════════════════════════════
@@ -85,22 +89,41 @@ namespace _2D_Roguelike
             SpawnCrescent(dir,  _energy_VertOffset);
             SpawnCrescent(dir, -_energy_VertOffset);
 
-            yield return new WaitForSeconds(_energy_Cooldown);
+            // 쿨타임 진행 (UI 비율 갱신)
+            float elapsed = 0f;
+            while (elapsed < _energy_Cooldown)
+            {
+                elapsed += Time.deltaTime;
+                Skill1CooldownRatio = 1f - Mathf.Clamp01(elapsed / _energy_Cooldown);
+                yield return null;
+            }
+            Skill1CooldownRatio = 0f;
             _canSkill1 = true;
         }
 
         private void SpawnCrescent(Vector2 dir, float yOffset)
         {
-            Vector2 pos = (Vector2)transform.position + new Vector2(0f, yOffset);
-            var go      = new GameObject(yOffset > 0 ? "SwordEnergy_상현달" : "SwordEnergy_하현달");
-            go.transform.position = pos;
+            Vector2 pos      = (Vector2)transform.position + new Vector2(0f, yOffset);
+            bool    fr       = (dir.x > 0f);
 
-            var p = go.AddComponent<SwordEnergyProjectile>();
-            p.damage        = _energy_Damage;
-            p.speed         = _energy_Speed;
-            p.maxDistance   = _energy_MaxDistance;
-            p.enemyLayer    = _enemyLayer;
-            p.facingRight   = (dir.x > 0f);
+            SwordEnergyProjectile p;
+            if (SkillObjectPool.Instance != null)
+            {
+                p = SkillObjectPool.Instance.GetProjectile(fr, pos);
+            }
+            else
+            {
+                // 풀이 없는 경우 폴백
+                var go = new GameObject(yOffset > 0 ? "SwordEnergy_상현달" : "SwordEnergy_하현달");
+                go.transform.position = pos;
+                p = go.AddComponent<SwordEnergyProjectile>();
+                p.Setup(fr);
+            }
+
+            p.damage      = _energy_Damage;
+            p.speed       = _energy_Speed;
+            p.maxDistance = _energy_MaxDistance;
+            p.enemyLayer  = _enemyLayer;
             p.Launch(dir);
         }
 
@@ -144,7 +167,15 @@ namespace _2D_Roguelike
 
             IsRolling = false;
 
-            yield return new WaitForSeconds(_roll_Cooldown);
+            // 쿨타임 진행 (UI 비율 갱신)
+            float elapsed = 0f;
+            while (elapsed < _roll_Cooldown)
+            {
+                elapsed += Time.deltaTime;
+                Skill2CooldownRatio = 1f - Mathf.Clamp01(elapsed / _roll_Cooldown);
+                yield return null;
+            }
+            Skill2CooldownRatio = 0f;
             _canSkill2 = true;
         }
 
@@ -190,9 +221,19 @@ namespace _2D_Roguelike
         // ── VFX & 피해 ────────────────────────────────────────────────
         private void SpawnSlashVFX(Vector2 pos)
         {
-            var go = new GameObject("RollingSlash_VFX");
-            go.transform.position = pos;
-            go.AddComponent<RollingSlashVisual>().Initialize(_roll_OvalSize, _rollDirSign);
+            RollingSlashVisual v;
+            if (SkillObjectPool.Instance != null)
+            {
+                v = SkillObjectPool.Instance.GetSlashVFX(pos);
+            }
+            else
+            {
+                // 풀이 없는 경우 폴백
+                var go = new GameObject("RollingSlash_VFX");
+                go.transform.position = pos;
+                v = go.AddComponent<RollingSlashVisual>();
+            }
+            v.Initialize(_roll_OvalSize, _rollDirSign);
         }
 
         private void ApplyOvalHit(Vector2 center, HashSet<Collider2D> alreadyHit)

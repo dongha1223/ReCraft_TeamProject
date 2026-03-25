@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 296579060}
   - component: {fileID: 296579059}
+  - component: {fileID: 296579061}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -163,6 +164,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &296579061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296579058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04da76c6b425d994eabfef5e9c768e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.SkillObjectPool
+  _initialProjectileCount: 4
+  _initialSlashVFXCount: 5
 --- !u!1 &480316342
 GameObject:
   m_ObjectHideFlags: 0
@@ -2264,10 +2279,10 @@ SceneRoots:
   - {fileID: 1571217167}
   - {fileID: 959593499}
   - {fileID: 297970784070132677}
+  - {fileID: 1782583427}
   - {fileID: 296579060}
   - {fileID: 1089758632}
   - {fileID: 1283245456}
-  - {fileID: 1782583427}
   - {fileID: 480316347}
   - {fileID: 1589461361}
   - {fileID: 1632782030}

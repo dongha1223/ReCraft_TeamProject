@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace _2D_Roguelike
     /// - 사망한 적(IsDead) 무시 → 투사체 통과
     /// - Dissolve 중복 호출 방지
     /// - SpawnBurst: Stop → 설정 → Play 순서로 파티클 경고 완전 제거
+    /// - SkillObjectPool 기반 풀링: Destroy 대신 풀 반환
     /// </summary>
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
     public class SwordEnergyProjectile : MonoBehaviour
@@ -23,42 +25,86 @@ namespace _2D_Roguelike
         private Vector2          _dir;
         private float            _traveled;
         private bool             _active = true;
+        private MeshFilter       _mf;
         private MeshRenderer     _mr;
         private MeshRenderer     _glowMr;
         private CircleCollider2D _col;
+        private GameObject       _glowGO;
+
+        // 오브젝트마다 1개씩 보유하는 인스턴스 재질
+        private Material _coreMat;
+        private Material _glowMat;
 
         private readonly HashSet<Collider2D> _hit = new HashSet<Collider2D>();
 
+        // ── 공유 메시 캐시 (방향당 1개, 최초 1회만 빌드) ─────────────────
+        private static Mesh _meshRight;
+        private static Mesh _meshLeft;
+        private static Mesh _glowMeshRight;
+        private static Mesh _glowMeshLeft;
+
+        private const float _outerR   = 0.52f;
+        private const float _innerR   = 0.50f;
+        private const float _offset   = 0.82f;
+        private const int   _segments = 36;
+
+        // ═════════════════════════════════════════════════════════════════
         private void Awake()
         {
+            _mf  = GetComponent<MeshFilter>();
             _mr  = GetComponent<MeshRenderer>();
             _col = gameObject.AddComponent<CircleCollider2D>();
             _col.radius    = 0.42f;
             _col.isTrigger = true;
         }
 
-        private void Start()
+        /// <summary>
+        /// 풀에서 꺼낼 때 호출 — 방향 설정 + 내부 상태 초기화
+        /// </summary>
+        public void Setup(bool fr)
         {
-            const float outerR   = 0.52f;
-            const float innerR   = 0.50f;
-            const float offset   = 0.82f;
-            const int   segments = 36;
+            facingRight = fr;
+            _dir        = Vector2.zero;
+            _traveled   = 0f;
+            _active     = true;
+            _hit.Clear();
 
-            var mf  = GetComponent<MeshFilter>();
-            mf.mesh = ThinCrescentMesh.Build(outerR, innerR, offset, segments, facingRight);
-            _mr.material     = new Material(Shader.Find("Sprites/Default")) { color = Color.white };
-            _mr.sortingOrder = 7;
+            // 코어 메시 할당 (static 캐시 사용)
+            _mf.mesh = GetOrBuildMesh(facingRight, false);
 
-            var glowGO = new GameObject("Glow");
-            glowGO.transform.SetParent(transform, false);
-            glowGO.transform.localScale = Vector3.one * 1.40f;
+            // 코어 재질: 최초 1회 생성, 이후 색상만 재설정
+            if (_coreMat == null)
+            {
+                _coreMat              = new Material(Shader.Find("Sprites/Default"));
+                _mr.sharedMaterial    = _coreMat;
+                _mr.sortingOrder      = 7;
+            }
+            _coreMat.color = Color.white;
+            _mr.enabled    = true;
 
-            var glowMf = glowGO.AddComponent<MeshFilter>();
-            _glowMr    = glowGO.AddComponent<MeshRenderer>();
-            glowMf.mesh          = ThinCrescentMesh.Build(outerR, innerR, offset * 0.90f, segments, facingRight);
-            _glowMr.material     = new Material(Shader.Find("Sprites/Default"))
-                                   { color = new Color(1f, 0.88f, 0.08f, 0.60f) };
-            _glowMr.sortingOrder = 6;
+            // 글로우 자식: 최초 1회 생성, 이후 재사용
+            if (_glowGO == null)
+            {
+                _glowGO = new GameObject("Glow");
+                _glowGO.transform.SetParent(transform, false);
+                _glowGO.transform.localScale = Vector3.one * 1.40f;
+
+                _glowGO.AddComponent<MeshFilter>().mesh = GetOrBuildMesh(facingRight, true);
+                _glowMr                    = _glowGO.AddComponent<MeshRenderer>();
+                _glowMat                   = new Material(Shader.Find("Sprites/Default"));
+                _glowMr.sharedMaterial     = _glowMat;
+                _glowMr.sortingOrder       = 6;
+            }
+            else
+            {
+                // 방향이 바뀌었을 수 있으므로 메시 갱신
+                _glowGO.GetComponent<MeshFilter>().mesh = GetOrBuildMesh(facingRight, true);
+            }
+
+            _glowMat.color  = new Color(1f, 0.88f, 0.08f, 0.60f);
+            _glowMr.enabled = true;
+
+            if (_col != null) _col.enabled = true;
         }
 
         public void Launch(Vector2 direction) => _dir = direction.normalized;
@@ -178,10 +224,56 @@ namespace _2D_Roguelike
         {
             if (!_active) return;
             _active = false;
+
+            // 렌더러/콜라이더 즉시 숨김
             if (_mr     != null) _mr.enabled     = false;
             if (_glowMr != null) _glowMr.enabled = false;
             if (_col    != null) _col.enabled    = false;
-            Destroy(gameObject, 0.05f);
+
+            // 1프레임 후 풀로 반환 (현재 프레임 Update/Trigger 안전 완료 보장)
+            StartCoroutine(ReturnToPool());
+        }
+
+        private IEnumerator ReturnToPool()
+        {
+            yield return null;
+            if (SkillObjectPool.Instance != null)
+                SkillObjectPool.Instance.ReturnProjectile(this);
+            else
+                Destroy(gameObject);
+        }
+
+        // ── Static 메시 캐시 ──────────────────────────────────────────────
+        private static Mesh GetOrBuildMesh(bool fr, bool isGlow)
+        {
+            const float glowOffset = _offset * 0.90f;
+
+            if (isGlow)
+            {
+                if (fr)
+                {
+                    _glowMeshRight ??= ThinCrescentMesh.Build(_outerR, _innerR, glowOffset, _segments, true);
+                    return _glowMeshRight;
+                }
+                else
+                {
+                    _glowMeshLeft ??= ThinCrescentMesh.Build(_outerR, _innerR, glowOffset, _segments, false);
+                    return _glowMeshLeft;
+                }
+            }
+            else
+            {
+                if (fr)
+                {
+                    _meshRight ??= ThinCrescentMesh.Build(_outerR, _innerR, _offset, _segments, true);
+                    return _meshRight;
+                }
+                else
+                {
+                    _meshLeft ??= ThinCrescentMesh.Build(_outerR, _innerR, _offset, _segments, false);
+                    return _meshLeft;
+                }
+            }
         }
     }
 
