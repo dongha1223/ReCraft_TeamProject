@@ -6,69 +6,89 @@ namespace _2D_Roguelike
 {
     /// <summary>
     /// 롤링 슬레쉬 참격 이펙트
-    /// 수정 사항:
-    ///   - 코루틴 실행 중 오브젝트 파괴 시 에러 방지 (null 체크)
-    ///   - this == null 조기 탈출
+    /// - 타원 링 메시 + 글로우 레이어
+    /// - 페이드 아웃 + 확대 애니메이션
+    /// - SkillObjectPool 기반 풀링: Destroy 대신 풀 반환
+    /// - 글로우 자식 오브젝트 최초 1회 생성 후 재사용
     /// </summary>
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
     public class RollingSlashVisual : MonoBehaviour
     {
-        public void Initialize(Vector2 ovalSize, float dirSign, float fadeDuration = 0.42f)
+        private MeshFilter   _mf;
+        private MeshRenderer _coreMr;
+        private Material     _coreMat;
+
+        private GameObject   _glowGO;
+        private MeshRenderer _glowMr;
+        private Material     _glowMat;
+
+        private void Awake()
         {
-            var mf = GetComponent<MeshFilter>();
-            var mr = GetComponent<MeshRenderer>();
-
-            mf.mesh = BuildOvalRingMesh(ovalSize.x * 0.5f, ovalSize.y * 0.5f, 0.22f, 48);
-
-            mr.material     = new Material(Shader.Find("Sprites/Default"))
-                              { color = new Color(0.20f, 0.65f, 1.00f, 0.95f) };
-            mr.sortingOrder = 5;
-
-            // 글로우 레이어
-            var glowGO = new GameObject("SlashGlow");
-            glowGO.transform.SetParent(transform, false);
-            glowGO.transform.localScale = Vector3.one * 1.18f;
-
-            var glowMf = glowGO.AddComponent<MeshFilter>();
-            var glowMr = glowGO.AddComponent<MeshRenderer>();
-            glowMf.mesh = BuildOvalRingMesh(ovalSize.x * 0.5f, ovalSize.y * 0.5f, 0.30f, 48);
-            glowMr.material     = new Material(Shader.Find("Sprites/Default"))
-                                  { color = new Color(0.50f, 0.85f, 1.00f, 0.45f) };
-            glowMr.sortingOrder = 4;
-
-            StartCoroutine(PlayEffect(mr, glowMr, fadeDuration));
+            _mf     = GetComponent<MeshFilter>();
+            _coreMr = GetComponent<MeshRenderer>();
         }
 
-        private IEnumerator PlayEffect(MeshRenderer mr, MeshRenderer glowMr, float dur)
+        public void Initialize(Vector2 ovalSize, float dirSign, float fadeDuration = 0.42f)
         {
-            if (this == null) yield break;
+            // 코어 메시
+            _mf.mesh = BuildOvalRingMesh(ovalSize.x * 0.5f, ovalSize.y * 0.5f, 0.22f, 48);
 
-            // 재료를 로컬 변수에 보관 — 오브젝트 파괴 후에도 안전
-            Material matCore = mr != null ? mr.material : null;
-            Material matGlow = glowMr != null ? glowMr.material : null;
+            // 코어 재질: 최초 1회 생성, 이후 색상만 재설정
+            if (_coreMat == null)
+            {
+                _coreMat              = new Material(Shader.Find("Sprites/Default"));
+                _coreMr.sharedMaterial = _coreMat;
+                _coreMr.sortingOrder   = 5;
+            }
+            _coreMat.color  = new Color(0.20f, 0.65f, 1.00f, 0.95f);
+            _coreMr.enabled = true;
 
-            if (matCore == null) yield break;
+            // 글로우 자식: 최초 1회 생성, 이후 재사용
+            if (_glowGO == null)
+            {
+                _glowGO = new GameObject("SlashGlow");
+                _glowGO.transform.SetParent(transform, false);
+                _glowGO.AddComponent<MeshFilter>();
+                _glowMr                    = _glowGO.AddComponent<MeshRenderer>();
+                _glowMat                   = new Material(Shader.Find("Sprites/Default"));
+                _glowMr.sharedMaterial     = _glowMat;
+                _glowMr.sortingOrder       = 4;
+            }
 
-            float coreAlpha = matCore.color.a;
-            float glowAlpha = matGlow != null ? matGlow.color.a : 0f;
+            _glowGO.transform.localScale = Vector3.one * 1.18f;
+            _glowGO.GetComponent<MeshFilter>().mesh =
+                BuildOvalRingMesh(ovalSize.x * 0.5f, ovalSize.y * 0.5f, 0.30f, 48);
+            _glowMat.color  = new Color(0.50f, 0.85f, 1.00f, 0.45f);
+            _glowMr.enabled = true;
 
             transform.localScale = Vector3.one * 0.55f;
+
+            StartCoroutine(PlayEffect(fadeDuration));
+        }
+
+        private IEnumerator PlayEffect(float dur)
+        {
+            if (this == null) yield break;
+            if (_coreMat == null) yield break;
+
+            float coreAlpha = _coreMat.color.a;
+            float glowAlpha = _glowMat != null ? _glowMat.color.a : 0f;
 
             float t = 0f;
             while (t < dur)
             {
-                // 오브젝트가 파괴됐으면 중단
                 if (this == null || gameObject == null) yield break;
 
                 t += Time.deltaTime;
                 float p = Mathf.Clamp01(t / dur);
 
-                if (matCore != null)
-                    matCore.color = new Color(matCore.color.r, matCore.color.g, matCore.color.b,
-                                              Mathf.Lerp(coreAlpha, 0f, p));
-                if (matGlow != null)
-                    matGlow.color = new Color(matGlow.color.r, matGlow.color.g, matGlow.color.b,
-                                              Mathf.Lerp(glowAlpha, 0f, p));
+                if (_coreMat != null)
+                    _coreMat.color = new Color(_coreMat.color.r, _coreMat.color.g, _coreMat.color.b,
+                                               Mathf.Lerp(coreAlpha, 0f, p));
+
+                if (_glowMat != null)
+                    _glowMat.color = new Color(_glowMat.color.r, _glowMat.color.g, _glowMat.color.b,
+                                               Mathf.Lerp(glowAlpha, 0f, p));
 
                 float scale = Mathf.Lerp(0.55f, 1.6f, Mathf.SmoothStep(0f, 1f, p));
                 transform.localScale = Vector3.one * scale;
@@ -76,7 +96,12 @@ namespace _2D_Roguelike
                 yield return null;
             }
 
-            if (this != null && gameObject != null)
+            if (this == null || gameObject == null) yield break;
+
+            // 이펙트 완료 → 풀로 반환
+            if (SkillObjectPool.Instance != null)
+                SkillObjectPool.Instance.ReturnSlashVFX(this);
+            else
                 Destroy(gameObject);
         }
 
