@@ -117,7 +117,7 @@ namespace _2D_Roguelike
 
             float moveSpeed = _roll_Distance / _roll_RollTime;
 
-            _anim?.SetTrigger(AnimRollingSlash);
+            SafeAnimTrigger(_anim, AnimRollingSlash);
 
             var alreadyHit = new HashSet<Collider2D>();
 
@@ -223,6 +223,15 @@ namespace _2D_Roguelike
         }
 
         // ── 기즈모 ───────────────────────────────────────────────────
+        // ── 안전한 Animator 트리거 ─────────────────────────────────────────
+        /// <summary>애니메이터 파라미터가 없어도 에러 없이 무시</summary>
+        private static void SafeAnimTrigger(Animator anim, int hash)
+        {
+            if (anim == null) return;
+            foreach (var p in anim.parameters)
+                if (p.nameHash == hash) { anim.SetTrigger(hash); return; }
+        }
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = new Color(0.2f, 0.65f, 1f, 0.4f);
