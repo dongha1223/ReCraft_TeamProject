@@ -203,7 +203,6 @@ MonoBehaviour:
   _maxHp: 50
   _hitFlashColor: {r: 1, g: 0.15, b: 0.15, a: 1}
   _hitFlashDuration: 0.12
-  _knockbackForce: 3.5
 --- !u!95 &5482841832644230740
 Animator:
   serializedVersion: 7
@@ -237,7 +236,7 @@ GameObject:
   - component: {fileID: 1815178142186140087}
   - component: {fileID: 7809846219750695379}
   - component: {fileID: 9141925979797503509}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

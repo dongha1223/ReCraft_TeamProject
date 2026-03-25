@@ -5,10 +5,11 @@ namespace _2D_Roguelike
 {
     /// <summary>
     /// 검기 발산 투사체
-    /// 수정 사항:
-    ///   - Dissolve 중복 호출 방지 (_active 플래그로 단일 진입 보장)
-    ///   - OnTriggerEnter2D / Update 둘 다 _active 검사
-    ///   - LayerMask + 태그 이중 감지
+    /// - 흰색 코어 + 노란 글로우 2중 레이어 초승달 메시
+    /// - LayerMask + 태그 "Enemy" 이중 감지
+    /// - 사망한 적(IsDead) 무시 → 투사체 통과
+    /// - Dissolve 중복 호출 방지
+    /// - SpawnBurst: Stop → 설정 → Play 순서로 파티클 경고 완전 제거
     /// </summary>
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
     public class SwordEnergyProjectile : MonoBehaviour
@@ -45,18 +46,16 @@ namespace _2D_Roguelike
 
             var mf  = GetComponent<MeshFilter>();
             mf.mesh = ThinCrescentMesh.Build(outerR, innerR, offset, segments, facingRight);
-
             _mr.material     = new Material(Shader.Find("Sprites/Default")) { color = Color.white };
             _mr.sortingOrder = 7;
 
-            // 글로우 레이어
             var glowGO = new GameObject("Glow");
             glowGO.transform.SetParent(transform, false);
             glowGO.transform.localScale = Vector3.one * 1.40f;
 
             var glowMf = glowGO.AddComponent<MeshFilter>();
             _glowMr    = glowGO.AddComponent<MeshRenderer>();
-            glowMf.mesh = ThinCrescentMesh.Build(outerR, innerR, offset * 0.90f, segments, facingRight);
+            glowMf.mesh          = ThinCrescentMesh.Build(outerR, innerR, offset * 0.90f, segments, facingRight);
             _glowMr.material     = new Material(Shader.Find("Sprites/Default"))
                                    { color = new Color(1f, 0.88f, 0.08f, 0.60f) };
             _glowMr.sortingOrder = 6;
@@ -80,15 +79,15 @@ namespace _2D_Roguelike
         {
             if (!_active) return;
             if (_hit.Contains(other)) return;
-            if (other.GetComponent<EnemyStats>() == null) return;
+            var stats = other.GetComponent<EnemyStats>();
+            if (stats == null || stats.IsDead) return;
 
             _hit.Add(other);
-            other.GetComponent<EnemyStats>().TakeDamage(damage);
+            stats.TakeDamage(damage);
             SpawnImpactVFX(transform.position);
             Dissolve();
         }
 
-        /// <returns>적을 맞혔으면 true</returns>
         private bool TryHitEnemy(Vector2 pos)
         {
             // 1차: LayerMask
@@ -97,21 +96,26 @@ namespace _2D_Roguelike
                 Collider2D col = Physics2D.OverlapCircle(pos, 0.44f, enemyLayer);
                 if (col != null && !_hit.Contains(col))
                 {
-                    _hit.Add(col);
-                    col.GetComponent<EnemyStats>()?.TakeDamage(damage);
-                    SpawnImpactVFX(pos);
-                    return true;
+                    var stats = col.GetComponent<EnemyStats>();
+                    if (stats != null && !stats.IsDead)
+                    {
+                        _hit.Add(col);
+                        stats.TakeDamage(damage);
+                        SpawnImpactVFX(pos);
+                        return true;
+                    }
                 }
             }
 
             // 2차: 태그 "Enemy" 폴백
-            Collider2D[] all = Physics2D.OverlapCircleAll(pos, 0.44f);
-            foreach (var c in all)
+            foreach (var c in Physics2D.OverlapCircleAll(pos, 0.44f))
             {
                 if (_hit.Contains(c)) continue;
                 if (!c.CompareTag("Enemy")) continue;
+                var s = c.GetComponent<EnemyStats>();
+                if (s == null || s.IsDead) continue;
                 _hit.Add(c);
-                c.GetComponent<EnemyStats>()?.TakeDamage(damage);
+                s.TakeDamage(damage);
                 SpawnImpactVFX(pos);
                 return true;
             }
@@ -122,19 +126,28 @@ namespace _2D_Roguelike
         {
             var root = new GameObject("SwordImpact_VFX");
             root.transform.position = pos;
-            SpawnBurst(root, Color.white,                        18, 0.35f, 6f, 0.05f, 0.14f, 11);
-            SpawnBurst(root, new Color(1f, 0.88f, 0.1f, 0.9f),  22, 0.45f, 9f, 0.08f, 0.20f, 10);
+            SpawnBurst(root, Color.white,                       18, 0.35f, 6f, 0.05f, 0.14f, 11);
+            SpawnBurst(root, new Color(1f, 0.88f, 0.1f, 0.9f), 22, 0.45f, 9f, 0.08f, 0.20f, 10);
             Destroy(root, 1.0f);
         }
 
+        /// <summary>
+        /// ★ Stop → 설정 → Play 순서로 파티클 경고 완전 제거
+        /// </summary>
         private static void SpawnBurst(GameObject parent, Color col,
             int count, float lifeMax, float speedMax,
             float sizeMin, float sizeMax, int order)
         {
             var go = new GameObject("Burst");
             go.transform.SetParent(parent.transform, false);
-            var ps   = go.AddComponent<ParticleSystem>();
+
+            var ps = go.AddComponent<ParticleSystem>();
+
+            // ★ 자동 Play 즉시 차단
+            ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
             var main = ps.main;
+            main.playOnAwake     = false;
             main.duration        = 0.3f;
             main.loop            = false;
             main.startLifetime   = new ParticleSystem.MinMaxCurve(lifeMax * 0.4f, lifeMax);
@@ -144,30 +157,35 @@ namespace _2D_Roguelike
             main.maxParticles    = count + 4;
             main.simulationSpace = ParticleSystemSimulationSpace.World;
             main.gravityModifier = new ParticleSystem.MinMaxCurve(0f, 0.3f);
+
             var em = ps.emission;
             em.rateOverTime = 0;
             em.SetBursts(new[] { new ParticleSystem.Burst(0f, (short)count) });
+
             var sh = ps.shape;
             sh.shapeType = ParticleSystemShapeType.Circle;
             sh.radius    = 0.1f;
+
             var psr = go.GetComponent<ParticleSystemRenderer>();
             psr.material     = new Material(Shader.Find("Sprites/Default"));
             psr.sortingOrder = order;
+
+            // ★ 설정 완료 후 명시적 Play
             ps.Play();
         }
 
         private void Dissolve()
         {
-            if (!_active) return;   // 중복 호출 방지
+            if (!_active) return;
             _active = false;
-            if (_mr    != null) _mr.enabled    = false;
+            if (_mr     != null) _mr.enabled     = false;
             if (_glowMr != null) _glowMr.enabled = false;
-            if (_col    != null) _col.enabled   = false;
+            if (_col    != null) _col.enabled    = false;
             Destroy(gameObject, 0.05f);
         }
     }
 
-    // ── ThinCrescentMesh ─────────────────────────────────────────────────
+    // ── ThinCrescentMesh ──────────────────────────────────────────────────
     public static class ThinCrescentMesh
     {
         public static Mesh Build(float outerRadius, float innerRadius,
@@ -207,8 +225,8 @@ namespace _2D_Roguelike
                 int oa = i, ob = i + 1;
                 int ic = n + (segments - i), id = n + (segments - i - 1);
                 int j  = i * 6;
-                tris[j]     = oa; tris[j+1] = ob; tris[j+2] = ic;
-                tris[j+3]   = ob; tris[j+4] = id; tris[j+5] = ic;
+                tris[j]   = oa; tris[j+1] = ob; tris[j+2] = ic;
+                tris[j+3] = ob; tris[j+4] = id; tris[j+5] = ic;
             }
 
             var mesh = new Mesh
