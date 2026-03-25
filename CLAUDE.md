@@ -15,6 +15,10 @@
 - OOP 기반 설계
 - 계획을 말하고 승인 받은 후에 작업
 - 최적화를 고려한 코드 작성
+- **UI는 UIToolkit 우선** (UXML/USS로 레이아웃·스타일 정의, 스크립트는 참조만)
+- **스크립트 내에서 UI 요소를 코드로 생성하지 말 것** (가독성 저해, AddComponent/new GameObject 등 금지)
+- UIToolkit으로 불가한 경우에만 Canvas 방식 사용하되 반드시 사용자에게 먼저 설명
+- **⚠ 런타임 스프라이트/텍스처 생성 주의** (`new Texture2D`, `Sprite.Create` 등 런타임 에셋 생성은 Inspector 관리 불가·최적화 저해 우려가 있으므로 사용 전 반드시 사용자에게 경고할 것. 스프라이트가 필요한 경우 에셋을 직접 준비하는 방식 권장)
 
 ## 폴더 구조 규칙
 ```
@@ -28,6 +32,7 @@ Assets/
   Prefabs/        # 프리팹
   Sprites/        # 스프라이트/텍스처
   Audio/          # 사운드
+  UI/             # UIToolkit 파일 (.uxml, .uss, PanelSettings)
   Settings/       # URP 설정 (건드리지 말 것)
   MCPForUnity/    # MCP 플러그인 (건드리지 말 것)
 ```
