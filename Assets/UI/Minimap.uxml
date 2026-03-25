@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="Minimap.uss" />
+    <ui:VisualElement name="root">
+        <ui:VisualElement name="minimap-container">
+            <ui:Label name="minimap-title" text="MAP" />
+            <ui:VisualElement name="minimap-view">
+                <ui:VisualElement name="minimap-player-icon" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

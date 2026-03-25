@@ -65,7 +65,7 @@ namespace _2D_Roguelike
             if (_rb.linearVelocity.y > 0.1f)
             {
                 _isGrounded   = false;
-                _isOnPlatform = false;
+                
                 return;
             }
 
@@ -129,14 +129,20 @@ namespace _2D_Roguelike
         }
 
         // ─── 플랫폼 통과 낙하 ─────────────────────────────────────────────
+        // 발 아래 플랫폼 콜라이더를 isTrigger로 전환 → 즉시 통과 가능
         private IEnumerator DropThroughPlatform()
         {
-            _rb.excludeLayers  = _rb.excludeLayers | _platformLayer;
+            Collider2D[] cols = Physics2D.OverlapBoxAll(FeetCenter, FeetBoxSize, 0f, _platformLayer);
+
+            foreach (var col in cols)
+                col.isTrigger = true;
+
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -4f);
 
             yield return new WaitForSeconds(0.4f);
 
-            _rb.excludeLayers = _rb.excludeLayers & ~_platformLayer;
+            foreach (var col in cols)
+                col.isTrigger = false;
         }
 
         // ─── 시각화 ───────────────────────────────────────────────────────
