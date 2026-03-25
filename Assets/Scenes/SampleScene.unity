@@ -1289,6 +1289,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ccba1b381b9ded4eb7573b175ba6dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.PlayerSkill
+  _energy_Damage: 30
+  _energy_Speed: 10
+  _energy_MaxDistance: 14
+  _energy_Cooldown: 1.5
+  _energy_VertOffset: 0.25
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _roll_Damage: 25
+  _roll_Distance: 1.1
+  _roll_RollTime: 0.22
+  _roll_Cooldown: 2.2
+  _roll_OvalSize: {x: 1.8, y: 2.4}
 --- !u!114 &1288828159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1973,6 +1986,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1782583427
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1036847029876307339, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
+      propertyPath: m_Name
+      value: Enemy_Orc (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104436306453706002, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104436306453706002, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104436306453706002, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104436306453706002, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104436306453706002, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104436306453706002, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104436306453706002, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104436306453706002, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104436306453706002, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104436306453706002, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
 --- !u!1001 &297970784070132677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1985,6 +2055,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Orc
       objectReference: {fileID: 0}
+    - target: {fileID: 1036847029876307339, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
     - target: {fileID: 1497743490482280787, guid: 44d6b0de1fec7f64090e168c9214ad6f, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -2049,6 +2122,7 @@ SceneRoots:
   - {fileID: 296579060}
   - {fileID: 1089758632}
   - {fileID: 1283245456}
+  - {fileID: 1782583427}
   - {fileID: 480316347}
   - {fileID: 1589461361}
   - {fileID: 1632782030}
