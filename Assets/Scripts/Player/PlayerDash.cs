@@ -28,6 +28,8 @@ namespace _2D_Roguelike
 
         public bool IsDashing => _isDashing;
 
+        public GhostFade ghost;
+
         private void Awake()
         {
             _rb             = GetComponent<Rigidbody2D>();
@@ -50,6 +52,7 @@ namespace _2D_Roguelike
         {
             _canDash   = false;
             _isDashing = true;
+            ghost.makeGhost = true;
 
             float dir = (_spriteRenderer != null && _spriteRenderer.flipX) ? -1f : 1f;
             _animator?.SetTrigger(AnimDash);
@@ -59,6 +62,7 @@ namespace _2D_Roguelike
             yield return new WaitForSeconds(Mathf.Max(0f, _dashDuration));
 
             _isDashing = false;
+            ghost.makeGhost = false;
 
             // 쿨다운: 대시 시간 이후 남은 시간만큼 추가 대기 (음수 방지)
             float remainCooldown = Mathf.Max(0f, _dashCooldown - _dashDuration);
