@@ -17,4 +17,9 @@ public class MovementRigidBody2d : MonoBehaviour
     {
         rigid2D.linearVelocity = direction * moveSpeed;
     }
+
+    private void OnDisable()
+    {
+        if (rigid2D != null) rigid2D.linearVelocity = Vector2.zero;
+    }
 }

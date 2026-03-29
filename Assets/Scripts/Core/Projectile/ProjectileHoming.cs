@@ -17,3 +17,4 @@ public class ProjectileHoming : ProjectileBase
         movementRigidBody2D.MoveTo((target.position - transform.position).normalized);
     }
 }
+ 

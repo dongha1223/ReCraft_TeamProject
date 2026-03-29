@@ -17,9 +17,8 @@ namespace _2D_Roguelike
         [SerializeField] private float _dashDuration = 0.15f;
         [SerializeField] private float _dashCooldown = 1f;
 
-        private Rigidbody2D    _rb;
-        private SpriteRenderer _spriteRenderer;
-        private Animator       _animator;
+        private Rigidbody2D _rb;
+        private Animator    _animator;
 
         private bool _isDashing;
         private bool _canDash = true;
@@ -32,9 +31,8 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
-            _rb             = GetComponent<Rigidbody2D>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            _animator       = GetComponent<Animator>();
+            _rb       = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
         }
 
         private void Update()
@@ -54,7 +52,7 @@ namespace _2D_Roguelike
             _isDashing = true;
             ghost.makeGhost = true;
 
-            float dir = (_spriteRenderer != null && _spriteRenderer.flipX) ? -1f : 1f;
+            float dir = transform.localScale.x < 0f ? -1f : 1f;
             _animator?.SetTrigger(AnimDash);
             _rb.linearVelocity = new Vector2(dir * _dashSpeed, _rb.linearVelocity.y);
 

@@ -4,16 +4,18 @@ using UnityEngine;
 namespace _2D_Roguelike
 {
     /// <summary>
-    /// A/S 스킬 오브젝트 풀
-    /// - SwordEnergyProjectile : A 스킬 투사체
-    /// - RollingSlashVisual    : S 스킬 이펙트
+    /// A/S 스킬 오브젝트 풀.
+    /// - SwordEnergyProjectile: 프리팹 기반 풀링 (_projectilePrefab Inspector 할당 필수)
+    /// - RollingSlashVisual   : 프리팹 기반 풀링 (_slashVFXPrefab Inspector 할당 필수)
     /// </summary>
     public class SkillObjectPool : MonoBehaviour
     {
         public static SkillObjectPool Instance { get; private set; }
 
-        [SerializeField] private int _initialProjectileCount = 4;
-        [SerializeField] private int _initialSlashVFXCount   = 5;
+        [SerializeField] private GameObject _projectilePrefab;
+        [SerializeField] private GameObject _slashVFXPrefab;
+        [SerializeField] private int        _initialProjectileCount = 4;
+        [SerializeField] private int        _initialSlashVFXCount   = 5;
 
         private readonly Queue<SwordEnergyProjectile> _projectilePool = new Queue<SwordEnergyProjectile>();
         private readonly Queue<RollingSlashVisual>     _slashVFXPool   = new Queue<RollingSlashVisual>();
@@ -33,26 +35,27 @@ namespace _2D_Roguelike
         // ── SwordEnergyProjectile ─────────────────────────────────────────
         private SwordEnergyProjectile CreateProjectile()
         {
-            var go = new GameObject("SwordEnergy_Pooled");
-            go.transform.SetParent(transform);
-            // RequireComponent 가 MeshFilter / MeshRenderer 를 자동으로 추가
-            var p = go.AddComponent<SwordEnergyProjectile>();
+            if (_projectilePrefab == null)
+            {
+                Debug.LogError("[SkillObjectPool] _projectilePrefab이 할당되지 않았습니다.");
+                return null;
+            }
+            var go = Instantiate(_projectilePrefab, transform);
             go.SetActive(false);
-            return p;
+            return go.GetComponent<SwordEnergyProjectile>();
         }
 
-        /// <summary>풀에서 투사체를 꺼내 초기화 후 반환</summary>
-        public SwordEnergyProjectile GetProjectile(bool facingRight, Vector2 pos)
+        public SwordEnergyProjectile GetProjectile(Vector2 pos)
         {
-            var p = _projectilePool.Count > 0 ? _projectilePool.Dequeue() : CreateProjectile();
+            var p = (_projectilePool.Count > 0) ? _projectilePool.Dequeue() : CreateProjectile();
+            if (p == null) return null;
+
             p.transform.SetParent(null);
             p.transform.position = pos;
             p.gameObject.SetActive(true);
-            p.Setup(facingRight);
             return p;
         }
 
-        /// <summary>투사체를 비활성화하고 풀로 반환</summary>
         public void ReturnProjectile(SwordEnergyProjectile p)
         {
             p.gameObject.SetActive(false);
@@ -63,25 +66,27 @@ namespace _2D_Roguelike
         // ── RollingSlashVisual ────────────────────────────────────────────
         private RollingSlashVisual CreateSlashVFX()
         {
-            var go = new GameObject("RollingSlash_Pooled");
-            go.transform.SetParent(transform);
-            // RequireComponent 가 MeshFilter / MeshRenderer 를 자동으로 추가
-            var v = go.AddComponent<RollingSlashVisual>();
+            if (_slashVFXPrefab == null)
+            {
+                Debug.LogError("[SkillObjectPool] _slashVFXPrefab이 할당되지 않았습니다.");
+                return null;
+            }
+            var go = Instantiate(_slashVFXPrefab, transform);
             go.SetActive(false);
-            return v;
+            return go.GetComponent<RollingSlashVisual>();
         }
 
-        /// <summary>풀에서 슬래쉬 VFX를 꺼내 위치 설정 후 반환</summary>
         public RollingSlashVisual GetSlashVFX(Vector2 pos)
         {
-            var v = _slashVFXPool.Count > 0 ? _slashVFXPool.Dequeue() : CreateSlashVFX();
+            var v = (_slashVFXPool.Count > 0) ? _slashVFXPool.Dequeue() : CreateSlashVFX();
+            if (v == null) return null;
+
             v.transform.SetParent(null);
             v.transform.position = pos;
             v.gameObject.SetActive(true);
             return v;
         }
 
-        /// <summary>슬래쉬 VFX를 비활성화하고 풀로 반환</summary>
         public void ReturnSlashVFX(RollingSlashVisual v)
         {
             v.gameObject.SetActive(false);

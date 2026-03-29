@@ -21,11 +21,10 @@ namespace _2D_Roguelike
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _platformLayer;
 
-        private Rigidbody2D    _rb;
-        private SpriteRenderer _spriteRenderer;
-        private Animator       _animator;
-        private PlayerDash     _playerDash;
-        private PlayerSkill    _playerSkill;
+        private Rigidbody2D _rb;
+        private Animator    _animator;
+        private PlayerDash  _playerDash;
+        private PlayerSkill _playerSkill;
 
         private int  _jumpCount;
         private bool _isGrounded;
@@ -41,11 +40,10 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
-            _rb             = GetComponent<Rigidbody2D>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            _animator       = GetComponent<Animator>();
-            _playerDash     = GetComponent<PlayerDash>();
-            _playerSkill    = GetComponent<PlayerSkill>();
+            _rb          = GetComponent<Rigidbody2D>();
+            _animator    = GetComponent<Animator>();
+            _playerDash  = GetComponent<PlayerDash>();
+            _playerSkill = GetComponent<PlayerSkill>();
         }
 
         private void Update()
@@ -100,8 +98,8 @@ namespace _2D_Roguelike
 
             _rb.linearVelocity = new Vector2(horizontal * _moveSpeed, _rb.linearVelocity.y);
 
-            if (horizontal != 0f && _spriteRenderer != null)
-                _spriteRenderer.flipX = horizontal < 0f;
+            if (horizontal != 0f)
+                Flip(horizontal);
 
             _animator?.SetBool(AnimIsMoving, horizontal != 0f);
         }
@@ -145,6 +143,14 @@ namespace _2D_Roguelike
 
             foreach (var col in cols)
                 col.isTrigger = false;
+        }
+
+        // ─── 방향 전환 ────────────────────────────────────────────────────
+        private void Flip(float horizontal)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = horizontal > 0f ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+            transform.localScale = scale;
         }
 
         // ─── 시각화 ───────────────────────────────────────────────────────
