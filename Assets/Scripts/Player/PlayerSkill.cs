@@ -20,12 +20,10 @@ namespace _2D_Roguelike
     {
         // ── 검기 발산 ─────────────────────────────────────────────────
         [Header("검기 발산 (A 키)")]
-        [SerializeField] private float     _energy_Damage      = 30f;
-        [SerializeField] private float     _energy_Speed       = 10f;
-        [SerializeField] private float     _energy_MaxDistance = 14f;
-        [SerializeField] private float     _energy_Cooldown    = 1.5f;
-        [SerializeField] private float     _energy_VertOffset  = 0.25f;
-        [SerializeField] private LayerMask _enemyLayer;
+        [SerializeField] private LayerMask _enemyLayer; 
+        [SerializeField] private float _energy_Damage     = 30f;
+        [SerializeField] private float _energy_Cooldown   = 1.5f;
+        [SerializeField] private float _energy_VertOffset = 0.25f;
 
         // ── 롤링 슬레쉬 ──────────────────────────────────────────────
         [Header("롤링 슬레쉬 (S 키)")]
@@ -39,9 +37,8 @@ namespace _2D_Roguelike
         [SerializeField] private Vector2 _roll_OvalSize  = new Vector2(2.6f, 1.0f);
 
         // ── 컴포넌트 ─────────────────────────────────────────────────
-        private SpriteRenderer _sr;
-        private Rigidbody2D    _rb;
-        private Animator       _anim;
+        private Rigidbody2D _rb;
+        private Animator    _anim;
 
         // ── 상태 ─────────────────────────────────────────────────────
         private bool  _canSkill1   = true;
@@ -59,7 +56,6 @@ namespace _2D_Roguelike
         // ═════════════════════════════════════════════════════════════
         private void Awake()
         {
-            _sr   = GetComponent<SpriteRenderer>();
             _rb   = GetComponent<Rigidbody2D>();
             _anim = GetComponent<Animator>();
         }
@@ -83,7 +79,7 @@ namespace _2D_Roguelike
         {
             _canSkill1 = false;
 
-            bool    facingLeft = (_sr != null && _sr.flipX);
+            bool    facingLeft = transform.localScale.x < 0f;
             Vector2 dir        = facingLeft ? Vector2.left : Vector2.right;
 
             SpawnCrescent(dir,  _energy_VertOffset);
@@ -103,28 +99,17 @@ namespace _2D_Roguelike
 
         private void SpawnCrescent(Vector2 dir, float yOffset)
         {
-            Vector2 pos      = (Vector2)transform.position + new Vector2(0f, yOffset);
-            bool    fr       = (dir.x > 0f);
-
-            SwordEnergyProjectile p;
-            if (SkillObjectPool.Instance != null)
+            if (SkillObjectPool.Instance == null)
             {
-                p = SkillObjectPool.Instance.GetProjectile(fr, pos);
-            }
-            else
-            {
-                // 풀이 없는 경우 폴백
-                var go = new GameObject(yOffset > 0 ? "SwordEnergy_상현달" : "SwordEnergy_하현달");
-                go.transform.position = pos;
-                p = go.AddComponent<SwordEnergyProjectile>();
-                p.Setup(fr);
+                Debug.LogError("[PlayerSkill] SkillObjectPool이 없습니다.");
+                return;
             }
 
-            p.damage      = _energy_Damage;
-            p.speed       = _energy_Speed;
-            p.maxDistance = _energy_MaxDistance;
-            p.enemyLayer  = _enemyLayer;
-            p.Launch(dir);
+            Vector2 pos = (Vector2)transform.position + new Vector2(0f, yOffset);
+            var p = SkillObjectPool.Instance.GetProjectile(pos);
+            if (p == null) return;
+
+            p.Launch(dir, _energy_Damage);
         }
 
         // ═════════════════════════════════════════════════════════════
@@ -136,7 +121,7 @@ namespace _2D_Roguelike
         {
             _canSkill2   = false;
             IsRolling    = true;
-            _rollDirSign = (_sr != null && _sr.flipX) ? -1f : 1f;
+            _rollDirSign = transform.localScale.x < 0f ? -1f : 1f;
 
             float moveSpeed = _roll_Distance / _roll_RollTime;
 

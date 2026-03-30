@@ -13,7 +13,6 @@ namespace _2D_Roguelike
         [SerializeField] private LayerMask _enemyLayer;
 
         private Animator _animator;
-        private SpriteRenderer _spriteRenderer;
 
         private bool _isAttacking;
         private bool _canAttack = true;
@@ -23,7 +22,6 @@ namespace _2D_Roguelike
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void Update()
@@ -57,7 +55,7 @@ namespace _2D_Roguelike
 
         private void ApplyHitbox()
         {
-            float dir = (_spriteRenderer != null && _spriteRenderer.flipX) ? -1f : 1f;
+            float dir = transform.localScale.x < 0f ? -1f : 1f;
             Vector2 center = (Vector2)transform.position + new Vector2(_hitboxOffset.x * dir, _hitboxOffset.y);
 
             Collider2D[] hits = Physics2D.OverlapBoxAll(center, _hitboxSize, 0f, _enemyLayer);
@@ -72,7 +70,7 @@ namespace _2D_Roguelike
         {
             // 공격 히트박스 시각화
             Gizmos.color = Color.red;
-            float dir = (_spriteRenderer != null && _spriteRenderer.flipX) ? -1f : 1f;
+            float dir = transform.localScale.x < 0f ? -1f : 1f;
             Vector2 center = (Vector2)transform.position + new Vector2(_hitboxOffset.x * dir, _hitboxOffset.y);
             Gizmos.DrawWireCube(center, _hitboxSize);
         }
