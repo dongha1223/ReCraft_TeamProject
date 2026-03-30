@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <Style src="StartScreen.uss" />
+
+    <!-- 게임 로고 이미지 (전체화면 배경) -->
+    <ui:VisualElement name="logo-image" class="logo-image" />
+
+    <!-- 프롬프트 영역 - 화면 하단 중앙 -->
+    <ui:VisualElement name="content-root" class="content-root">
+        <ui:Label name="prompt-label" text="아무 키나 입력하세요" class="prompt-label" />
+    </ui:VisualElement>
+
+    <!-- 검은 페이드 오버레이 (Fade In/Out 용, 항상 최상위) -->
+    <ui:VisualElement name="fade-overlay" class="fade-overlay" />
+</ui:UXML>
