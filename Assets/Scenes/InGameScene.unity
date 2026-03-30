@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.SkillObjectPool
   _projectilePrefab: {fileID: 183671539507655738, guid: cae58b31d6e16c246800143338363237, type: 3}
-  _slashVFXPrefab: {fileID: 0}
+  _slashVFXPrefab: {fileID: 6438811975416736645, guid: 9f9e5972d4aa84545b6da5d63c048d25, type: 3}
   _initialProjectileCount: 4
   _initialSlashVFXCount: 5
 --- !u!1 &416850861
