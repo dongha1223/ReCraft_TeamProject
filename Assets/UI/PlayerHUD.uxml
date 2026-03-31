@@ -1,36 +1,26 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
-    <Style src="PlayerHUD.uss" />
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PlayerHUD.uss?fileID=7433441132597879392&amp;guid=eecf666d08350a54eae1f4b2926bc02d&amp;type=3#PlayerHUD"/>
     <ui:VisualElement name="root">
         <ui:VisualElement name="hud-panel">
-
-            <!-- 초상화 + 스킬 슬롯 가로 배열 -->
             <ui:VisualElement name="hud-top-row">
-
-                <!-- 캐릭터 초상화 원형 (backgroundImage는 스크립트에서 설정) -->
-                <ui:VisualElement name="portrait-circle" />
-
-                <!-- A / S 스킬 슬롯 -->
+                <ui:VisualElement name="portrait-circle"/>
                 <ui:VisualElement name="skill-slots">
                     <ui:VisualElement name="skill-slot-a" class="skill-slot">
-                        <ui:VisualElement name="skill-a-cooldown" class="skill-cooldown-overlay" />
-                        <ui:Label text="A" class="skill-key" />
+                        <ui:VisualElement name="skill-a-cooldown" class="skill-cooldown-overlay" style="opacity: 1; visibility: visible;"/>
+                        <ui:Label text="A" tabindex="-1" class="skill-key"/>
                     </ui:VisualElement>
                     <ui:VisualElement name="skill-slot-s" class="skill-slot">
-                        <ui:VisualElement name="skill-s-cooldown" class="skill-cooldown-overlay" />
-                        <ui:Label text="S" class="skill-key" />
+                        <ui:VisualElement name="skill-s-cooldown" class="skill-cooldown-overlay"/>
+                        <ui:Label text="S" class="skill-key"/>
                     </ui:VisualElement>
                 </ui:VisualElement>
-
             </ui:VisualElement>
-
-            <!-- HP 바 (라벨은 바 위에 겹쳐서 중앙 표시) -->
             <ui:VisualElement name="hp-row">
                 <ui:VisualElement name="hp-bar-bg">
-                    <ui:VisualElement name="hp-bar-fill" />
-                    <ui:Label name="hp-label" text="100 / 100" />
+                    <ui:VisualElement name="hp-bar-fill"/>
+                    <ui:Label name="hp-label" text="100 / 100"/>
                 </ui:VisualElement>
             </ui:VisualElement>
-
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

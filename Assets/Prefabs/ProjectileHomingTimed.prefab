@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310145fffdf16e64e994c39a218c845d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementRigidBody2d
-  moveSpeed: 10
+  moveSpeed: 7.5
 --- !u!114 &5354335465064672043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,9 +128,9 @@ MonoBehaviour:
   _hitLayers:
     serializedVersion: 2
     m_Bits: 256
-  _lifetime: 3
+  _lifetime: 2
   _maxDistance: 0
-  _homingDuration: 1
+  _homingDuration: 0.75
 --- !u!1 &5279881404296973554
 GameObject:
   m_ObjectHideFlags: 0
