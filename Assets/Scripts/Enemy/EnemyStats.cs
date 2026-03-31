@@ -44,7 +44,7 @@ namespace _2D_Roguelike
             if (_sr != null) _originalColor = _sr.color;
         }
 
-        public void TakeDamage(float amount)
+public void TakeDamage(float amount)
         {
             if (_isDead) return;
 
@@ -54,7 +54,6 @@ namespace _2D_Roguelike
             if (_currentHp <= 0f)
             {
                 _isDead = true;
-                // 플래시 코루틴 강제 종료 후 원색 복구
                 if (_flashCoroutine != null)
                 {
                     StopCoroutine(_flashCoroutine);
@@ -65,12 +64,11 @@ namespace _2D_Roguelike
             }
             else
             {
-                // 피격 플래시 (이전 코루틴 중단 후 새로 시작)
                 if (_flashCoroutine != null) StopCoroutine(_flashCoroutine);
                 _flashCoroutine = StartCoroutine(HitFlash());
-
                 SpawnHitVFX(transform.position);
-                _animator?.SetTrigger(AnimHit);
+                // Hit 파라미터가 있을 때만 트리거 (없으면 경고 방지)
+                SafeSetTrigger(_animator, AnimHit);
             }
         }
 
@@ -110,13 +108,17 @@ namespace _2D_Roguelike
             Destroy(root, 2.0f);
         }
 
-        private static void SpawnBurst(GameObject parent, Color col,
+private static void SpawnBurst(GameObject parent, Color col,
             int count, float lifeMax, float speedMax,
             float sizeMin, float sizeMax, int order, float gravity)
         {
-            var go   = new GameObject("Burst");
+            var go = new GameObject("Burst");
             go.transform.SetParent(parent.transform, false);
-            var ps   = go.AddComponent<ParticleSystem>();
+            var ps = go.AddComponent<ParticleSystem>();
+
+            // ★ AddComponent 직후 즉시 Stop → duration 설정 전 재생 방지
+            ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
             var main = ps.main;
             main.duration        = 0.2f;
             main.loop            = false;
@@ -127,19 +129,24 @@ namespace _2D_Roguelike
             main.maxParticles    = count + 4;
             main.simulationSpace = ParticleSystemSimulationSpace.World;
             main.gravityModifier = new ParticleSystem.MinMaxCurve(gravity * 0.8f, gravity);
+
             var em = ps.emission;
             em.rateOverTime = 0;
             em.SetBursts(new[] { new ParticleSystem.Burst(0f, (short)count) });
+
             var sh = ps.shape;
             sh.shapeType = ParticleSystemShapeType.Circle;
             sh.radius    = 0.08f;
+
             var sizeOL = ps.sizeOverLifetime;
             sizeOL.enabled = true;
             sizeOL.size    = new ParticleSystem.MinMaxCurve(1f,
                 new AnimationCurve(new Keyframe(0f, 1f), new Keyframe(1f, 0f)));
+
             var psr = go.GetComponent<ParticleSystemRenderer>();
             psr.material     = new Material(Shader.Find("Sprites/Default"));
             psr.sortingOrder = order;
+
             ps.Play();
         }
 
@@ -168,5 +175,13 @@ namespace _2D_Roguelike
             if (_sr != null) _sr.color = _originalColor;
             if (_controller != null) _controller.enabled = true;
         }
-    }
+    
+
+private static void SafeSetTrigger(Animator anim, int hash)
+        {
+            if (anim == null) return;
+            foreach (var p in anim.parameters)
+                if (p.nameHash == hash) { anim.SetTrigger(hash); return; }
+        }
+}
 }

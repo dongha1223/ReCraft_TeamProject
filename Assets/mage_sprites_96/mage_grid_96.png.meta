@@ -1,0 +1,923 @@
+fileFormatVersion: 2
+guid: 8e80fe1ebd3982149b723dc231664cd6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4040744408462098420
+    second: mage_grid_96_0
+  - first:
+      213: -4938883010103773135
+    second: mage_grid_96_1
+  - first:
+      213: 1567151924172460381
+    second: mage_grid_96_2
+  - first:
+      213: -5194817878098545204
+    second: mage_grid_96_3
+  - first:
+      213: 2435216019080083546
+    second: mage_grid_96_4
+  - first:
+      213: -5993164396523492340
+    second: mage_grid_96_5
+  - first:
+      213: 5548242247309790623
+    second: mage_grid_96_6
+  - first:
+      213: 5092232010166971520
+    second: mage_grid_96_7
+  - first:
+      213: -5078983418181072669
+    second: mage_grid_96_8
+  - first:
+      213: 451781835163841836
+    second: mage_grid_96_9
+  - first:
+      213: 4943331531561507484
+    second: mage_grid_96_10
+  - first:
+      213: -9026557712909674037
+    second: mage_grid_96_11
+  - first:
+      213: -8219800032179420741
+    second: mage_grid_96_12
+  - first:
+      213: -905377190018736665
+    second: mage_grid_96_13
+  - first:
+      213: -8900559945051427912
+    second: mage_grid_96_14
+  - first:
+      213: 5287991645347510936
+    second: mage_grid_96_15
+  - first:
+      213: 1236795406960278560
+    second: mage_grid_96_16
+  - first:
+      213: 5609123943525855575
+    second: mage_grid_96_17
+  - first:
+      213: 6584017690304397220
+    second: mage_grid_96_18
+  - first:
+      213: -7709903897075824137
+    second: mage_grid_96_19
+  - first:
+      213: 4633873331427082298
+    second: mage_grid_96_20
+  - first:
+      213: 7689052885759158905
+    second: mage_grid_96_21
+  - first:
+      213: 8182856602299965333
+    second: mage_grid_96_22
+  - first:
+      213: 5813243512552580751
+    second: mage_grid_96_23
+  - first:
+      213: 6495144670479131918
+    second: mage_grid_96_24
+  - first:
+      213: 480433976548911744
+    second: mage_grid_96_25
+  - first:
+      213: 6037150749330676347
+    second: mage_grid_96_26
+  - first:
+      213: -1535254103092568972
+    second: mage_grid_96_27
+  - first:
+      213: -5545824006064468110
+    second: mage_grid_96_28
+  - first:
+      213: -8720038380162924063
+    second: mage_grid_96_29
+  - first:
+      213: 3569870190458590551
+    second: mage_grid_96_30
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 96
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mage_grid_96_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 383
+        width: 51
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ff778671ab931830800000000000000
+      internalID: 4040744408462098420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_1
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 288
+        width: 57
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1387d83d110957bb0800000000000000
+      internalID: -4938883010103773135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_2
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 332
+        width: 22
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d519e553f54afb510800000000000000
+      internalID: 1567151924172460381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 288
+        width: 61
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc57617c9ac48e7b0800000000000000
+      internalID: -5194817878098545204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_4
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 331
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a58fb982110abc120800000000000000
+      internalID: 2435216019080083546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_5
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 288
+        width: 70
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0ce2b80cb004dca0800000000000000
+      internalID: -5993164396523492340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_6
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 288
+        width: 63
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9d07b69de05ffc40800000000000000
+      internalID: 5548242247309790623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_7
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 332
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08c20ef880e3ba640800000000000000
+      internalID: 5092232010166971520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_8
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 288
+        width: 68
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e8c733ad73d389b0800000000000000
+      internalID: -5078983418181072669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_9
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 191
+        width: 60
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c253ae87f2d054600800000000000000
+      internalID: 451781835163841836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_10
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 191
+        width: 71
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9a16b946dd3a9440800000000000000
+      internalID: 4943331531561507484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_11
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 191
+        width: 79
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc9d479b5993bb280800000000000000
+      internalID: -9026557712909674037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_12
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 246
+        width: 24
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb1833dcb676ded80800000000000000
+      internalID: -8219800032179420741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_13
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 191
+        width: 83
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ed11391e347f63f0800000000000000
+      internalID: -905377190018736665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_14
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 246
+        width: 24
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bba32d13ebda7480800000000000000
+      internalID: -8900559945051427912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_15
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 191
+        width: 85
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89afb2c6268b26940800000000000000
+      internalID: 5287991645347510936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_16
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 231
+        width: 24
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02cb3bbaedaf92110800000000000000
+      internalID: 1236795406960278560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_17
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 95
+        width: 55
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7513ffa128c97dd40800000000000000
+      internalID: 5609123943525855575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_18
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 95
+        width: 75
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4af3b79a4312f5b50800000000000000
+      internalID: 6584017690304397220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_19
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 95
+        width: 73
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f94562214be00590800000000000000
+      internalID: -7709903897075824137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_20
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 164
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a300edd5e33de4040800000000000000
+      internalID: 4633873331427082298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_21
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 95
+        width: 81
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97aedda7cd005ba60800000000000000
+      internalID: 7689052885759158905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_22
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 95
+        width: 92
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59f9c04a9b85f8170800000000000000
+      internalID: 8182856602299965333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_23
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 0
+        width: 58
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f866a8ebc2acca050800000000000000
+      internalID: 5813243512552580751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_24
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 63
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e052ea04aa3632a50800000000000000
+      internalID: 6495144670479131918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_25
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 1
+        width: 84
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08ae93ef728daa600800000000000000
+      internalID: 480433976548911744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_26
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 1
+        width: 79
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7a965dce9448c350800000000000000
+      internalID: 6037150749330676347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_27
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 31
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47cd431078ea1bae0800000000000000
+      internalID: -1535254103092568972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_28
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 0
+        width: 89
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27f81b313764903b0800000000000000
+      internalID: -5545824006064468110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_29
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 10
+        width: 94
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e1cd924b433cf680800000000000000
+      internalID: -8720038380162924063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_grid_96_30
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 0
+        width: 77
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7555a84360aba8130800000000000000
+      internalID: 3569870190458590551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      mage_grid_96_0: 4040744408462098420
+      mage_grid_96_1: -4938883010103773135
+      mage_grid_96_10: 4943331531561507484
+      mage_grid_96_11: -9026557712909674037
+      mage_grid_96_12: -8219800032179420741
+      mage_grid_96_13: -905377190018736665
+      mage_grid_96_14: -8900559945051427912
+      mage_grid_96_15: 5287991645347510936
+      mage_grid_96_16: 1236795406960278560
+      mage_grid_96_17: 5609123943525855575
+      mage_grid_96_18: 6584017690304397220
+      mage_grid_96_19: -7709903897075824137
+      mage_grid_96_2: 1567151924172460381
+      mage_grid_96_20: 4633873331427082298
+      mage_grid_96_21: 7689052885759158905
+      mage_grid_96_22: 8182856602299965333
+      mage_grid_96_23: 5813243512552580751
+      mage_grid_96_24: 6495144670479131918
+      mage_grid_96_25: 480433976548911744
+      mage_grid_96_26: 6037150749330676347
+      mage_grid_96_27: -1535254103092568972
+      mage_grid_96_28: -5545824006064468110
+      mage_grid_96_29: -8720038380162924063
+      mage_grid_96_3: -5194817878098545204
+      mage_grid_96_30: 3569870190458590551
+      mage_grid_96_4: 2435216019080083546
+      mage_grid_96_5: -5993164396523492340
+      mage_grid_96_6: 5548242247309790623
+      mage_grid_96_7: 5092232010166971520
+      mage_grid_96_8: -5078983418181072669
+      mage_grid_96_9: 451781835163841836
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

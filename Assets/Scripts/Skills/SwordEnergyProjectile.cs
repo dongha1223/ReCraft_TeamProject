@@ -141,13 +141,17 @@ namespace _2D_Roguelike
             Destroy(root, 1.0f);
         }
 
-        private static void SpawnBurst(GameObject parent, Color col,
+private static void SpawnBurst(GameObject parent, Color col,
             int count, float lifeMax, float speedMax,
             float sizeMin, float sizeMax, int order)
         {
-            var go   = new GameObject("Burst");
+            var go = new GameObject("Burst");
             go.transform.SetParent(parent.transform, false);
-            var ps   = go.AddComponent<ParticleSystem>();
+            var ps = go.AddComponent<ParticleSystem>();
+
+            // ★ AddComponent 직후 즉시 Stop → duration 설정 전 자동 재생 방지
+            ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
             var main = ps.main;
             main.duration        = 0.3f;
             main.loop            = false;
@@ -158,15 +162,19 @@ namespace _2D_Roguelike
             main.maxParticles    = count + 4;
             main.simulationSpace = ParticleSystemSimulationSpace.World;
             main.gravityModifier = new ParticleSystem.MinMaxCurve(0f, 0.3f);
+
             var em = ps.emission;
             em.rateOverTime = 0;
             em.SetBursts(new[] { new ParticleSystem.Burst(0f, (short)count) });
+
             var sh = ps.shape;
             sh.shapeType = ParticleSystemShapeType.Circle;
             sh.radius    = 0.1f;
+
             var psr = go.GetComponent<ParticleSystemRenderer>();
             psr.material     = new Material(Shader.Find("Sprites/Default"));
             psr.sortingOrder = order;
+
             ps.Play();
         }
 
