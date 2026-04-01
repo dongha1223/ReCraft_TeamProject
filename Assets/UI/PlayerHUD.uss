@@ -65,6 +65,17 @@
     background-color: rgba(0, 0, 0, 0.68);
 }
 
+/* ── 스킬 슬롯 아이콘 ────────────────────────────────────────── */
+#skill-slot-a {
+    background-image: url('../500FreeSkillIcons/Icons/skill_001.png');
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+#skill-slot-s {
+    background-image: url('../500FreeSkillIcons/Icons/skill_006.png');
+    -unity-background-scale-mode: scale-to-fit;
+}
+
 /* ── 스킬 키 레이블 (A / S) ──────────────────────────────────── */
 .skill-key {
     position: absolute;

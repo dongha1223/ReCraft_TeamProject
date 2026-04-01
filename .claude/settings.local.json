@@ -14,7 +14,9 @@
       "Bash(grep -r c6ed19110157e4527b2fb1e78ed81484 C:/ReCraft_TeamProject/Assets/sanctum_pixel/ --include=*.meta -l)",
       "Bash(grep -r faf2accdcbbd542fd8a78c80f9fc6756 C:/ReCraft_TeamProject/Assets/sanctum_pixel/ --include=*.meta -l)",
       "mcp__UnityMCP__manage_prefabs",
-      "mcp__UnityMCP__find_gameobjects"
+      "mcp__UnityMCP__find_gameobjects",
+      "mcp__UnityMCP__manage_asset",
+      "mcp__UnityMCP__create_script"
     ]
   }
 }
