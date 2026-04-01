@@ -6,6 +6,33 @@
     bottom: 0;
 }
 
+/* ── 몬스터 카운터 ───────────────────────────────────────────── */
+#enemy-counter {
+    position: absolute;
+    right: 210px;
+    bottom: 20px;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.62);
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+#enemy-skull {
+    font-size: 20px;
+    color: rgb(220, 60, 60);
+    -unity-font-style: bold;
+    margin-right: 6px;
+}
+
+#enemy-count {
+    font-size: 18px;
+    color: rgb(240, 240, 240);
+    -unity-font-style: bold;
+    min-width: 20px;
+    -unity-text-align: middle-center;
+}
+
 /* ── HUD 전체 패널 ─────────────────────────────────────────── */
 #hud-panel {
     position: absolute;

@@ -1,6 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/PlayerHUD.uss?fileID=7433441132597879392&amp;guid=eecf666d08350a54eae1f4b2926bc02d&amp;type=3#PlayerHUD"/>
     <ui:VisualElement name="root">
+        <ui:VisualElement name="enemy-counter">
+            <ui:Label name="enemy-skull" text="☠"/>
+            <ui:Label name="enemy-count" text="0"/>
+        </ui:VisualElement>
         <ui:VisualElement name="hud-panel">
             <ui:VisualElement name="hud-top-row">
                 <ui:VisualElement name="portrait-circle"/>
