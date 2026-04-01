@@ -112,6 +112,10 @@ namespace _2D_Roguelike
             if (_rangedController != null) _rangedController.enabled = false;
             SafeSetTrigger(AnimDie);
             SpawnDeathVFX(transform.position);
+
+            // 스테이지 매니저에 적 사망 통보
+            StageManager.Instance?.OnEnemyDied();
+
             StartCoroutine(ReturnToPoolAfterDelay(1.5f));
         }
 
