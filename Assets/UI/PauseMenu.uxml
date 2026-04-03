@@ -1,30 +1,239 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
-    <Style src="PauseMenu.uss" />
-
-    <!-- 반투명 배경 오버레이 -->
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PauseMenu.uss?fileID=7433441132597879392&amp;guid=255239b743b6701478cf6ca381eb4e34&amp;type=3#PauseMenu"/>
+    <Style src="project://database/Assets/UI/ControlsMenu.uss?fileID=7433441132597879392&amp;guid=4b42e7efeed268043afb48ce98410e47&amp;type=3#ControlsMenu"/>
+    <Style src="project://database/Assets/UI/SettingsMenu.uss?fileID=7433441132597879392&amp;guid=080787b534a1193409851a978aa69fbc&amp;type=3#SettingsMenu"/>
     <ui:VisualElement name="pause-overlay" class="pause-overlay">
-
-        <!-- 중앙 패널 -->
         <ui:VisualElement name="pause-panel" class="pause-panel">
-
-            <!-- 해골 아이콘 -->
-            <ui:Label name="skull-icon" text="☠" class="skull-icon" />
-
-            <!-- 타이틀 -->
-            <ui:Label name="pause-title" text="일시정지" class="pause-title" />
-
-            <!-- 구분선 -->
-            <ui:VisualElement class="divider" />
-
-            <!-- 메뉴 항목 -->
+            <ui:Label name="skull-icon" text="☠" class="skull-icon"/>
+            <ui:Label name="pause-title" text="일시정지" class="pause-title"/>
+            <ui:VisualElement class="divider"/>
             <ui:VisualElement name="menu-list" class="menu-list">
-                <ui:Label name="menu-item-0" text="돌아가기" class="menu-item" />
-                <ui:Label name="menu-item-1" text="새 게임"  class="menu-item" />
-                <ui:Label name="menu-item-2" text="컨트롤"  class="menu-item" />
-                <ui:Label name="menu-item-3" text="설정"    class="menu-item" />
-                <ui:Label name="menu-item-4" text="게임종료" class="menu-item" />
+                <ui:Label name="menu-item-0" text="돌아가기" class="menu-item"/>
+                <ui:Label name="menu-item-1" text="새 게임" class="menu-item"/>
+                <ui:Label name="menu-item-2" text="컨트롤" class="menu-item"/>
+                <ui:Label name="menu-item-3" text="설정" class="menu-item"/>
+                <ui:Label name="menu-item-4" text="게임종료" class="menu-item"/>
             </ui:VisualElement>
-
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="controls-overlay" class="controls-overlay">
+        <ui:VisualElement name="controls-panel" class="controls-panel">
+            <ui:VisualElement class="ctrl-header">
+                <ui:Label text="컨트롤" class="ctrl-title"/>
+                <ui:VisualElement class="ctrl-header-divider"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="ctrl-body">
+                <ui:VisualElement class="ctrl-column">
+                    <ui:VisualElement name="ctrl-left-0" class="ctrl-row">
+                        <ui:Label text="위" class="ctrl-action"/>
+                        <ui:Label text="◄" class="ctrl-arrow"/>
+                        <ui:Label name="ctrl-left-0-key" text="↑" class="ctrl-key-badge"/>
+                        <ui:Label text="►" class="ctrl-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ctrl-left-1" class="ctrl-row">
+                        <ui:Label text="아래" class="ctrl-action"/>
+                        <ui:Label text="◄" class="ctrl-arrow"/>
+                        <ui:Label name="ctrl-left-1-key" text="↓" class="ctrl-key-badge"/>
+                        <ui:Label text="►" class="ctrl-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ctrl-left-2" class="ctrl-row">
+                        <ui:Label text="왼쪽" class="ctrl-action"/>
+                        <ui:Label text="◄" class="ctrl-arrow"/>
+                        <ui:Label name="ctrl-left-2-key" text="←" class="ctrl-key-badge"/>
+                        <ui:Label text="►" class="ctrl-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ctrl-left-3" class="ctrl-row">
+                        <ui:Label text="오른쪽" class="ctrl-action"/>
+                        <ui:Label text="◄" class="ctrl-arrow"/>
+                        <ui:Label name="ctrl-left-3-key" text="→" class="ctrl-key-badge"/>
+                        <ui:Label text="►" class="ctrl-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ctrl-left-4" class="ctrl-row">
+                        <ui:Label text="두루마리" class="ctrl-action"/>
+                        <ui:Label text="◄" class="ctrl-arrow"/>
+                        <ui:Label name="ctrl-left-4-key" text="TAB" class="ctrl-key-badge"/>
+                        <ui:Label text="►" class="ctrl-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ctrl-left-5" class="ctrl-row">
+                        <ui:Label text="방향키대쉬" class="ctrl-action"/>
+                        <ui:Label text="◄" class="ctrl-arrow"/>
+                        <ui:Label name="ctrl-left-5-key" text="꺼짐" class="ctrl-key-badge ctrl-key-badge--off"/>
+                        <ui:Label text="►" class="ctrl-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ctrl-left-6" class="ctrl-row">
+                        <ui:Label text="상호작용" class="ctrl-action"/>
+                        <ui:Label text="◄" class="ctrl-arrow"/>
+                        <ui:Label name="ctrl-left-6-key" text="F" class="ctrl-key-badge"/>
+                        <ui:Label text="►" class="ctrl-arrow"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="ctrl-vdivider"/>
+                <ui:VisualElement class="ctrl-column">
+                    <ui:VisualElement name="ctrl-right-0" class="ctrl-row">
+                        <ui:Label text="공격" class="ctrl-action"/>
+                        <ui:Label text="◄" class="ctrl-arrow"/>
+                        <ui:Label name="ctrl-right-0-key" text="X" class="ctrl-key-badge"/>
+                        <ui:Label text="►" class="ctrl-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ctrl-right-1" class="ctrl-row">
+                        <ui:Label text="점프" class="ctrl-action"/>
+                        <ui:Label text="◄" class="ctrl-arrow"/>
+                        <ui:Label name="ctrl-right-1-key" text="SPACE" class="ctrl-key-badge"/>
+                        <ui:Label text="►" class="ctrl-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ctrl-right-2" class="ctrl-row">
+                        <ui:Label text="대쉬" class="ctrl-action"/>
+                        <ui:Label text="◄" class="ctrl-arrow"/>
+                        <ui:Label name="ctrl-right-2-key" text="Z" class="ctrl-key-badge"/>
+                        <ui:Label text="►" class="ctrl-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ctrl-right-3" class="ctrl-row">
+                        <ui:Label text="스킬1" class="ctrl-action"/>
+                        <ui:Label text="◄" class="ctrl-arrow"/>
+                        <ui:Label name="ctrl-right-3-key" text="A" class="ctrl-key-badge"/>
+                        <ui:Label text="►" class="ctrl-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ctrl-right-4" class="ctrl-row">
+                        <ui:Label text="스킬2" class="ctrl-action"/>
+                        <ui:Label text="◄" class="ctrl-arrow"/>
+                        <ui:Label name="ctrl-right-4-key" text="S" class="ctrl-key-badge"/>
+                        <ui:Label text="►" class="ctrl-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ctrl-right-5" class="ctrl-row">
+                        <ui:Label text="정수" class="ctrl-action"/>
+                        <ui:Label text="◄" class="ctrl-arrow"/>
+                        <ui:Label name="ctrl-right-5-key" text="D" class="ctrl-key-badge"/>
+                        <ui:Label text="►" class="ctrl-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ctrl-right-6" class="ctrl-row">
+                        <ui:Label text="교대" class="ctrl-action"/>
+                        <ui:Label text="◄" class="ctrl-arrow"/>
+                        <ui:Label name="ctrl-right-6-key" text="C" class="ctrl-key-badge"/>
+                        <ui:Label text="►" class="ctrl-arrow"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="ctrl-footer">
+                <ui:Label name="ctrl-reset" text="초기화" class="ctrl-footer-item"/>
+                <ui:VisualElement class="ctrl-footer-divider"/>
+                <ui:Label name="ctrl-back" text="돌아가기" class="ctrl-footer-back"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="settings-overlay" class="sett-overlay">
+        <ui:VisualElement name="settings-panel" class="sett-panel">
+            <ui:VisualElement class="sett-header">
+                <ui:Label text="설정" class="sett-title"/>
+                <ui:VisualElement class="sett-header-divider"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="sett-body">
+                <ui:VisualElement class="sett-column">
+                    <ui:Label text="그래픽" class="sett-section-title"/>
+                    <ui:VisualElement class="sett-section-divider"/>
+                    <ui:VisualElement name="sett-left-0" class="sett-row">
+                        <ui:Label text="해상도" class="sett-action"/>
+                        <ui:Label text="◄" class="sett-arrow"/>
+                        <ui:Label text="1280 x 768" class="sett-value"/>
+                        <ui:Label text="►" class="sett-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="sett-left-1" class="sett-row">
+                        <ui:Label text="화면" class="sett-action"/>
+                        <ui:Label text="◄" class="sett-arrow"/>
+                        <ui:Label text="창 모드" class="sett-value"/>
+                        <ui:Label text="►" class="sett-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="sett-left-2" class="sett-row">
+                        <ui:Label text="조명 효과" class="sett-action"/>
+                        <ui:Label text="◄" class="sett-arrow"/>
+                        <ui:Label text="켜짐" class="sett-value"/>
+                        <ui:Label text="►" class="sett-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="sett-left-3" class="sett-row">
+                        <ui:Label text="파티클 품질" class="sett-action"/>
+                        <ui:Label text="◄" class="sett-arrow"/>
+                        <ui:Label text="높음" class="sett-value"/>
+                        <ui:Label text="►" class="sett-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="sett-left-4" class="sett-row">
+                        <ui:Label text="화면 흔들림" class="sett-action"/>
+                        <ui:Label text="◄" class="sett-arrow"/>
+                        <ui:Slider name="sett-left-4-slider" low-value="0" high-value="1" value="0.5" class="sett-slider"/>
+                        <ui:Label text="►" class="sett-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="sett-left-5" class="sett-row">
+                        <ui:Label text="진동" class="sett-action"/>
+                        <ui:Label text="◄" class="sett-arrow"/>
+                        <ui:Slider name="sett-left-5-slider" low-value="0" high-value="1" value="0.5" class="sett-slider"/>
+                        <ui:Label text="►" class="sett-arrow"/>
+                    </ui:VisualElement>
+                    <ui:Label text="데이터" class="sett-section-title" style="margin-top: 12px;"/>
+                    <ui:VisualElement class="sett-section-divider"/>
+                    <ui:VisualElement name="sett-left-6" class="sett-row">
+                        <ui:Label text="데이터 초기화" class="sett-action"/>
+                        <ui:Label text="초기화" class="sett-btn"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="sett-left-7" class="sett-row">
+                        <ui:Label text="컷신 초기화" class="sett-action"/>
+                        <ui:Label text="초기화" class="sett-btn"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="sett-vdivider"/>
+                <ui:VisualElement class="sett-column">
+                    <ui:Label text="오디오" class="sett-section-title"/>
+                    <ui:VisualElement class="sett-section-divider"/>
+                    <ui:VisualElement name="sett-right-0" class="sett-row">
+                        <ui:Label text="음량" class="sett-action"/>
+                        <ui:Slider name="sett-right-0-slider" low-value="0" high-value="1" value="0.25" class="sett-slider"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="sett-right-1" class="sett-row">
+                        <ui:Label text="음악" class="sett-action"/>
+                        <ui:Slider name="sett-right-1-slider" low-value="0" high-value="1" value="0.25" class="sett-slider"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="sett-right-2" class="sett-row">
+                        <ui:Label text="효과음" class="sett-action"/>
+                        <ui:Slider name="sett-right-2-slider" low-value="0" high-value="1" value="0.25" class="sett-slider"/>
+                    </ui:VisualElement>
+                    <ui:Label text="게임 플레이" class="sett-section-title" style="margin-top: 12px;"/>
+                    <ui:VisualElement class="sett-section-divider"/>
+                    <ui:VisualElement name="sett-right-3" class="sett-row">
+                        <ui:Label text="언어" class="sett-action"/>
+                        <ui:Label text="◄" class="sett-arrow"/>
+                        <ui:Label text="한국어" class="sett-value"/>
+                        <ui:Label text="►" class="sett-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="sett-right-4" class="sett-row">
+                        <ui:Label text="루키모드" class="sett-action"/>
+                        <ui:Label text="◄" class="sett-arrow"/>
+                        <ui:Label text="꺼짐" class="sett-value"/>
+                        <ui:Label text="►" class="sett-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="sett-right-5" class="sett-row">
+                        <ui:Label text="타이머 표시" class="sett-action"/>
+                        <ui:Label text="◄" class="sett-arrow"/>
+                        <ui:Label text="꺼짐" class="sett-value"/>
+                        <ui:Label text="►" class="sett-arrow"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="sett-right-6" class="sett-row">
+                        <ui:Label text="UI 표시" class="sett-action"/>
+                        <ui:Label text="◄" class="sett-arrow"/>
+                        <ui:Label text="모두 표시" class="sett-value"/>
+                        <ui:Label text="►" class="sett-arrow"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="sett-footer">
+                <ui:Label name="sett-back" text="돌아가기" class="sett-footer-back"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="confirm-overlay" class="confirm-overlay">
+        <ui:VisualElement name="confirm-panel" class="confirm-panel">
+            <ui:Label name="confirm-message" text="정말로 다시하시겠습니까?" class="confirm-message"/>
+            <ui:VisualElement class="confirm-divider"/>
+            <ui:VisualElement class="confirm-buttons">
+                <ui:Label name="confirm-yes" text="예" class="confirm-btn"/>
+                <ui:Label name="confirm-no" text="아니오" class="confirm-btn"/>
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
