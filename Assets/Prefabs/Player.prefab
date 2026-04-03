@@ -74,13 +74,14 @@ GameObject:
   - component: {fileID: 974856725792657006}
   - component: {fileID: 5696021917583233231}
   - component: {fileID: 6938523472620405455}
+  - component: {fileID: 3120186885240537118}
   - component: {fileID: 1022380014179050773}
   - component: {fileID: 8562788984221187737}
   - component: {fileID: 2654814052658389906}
   - component: {fileID: 8536688657561273402}
   - component: {fileID: 5376198581866448210}
   - component: {fileID: 1125420184786068591}
-  - component: {fileID: 3120186885240537118}
+  - component: {fileID: -936931053348119022}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -131,7 +132,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ffbea5f82662bff4984a15b4896fc077, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -237,6 +238,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.15441486, y: 0.31347066}
   m_EdgeRadius: 0
+--- !u!95 &3120186885240537118
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9222165908665990148}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2ca7610334a76bd42b68162e490ab4b9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1022380014179050773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,25 +375,17 @@ MonoBehaviour:
   ghostDelay: 0.015
   ghostFade: {fileID: 7021355833981176695, guid: 40a5dde81b55da941898ec4c9e8baf23, type: 3}
   makeGhost: 0
---- !u!95 &3120186885240537118
-Animator:
-  serializedVersion: 7
+--- !u!114 &-936931053348119022
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9222165908665990148}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2ca7610334a76bd42b68162e490ab4b9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d00c05d3148833438e592d34b233393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashTime: 0.25

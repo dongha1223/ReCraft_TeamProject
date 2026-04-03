@@ -44,6 +44,21 @@ Assets/
 - SerializeField 사용 (public 필드 지양)
 - 주석: 한국어 허용
 
+## 좌우 방향 전환 규칙
+- **`SpriteRenderer.flipX` 사용 금지**
+- 방향 전환은 반드시 `transform.localScale.x`의 부호를 바꾸는 방식으로 구현
+- 아래 패턴을 표준으로 사용:
+  ```csharp
+  private void Flip(float dirX)
+  {
+      Vector3 scale = transform.localScale;
+      scale.x = dirX > 0f ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+      transform.localScale = scale;
+  }
+  ```
+- 이 방식을 사용하면 자식 오브젝트(공격 판정, 스폰 포인트 등)가 자동으로 함께 미러링됨
+- 단, 자식 오브젝트에 X 오프셋이 있을 경우 반드시 미러링 여부를 확인할 것
+
 ## 작업 방식
 - 스크립트 생성/수정 후 반드시 `read_console`로 컴파일 오류 확인
 - 씬 수정 후 반드시 save

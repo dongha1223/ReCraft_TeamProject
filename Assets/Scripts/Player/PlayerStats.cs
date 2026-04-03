@@ -9,6 +9,8 @@ namespace _2D_Roguelike
 
         private float _currentHp;
 
+        private DamageFlash _damageFlash;
+
         public float CurrentHp => _currentHp;
         public float MaxHp     => _maxHp;
         public bool  IsDead    => _currentHp <= 0f;
@@ -16,6 +18,8 @@ namespace _2D_Roguelike
         private void Awake()
         {
             _currentHp = _maxHp;
+
+            _damageFlash = GetComponent<DamageFlash>();
         }
 
         public void TakeDamage(float amount)
@@ -23,10 +27,12 @@ namespace _2D_Roguelike
             if (IsDead) return;
 
             _currentHp = Mathf.Max(0f, _currentHp - amount);
+            
             Debug.Log($"[PlayerStats] HP: {_currentHp}/{_maxHp}");
 
             SpawnFloatingText(amount, FloatingTextType.Damage);
-
+            _damageFlash.CallDamageFlash();
+            
             if (IsDead)
                 OnDead();
         }

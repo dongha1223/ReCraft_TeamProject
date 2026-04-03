@@ -30,8 +30,7 @@ namespace _2D_Roguelike
         [SerializeField] private float _ledgeCheckDist    = 0.8f;
 
         private Rigidbody2D _rb;
-        private SpriteRenderer _spriteRenderer;
-        private Animator _animator;
+        private Animator    _animator;
 
         private Transform        _player;
         private PlayerController _playerController;
@@ -45,8 +44,7 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
-            _rb = GetComponent<Rigidbody2D>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _rb       = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _patrolOrigin = transform.position;
         }
@@ -178,9 +176,14 @@ namespace _2D_Roguelike
         {
             _rb.linearVelocity = new Vector2(velX, _rb.linearVelocity.y);
             _animator?.SetBool(AnimIsMoving, true);
+            Flip(velX);
+        }
 
-            if (_spriteRenderer != null)
-                _spriteRenderer.flipX = velX < 0f;
+        private void Flip(float dirX)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = dirX > 0f ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+            transform.localScale = scale;
         }
 
         private void HandleAttack()

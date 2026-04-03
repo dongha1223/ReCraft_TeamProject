@@ -26,6 +26,7 @@ namespace _2D_Roguelike
         private PlayerDash  _playerDash;
         private PlayerSkill _playerSkill;
 
+
         private int  _jumpCount;
         private bool _isGrounded;
         private bool _isOnPlatform;
@@ -44,6 +45,7 @@ namespace _2D_Roguelike
             _animator    = GetComponent<Animator>();
             _playerDash  = GetComponent<PlayerDash>();
             _playerSkill = GetComponent<PlayerSkill>();
+            
         }
 
         private void Update()
