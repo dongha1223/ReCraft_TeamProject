@@ -1,0 +1,47 @@
+#root {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#minimap-container {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.25);
+    padding: 4px;
+    align-items: center;
+}
+
+#minimap-title {
+    font-size: 10px;
+    color: rgba(200, 200, 200, 0.8);
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    margin-bottom: 3px;
+    letter-spacing: 1px;
+}
+
+#minimap-view {
+    width: 160px;
+    height: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+    /* RenderTexture는 MinimapUI.cs에서 background-image로 주입 */
+    align-items: center;
+    justify-content: center;
+}
+
+#minimap-player-icon {
+    width: 8px;
+    height: 8px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: rgb(80, 80, 80);
+}

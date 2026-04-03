@@ -1,12 +1,30 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
-    <Style src="PlayerHUD.uss" />
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PlayerHUD.uss?fileID=7433441132597879392&amp;guid=eecf666d08350a54eae1f4b2926bc02d&amp;type=3#PlayerHUD"/>
     <ui:VisualElement name="root">
-        <ui:VisualElement name="hp-container">
-            <ui:Label name="hp-icon-label" text="❤" />
-            <ui:VisualElement name="hp-bar-bg">
-                <ui:VisualElement name="hp-bar-fill" />
+        <ui:VisualElement name="enemy-counter">
+            <ui:Label name="enemy-skull" text="☠"/>
+            <ui:Label name="enemy-count" text="0"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="hud-panel">
+            <ui:VisualElement name="hud-top-row">
+                <ui:VisualElement name="portrait-circle"/>
+                <ui:VisualElement name="skill-slots">
+                    <ui:VisualElement name="skill-slot-a" class="skill-slot">
+                        <ui:VisualElement name="skill-a-cooldown" class="skill-cooldown-overlay" style="opacity: 1; visibility: visible;"/>
+                        <ui:Label text="A" tabindex="-1" class="skill-key"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="skill-slot-s" class="skill-slot">
+                        <ui:VisualElement name="skill-s-cooldown" class="skill-cooldown-overlay"/>
+                        <ui:Label text="S" class="skill-key"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
             </ui:VisualElement>
-            <ui:Label name="hp-label" text="100 / 100" />
+            <ui:VisualElement name="hp-row">
+                <ui:VisualElement name="hp-bar-bg">
+                    <ui:VisualElement name="hp-bar-fill"/>
+                    <ui:Label name="hp-label" text="100 / 100"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
