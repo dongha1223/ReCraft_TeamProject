@@ -17,6 +17,11 @@ namespace _2D_Roguelike
             _currentHp = _maxHp;
         }
 
+        public void FullRestore()
+        {
+            _currentHp = _maxHp;
+        }
+
         public void TakeDamage(float amount)
         {
             if (IsDead) return;
