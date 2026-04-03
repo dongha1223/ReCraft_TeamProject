@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <Style src="PauseMenu.uss" />
+
+    <!-- 반투명 배경 오버레이 -->
+    <ui:VisualElement name="pause-overlay" class="pause-overlay">
+
+        <!-- 중앙 패널 -->
+        <ui:VisualElement name="pause-panel" class="pause-panel">
+
+            <!-- 해골 아이콘 -->
+            <ui:Label name="skull-icon" text="☠" class="skull-icon" />
+
+            <!-- 타이틀 -->
+            <ui:Label name="pause-title" text="일시정지" class="pause-title" />
+
+            <!-- 구분선 -->
+            <ui:VisualElement class="divider" />
+
+            <!-- 메뉴 항목 -->
+            <ui:VisualElement name="menu-list" class="menu-list">
+                <ui:Label name="menu-item-0" text="돌아가기" class="menu-item" />
+                <ui:Label name="menu-item-1" text="새 게임"  class="menu-item" />
+                <ui:Label name="menu-item-2" text="컨트롤"  class="menu-item" />
+                <ui:Label name="menu-item-3" text="설정"    class="menu-item" />
+                <ui:Label name="menu-item-4" text="게임종료" class="menu-item" />
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

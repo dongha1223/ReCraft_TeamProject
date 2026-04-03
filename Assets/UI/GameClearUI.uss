@@ -1,0 +1,51 @@
+/* 페이드 오버레이 — 스테이지 전환 시 화면 전체를 덮는 검은 패널 */
+.fade-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(0, 0, 0);
+    opacity: 0;
+}
+
+/* 게임 클리어 배경 오버레이 */
+.gameclear-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.88);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: none;
+}
+
+/* GAME CLEAR 타이틀 */
+.gameclear-title {
+    font-size: 80px;
+    color: rgb(255, 215, 0);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin-bottom: 20px;
+    /* 발광 느낌을 위한 외곽선 */
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(200, 140, 0);
+}
+
+/* 구분선 */
+.divider {
+    width: 400px;
+    height: 2px;
+    background-color: rgb(180, 140, 0);
+    margin-bottom: 20px;
+}
+
+/* 카운트다운 텍스트 */
+.countdown-label {
+    font-size: 28px;
+    color: rgb(200, 200, 200);
+    -unity-text-align: middle-center;
+}

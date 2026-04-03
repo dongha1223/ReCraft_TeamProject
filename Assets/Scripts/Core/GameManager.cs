@@ -39,6 +39,9 @@ namespace _2D_Roguelike
 
             // 플레이어↔적 물리 충돌 무시 (밀침 방지)
             Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
+
+            // 적↔적 물리 충돌 무시 (겹침 방지)
+            Physics2D.IgnoreLayerCollision(enemyLayer, enemyLayer, true);
         }
     }
 }

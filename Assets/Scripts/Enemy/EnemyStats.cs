@@ -20,13 +20,14 @@ namespace _2D_Roguelike
         [SerializeField] private Color _hitFlashColor    = new Color(1f, 0.15f, 0.15f, 1f);
         [SerializeField] private float _hitFlashDuration = 0.12f;
 
-        private float           _currentHp;
-        private bool            _isDead;
-        private Animator        _animator;
-        private EnemyController _controller;
-        private SpriteRenderer  _sr;
-        private Color           _originalColor;
-        private Coroutine       _flashCoroutine;
+        private float                _currentHp;
+        private bool                 _isDead;
+        private Animator             _animator;
+        private EnemyController      _controller;
+        private EnemyRangedController _rangedController;
+        private SpriteRenderer       _sr;
+        private Color                _originalColor;
+        private Coroutine            _flashCoroutine;
 
         private static readonly int AnimDie = Animator.StringToHash("Die");
         private static readonly int AnimHit = Animator.StringToHash("Hit");
@@ -35,10 +36,11 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
-            _currentHp  = _maxHp;
-            _animator   = GetComponent<Animator>();
-            _controller = GetComponent<EnemyController>();
-            _sr         = GetComponent<SpriteRenderer>();
+            _currentHp        = _maxHp;
+            _animator         = GetComponent<Animator>();
+            _controller       = GetComponent<EnemyController>();
+            _rangedController = GetComponent<EnemyRangedController>();
+            _sr               = GetComponent<SpriteRenderer>();
             if (_sr != null) _originalColor = _sr.color;
         }
 
@@ -106,9 +108,14 @@ namespace _2D_Roguelike
         private void OnDead()
         {
             Debug.Log($"[EnemyStats] {name} 사망.");
-            if (_controller != null) _controller.enabled = false;
+            if (_controller != null)       _controller.enabled = false;
+            if (_rangedController != null) _rangedController.enabled = false;
             SafeSetTrigger(AnimDie);
             SpawnDeathVFX(transform.position);
+
+            // 스테이지 매니저에 적 사망 통보
+            StageManager.Instance?.OnEnemyDied();
+
             StartCoroutine(ReturnToPoolAfterDelay(1.5f));
         }
 
@@ -192,7 +199,8 @@ namespace _2D_Roguelike
                 _flashCoroutine = null;
             }
             if (_sr != null) _sr.color = _originalColor;
-            if (_controller != null) _controller.enabled = true;
+            if (_controller != null)       _controller.enabled = true;
+            if (_rangedController != null) _rangedController.enabled = true;
         }
     }
 }

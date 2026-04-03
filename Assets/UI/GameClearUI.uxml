@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="GameClearUI.uss" />
+
+    <!-- 페이드 오버레이 (검은 화면, 스테이지 전환 시 사용) -->
+    <ui:VisualElement name="fade-overlay" class="fade-overlay" />
+
+    <!-- 게임 클리어 화면 (기본 숨김) -->
+    <ui:VisualElement name="gameclear-overlay" class="gameclear-overlay">
+        <ui:Label name="gameclear-title" text="GAME CLEAR" class="gameclear-title" />
+        <ui:VisualElement class="divider" />
+        <ui:Label name="countdown-label" text="" class="countdown-label" />
+    </ui:VisualElement>
+</ui:UXML>
