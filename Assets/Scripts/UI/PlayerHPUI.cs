@@ -13,6 +13,7 @@ namespace _2D_Roguelike
         private Label         _hpLabel;
         private VisualElement _skillACooldown;
         private VisualElement _skillSCooldown;
+        private Label         _enemyCountLabel;
 
         private void Start()
         {
@@ -24,16 +25,18 @@ namespace _2D_Roguelike
             }
 
             var root = GetComponent<UIDocument>().rootVisualElement;
-            _hpBarFill      = root.Q<VisualElement>("hp-bar-fill");
-            _hpLabel        = root.Q<Label>("hp-label");
-            _skillACooldown = root.Q<VisualElement>("skill-a-cooldown");
-            _skillSCooldown = root.Q<VisualElement>("skill-s-cooldown");
+            _hpBarFill       = root.Q<VisualElement>("hp-bar-fill");
+            _hpLabel         = root.Q<Label>("hp-label");
+            _skillACooldown  = root.Q<VisualElement>("skill-a-cooldown");
+            _skillSCooldown  = root.Q<VisualElement>("skill-s-cooldown");
+            _enemyCountLabel = root.Q<Label>("enemy-count");
         }
 
         private void Update()
         {
             UpdateHP();
             UpdateSkillCooldowns();
+            UpdateEnemyCount();
         }
 
         // ── HP 바 갱신 ────────────────────────────────────────────────
@@ -53,6 +56,13 @@ namespace _2D_Roguelike
                 int max = Mathf.CeilToInt(_playerStats.MaxHp);
                 _hpLabel.text = $"{cur} / {max}";
             }
+        }
+
+        // ── 몬스터 카운터 갱신 ────────────────────────────────────────
+        private void UpdateEnemyCount()
+        {
+            if (_enemyCountLabel == null || StageManager.Instance == null) return;
+            _enemyCountLabel.text = StageManager.Instance.AliveEnemyCount.ToString();
         }
 
         // ── 스킬 쿨타임 오버레이 갱신 ────────────────────────────────
