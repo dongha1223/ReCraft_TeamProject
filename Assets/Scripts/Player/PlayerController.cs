@@ -85,8 +85,8 @@ namespace _2D_Roguelike
         // ─── 좌우 이동 ────────────────────────────────────────────────────
         private void HandleMovement()
         {
-            // 대시 / 롤링 슬레쉬 중에는 이동 입력 차단
-            if (_playerDash  != null && _playerDash.IsDashing)   return;
+            // 대시(감속 포함) / 롤링 슬레쉬 중에는 이동 입력 차단
+            if (_playerDash  != null && _playerDash.IsDashing) return;
             if (_playerSkill != null && _playerSkill.IsRolling)   return;
 
             var keyboard = Keyboard.current;
@@ -125,6 +125,7 @@ namespace _2D_Roguelike
             {
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
                 _jumpCount++;
+                _playerDash?.OnJump(); // 점프 후 대시 잠금
             }
         }
 
