@@ -36,6 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1815178142186140087}
+  - {fileID: 6127553377112245433}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3080920082815669955
@@ -188,6 +189,16 @@ MonoBehaviour:
   _attackRange: 0.8
   _attackDamage: 10
   _attackCooldown: 1.2
+  _platformYThreshold: 1.5
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _platformLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _ledgeCheckOffsetX: 0.4
+  _ledgeCheckOffsetY: -0.1
+  _ledgeCheckDist: 0.8
 --- !u!114 &1257458622226742293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EnemyStats
   _maxHp: 50
+  _damageSpawnPos: {fileID: 6127553377112245433}
   _hitFlashColor: {r: 1, g: 0.15, b: 0.15, a: 1}
   _hitFlashDuration: 0.12
 --- !u!95 &5482841832644230740
@@ -225,6 +237,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1162748744431411325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6127553377112245433}
+  m_Layer: 11
+  m_Name: DamageSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6127553377112245433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162748744431411325}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.03, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5104436306453706002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1497743490482280787
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,3 +372,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d77434455089bb4abfc129f7595b571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.MinimapIcon
+  iconColor: {r: 1, g: 0, b: 0, a: 1}
+  texSize: 16

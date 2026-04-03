@@ -16,6 +16,9 @@ namespace _2D_Roguelike
         [Header("스탯")]
         [SerializeField] private float _maxHp = 70f;
 
+        [Header("데미지 텍스트")]
+        [SerializeField] private Transform _damageSpawnPos;  // 적 머리 위 빈 Transform (없으면 중심 + offset 사용)
+
         [Header("피격 이펙트")]
         [SerializeField] private Color _hitFlashColor    = new Color(1f, 0.15f, 0.15f, 1f);
         [SerializeField] private float _hitFlashDuration = 0.12f;
@@ -68,6 +71,8 @@ namespace _2D_Roguelike
             _currentHp = Mathf.Max(0f, _currentHp - amount);
             Debug.Log($"[EnemyStats] {name} HP: {_currentHp}/{_maxHp}  (-{amount})");
 
+            SpawnDamageText(amount);
+
             if (_currentHp <= 0f)
             {
                 _isDead = true;
@@ -86,6 +91,16 @@ namespace _2D_Roguelike
                 SpawnHitVFX(transform.position);
                 SafeSetTrigger(AnimHit);
             }
+        }
+
+        private void SpawnDamageText(float amount)
+        {
+            if (FloatingTextSpawner.Instance == null) return;
+            // _damageSpawnPos가 없으면 오브젝트 중심 + 위쪽 offset으로 대체
+            var pos = _damageSpawnPos != null
+                ? _damageSpawnPos.position
+                : transform.position + new Vector3(0f, 0.8f, 0f);
+            FloatingTextSpawner.Instance.Spawn(pos, Mathf.RoundToInt(amount).ToString(), FloatingTextType.Damage);
         }
 
         private IEnumerator HitFlash()

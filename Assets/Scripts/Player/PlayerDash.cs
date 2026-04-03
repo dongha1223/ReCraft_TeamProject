@@ -26,8 +26,9 @@ namespace _2D_Roguelike
         [SerializeField] private float _jumpLockDuration  = 0.25f; // 점프 후 대시 잠금 시간
         [SerializeField] private float _postDashHangTime  = 0.20f; // 감속 후 공중 정지 시간 (중력 지연 복원)
 
-        private Rigidbody2D _rb;
-        private Animator    _animator;
+        private Rigidbody2D      _rb;
+        private Animator         _animator;
+        private PlayerController _playerController;
 
         private int   _currentCharges;
         private bool  _isDashing;
@@ -45,6 +46,7 @@ namespace _2D_Roguelike
         {
             _rb                   = GetComponent<Rigidbody2D>();
             _animator             = GetComponent<Animator>();
+            _playerController     = GetComponent<PlayerController>();
             _currentCharges       = _maxCharges;
             _originalGravityScale = _rb.gravityScale;
         }
@@ -125,12 +127,14 @@ namespace _2D_Roguelike
         }
 
         /// <summary>
-        /// 첫 소모 시 시작, 완료 시 충전 최대 복구
+        /// 첫 소모 시 시작, 쿨타임 완료 후 착지 시 충전 최대 복구
         /// </summary>
         private IEnumerator RechargeCoroutine()
         {
             _cooldownRunning = true;
             yield return new WaitForSeconds(_dashCooldown);
+            // 쿨타임이 끝났어도 공중이면 착지할 때까지 대기
+            yield return new WaitUntil(() => _playerController == null || _playerController.IsGrounded);
             _currentCharges  = _maxCharges;
             _cooldownRunning = false;
         }
