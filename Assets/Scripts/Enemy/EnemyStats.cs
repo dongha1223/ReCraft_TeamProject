@@ -22,7 +22,8 @@ namespace _2D_Roguelike
         private static readonly int AnimDie = Animator.StringToHash("Die");
         private static readonly int AnimHit = Animator.StringToHash("Hit");
 
-        public bool IsDead => _isDead;
+        public bool IsDead        => _isDead;
+        public bool IsInvincible  => false;
 
         private void Awake()
         {

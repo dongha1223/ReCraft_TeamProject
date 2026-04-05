@@ -16,5 +16,8 @@ namespace _2D_Roguelike
 
         /// <summary>넉백 강도. 0이면 넉백 없음. 감쇠는 KnockbackReceiver가 자동 처리</summary>
         public float KnockbackForce;
+
+        /// <summary>true면 무적 상태를 관통. 독·함정·즉사기 등에 사용</summary>
+        public bool IgnoreInvincibility;
     }
 }

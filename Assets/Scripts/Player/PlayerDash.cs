@@ -26,9 +26,10 @@ namespace _2D_Roguelike
         [SerializeField] private float _jumpLockDuration  = 0.25f; // 점프 후 대시 잠금 시간
         [SerializeField] private float _postDashHangTime  = 0.20f; // 감속 후 공중 정지 시간 (중력 지연 복원)
 
-        private Rigidbody2D      _rb;
-        private Animator         _animator;
-        private PlayerController _playerController;
+        private Rigidbody2D          _rb;
+        private Animator             _animator;
+        private PlayerController     _playerController;
+        private InvincibilityHandler _invincibility;
 
         private int   _currentCharges;
         private bool  _isDashing;
@@ -47,6 +48,7 @@ namespace _2D_Roguelike
             _rb                   = GetComponent<Rigidbody2D>();
             _animator             = GetComponent<Animator>();
             _playerController     = GetComponent<PlayerController>();
+            _invincibility        = GetComponent<InvincibilityHandler>();
             _currentCharges       = _maxCharges;
             _originalGravityScale = _rb.gravityScale;
         }
@@ -85,6 +87,9 @@ namespace _2D_Roguelike
 
             _isDashing      = true;
             ghost.makeGhost = true;
+
+            // 대시 페이즈 동안 무적 (근접 공격 차단 + 투사체 통과)
+            _invincibility?.SetInvincible(_dashDuration);
 
             // 중력 제거 + Y 속도 초기화 (수평 대시 보장)
             _rb.gravityScale      = 0f;

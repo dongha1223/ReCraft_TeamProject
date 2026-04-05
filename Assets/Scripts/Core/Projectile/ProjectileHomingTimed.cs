@@ -1,4 +1,5 @@
 using UnityEngine;
+using _2D_Roguelike;
 
 /// <summary>
 /// 일정 시간 동안만 플레이어를 추적하고, 이후 마지막 방향으로 직진하는 투사체.
@@ -17,13 +18,12 @@ public class ProjectileHomingTimed : ProjectileBase
         _homingElapsed = 0f;
     }
 
-    public override void Setup(Transform target, float damage, int maxCount = 1, int index = 0)
+    public override void Setup(Transform target, HitInfo info, int maxCount = 1, int index = 0)
     {
-        base.Setup(target, damage);
+        base.Setup(target, info);
         _target        = target;
         _homingElapsed = 0f;
 
-        // 발사 즉시 초기 방향으로 이동 시작
         if (_target != null)
             movementRigidBody2D.MoveTo((_target.position - transform.position).normalized);
     }

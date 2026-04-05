@@ -7,19 +7,22 @@ namespace _2D_Roguelike
         [SerializeField] private float     _maxHp           = 100f;
         [SerializeField] private Transform _damageSpawnPos;  // 플레이어 머리 위 빈 Transform (없으면 중심 + offset 사용)
 
-        private float             _currentHp;
-        private DamageFlash       _damageFlash;
-        private KnockbackReceiver _knockback;
+        private float                _currentHp;
+        private DamageFlash          _damageFlash;
+        private KnockbackReceiver    _knockback;
+        private InvincibilityHandler _invincibility;
 
-        public float CurrentHp => _currentHp;
-        public float MaxHp     => _maxHp;
-        public bool  IsDead    => _currentHp <= 0f;
+        public float CurrentHp    => _currentHp;
+        public float MaxHp        => _maxHp;
+        public bool  IsDead       => _currentHp <= 0f;
+        public bool  IsInvincible => _invincibility != null && _invincibility.IsInvincible;
 
         private void Awake()
         {
-            _currentHp   = _maxHp;
-            _damageFlash = GetComponent<DamageFlash>();
-            _knockback   = GetComponent<KnockbackReceiver>();
+            _currentHp     = _maxHp;
+            _damageFlash   = GetComponent<DamageFlash>();
+            _knockback     = GetComponent<KnockbackReceiver>();
+            _invincibility = GetComponent<InvincibilityHandler>();
         }
 
         public void FullRestore()
@@ -30,6 +33,7 @@ namespace _2D_Roguelike
         public void TakeDamage(HitInfo info)
         {
             if (IsDead) return;
+            if (IsInvincible && !info.IgnoreInvincibility) return;
 
             _currentHp = Mathf.Max(0f, _currentHp - info.Damage);
             Debug.Log($"[PlayerStats] HP: {_currentHp}/{_maxHp}");

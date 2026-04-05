@@ -6,7 +6,8 @@ namespace _2D_Roguelike
     /// </summary>
     public interface IDamageable
     {
-        bool IsDead { get; }
+        bool IsDead       { get; }
+        bool IsInvincible { get; }
         void TakeDamage(HitInfo info);
     }
 }

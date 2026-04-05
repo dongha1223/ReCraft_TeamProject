@@ -28,13 +28,6 @@ public abstract class ProjectileBase : MonoBehaviour
         _startPosition = transform.position;
     }
 
-    /// <summary>float damage 기반 기존 호출 — 하위 호환용. 서브클래스에서 override 가능</summary>
-    public virtual void Setup(Transform target, float damage, int maxCount = 1, int index = 0)
-    {
-        _hitInfo = new HitInfo { Damage = damage };
-    }
-
-    /// <summary>HitInfo 기반 신규 호출 — EnemyRangedController 등에서 사용</summary>
     public virtual void Setup(Transform target, HitInfo info, int maxCount = 1, int index = 0)
     {
         _hitInfo = info;
@@ -72,13 +65,18 @@ public abstract class ProjectileBase : MonoBehaviour
     /// </summary>
     protected virtual void OnHit(Collider2D col)
     {
-        if (!col.CompareTag("PlayerHitBox")) return;
+        if (!col.CompareTag("Player")) return;
 
-        // SourcePosition을 충돌 시점의 투사체 위치로 설정
+        // PlayerHitBox가 자식 오브젝트일 수 있으므로 InParent로 탐색
+        var damageable = col.GetComponentInParent<IDamageable>();
+        if (damageable == null) return;
+
+        // 무적 중이고 관통 불가 공격이면 투사체가 통과 (소멸하지 않음)
+        if (damageable.IsInvincible && !_hitInfo.IgnoreInvincibility) return;
+
         var info = _hitInfo;
         info.SourcePosition = transform.position;
-
-        col.GetComponent<IDamageable>()?.TakeDamage(info);
+        damageable.TakeDamage(info);
 
         if (hitEffect != null) Instantiate(hitEffect, transform.position, Quaternion.identity);
         OnLifetimeExpired();
