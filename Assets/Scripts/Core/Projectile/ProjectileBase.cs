@@ -1,4 +1,5 @@
 using UnityEngine;
+using _2D_Roguelike;
 
 public abstract class ProjectileBase : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public abstract class ProjectileBase : MonoBehaviour
     [SerializeField] private   float          _maxDistance = 0f;   // 0 = 비활성
 
     protected MovementRigidBody2d movementRigidBody2D;
+
+    // HitInfo를 보관 — 서브클래스가 Setup에서 채우고, OnHit에서 IDamageable로 전달
+    protected HitInfo _hitInfo;
 
     private float   _elapsed;
     private Vector3 _startPosition;
@@ -24,7 +28,17 @@ public abstract class ProjectileBase : MonoBehaviour
         _startPosition = transform.position;
     }
 
-    public virtual void Setup(Transform target, float damage, int maxCount = 1, int index = 0) { }
+    /// <summary>float damage 기반 기존 호출 — 하위 호환용. 서브클래스에서 override 가능</summary>
+    public virtual void Setup(Transform target, float damage, int maxCount = 1, int index = 0)
+    {
+        _hitInfo = new HitInfo { Damage = damage };
+    }
+
+    /// <summary>HitInfo 기반 신규 호출 — EnemyRangedController 등에서 사용</summary>
+    public virtual void Setup(Transform target, HitInfo info, int maxCount = 1, int index = 0)
+    {
+        _hitInfo = info;
+    }
 
     private void Update()
     {
@@ -54,11 +68,18 @@ public abstract class ProjectileBase : MonoBehaviour
 
     /// <summary>
     /// 충돌 반응 — 서브클래스에서 override하여 구현.
-    /// 기본 동작: PlayerHitBox 태그에 닿으면 이펙트 생성 후 소멸 (적 발사체용)
+    /// 기본 동작: PlayerHitBox 태그에 닿으면 IDamageable로 데미지 전달 후 소멸 (적 발사체용)
     /// </summary>
     protected virtual void OnHit(Collider2D col)
     {
         if (!col.CompareTag("PlayerHitBox")) return;
+
+        // SourcePosition을 충돌 시점의 투사체 위치로 설정
+        var info = _hitInfo;
+        info.SourcePosition = transform.position;
+
+        col.GetComponent<IDamageable>()?.TakeDamage(info);
+
         if (hitEffect != null) Instantiate(hitEffect, transform.position, Quaternion.identity);
         OnLifetimeExpired();
     }

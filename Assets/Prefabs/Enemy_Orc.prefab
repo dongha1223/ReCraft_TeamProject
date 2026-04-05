@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1897967970774116831}
   - component: {fileID: 4350768621230634126}
   - component: {fileID: 5482841832644230740}
+  - component: {fileID: -8060176139180456117}
   m_Layer: 11
   m_Name: Enemy_Orc
   m_TagString: Enemy
@@ -205,6 +206,7 @@ MonoBehaviour:
   _attackRange: 0.8
   _attackDamage: 10
   _attackCooldown: 1.2
+  _knockbackForce: 4
   _platformYThreshold: 1.5
   _groundLayer:
     serializedVersion: 2
@@ -251,6 +253,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-8060176139180456117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036847029876307339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edad1d64c54a21b4d91183fd8d0fff99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.KnockbackReceiver
+  _decayRate: 12
+  _verticalForce: 3
+  _staggerThreshold: 2
+  _resistance: 0
 --- !u!1 &1162748744431411325
 GameObject:
   m_ObjectHideFlags: 0

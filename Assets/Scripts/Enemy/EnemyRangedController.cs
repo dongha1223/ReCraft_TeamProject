@@ -16,6 +16,9 @@ namespace _2D_Roguelike
         [SerializeField] private float _windupDuration = 1f;
         [SerializeField] private float _attackCooldown = 2f;
 
+        [Header("넉백")]
+        [SerializeField] private float _knockbackForce = 3f;
+
         [Header("투사체")]
         [SerializeField] private GameObject _projectilePrefab;
         [SerializeField] private Transform  _spawnPoint;
@@ -35,10 +38,11 @@ namespace _2D_Roguelike
         [Tooltip("아래 방향 레이캐스트 거리")]
         [SerializeField] private float _ledgeCheckDist    = 0.8f;
 
-        private Rigidbody2D      _rb;
-        private Animator         _animator;
-        private Transform        _player;
-        private PlayerController _playerController;
+        private Rigidbody2D       _rb;
+        private Animator          _animator;
+        private KnockbackReceiver _knockback;
+        private Transform         _player;
+        private PlayerController  _playerController;
 
         private Vector2 _patrolOrigin;
         private int     _patrolDir   = 1;
@@ -50,9 +54,10 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
-            _rb       = GetComponent<Rigidbody2D>();
-            _animator = GetComponent<Animator>();
-            _patrolOrigin   = transform.position;
+            _rb           = GetComponent<Rigidbody2D>();
+            _animator     = GetComponent<Animator>();
+            _knockback    = GetComponent<KnockbackReceiver>();
+            _patrolOrigin = transform.position;
 
             if (_windupIndicator != null)
                 _windupIndicator.SetActive(false);
@@ -72,9 +77,10 @@ namespace _2D_Roguelike
         private void OnEnable()
         {
             _patrolOrigin = transform.position;
-            _patrolDir    = 1;
-            _canAttack    = true;
-            _isAttacking  = false;
+            _patrolDir   = 1;
+            _canAttack   = true;
+            _isAttacking = false;
+            _knockback?.ResetKnockback();
 
             _animator?.ResetTrigger(AnimWindup);
             _animator?.SetBool(AnimIsMoving, false);
@@ -95,6 +101,14 @@ namespace _2D_Roguelike
         private void Update()
         {
             if (_player == null) return;
+
+            // 스태거 중 — AI 중단, 외부 힘만 반영
+            if (_knockback != null && _knockback.IsKnockedBack)
+            {
+                _rb.linearVelocity = new Vector2(_knockback.ExternalVelocity.x, _rb.linearVelocity.y);
+                _animator?.SetBool(AnimIsMoving, false);
+                return;
+            }
 
             // 공격(전조) 진행 중 — 이동 정지
             if (_isAttacking)
@@ -173,7 +187,8 @@ namespace _2D_Roguelike
 
         private void Move(float velX)
         {
-            _rb.linearVelocity = new Vector2(velX, _rb.linearVelocity.y);
+            float externalX = _knockback != null ? _knockback.ExternalVelocity.x : 0f;
+            _rb.linearVelocity = new Vector2(velX + externalX, _rb.linearVelocity.y);
             _animator?.SetBool(AnimIsMoving, true);
             Flip(velX);
         }
@@ -217,7 +232,12 @@ namespace _2D_Roguelike
             if (_projectilePrefab != null && _player != null)
             {
                 var go = Instantiate(_projectilePrefab, _spawnPoint.position, Quaternion.identity);
-                go.GetComponent<ProjectileBase>()?.Setup(_player, _attackDamage);
+                go.GetComponent<ProjectileBase>()?.Setup(_player, new HitInfo
+                {
+                    Damage         = _attackDamage,
+                    KnockbackForce = _knockbackForce
+                    // SourcePosition은 투사체가 충돌 시점에 자신 위치로 설정
+                });
             }
 
             // 쿨타임 잔여 대기 (windupDuration이 cooldown보다 길어지는 케이스 방지)

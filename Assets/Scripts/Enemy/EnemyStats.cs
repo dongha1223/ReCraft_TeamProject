@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _2D_Roguelike
 {
-    public class EnemyStats : MonoBehaviour
+    public class EnemyStats : MonoBehaviour, IDamageable
     {
         [Header("스탯")]
         [SerializeField] private float _maxHp = 70f;
@@ -17,6 +17,7 @@ namespace _2D_Roguelike
         private EnemyController       _controller;
         private EnemyRangedController _rangedController;
         private DamageFlash           _damageFlash;
+        private KnockbackReceiver     _knockback;
 
         private static readonly int AnimDie = Animator.StringToHash("Die");
         private static readonly int AnimHit = Animator.StringToHash("Hit");
@@ -30,6 +31,7 @@ namespace _2D_Roguelike
             _controller       = GetComponent<EnemyController>();
             _rangedController = GetComponent<EnemyRangedController>();
             _damageFlash      = GetComponent<DamageFlash>();
+            _knockback        = GetComponent<KnockbackReceiver>();
         }
 
         // ── 안전한 Animator 트리거 ────────────────────────────────────
@@ -48,14 +50,17 @@ namespace _2D_Roguelike
         }
 
         // ─────────────────────────────────────────────────────────────
-        public void TakeDamage(float amount)
+        public void TakeDamage(HitInfo info)
         {
             if (_isDead) return;
 
-            _currentHp = Mathf.Max(0f, _currentHp - amount);
-            Debug.Log($"[EnemyStats] {name} HP: {_currentHp}/{_maxHp}  (-{amount})");
+            _currentHp = Mathf.Max(0f, _currentHp - info.Damage);
+            Debug.Log($"[EnemyStats] {name} HP: {_currentHp}/{_maxHp}  (-{info.Damage})");
 
-            SpawnDamageText(amount);
+            SpawnDamageText(info.Damage);
+
+            if (info.KnockbackForce > 0f)
+                _knockback?.ApplyKnockback(info.SourcePosition, info.KnockbackForce);
 
             if (_currentHp <= 0f)
             {
@@ -104,6 +109,7 @@ namespace _2D_Roguelike
         {
             _isDead    = false;
             _currentHp = _maxHp;
+            _knockback?.ResetKnockback();
             if (_controller != null)       _controller.enabled = true;
             if (_rangedController != null) _rangedController.enabled = true;
         }

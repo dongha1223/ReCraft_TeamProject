@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 5376198581866448210}
   - component: {fileID: 1125420184786068591}
   - component: {fileID: -936931053348119022}
+  - component: {fileID: 5614274965985801178}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -303,6 +304,7 @@ MonoBehaviour:
   _energy_Cooldown: 1.5
   _energy_VertOffset: 0.25
   _roll_Damage: 25
+  _roll_KnockbackForce: 6
   _roll_Distance: 1.1
   _roll_RollTime: 0.22
   _roll_Cooldown: 2.2
@@ -346,6 +348,7 @@ MonoBehaviour:
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 2048
+  _knockbackForce: 5
 --- !u!114 &5376198581866448210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,3 +392,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
   _flashColor: {r: 1, g: 1, b: 1, a: 1}
   _flashTime: 0.25
+--- !u!114 &5614274965985801178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9222165908665990148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edad1d64c54a21b4d91183fd8d0fff99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.KnockbackReceiver
+  _decayRate: 12
+  _verticalForce: 3
+  _staggerThreshold: 2
+  _resistance: 0

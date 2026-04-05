@@ -21,10 +21,11 @@ namespace _2D_Roguelike
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _platformLayer;
 
-        private Rigidbody2D _rb;
-        private Animator    _animator;
-        private PlayerDash  _playerDash;
-        private PlayerSkill _playerSkill;
+        private Rigidbody2D       _rb;
+        private Animator          _animator;
+        private PlayerDash        _playerDash;
+        private PlayerSkill       _playerSkill;
+        private KnockbackReceiver _knockback;
 
 
         private int  _jumpCount;
@@ -45,6 +46,7 @@ namespace _2D_Roguelike
             _animator    = GetComponent<Animator>();
             _playerDash  = GetComponent<PlayerDash>();
             _playerSkill = GetComponent<PlayerSkill>();
+            _knockback   = GetComponent<KnockbackReceiver>();
             
         }
 
@@ -98,7 +100,9 @@ namespace _2D_Roguelike
             if (keyboard.leftArrowKey.isPressed)  horizontal = -1f;
             if (keyboard.rightArrowKey.isPressed) horizontal =  1f;
 
-            _rb.linearVelocity = new Vector2(horizontal * _moveSpeed, _rb.linearVelocity.y);
+            // 입력 이동 + 외부 힘(넉백 등) 합산
+            float externalX = _knockback != null ? _knockback.ExternalVelocity.x : 0f;
+            _rb.linearVelocity = new Vector2(horizontal * _moveSpeed + externalX, _rb.linearVelocity.y);
 
             if (horizontal != 0f)
                 Flip(horizontal);

@@ -27,7 +27,8 @@ namespace _2D_Roguelike
 
         // ── 롤링 슬레쉬 ──────────────────────────────────────────────
         [Header("롤링 슬레쉬 (S 키)")]
-        [SerializeField] private float   _roll_Damage    = 25f;
+        [SerializeField] private float   _roll_Damage          = 25f;
+        [SerializeField] private float   _roll_KnockbackForce  = 6f;
         [Tooltip("1회 구르기당 전진 거리")]
         [SerializeField] private float   _roll_Distance  = 1.1f;
         [Tooltip("1회 구르기 소요 시간 (초)")]
@@ -223,6 +224,13 @@ namespace _2D_Roguelike
 
         private void ApplyOvalHit(Vector2 center, HashSet<Collider2D> alreadyHit)
         {
+            var hitInfo = new HitInfo
+            {
+                Damage         = _roll_Damage,
+                SourcePosition = transform.position,
+                KnockbackForce = _roll_KnockbackForce
+            };
+
             // 1차: LayerMask
             if (_enemyLayer.value != 0)
             {
@@ -231,8 +239,10 @@ namespace _2D_Roguelike
                 foreach (var col in hits)
                 {
                     if (alreadyHit.Contains(col)) continue;
+                    var damageable = col.GetComponent<IDamageable>();
+                    if (damageable == null) continue;
                     alreadyHit.Add(col);
-                    col.GetComponent<EnemyStats>()?.TakeDamage(_roll_Damage);
+                    damageable.TakeDamage(hitInfo);
                 }
             }
 
@@ -243,8 +253,10 @@ namespace _2D_Roguelike
             {
                 if (alreadyHit.Contains(col)) continue;
                 if (!col.CompareTag("Enemy")) continue;
+                var damageable = col.GetComponent<IDamageable>();
+                if (damageable == null) continue;
                 alreadyHit.Add(col);
-                col.GetComponent<EnemyStats>()?.TakeDamage(_roll_Damage);
+                damageable.TakeDamage(hitInfo);
             }
         }
 

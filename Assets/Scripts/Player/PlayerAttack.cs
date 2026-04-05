@@ -6,11 +6,14 @@ namespace _2D_Roguelike
 {
     public class PlayerAttack : MonoBehaviour
     {
-        [SerializeField] private float _damage = 10f;
-        [SerializeField] private float _attackCooldown = 0.5f;
-        [SerializeField] private Vector2 _hitboxSize = new Vector2(1.2f, 0.8f);
-        [SerializeField] private Vector2 _hitboxOffset = new Vector2(0.7f, 0f);
+        [SerializeField] private float     _damage        = 10f;
+        [SerializeField] private float     _attackCooldown = 0.5f;
+        [SerializeField] private Vector2   _hitboxSize    = new Vector2(1.2f, 0.8f);
+        [SerializeField] private Vector2   _hitboxOffset  = new Vector2(0.7f, 0f);
         [SerializeField] private LayerMask _enemyLayer;
+
+        [Header("넉백")]
+        [SerializeField] private float _knockbackForce = 5f;
 
         private Animator _animator;
 
@@ -38,7 +41,7 @@ namespace _2D_Roguelike
         private IEnumerator AttackCoroutine()
         {
             _isAttacking = true;
-            _canAttack = false;
+            _canAttack   = false;
 
             _animator?.SetTrigger(AnimAttack);
 
@@ -46,31 +49,36 @@ namespace _2D_Roguelike
             yield return new WaitForSeconds(0.2f);
             ApplyHitbox();
 
-            // 쿨타임 대기
             yield return new WaitForSeconds(_attackCooldown - 0.2f);
 
             _isAttacking = false;
-            _canAttack = true;
+            _canAttack   = true;
         }
 
         private void ApplyHitbox()
         {
-            float dir = transform.localScale.x < 0f ? -1f : 1f;
+            float dir    = transform.localScale.x < 0f ? -1f : 1f;
             Vector2 center = (Vector2)transform.position + new Vector2(_hitboxOffset.x * dir, _hitboxOffset.y);
 
             Collider2D[] hits = Physics2D.OverlapBoxAll(center, _hitboxSize, 0f, _enemyLayer);
             foreach (var hit in hits)
             {
-                var stats = hit.GetComponent<EnemyStats>();
-                stats?.TakeDamage(_damage);
+                var damageable = hit.GetComponent<IDamageable>();
+                if (damageable == null) continue;
+
+                damageable.TakeDamage(new HitInfo
+                {
+                    Damage         = _damage,
+                    SourcePosition = transform.position,
+                    KnockbackForce = _knockbackForce
+                });
             }
         }
 
         private void OnDrawGizmosSelected()
         {
-            // 공격 히트박스 시각화
             Gizmos.color = Color.red;
-            float dir = transform.localScale.x < 0f ? -1f : 1f;
+            float dir    = transform.localScale.x < 0f ? -1f : 1f;
             Vector2 center = (Vector2)transform.position + new Vector2(_hitboxOffset.x * dir, _hitboxOffset.y);
             Gizmos.DrawWireCube(center, _hitboxSize);
         }

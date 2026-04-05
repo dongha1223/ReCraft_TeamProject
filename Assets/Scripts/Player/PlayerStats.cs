@@ -2,14 +2,14 @@ using UnityEngine;
 
 namespace _2D_Roguelike
 {
-    public class PlayerStats : MonoBehaviour
+    public class PlayerStats : MonoBehaviour, IDamageable
     {
         [SerializeField] private float     _maxHp           = 100f;
         [SerializeField] private Transform _damageSpawnPos;  // 플레이어 머리 위 빈 Transform (없으면 중심 + offset 사용)
 
-        private float _currentHp;
-
-        private DamageFlash _damageFlash;
+        private float             _currentHp;
+        private DamageFlash       _damageFlash;
+        private KnockbackReceiver _knockback;
 
         public float CurrentHp => _currentHp;
         public float MaxHp     => _maxHp;
@@ -17,9 +17,9 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
-            _currentHp = _maxHp;
-
+            _currentHp   = _maxHp;
             _damageFlash = GetComponent<DamageFlash>();
+            _knockback   = GetComponent<KnockbackReceiver>();
         }
 
         public void FullRestore()
@@ -27,17 +27,19 @@ namespace _2D_Roguelike
             _currentHp = _maxHp;
         }
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(HitInfo info)
         {
             if (IsDead) return;
 
-            _currentHp = Mathf.Max(0f, _currentHp - amount);
-            
+            _currentHp = Mathf.Max(0f, _currentHp - info.Damage);
             Debug.Log($"[PlayerStats] HP: {_currentHp}/{_maxHp}");
 
-            SpawnFloatingText(amount, FloatingTextType.Damage);
-            _damageFlash.CallDamageFlash();
-            
+            SpawnFloatingText(info.Damage, FloatingTextType.Damage);
+            _damageFlash?.CallDamageFlash();
+
+            if (info.KnockbackForce > 0f)
+                _knockback?.ApplyKnockback(info.SourcePosition, info.KnockbackForce);
+
             if (IsDead)
                 OnDead();
         }

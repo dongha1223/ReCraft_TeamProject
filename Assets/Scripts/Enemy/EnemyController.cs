@@ -11,9 +11,12 @@ namespace _2D_Roguelike
 
         [Header("감지 & 공격")]
         [SerializeField] private float _detectionRange = 5f;
-        [SerializeField] private float _attackRange = 0.8f;
-        [SerializeField] private float _attackDamage = 10f;
+        [SerializeField] private float _attackRange    = 0.8f;
+        [SerializeField] private float _attackDamage   = 10f;
         [SerializeField] private float _attackCooldown = 1.2f;
+
+        [Header("넉백")]
+        [SerializeField] private float _knockbackForce = 4f;
 
         [Header("플랫폼 인식")]
         [Tooltip("이 값 이상 Y 차이가 나면 다른 플랫폼으로 간주하고 순찰로 복귀")]
@@ -29,8 +32,9 @@ namespace _2D_Roguelike
         [Tooltip("아래 방향 레이캐스트 거리")]
         [SerializeField] private float _ledgeCheckDist    = 0.8f;
 
-        private Rigidbody2D _rb;
-        private Animator    _animator;
+        private Rigidbody2D       _rb;
+        private Animator          _animator;
+        private KnockbackReceiver _knockback;
 
         private Transform        _player;
         private PlayerController _playerController;
@@ -44,8 +48,9 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
-            _rb       = GetComponent<Rigidbody2D>();
-            _animator = GetComponent<Animator>();
+            _rb           = GetComponent<Rigidbody2D>();
+            _animator     = GetComponent<Animator>();
+            _knockback    = GetComponent<KnockbackReceiver>();
             _patrolOrigin = transform.position;
         }
 
@@ -66,6 +71,7 @@ namespace _2D_Roguelike
             _patrolDir   = 1;
             _canAttack   = true;
             _isAttacking = false;
+            _knockback?.ResetKnockback();
 
             // 애니메이터 파라미터 초기화
             _animator?.ResetTrigger(AnimAttack);
@@ -86,6 +92,14 @@ namespace _2D_Roguelike
         private void Update()
         {
             if (_player == null) return;
+
+            // 스태거 중 — AI 중단, 외부 힘만 반영
+            if (_knockback != null && _knockback.IsKnockedBack)
+            {
+                _rb.linearVelocity = new Vector2(_knockback.ExternalVelocity.x, _rb.linearVelocity.y);
+                _animator?.SetBool(AnimIsMoving, false);
+                return;
+            }
 
             // 공격 모션 진행 중 — 수평 이동 완전 정지
             if (_isAttacking)
@@ -174,7 +188,8 @@ namespace _2D_Roguelike
 
         private void Move(float velX)
         {
-            _rb.linearVelocity = new Vector2(velX, _rb.linearVelocity.y);
+            float externalX = _knockback != null ? _knockback.ExternalVelocity.x : 0f;
+            _rb.linearVelocity = new Vector2(velX + externalX, _rb.linearVelocity.y);
             _animator?.SetBool(AnimIsMoving, true);
             Flip(velX);
         }
@@ -209,7 +224,14 @@ namespace _2D_Roguelike
             {
                 float dist = Vector2.Distance(transform.position, _player.position);
                 if (dist <= _attackRange)
-                    _player.GetComponent<PlayerStats>()?.TakeDamage(_attackDamage);
+                {
+                    _player.GetComponent<IDamageable>()?.TakeDamage(new HitInfo
+                    {
+                        Damage         = _attackDamage,
+                        SourcePosition = transform.position,
+                        KnockbackForce = _knockbackForce
+                    });
+                }
             }
 
             yield return new WaitForSeconds(_attackCooldown - 0.25f);
