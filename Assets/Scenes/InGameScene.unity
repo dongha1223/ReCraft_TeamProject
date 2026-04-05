@@ -1583,6 +1583,8 @@ GameObject:
   - component: {fileID: 743955014}
   - component: {fileID: 743955013}
   - component: {fileID: 743955012}
+  - component: {fileID: 743955015}
+  - component: {fileID: 743955016}
   m_Layer: 0
   m_Name: PauseMenuController
   m_TagString: Untagged
@@ -1640,6 +1642,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &743955015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743955011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33fa84d640a1eb346b34f98bd8771581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.ControlsMenuController
+--- !u!114 &743955016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743955011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b5146e26b915b44bbb09d44a6e2efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.SettingsMenuController
 --- !u!1 &745630756
 GameObject:
   m_ObjectHideFlags: 0

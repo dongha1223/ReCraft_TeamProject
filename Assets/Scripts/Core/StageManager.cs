@@ -53,6 +53,8 @@ namespace _2D_Roguelike
 
         public void TriggerGameClear() => StartCoroutine(DoGameClear());
 
+        public void RestartGame() => StartCoroutine(DoRestart());
+
         // ── 내부 코루틴 ───────────────────────────────────────────────────
         private IEnumerator DoTransition(int nextIndex)
         {
@@ -61,6 +63,25 @@ namespace _2D_Roguelike
 
             _stageRoots[CurrentStage].SetActive(false);
             ActivateStage(nextIndex);
+
+            if (FadeManager.Instance != null)
+                yield return StartCoroutine(FadeManager.Instance.FadeIn());
+        }
+
+        private IEnumerator DoRestart()
+        {
+            if (FadeManager.Instance != null)
+                yield return StartCoroutine(FadeManager.Instance.FadeOut());
+
+            // 플레이어 체력 초기화
+            if (_playerTransform != null)
+            {
+                var stats = _playerTransform.GetComponent<PlayerStats>();
+                if (stats != null) stats.FullRestore();
+            }
+
+            _stageRoots[CurrentStage].SetActive(false);
+            ActivateStage(0);
 
             if (FadeManager.Instance != null)
                 yield return StartCoroutine(FadeManager.Instance.FadeIn());
