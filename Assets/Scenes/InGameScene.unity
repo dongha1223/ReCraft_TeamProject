@@ -2884,6 +2884,7 @@ GameObject:
   - component: {fileID: 1628164918}
   - component: {fileID: 1628164920}
   - component: {fileID: 1628164919}
+  - component: {fileID: 1628164921}
   m_Layer: 0
   m_Name: Signpost_Copy
   m_TagString: Untagged
@@ -2920,9 +2921,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.SignpostController
   _isLastStage: 0
-  _interactionRange: 2
-  _spriteRenderer: {fileID: 0}
-  _fKeyPrompt: {fileID: 0}
+  _spriteRenderer: {fileID: 1628164920}
+  _fKeyPrompt: {fileID: 1760895184}
 --- !u!212 &1628164920
 SpriteRenderer:
   serializedVersion: 2
@@ -2982,6 +2982,52 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!61 &1628164921
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628164917}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1632782027
 GameObject:
   m_ObjectHideFlags: 0
@@ -3375,6 +3421,7 @@ GameObject:
   - component: {fileID: 1766889503}
   - component: {fileID: 1766889505}
   - component: {fileID: 1766889504}
+  - component: {fileID: 1766889506}
   m_Layer: 0
   m_Name: Signpost_Copy
   m_TagString: Untagged
@@ -3411,7 +3458,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.SignpostController
   _isLastStage: 1
-  _interactionRange: 2
   _spriteRenderer: {fileID: 0}
   _fKeyPrompt: {fileID: 0}
 --- !u!212 &1766889505
@@ -3473,6 +3519,52 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!61 &1766889506
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766889502}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &1772404804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3737,6 +3829,7 @@ GameObject:
   - component: {fileID: 1813002545}
   - component: {fileID: 1813002547}
   - component: {fileID: 1813002546}
+  - component: {fileID: 1813002548}
   m_Layer: 0
   m_Name: Signpost
   m_TagString: Untagged
@@ -3773,7 +3866,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.SignpostController
   _isLastStage: 0
-  _interactionRange: 2
   _spriteRenderer: {fileID: 0}
   _fKeyPrompt: {fileID: 0}
 --- !u!212 &1813002547
@@ -3835,6 +3927,52 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!61 &1813002548
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813002544}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1819271396
 GameObject:
   m_ObjectHideFlags: 0
@@ -4009,6 +4147,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41635b6173a0eee44b8fc46c6814c1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.PlayerStatController
+--- !u!114 &1828385241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828385226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5300f69add858f348ab79bbfb98c47a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.PlayerInteractor
+  _interactionRadius: 2
 --- !u!1 &2097524322
 GameObject:
   m_ObjectHideFlags: 0
@@ -4209,6 +4360,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9222165908665990148, guid: e483922004626cb4498ec24aad9be462, type: 3}
       insertIndex: 10
       addedObject: {fileID: 1828385227}
+    - targetCorrespondingSourceObject: {fileID: 9222165908665990148, guid: e483922004626cb4498ec24aad9be462, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1828385241}
   m_SourcePrefab: {fileID: 100100000, guid: e483922004626cb4498ec24aad9be462, type: 3}
 --- !u!1001 &297970784070132677
 PrefabInstance:
@@ -4373,7 +4527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4813928234652933142, guid: e855583d7f3c86341a4c01c69aa75ff4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

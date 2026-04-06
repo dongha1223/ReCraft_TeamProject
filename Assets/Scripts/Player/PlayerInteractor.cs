@@ -19,12 +19,15 @@ namespace _2D_Roguelike
         private float                _holdTimer;
         private bool                 _holdTriggered;
 
-        // 할당 없는 물리 쿼리용 버퍼
+        // 물리 쿼리용 버퍼 및 필터
         private readonly Collider2D[] _overlapBuffer = new Collider2D[16];
+        private ContactFilter2D _contactFilter;
 
         private void Awake()
         {
             _statController = GetComponent<PlayerStatController>();
+            _contactFilter.useTriggers = true;
+            _contactFilter.useLayerMask = false; // 모든 레이어
         }
 
         private void Update()
@@ -52,11 +55,11 @@ namespace _2D_Roguelike
 
         private IInteractable FindClosest()
         {
-            int count = Physics2D.OverlapCircleNonAlloc(
-                transform.position, _interactionRadius, _overlapBuffer);
+            int count = Physics2D.OverlapCircle(
+                transform.position, _interactionRadius, _contactFilter, _overlapBuffer);
 
             IInteractable best    = null;
-            float         minDist = float.MaxValue;
+            float         minSqrDist = float.MaxValue;
 
             for (int i = 0; i < count; i++)
             {
@@ -66,13 +69,12 @@ namespace _2D_Roguelike
                 var interactable = _overlapBuffer[i].GetComponent<IInteractable>();
                 if (interactable == null || !interactable.CanInteract) continue;
 
-                float dist = Vector2.Distance(
-                    transform.position, _overlapBuffer[i].transform.position);
+                float dist = ((Vector2)transform.position - (Vector2)_overlapBuffer[i].transform.position).sqrMagnitude;
 
-                if (dist < minDist)
+                if (dist < minSqrDist)
                 {
-                    minDist = dist;
-                    best    = interactable;
+                    minSqrDist = dist;
+                    best       = interactable;
                 }
             }
 
