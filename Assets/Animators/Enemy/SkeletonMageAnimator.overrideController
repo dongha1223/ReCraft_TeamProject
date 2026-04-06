@@ -7,5 +7,13 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SkeletonMageAnimator
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: 18ac8bd57f394ce41824effffb446438, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 9867f56741e4f4f1997adb0e7ce3a9b9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 555a21c4f167f419e8019598ec235d9d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 52f4a6fa7040647c49e6374496c259fb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 742dd8321367e4bc0937578bcfa38015, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 858d6eb80c3364ebda08f3aa8bf267e5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 57522ca95a62a4d0aab2565615942d8c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c29ed1c0611054650a9f9b46dcca347b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 41c1b4204e250614991e010b71f6c37e, type: 2}

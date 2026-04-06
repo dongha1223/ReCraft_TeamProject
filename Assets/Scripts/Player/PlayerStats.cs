@@ -11,23 +11,34 @@ namespace _2D_Roguelike
         private DamageFlash          _damageFlash;
         private KnockbackReceiver    _knockback;
         private InvincibilityHandler _invincibility;
+        private PlayerStatController _statController;
 
         public float CurrentHp    => _currentHp;
-        public float MaxHp        => _maxHp;
+        /// <summary>아이템/각인 효과가 반영된 최대 체력</summary>
+        public float MaxHp        => _statController != null
+                                        ? _statController.StatService.GetFinalValue(StatType.MaxHp)
+                                        : _maxHp;
         public bool  IsDead       => _currentHp <= 0f;
         public bool  IsInvincible => _invincibility != null && _invincibility.IsInvincible;
 
         private void Awake()
         {
-            _currentHp     = _maxHp;
-            _damageFlash   = GetComponent<DamageFlash>();
-            _knockback     = GetComponent<KnockbackReceiver>();
-            _invincibility = GetComponent<InvincibilityHandler>();
+            _damageFlash    = GetComponent<DamageFlash>();
+            _knockback      = GetComponent<KnockbackReceiver>();
+            _invincibility  = GetComponent<InvincibilityHandler>();
+            _statController = GetComponent<PlayerStatController>();
+        }
+
+        private void Start()
+        {
+            // Inspector 수치를 기본값으로 StatService에 등록
+            _statController?.StatService.SetBaseValue(StatType.MaxHp, _maxHp);
+            _currentHp = MaxHp;
         }
 
         public void FullRestore()
         {
-            _currentHp = _maxHp;
+            _currentHp = MaxHp;
         }
 
         public void TakeDamage(HitInfo info)

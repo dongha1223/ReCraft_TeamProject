@@ -15,7 +15,8 @@ namespace _2D_Roguelike
         [Header("넉백")]
         [SerializeField] private float _knockbackForce = 5f;
 
-        private Animator _animator;
+        private Animator             _animator;
+        private PlayerStatController _statController;
 
         private bool _isAttacking;
         private bool _canAttack = true;
@@ -24,7 +25,14 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
+            _animator       = GetComponent<Animator>();
+            _statController = GetComponent<PlayerStatController>();
+        }
+
+        private void Start()
+        {
+            // Inspector 수치를 기본값으로 StatService에 등록
+            _statController?.StatService.SetBaseValue(StatType.AttackPower, _damage);
         }
 
         private void Update()
@@ -60,6 +68,10 @@ namespace _2D_Roguelike
             float dir    = transform.localScale.x < 0f ? -1f : 1f;
             Vector2 center = (Vector2)transform.position + new Vector2(_hitboxOffset.x * dir, _hitboxOffset.y);
 
+            float finalDamage = _statController != null
+                ? _statController.StatService.GetFinalValue(StatType.AttackPower)
+                : _damage;
+
             Collider2D[] hits = Physics2D.OverlapBoxAll(center, _hitboxSize, 0f, _enemyLayer);
             foreach (var hit in hits)
             {
@@ -68,7 +80,7 @@ namespace _2D_Roguelike
 
                 damageable.TakeDamage(new HitInfo
                 {
-                    Damage         = _damage,
+                    Damage         = finalDamage,
                     SourcePosition = transform.position,
                     KnockbackForce = _knockbackForce
                 });

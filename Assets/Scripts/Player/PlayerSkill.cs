@@ -38,8 +38,9 @@ namespace _2D_Roguelike
         [SerializeField] private Vector2 _roll_OvalSize  = new Vector2(2.6f, 1.0f);
 
         // ── 컴포넌트 ─────────────────────────────────────────────────
-        private Rigidbody2D _rb;
-        private Animator    _anim;
+        private Rigidbody2D          _rb;
+        private Animator             _anim;
+        private PlayerStatController _statController;
 
         // ── 상태 ─────────────────────────────────────────────────────
         private bool  _canSkill1   = true;
@@ -57,8 +58,16 @@ namespace _2D_Roguelike
         // ═════════════════════════════════════════════════════════════
         private void Awake()
         {
-            _rb   = GetComponent<Rigidbody2D>();
-            _anim = GetComponent<Animator>();
+            _rb             = GetComponent<Rigidbody2D>();
+            _anim           = GetComponent<Animator>();
+            _statController = GetComponent<PlayerStatController>();
+        }
+
+        private void Start()
+        {
+            // Inspector 수치를 기본값으로 StatService에 등록
+            _statController?.StatService.SetBaseValue(StatType.SkillPower, _energy_Damage);
+            _statController?.StatService.SetBaseValue(StatType.RollPower,  _roll_Damage);
         }
 
         private void Update()
@@ -106,11 +115,15 @@ namespace _2D_Roguelike
                 return;
             }
 
+            float finalDamage = _statController != null
+                ? _statController.StatService.GetFinalValue(StatType.SkillPower)
+                : _energy_Damage;
+
             Vector2 pos = (Vector2)transform.position + new Vector2(0f, yOffset);
             var p = SkillObjectPool.Instance.GetProjectile(pos);
             if (p == null) return;
 
-            p.Launch(dir, _energy_Damage);
+            p.Launch(dir, finalDamage);
         }
 
         // ═════════════════════════════════════════════════════════════
@@ -224,9 +237,13 @@ namespace _2D_Roguelike
 
         private void ApplyOvalHit(Vector2 center, HashSet<Collider2D> alreadyHit)
         {
+            float finalDamage = _statController != null
+                ? _statController.StatService.GetFinalValue(StatType.RollPower)
+                : _roll_Damage;
+
             var hitInfo = new HitInfo
             {
-                Damage         = _roll_Damage,
+                Damage         = finalDamage,
                 SourcePosition = transform.position,
                 KnockbackForce = _roll_KnockbackForce
             };

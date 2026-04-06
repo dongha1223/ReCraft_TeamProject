@@ -360,7 +360,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _lifetime: 3
-  _maxDistance: 0
+  _maxDistance: 5
   _startAngle: 90
 --- !u!114 &8054476626258843125
 MonoBehaviour:
@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310145fffdf16e64e994c39a218c845d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementRigidBody2d
-  moveSpeed: 15
+  moveSpeed: 5
 --- !u!1 &5234564056461610678
 GameObject:
   m_ObjectHideFlags: 0
