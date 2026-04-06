@@ -53,6 +53,20 @@ namespace _2D_Roguelike
         public float Skill1CooldownRatio { get; private set; } = 0f;
         public float Skill2CooldownRatio { get; private set; } = 0f;
 
+        /// <summary>스킬 상태 전체 초기화 (스테이지 재시작 시 호출)</summary>
+        public void ResetSkills()
+        {
+            StopAllCoroutines();
+            _canSkill1          = true;
+            _canSkill2          = true;
+            IsRolling           = false;
+            Skill1CooldownRatio = 0f;
+            Skill2CooldownRatio = 0f;
+            transform.rotation  = Quaternion.identity; // 롤링 도중이었으면 회전 복원
+            if (_rb != null)
+                _rb.linearVelocity = new Vector2(0f, _rb.linearVelocity.y);
+        }
+
         private static readonly int AnimRollingSlash = Animator.StringToHash("RollingSlash");
 
         // ═════════════════════════════════════════════════════════════
