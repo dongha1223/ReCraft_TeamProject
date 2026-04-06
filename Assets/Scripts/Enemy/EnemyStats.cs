@@ -11,31 +11,28 @@ namespace _2D_Roguelike
         [Header("데미지 텍스트")]
         [SerializeField] private Transform _damageSpawnPos;  // 적 머리 위 빈 Transform (없으면 중심 + offset 사용)
 
-        private float                 _currentHp;
-        private bool                  _isDead;
-        private Animator              _animator;
-        private EnemyController       _controller;
-        private EnemyRangedController _rangedController;
-        private DamageFlash           _damageFlash;
-        private KnockbackReceiver     _knockback;
+        private float             _currentHp;
+        private bool              _isDead;
+        private Animator          _animator;
+        private EnemyBrainBase    _brain;
+        private DamageFlash       _damageFlash;
+        private KnockbackReceiver _knockback;
 
         private static readonly int AnimDie = Animator.StringToHash("Die");
         private static readonly int AnimHit = Animator.StringToHash("Hit");
 
-        public bool IsDead        => _isDead;
-        public bool IsInvincible  => false;
+        public bool IsDead       => _isDead;
+        public bool IsInvincible => false;
 
         private void Awake()
         {
-            _currentHp        = _maxHp;
-            _animator         = GetComponent<Animator>();
-            _controller       = GetComponent<EnemyController>();
-            _rangedController = GetComponent<EnemyRangedController>();
-            _damageFlash      = GetComponent<DamageFlash>();
-            _knockback        = GetComponent<KnockbackReceiver>();
+            _currentHp   = _maxHp;
+            _animator    = GetComponent<Animator>();
+            _brain       = GetComponent<EnemyBrainBase>();
+            _damageFlash = GetComponent<DamageFlash>();
+            _knockback   = GetComponent<KnockbackReceiver>();
         }
 
-        // ── 안전한 Animator 트리거 ────────────────────────────────────
         /// <summary>파라미터가 존재할 때만 SetTrigger — 없으면 조용히 무시</summary>
         private void SafeSetTrigger(int hash)
         {
@@ -50,7 +47,6 @@ namespace _2D_Roguelike
             }
         }
 
-        // ─────────────────────────────────────────────────────────────
         public void TakeDamage(HitInfo info)
         {
             if (_isDead) return;
@@ -87,13 +83,10 @@ namespace _2D_Roguelike
         private void OnDead()
         {
             Debug.Log($"[EnemyStats] {name} 사망.");
-            if (_controller != null)       _controller.enabled = false;
-            if (_rangedController != null) _rangedController.enabled = false;
+            if (_brain != null) _brain.enabled = false;
             SafeSetTrigger(AnimDie);
 
-            // 스테이지 매니저에 적 사망 통보
             StageManager.Instance?.OnEnemyDied();
-
             StartCoroutine(ReturnToPoolAfterDelay(1.5f));
         }
 
@@ -111,18 +104,10 @@ namespace _2D_Roguelike
             _isDead    = false;
             _currentHp = _maxHp;
             _knockback?.ResetKnockback();
-            if (_controller != null)       _controller.enabled = true;
-            if (_rangedController != null) _rangedController.enabled = true;
+            if (_brain != null) _brain.enabled = true;
         }
 
-        public float getMaxHP()
-        {
-            return _maxHp;
-        }
-
-        public float getCurrnetHP()
-        {
-            return _currentHp;
-        }
+        public float getMaxHP()     => _maxHp;
+        public float getCurrnetHP() => _currentHp;
     }
 }
