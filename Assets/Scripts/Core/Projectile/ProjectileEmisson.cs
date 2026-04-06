@@ -43,7 +43,7 @@ public class ProjectileEmisson : MonoBehaviour
         if ( Time.time - currentAttackRate > attackRate)
         {
             GameObject clone = GameObject.Instantiate(projectiles[(int)projectileType], projectileSpawnPoint.position, Quaternion.identity);
-            clone.GetComponent<ProjectileBase>().Setup(target, 1, projectileCount, currentProjectileIndex);
+            //clone.GetComponent<ProjectileBase>().Setup(target, 1, projectileCount, currentProjectileIndex);
             
             currentProjectileIndex ++;
             currentAttackRate = Time.time;

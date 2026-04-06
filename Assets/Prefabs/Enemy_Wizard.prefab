@@ -409,6 +409,7 @@ MonoBehaviour:
   _attackDamage: 8
   _windupDuration: 1
   _attackCooldown: 5
+  _knockbackForce: 3
   _projectilePrefab: {fileID: 1576396758319343985, guid: c486a95a3df4f9a4d987f30308a064a3, type: 3}
   _spawnPoint: {fileID: 829411367020565937}
   _windupIndicator: {fileID: 2402637249286965575}
@@ -435,8 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EnemyStats
   _maxHp: 70
-  _hitFlashColor: {r: 1, g: 0.15, b: 0.15, a: 1}
-  _hitFlashDuration: 0.12
+  _damageSpawnPos: {fileID: 0}
 --- !u!1 &8378760307128419014
 GameObject:
   m_ObjectHideFlags: 0

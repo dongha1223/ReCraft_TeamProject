@@ -12,7 +12,10 @@ namespace _2D_Roguelike
     /// </summary>
     public class SwordEnergyProjectile : ProjectileBase
     {
-        private float _damage;
+        [Header("넉백")]
+        [SerializeField] private float _knockbackForce = 4f;
+
+        private float                    _damage;
         private bool                     _isReturning;
         private readonly HashSet<Collider2D> _hit = new HashSet<Collider2D>();
 
@@ -45,11 +48,16 @@ namespace _2D_Roguelike
         {
             if (_hit.Contains(col)) return;
 
-            var stats = col.GetComponent<EnemyStats>();
-            if (stats == null || stats.IsDead) return;
+            var damageable = col.GetComponent<IDamageable>();
+            if (damageable == null || damageable.IsDead) return;
 
             _hit.Add(col);
-            stats.TakeDamage(_damage);
+            damageable.TakeDamage(new HitInfo
+            {
+                Damage         = _damage,
+                SourcePosition = transform.position,
+                KnockbackForce = _knockbackForce
+            });
             OnLifetimeExpired();
         }
 
