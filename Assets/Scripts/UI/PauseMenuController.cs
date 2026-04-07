@@ -19,6 +19,8 @@ namespace _2D_Roguelike
         private ControlsMenuController  _controlsMenu;
         private SettingsMenuController  _settingsMenu;
 
+        [SerializeField] private InventoryController _inventoryController;
+
         // 확인 다이얼로그
         private VisualElement _confirmOverlay;
         private Label _confirmYes;
@@ -52,9 +54,10 @@ namespace _2D_Roguelike
         {
             if (Keyboard.current == null) return;
 
-            // ESC는 항상 최우선으로 처리 — 하위 창 → 포즈 메뉴 순으로 닫기
+            // ESC는 항상 최우선으로 처리 — 인벤토리 → 하위 창 → 포즈 메뉴 순으로 닫기
             if (Keyboard.current.escapeKey.wasPressedThisFrame)
             {
+                if (_inventoryController != null && _inventoryController.IsOpen) { _inventoryController.Close(); return; }
                 if (_controlsMenu != null && _controlsMenu.IsOpen) { _controlsMenu.Close(); return; }
                 if (_settingsMenu != null && _settingsMenu.IsOpen) { _settingsMenu.Close(); return; }
                 if (_isConfirmOpen) { CloseConfirmDialog(); return; }
