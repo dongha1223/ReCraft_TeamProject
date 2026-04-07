@@ -43,6 +43,18 @@ namespace _2D_Roguelike
 
         public GhostFade ghost;
 
+        /// <summary>대시 상태 전체 초기화 (스테이지 재시작 시 호출)</summary>
+        public void ResetDash()
+        {
+            StopAllCoroutines();
+            _currentCharges  = _maxCharges;
+            _isDashing       = false;
+            _cooldownRunning = false;
+            _jumpLockTimer   = 0f;
+            _rb.gravityScale = _originalGravityScale;
+            if (ghost != null) ghost.makeGhost = false;
+        }
+
         private void Awake()
         {
             _rb                   = GetComponent<Rigidbody2D>();

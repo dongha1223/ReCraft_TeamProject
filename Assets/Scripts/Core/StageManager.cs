@@ -73,12 +73,7 @@ namespace _2D_Roguelike
             if (FadeManager.Instance != null)
                 yield return StartCoroutine(FadeManager.Instance.FadeOut());
 
-            // 플레이어 체력 초기화
-            if (_playerTransform != null)
-            {
-                var stats = _playerTransform.GetComponent<PlayerStats>();
-                if (stats != null) stats.FullRestore();
-            }
+            ResetPlayer();
 
             _stageRoots[CurrentStage].SetActive(false);
             ActivateStage(0);
@@ -102,6 +97,7 @@ namespace _2D_Roguelike
             yield return StartCoroutine(FadeManager.Instance.FadeOut());
             FadeManager.Instance.ShowGameClear(false);
 
+            ResetPlayer();
             _stageRoots[CurrentStage].SetActive(false);
             ActivateStage(0);
 
@@ -132,6 +128,14 @@ namespace _2D_Roguelike
             yield return null;
             if (AllEnemiesDead)
                 OnAllEnemiesDead?.Invoke();
+        }
+
+        private void ResetPlayer()
+        {
+            if (_playerTransform == null) return;
+            _playerTransform.GetComponent<PlayerStats>()?.FullRestore();
+            _playerTransform.GetComponent<PlayerSkill>()?.ResetSkills();
+            _playerTransform.GetComponent<PlayerDash>()?.ResetDash();
         }
 
         private void MovePlayerToSpawn(int stageIndex)
