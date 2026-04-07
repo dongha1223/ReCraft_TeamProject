@@ -46,7 +46,7 @@ namespace _2D_Roguelike
         // ── 행동 잠금 (기절·빙결) ───────────────────────────────────────
         private int      _actionLockCount;  // 잠금 소스 수 (0이면 정상)
         private int      _frozenCount;      // 빙결 소스 수 (PauseableWait 제어용)
-        private Coroutine _attackHandle;    // 현재 실행 중인 AttackCoroutine 핸들
+        protected Coroutine _attackHandle;    // 현재 실행 중인 AttackCoroutine 핸들
 
         protected bool IsActionLocked => _actionLockCount > 0;
         protected bool IsFrozen       => _frozenCount      > 0;
