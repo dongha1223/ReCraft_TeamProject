@@ -42,7 +42,8 @@ namespace _2D_Roguelike
             _animator?.SetTrigger(AnimWindup);
             _windupIndicator?.SetActive(true);
 
-            yield return new WaitForSeconds(_windupDuration);
+            // 전조 대기 — 빙결 시 일시정지, 해제 후 발사로 이어짐
+            yield return StartCoroutine(PauseableWait(_windupDuration));
 
             // 전조 종료 → 투사체 발사
             _windupIndicator?.SetActive(false);
@@ -58,7 +59,7 @@ namespace _2D_Roguelike
             }
 
             // 쿨타임 잔여 대기 (windupDuration이 cooldown보다 길어지는 케이스 방지)
-            yield return new WaitForSeconds(Mathf.Max(0f, _attackCooldown - _windupDuration));
+            yield return new WaitForSeconds(Mathf.Max(0f, _attackCooldown - _windupDuration));  // 쿨타임
 
             _isAttacking = false;
             _canAttack   = true;

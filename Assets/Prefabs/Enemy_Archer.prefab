@@ -512,6 +512,7 @@ GameObject:
   - component: {fileID: 7105362373963998855}
   - component: {fileID: 7812834599245968528}
   - component: {fileID: 4055445021681562771}
+  - component: {fileID: 6499415076619586025}
   - component: {fileID: 5883611406516679926}
   - component: {fileID: 6102944871056746312}
   m_Layer: 11
@@ -713,17 +714,17 @@ MonoBehaviour:
   _platformYThreshold: 1.5
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   _platformLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   _ledgeCheckOffsetX: 0.4
   _ledgeCheckOffsetY: -0.1
   _ledgeCheckDist: 0.8
   _attackDamage: 8
   _knockbackForce: 3
-  _windupDuration: 0.75
-  _projectilePrefab: {fileID: 4658659450437205736, guid: d7581e90f8cfdcc42a7c9343898a3d50, type: 3}
+  _windupDuration: 1.5
+  _projectilePrefab: {fileID: 6197509894989155861, guid: f34e593cf1b5a1246a6d2fd685e0f73a, type: 3}
   _spawnPoint: {fileID: 4635467249502816338}
   _windupIndicator: {fileID: 1502208388652491486}
 --- !u!114 &4055445021681562771
@@ -740,6 +741,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EnemyStats
   _maxHp: 70
   _damageSpawnPos: {fileID: 0}
+--- !u!114 &6499415076619586025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8937684725585241402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3688f077618794f986a0bccb93893b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.StatusController
 --- !u!114 &5883611406516679926
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,8 +17,8 @@ namespace _2D_Roguelike
             _isAttacking = true;
             _animator?.SetTrigger(AnimAttack);
 
-            // 공격 판정 (모션 중간)
-            yield return new WaitForSeconds(0.25f);
+            // 공격 판정 (모션 중간) — 빙결 시 이 대기가 일시정지됨
+            yield return StartCoroutine(PauseableWait(0.25f));
 
             if (_player != null)
             {
@@ -34,7 +34,7 @@ namespace _2D_Roguelike
                 }
             }
 
-            yield return new WaitForSeconds(_attackCooldown - 0.25f);
+            yield return new WaitForSeconds(_attackCooldown - 0.25f);  // 쿨타임은 빙결에 영향 안 받음
 
             _isAttacking = false;
             _canAttack   = true;

@@ -16,13 +16,15 @@ namespace _2D_Roguelike
         [SerializeField] private float _knockbackForce = 4f;
 
         private float                    _damage;
+        private StatusEffectSpec[]       _statusEffects;
         private bool                     _isReturning;
         private readonly HashSet<Collider2D> _hit = new HashSet<Collider2D>();
 
         protected override void OnEnable()
         {
             base.OnEnable();
-            _isReturning = false;
+            _isReturning   = false;
+            _statusEffects = null;
             _hit.Clear();
         }
 
@@ -30,9 +32,10 @@ namespace _2D_Roguelike
         /// 풀에서 꺼낸 뒤 PlayerSkill에서 호출.
         /// damage는 런타임 값, 속도/_maxDistance/_hitLayers는 Inspector(프리팹) 설정.
         /// </summary>
-        public void Launch(Vector2 direction, float damage)
+        public void Launch(Vector2 direction, float damage, StatusEffectSpec[] statusEffects = null)
         {
-            _damage = damage;
+            _damage        = damage;
+            _statusEffects = statusEffects;
 
             // 진행 방향에 따라 오브젝트 전체 반전
             Vector3 scale = transform.localScale;
@@ -56,7 +59,8 @@ namespace _2D_Roguelike
             {
                 Damage         = _damage,
                 SourcePosition = transform.position,
-                KnockbackForce = _knockbackForce
+                KnockbackForce = _knockbackForce,
+                StatusEffects  = _statusEffects
             });
             OnLifetimeExpired();
         }

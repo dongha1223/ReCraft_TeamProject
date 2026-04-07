@@ -13,24 +13,27 @@ namespace _2D_Roguelike
     /// </summary>
     public class LoadoutEffectCoordinator
     {
-        private readonly EffectService          _effectService;
-        private readonly InscriptionService     _inscriptionService;
+        private readonly EffectService           _effectService;
+        private readonly InscriptionService      _inscriptionService;
         private readonly InscriptionTierResolver _tierResolver;
-        private readonly StatService            _statService;
+        private readonly StatService             _statService;
+        private readonly OnHitStatusRegistry     _onHitRegistry;
 
         private readonly List<AppliedEffectHandle> _activeItemEffects        = new();
         private readonly List<AppliedEffectHandle> _activeInscriptionEffects = new();
 
         public LoadoutEffectCoordinator(
-            EffectService          effectService,
-            InscriptionService     inscriptionService,
-            InscriptionTierResolver tierResolver,
-            StatService            statService)
+            EffectService            effectService,
+            InscriptionService       inscriptionService,
+            InscriptionTierResolver  tierResolver,
+            StatService              statService,
+            OnHitStatusRegistry      onHitRegistry = null)
         {
             _effectService      = effectService;
             _inscriptionService = inscriptionService;
             _tierResolver       = tierResolver;
             _statService        = statService;
+            _onHitRegistry      = onHitRegistry;
         }
 
         /// <summary>
@@ -51,13 +54,17 @@ namespace _2D_Roguelike
 
         // ── private ──────────────────────────────────────────────────
 
+        /// <summary>EffectContext 생성 헬퍼 — OnHitRegistry를 항상 포함한다.</summary>
+        private EffectContext CreateContext(string sourceId)
+            => new EffectContext(sourceId, _statService, _onHitRegistry);
+
         private void ApplyItemEffects(IReadOnlyList<ItemInstance> equippedItems)
         {
             foreach (var item in equippedItems)
             {
                 if (item.Definition.effects == null) continue;
 
-                var ctx = new EffectContext(item.InstanceId, _statService);
+                var ctx = CreateContext(item.InstanceId);
                 foreach (var effect in item.Definition.effects)
                 {
                     if (effect == null) continue;
@@ -80,7 +87,7 @@ namespace _2D_Roguelike
 
                     // 각인 단계별 고유 sourceId로 독립 추적
                     string sourceId = $"inscription-{inscription.inscriptionId}-tier-{tier.requiredCount}";
-                    var ctx = new EffectContext(sourceId, _statService);
+                    var ctx = CreateContext(sourceId);
 
                     foreach (var effect in tier.effects)
                     {
@@ -96,14 +103,14 @@ namespace _2D_Roguelike
         {
             foreach (var handle in _activeItemEffects)
             {
-                var ctx = new EffectContext(handle.SourceId, _statService);
+                var ctx = CreateContext(handle.SourceId);
                 _effectService.Remove(ctx, handle);
             }
             _activeItemEffects.Clear();
 
             foreach (var handle in _activeInscriptionEffects)
             {
-                var ctx = new EffectContext(handle.SourceId, _statService);
+                var ctx = CreateContext(handle.SourceId);
                 _effectService.Remove(ctx, handle);
             }
             _activeInscriptionEffects.Clear();

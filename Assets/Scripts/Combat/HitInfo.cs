@@ -19,5 +19,11 @@ namespace _2D_Roguelike
 
         /// <summary>true면 무적 상태를 관통. 독·함정·즉사기 등에 사용</summary>
         public bool IgnoreInvincibility;
+
+        /// <summary>
+        /// 이 공격이 부여하는 상태이상 목록. null이면 상태이상 없음.
+        /// StatusController가 각 spec의 chance 롤을 포함해 처리한다.
+        /// </summary>
+        public StatusEffectSpec[] StatusEffects;
     }
 }
