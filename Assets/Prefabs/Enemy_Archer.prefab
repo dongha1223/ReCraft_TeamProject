@@ -723,7 +723,7 @@ MonoBehaviour:
   _ledgeCheckDist: 0.8
   _attackDamage: 8
   _knockbackForce: 3
-  _windupDuration: 1.5
+  _windupDuration: 0.5
   _projectilePrefab: {fileID: 6197509894989155861, guid: f34e593cf1b5a1246a6d2fd685e0f73a, type: 3}
   _spawnPoint: {fileID: 4635467249502816338}
   _windupIndicator: {fileID: 1502208388652491486}

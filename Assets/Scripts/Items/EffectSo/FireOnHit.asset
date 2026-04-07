@@ -19,5 +19,5 @@ MonoBehaviour:
     duration: 5
     tickDamage: 1
     tickInterval: 1
-    chance: 0.26
+    chance: 1
   target: 3

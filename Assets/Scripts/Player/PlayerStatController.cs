@@ -24,6 +24,11 @@ namespace _2D_Roguelike
             // 1. 스탯 서비스
             StatService = new StatService();
 
+            // 데미지 타입 배율 기본값 설정 (아이템·각인이 이 위에 Multiply 모디파이어를 올린다)
+            StatService.SetBaseValue(StatType.PhysicalPower, 1f);
+            StatService.SetBaseValue(StatType.MagicPower,    1f);
+            StatService.SetBaseValue(StatType.CriticalPower, 1.5f);
+
             // 2. 효과 실행기 등록
             var registry = new EffectExecutorRegistry();
             registry.Register<StatModifierEffectDefinition>(new StatModifierEffectExecutor());

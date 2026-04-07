@@ -407,10 +407,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EnemyRangedController
   _moveSpeed: 2
   _patrolDistance: 3
-  _detectionRange: 5
-  _attackRange: 5
+  _detectionRange: 10
+  _attackRange: 10
   _attackCooldown: 10
-  _platformYThreshold: 5
+  _platformYThreshold: 10
   _groundLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -420,7 +420,7 @@ MonoBehaviour:
   _ledgeCheckOffsetX: 0.4
   _ledgeCheckOffsetY: -0.1
   _ledgeCheckDist: 0.8
-  _attackDamage: 8
+  _attackDamage: 10
   _knockbackForce: 3
   _windupDuration: 1
   _projectilePrefab: {fileID: 1576396758319343985, guid: c486a95a3df4f9a4d987f30308a064a3, type: 3}

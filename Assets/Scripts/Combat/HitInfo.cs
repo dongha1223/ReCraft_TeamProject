@@ -11,6 +11,9 @@ namespace _2D_Roguelike
         /// <summary>입힐 데미지량</summary>
         public float Damage;
 
+        /// <summary>데미지 유형 (물리/마법/치명). StatService 배율 및 텍스트 색상에 영향</summary>
+        public DamageType DamageType;
+
         /// <summary>공격 발생 위치 (넉백 방향 계산용)</summary>
         public Vector2 SourcePosition;
 
