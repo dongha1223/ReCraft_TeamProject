@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace _2D_Roguelike
 {
-    public class PlayerStats : MonoBehaviour, IDamageable
+    public class PlayerStats : MonoBehaviour, IDamageable, IDotReceiver
     {
         [SerializeField] private float     _maxHp           = 100f;
         [SerializeField] private Transform _damageSpawnPos;  // 플레이어 머리 위 빈 Transform (없으면 중심 + offset 사용)
@@ -12,6 +12,7 @@ namespace _2D_Roguelike
         private KnockbackReceiver    _knockback;
         private InvincibilityHandler _invincibility;
         private PlayerStatController _statController;
+        private StatusController     _statusController;
 
         public float CurrentHp    => _currentHp;
         /// <summary>아이템/각인 효과가 반영된 최대 체력</summary>
@@ -23,10 +24,11 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
-            _damageFlash    = GetComponent<DamageFlash>();
-            _knockback      = GetComponent<KnockbackReceiver>();
-            _invincibility  = GetComponent<InvincibilityHandler>();
-            _statController = GetComponent<PlayerStatController>();
+            _damageFlash      = GetComponent<DamageFlash>();
+            _knockback        = GetComponent<KnockbackReceiver>();
+            _invincibility    = GetComponent<InvincibilityHandler>();
+            _statController   = GetComponent<PlayerStatController>();
+            _statusController = GetComponent<StatusController>();
         }
 
         private void Start()
@@ -54,6 +56,28 @@ namespace _2D_Roguelike
 
             if (info.KnockbackForce > 0f)
                 _knockback?.ApplyKnockback(info.SourcePosition, info.KnockbackForce);
+
+            // 상태이상 적용 (StatusResistance가 기절·빙결 면역을 자동 처리)
+            if (info.StatusEffects != null && _statusController != null)
+            {
+                foreach (var spec in info.StatusEffects)
+                    _statusController.ApplyStatus(spec);
+            }
+
+            if (IsDead)
+                OnDead();
+        }
+
+        /// <summary>
+        /// DoT 전용 데미지 처리.
+        /// 넉백·무적·피격 애니메이션 없이 체력만 깎는다.
+        /// </summary>
+        public void TakeDotDamage(float amount)
+        {
+            if (IsDead) return;
+
+            _currentHp = Mathf.Max(0f, _currentHp - amount);
+            SpawnFloatingText(amount, FloatingTextType.StatusEffect);
 
             if (IsDead)
                 OnDead();

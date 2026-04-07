@@ -7,7 +7,7 @@ namespace _2D_Roguelike
     /// 모든 적 AI의 공통 이동/순찰/플랫폼 로직을 담당하는 추상 기반 클래스.
     /// 서브클래스는 AttackCoroutine()만 구현하면 됩니다.
     /// </summary>
-    public abstract class EnemyBrainBase : MonoBehaviour
+    public abstract class EnemyBrainBase : MonoBehaviour, IStatusLockable
     {
         [Header("이동")]
         [SerializeField] protected float _moveSpeed      = 2f;
@@ -43,6 +43,14 @@ namespace _2D_Roguelike
         protected bool    _canAttack   = true;
         protected bool    _isAttacking = false;
 
+        // ── 행동 잠금 (기절·빙결) ───────────────────────────────────────
+        private int      _actionLockCount;  // 잠금 소스 수 (0이면 정상)
+        private int      _frozenCount;      // 빙결 소스 수 (PauseableWait 제어용)
+        protected Coroutine _attackHandle;    // 현재 실행 중인 AttackCoroutine 핸들
+
+        protected bool IsActionLocked => _actionLockCount > 0;
+        protected bool IsFrozen       => _frozenCount      > 0;
+
         protected static readonly int AnimIsMoving = Animator.StringToHash("IsMoving");
 
         protected virtual void Awake()
@@ -60,10 +68,13 @@ namespace _2D_Roguelike
 
         protected virtual void OnEnable()
         {
-            _patrolOrigin = transform.position;
-            _patrolDir    = 1;
-            _canAttack    = true;
-            _isAttacking  = false;
+            _patrolOrigin    = transform.position;
+            _patrolDir       = 1;
+            _canAttack       = true;
+            _isAttacking     = false;
+            _actionLockCount = 0;
+            _frozenCount     = 0;
+            _attackHandle    = null;
             _knockback?.ResetKnockback();
 
             _animator?.SetBool(AnimIsMoving, false);
@@ -88,6 +99,14 @@ namespace _2D_Roguelike
             if (_knockback != null && _knockback.IsKnockedBack)
             {
                 _rb.linearVelocity = new Vector2(_knockback.ExternalVelocity.x, _rb.linearVelocity.y);
+                _animator?.SetBool(AnimIsMoving, false);
+                return;
+            }
+
+            // 기절·빙결 — 행동 전체 잠금
+            if (IsActionLocked)
+            {
+                _rb.linearVelocity = new Vector2(0f, _rb.linearVelocity.y);
                 _animator?.SetBool(AnimIsMoving, false);
                 return;
             }
@@ -134,7 +153,7 @@ namespace _2D_Roguelike
             _animator?.SetBool(AnimIsMoving, false);
 
             if (!_canAttack) return;
-            StartCoroutine(AttackCoroutine());
+            _attackHandle = StartCoroutine(AttackCoroutine());
         }
 
         /// <summary>실제 공격 패턴 구현. 서브클래스에서 반드시 구현.</summary>
@@ -208,6 +227,59 @@ namespace _2D_Roguelike
                            + new Vector2(dirX * _ledgeCheckOffsetX, _ledgeCheckOffsetY);
 
             return !Physics2D.Raycast(origin, Vector2.down, _ledgeCheckDist, combined);
+        }
+
+        // ── IStatusLockable 구현 ─────────────────────────────────────────
+
+        /// <summary>
+        /// 행동 잠금 적용.
+        /// cancelOngoing = true  (기절): 진행 중인 공격 코루틴을 취소
+        /// cancelOngoing = false (빙결): 코루틴 유지, PauseableWait이 알아서 정지
+        /// </summary>
+        public void ApplyActionLock(bool cancelOngoing)
+        {
+            _actionLockCount++;
+
+            if (cancelOngoing)
+            {
+                // 기절: 공격 코루틴 즉시 종료 후 플래그 초기화
+                if (_attackHandle != null)
+                {
+                    StopCoroutine(_attackHandle);
+                    _attackHandle = null;
+                    _isAttacking  = false;
+                    _canAttack    = true;
+                }
+            }
+            else
+            {
+                // 빙결: 코루틴은 살려두고 PauseableWait이 시간 진행을 멈춤
+                _frozenCount++;
+            }
+        }
+
+        /// <summary>행동 잠금 해제</summary>
+        public void RemoveActionLock(bool wasCancelled)
+        {
+            _actionLockCount = Mathf.Max(0, _actionLockCount - 1);
+            if (!wasCancelled)
+                _frozenCount = Mathf.Max(0, _frozenCount - 1);
+        }
+
+        /// <summary>
+        /// 빙결 중 코루틴 내부에서 WaitForSeconds 대신 사용.
+        /// IsFrozen이 true인 동안 elapsed가 증가하지 않아 일시정지 효과를 낸다.
+        /// 빙결이 해제되면 자동으로 시간 진행 재개.
+        /// </summary>
+        protected IEnumerator PauseableWait(float duration)
+        {
+            float elapsed = 0f;
+            while (elapsed < duration)
+            {
+                if (!IsFrozen)
+                    elapsed += Time.deltaTime;
+                yield return null;
+            }
         }
 
         // ── 디버그 ────────────────────────────────────────────────────────

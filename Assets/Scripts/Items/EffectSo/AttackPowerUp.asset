@@ -15,5 +15,5 @@ MonoBehaviour:
   effectId: effect-guid-001
   trigger: 0
   statType: 1
-  operation: 0
-  value: 10
+  operation: 1
+  value: 1.2

@@ -6,13 +6,21 @@ namespace _2D_Roguelike
     /// </summary>
     public class EffectContext
     {
-        public string      SourceId    { get; }
-        public StatService StatService { get; }
+        public string               SourceId      { get; }
+        public StatService          StatService   { get; }
 
-        public EffectContext(string sourceId, StatService statService)
+        /// <summary>
+        /// 공격 시 상태이상 부여 레지스트리. null이면 on-hit 효과 없음.
+        /// StatusOnHitEffectExecutor가 Register/Unregister 시 사용한다.
+        /// </summary>
+        public OnHitStatusRegistry  OnHitRegistry { get; }
+
+        public EffectContext(string sourceId, StatService statService,
+                             OnHitStatusRegistry onHitRegistry = null)
         {
-            SourceId    = sourceId;
-            StatService = statService;
+            SourceId      = sourceId;
+            StatService   = statService;
+            OnHitRegistry = onHitRegistry;
         }
     }
 }

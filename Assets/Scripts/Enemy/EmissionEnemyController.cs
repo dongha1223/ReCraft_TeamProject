@@ -41,7 +41,8 @@ namespace _2D_Roguelike
             _animator?.SetTrigger(AnimWindup);
             _windupIndicator?.SetActive(true);
 
-            yield return new WaitForSeconds(_windupDuration);
+            // 전조 대기 — 빙결 시 일시정지, 해제 후 발사로 이어짐
+            yield return StartCoroutine(PauseableWait(_windupDuration));
 
             _windupIndicator?.SetActive(false);
 
@@ -60,11 +61,11 @@ namespace _2D_Roguelike
                     go.GetComponent<ProjectileBase>()?.Setup(_player, hitInfo, _projectileCount, i);
 
                     if (_fireInterval > 0f)
-                        yield return new WaitForSeconds(_fireInterval);
+                        yield return StartCoroutine(PauseableWait(_fireInterval));  // 연사 간격도 빙결 영향
                 }
             }
 
-            yield return new WaitForSeconds(Mathf.Max(0f, _attackCooldown - _windupDuration - _fireInterval * _projectileCount));
+            yield return new WaitForSeconds(Mathf.Max(0f, _attackCooldown - _windupDuration - _fireInterval * _projectileCount));  // 쿨타임
 
             _isAttacking = false;
             _canAttack   = true;

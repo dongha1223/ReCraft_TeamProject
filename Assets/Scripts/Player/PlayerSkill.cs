@@ -20,15 +20,21 @@ namespace _2D_Roguelike
     {
         // ── 검기 발산 ─────────────────────────────────────────────────
         [Header("검기 발산 (A 키)")]
-        [SerializeField] private LayerMask _enemyLayer; 
+        [SerializeField] private LayerMask _enemyLayer;
         [SerializeField] private float _energy_Damage     = 30f;
         [SerializeField] private float _energy_Cooldown   = 1.5f;
         [SerializeField] private float _energy_VertOffset = 0.25f;
+
+        [Tooltip("검기 발산 고유 상태이상 (아이템 무관 고정 효과)")]
+        [SerializeField] private StatusEffectSpec[] _skill1InnateEffects;
 
         // ── 롤링 슬레쉬 ──────────────────────────────────────────────
         [Header("롤링 슬레쉬 (S 키)")]
         [SerializeField] private float   _roll_Damage          = 25f;
         [SerializeField] private float   _roll_KnockbackForce  = 6f;
+
+        [Tooltip("롤링 슬레쉬 고유 상태이상 (아이템 무관 고정 효과)")]
+        [SerializeField] private StatusEffectSpec[] _skill2InnateEffects;
         [Tooltip("1회 구르기당 전진 거리")]
         [SerializeField] private float   _roll_Distance  = 1.1f;
         [Tooltip("1회 구르기 소요 시간 (초)")]
@@ -41,6 +47,7 @@ namespace _2D_Roguelike
         private Rigidbody2D          _rb;
         private Animator             _anim;
         private PlayerStatController _statController;
+        private OnHitStatusRegistry  _onHitRegistry;
 
         // ── 상태 ─────────────────────────────────────────────────────
         private bool  _canSkill1   = true;
@@ -75,6 +82,7 @@ namespace _2D_Roguelike
             _rb             = GetComponent<Rigidbody2D>();
             _anim           = GetComponent<Animator>();
             _statController = GetComponent<PlayerStatController>();
+            _onHitRegistry  = GetComponent<OnHitStatusRegistry>();
         }
 
         private void Start()
@@ -103,11 +111,14 @@ namespace _2D_Roguelike
         {
             _canSkill1 = false;
 
-            bool    facingLeft = transform.localScale.x < 0f;
-            Vector2 dir        = facingLeft ? Vector2.left : Vector2.right;
+            bool    facingLeft   = transform.localScale.x < 0f;
+            Vector2 dir          = facingLeft ? Vector2.left : Vector2.right;
+            var     statusSpecs  = MergeSpecs(
+                _skill1InnateEffects,
+                _onHitRegistry?.GetSpecsFor(OnHitTarget.Skill1));
 
-            SpawnCrescent(dir,  _energy_VertOffset);
-            SpawnCrescent(dir, -_energy_VertOffset);
+            SpawnCrescent(dir,  _energy_VertOffset, statusSpecs);
+            SpawnCrescent(dir, -_energy_VertOffset, statusSpecs);
 
             // 쿨타임 진행 (UI 비율 갱신)
             float elapsed = 0f;
@@ -121,7 +132,7 @@ namespace _2D_Roguelike
             _canSkill1 = true;
         }
 
-        private void SpawnCrescent(Vector2 dir, float yOffset)
+        private void SpawnCrescent(Vector2 dir, float yOffset, StatusEffectSpec[] statusEffects)
         {
             if (SkillObjectPool.Instance == null)
             {
@@ -137,7 +148,7 @@ namespace _2D_Roguelike
             var p = SkillObjectPool.Instance.GetProjectile(pos);
             if (p == null) return;
 
-            p.Launch(dir, finalDamage);
+            p.Launch(dir, finalDamage, statusEffects);
         }
 
         // ═════════════════════════════════════════════════════════════
@@ -259,7 +270,10 @@ namespace _2D_Roguelike
             {
                 Damage         = finalDamage,
                 SourcePosition = transform.position,
-                KnockbackForce = _roll_KnockbackForce
+                KnockbackForce = _roll_KnockbackForce,
+                StatusEffects  = MergeSpecs(
+                    _skill2InnateEffects,
+                    _onHitRegistry?.GetSpecsFor(OnHitTarget.Skill2))
             };
 
             // 1차: LayerMask
@@ -299,6 +313,22 @@ namespace _2D_Roguelike
             if (anim == null) return;
             foreach (var p in anim.parameters)
                 if (p.nameHash == hash) { anim.SetTrigger(hash); return; }
+        }
+
+        /// <summary>인스펙터 고정 스펙과 레지스트리(아이템·각인) 스펙을 하나의 배열로 합산</summary>
+        private static StatusEffectSpec[] MergeSpecs(StatusEffectSpec[] innate, StatusEffectSpec[] fromRegistry)
+        {
+            bool hasInnate   = innate       != null && innate.Length       > 0;
+            bool hasRegistry = fromRegistry != null && fromRegistry.Length > 0;
+
+            if (!hasInnate && !hasRegistry) return null;
+            if (!hasInnate)   return fromRegistry;
+            if (!hasRegistry) return innate;
+
+            var merged = new StatusEffectSpec[innate.Length + fromRegistry.Length];
+            innate.CopyTo(merged, 0);
+            fromRegistry.CopyTo(merged, innate.Length);
+            return merged;
         }
 
         private void OnDrawGizmosSelected()

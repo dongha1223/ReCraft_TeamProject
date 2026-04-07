@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 1387592858349522629}
   - component: {fileID: 1489805840152521961}
   - component: {fileID: 3497627891279482427}
+  - component: {fileID: 3135765806488432440}
   - component: {fileID: 4772912095624533577}
   - component: {fileID: 3722185929190935480}
   m_Layer: 11
@@ -516,10 +517,10 @@ MonoBehaviour:
   _platformYThreshold: 5
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   _platformLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   _ledgeCheckOffsetX: 0.4
   _ledgeCheckOffsetY: -0.1
   _ledgeCheckDist: 0.8
@@ -545,6 +546,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EnemyStats
   _maxHp: 70
   _damageSpawnPos: {fileID: 0}
+--- !u!114 &3135765806488432440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4813928234652933142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3688f077618794f986a0bccb93893b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.StatusController
 --- !u!114 &4772912095624533577
 MonoBehaviour:
   m_ObjectHideFlags: 0
