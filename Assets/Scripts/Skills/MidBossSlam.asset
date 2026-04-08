@@ -27,10 +27,15 @@ MonoBehaviour:
   ObstacleLayer:
     serializedVersion: 2
     m_Bits: 0
-  StatusEffects: []
+  StatusEffects:
+  - effectType: 2
+    duration: 5
+    tickDamage: 1
+    tickInterval: 1
+    chance: 1
   TargetLayer:
     serializedVersion: 2
     m_Bits: 256
-  ZoneDuration: 5
+  ZoneDuration: 0
   ZoneTickInterval: 0.5
   ZonePerTargetCooldown: 0
