@@ -74,11 +74,8 @@ namespace _2D_Roguelike
             // 대시 중(감속 포함)에는 입력 차단
             if (_isDashing) return;
 
-            var keyboard = Keyboard.current;
-            if (keyboard == null) return;
-
             bool canDash = _currentCharges > 0 && _jumpLockTimer <= 0f;
-            if (keyboard.zKey.wasPressedThisFrame && canDash)
+            if (KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Dash) && canDash)
                 StartCoroutine(DashCoroutine());
         }
 
@@ -118,12 +115,17 @@ namespace _2D_Roguelike
             float elapsed   = 0f;
             float startVelX = _rb.linearVelocity.x;
 
+            // 감속 구간 동안 변하지 않으므로 루프 전에 캐시
+            bool dirDash   = KeyBindingService.DirectionalDash;
+            var  kb        = Keyboard.current;
+            var  leftCtrl  = (dirDash && kb != null) ? kb[KeyBindingService.Get(KeyBindingService.Action.MoveLeft)]  : null;
+            var  rightCtrl = (dirDash && kb != null) ? kb[KeyBindingService.Get(KeyBindingService.Action.MoveRight)] : null;
+
             while (elapsed < _decelerationTime)
             {
-                // 이동 입력 감지 시 즉시 감쇠 종료 → HandleMovement가 이어받음
-                var keyboard = Keyboard.current;
-                if (keyboard != null &&
-                    (keyboard.leftArrowKey.isPressed || keyboard.rightArrowKey.isPressed))
+                // 방향키대쉬가 켜진 경우: 이동 입력 시 즉시 감쇠 종료
+                if (dirDash && leftCtrl != null &&
+                    (leftCtrl.isPressed || rightCtrl.isPressed))
                     break;
 
                 elapsed += Time.deltaTime;

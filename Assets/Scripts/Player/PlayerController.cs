@@ -93,12 +93,9 @@ namespace _2D_Roguelike
             if (_playerDash  != null && _playerDash.IsDashing) return;
             if (_playerSkill != null && _playerSkill.IsRolling)   return;
 
-            var keyboard = Keyboard.current;
-            if (keyboard == null) return;
-
             float horizontal = 0f;
-            if (keyboard.leftArrowKey.isPressed)  horizontal = -1f;
-            if (keyboard.rightArrowKey.isPressed) horizontal =  1f;
+            if (KeyBindingService.IsPressed(KeyBindingService.Action.MoveLeft))  horizontal = -1f;
+            if (KeyBindingService.IsPressed(KeyBindingService.Action.MoveRight)) horizontal =  1f;
 
             // 입력 이동 + 외부 힘(넉백 등) 합산
             float externalX = _knockback != null ? _knockback.ExternalVelocity.x : 0f;
@@ -113,11 +110,8 @@ namespace _2D_Roguelike
         // ─── 점프 / 아래 점프 ─────────────────────────────────────────────
         private void HandleJump()
         {
-            var keyboard = Keyboard.current;
-            if (keyboard == null) return;
-
-            bool spacePressed = keyboard.spaceKey.wasPressedThisFrame;
-            bool downHeld     = keyboard.downArrowKey.isPressed;
+            bool spacePressed = KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Jump);
+            bool downHeld     = KeyBindingService.IsPressed(KeyBindingService.Action.MoveDown);
 
             // 아래 점프: 플랫폼 위에 있을 때만
             if (spacePressed && downHeld && _isOnPlatform)

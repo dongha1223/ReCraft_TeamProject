@@ -119,6 +119,11 @@
                 <ui:Label name="ctrl-back" text="돌아가기" class="ctrl-footer-back"/>
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="rebind-panel" class="rebind-panel">
+            <ui:VisualElement class="rebind-box">
+                <ui:Label text="새 키 누르기" class="rebind-title"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="settings-overlay" class="sett-overlay">
         <ui:VisualElement name="settings-panel" class="sett-panel">

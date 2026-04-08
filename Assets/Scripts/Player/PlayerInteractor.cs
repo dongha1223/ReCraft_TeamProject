@@ -87,12 +87,9 @@ namespace _2D_Roguelike
         {
             if (_focused == null) return;
 
-            var keyboard = Keyboard.current;
-            if (keyboard == null) return;
-
             if (_focused is IHoldInteractable holdable)
-                HandleHoldInput(holdable, keyboard);
-            else if (keyboard.fKey.wasPressedThisFrame)
+                HandleHoldInput(holdable);
+            else if (KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Interact))
                 _focused.OnInteract(_statController);
         }
 
@@ -100,15 +97,20 @@ namespace _2D_Roguelike
         /// 홀드 가능한 대상의 입력 처리.
         /// HoldDuration 전에 떼면 단누름, 이상이면 길게 누름으로 구분한다.
         /// </summary>
-        private void HandleHoldInput(IHoldInteractable holdable, Keyboard keyboard)
+        private void HandleHoldInput(IHoldInteractable holdable)
         {
-            if (keyboard.fKey.wasPressedThisFrame)
+            // 매 프레임 KeyBindingService 중복 조회 방지 — 키 컨트롤 한 번만 획득
+            var kb = Keyboard.current;
+            if (kb == null) return;
+            var ctrl = kb[KeyBindingService.Get(KeyBindingService.Action.Interact)];
+
+            if (ctrl.wasPressedThisFrame)
             {
                 _holdTimer     = 0f;
                 _holdTriggered = false;
             }
 
-            if (keyboard.fKey.isPressed && !_holdTriggered)
+            if (ctrl.isPressed && !_holdTriggered)
             {
                 _holdTimer += Time.deltaTime;
 
@@ -119,7 +121,7 @@ namespace _2D_Roguelike
                 }
             }
 
-            if (keyboard.fKey.wasReleasedThisFrame)
+            if (ctrl.wasReleasedThisFrame)
             {
                 if (!_holdTriggered)
                     holdable.OnInteract(_statController); // 짧게 눌렀다 뗌 → 단누름
