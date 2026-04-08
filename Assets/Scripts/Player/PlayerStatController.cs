@@ -61,5 +61,17 @@ namespace _2D_Roguelike
         {
             LoadoutEffectCoordinator.Rebuild(EquipmentService.EquippedItems);
         }
+
+        // ── 폼 스탯 적용 ──────────────────────────────────────────────
+        /// <summary>
+        /// 폼 교체 시 호출. 폼의 기본 공격/스킬 스탯을 StatService에 반영.
+        /// 아이템 모디파이어는 유지된 채 base 값만 교체된다.
+        /// </summary>
+        public void ApplyFormStats(FormDefinition form)
+        {
+            if (form == null) return;
+            StatService.SetBaseValue(StatType.AttackPower, form.BaseAttackPower);
+            StatService.SetBaseValue(StatType.SkillPower,  form.BaseSkillPower);
+        }
     }
 }
