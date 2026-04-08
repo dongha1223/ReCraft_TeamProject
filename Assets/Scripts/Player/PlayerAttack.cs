@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace _2D_Roguelike
 {
@@ -44,10 +43,7 @@ namespace _2D_Roguelike
         {
             if (_isAttacking) return;
 
-            var keyboard = Keyboard.current;
-            if (keyboard == null) return;
-
-            if (keyboard.xKey.wasPressedThisFrame && _canAttack)
+            if (KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Attack) && _canAttack)
                 StartCoroutine(AttackCoroutine());
         }
 

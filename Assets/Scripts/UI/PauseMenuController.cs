@@ -58,7 +58,12 @@ namespace _2D_Roguelike
             if (Keyboard.current.escapeKey.wasPressedThisFrame)
             {
                 if (_inventoryController != null && _inventoryController.IsOpen) { _inventoryController.Close(); return; }
-                if (_controlsMenu != null && _controlsMenu.IsOpen) { _controlsMenu.Close(); return; }
+                if (_controlsMenu != null && _controlsMenu.IsOpen)
+                {
+                    // 리바인딩 중이면 ControlsMenuController가 ESC를 처리하도록 넘김
+                    if (!_controlsMenu.IsRebinding) _controlsMenu.Close();
+                    return;
+                }
                 if (_settingsMenu != null && _settingsMenu.IsOpen) { _settingsMenu.Close(); return; }
                 if (_isConfirmOpen) { CloseConfirmDialog(); return; }
                 if (_isPaused) ClosePauseMenu();

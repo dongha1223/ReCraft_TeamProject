@@ -176,3 +176,33 @@
     color: rgb(255, 230, 140);
     font-size: 24px;
 }
+
+/* ── 리바인드 오버레이 ───────────────────────────────────────── */
+
+.rebind-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.rebind-box {
+    background-color: rgb(10, 6, 28);
+    border-color: rgb(140, 100, 40);
+    border-width: 3px;
+    border-radius: 4px;
+    padding: 36px 72px;
+    align-items: center;
+    justify-content: center;
+}
+
+.rebind-title {
+    font-size: 30px;
+    color: rgb(230, 215, 170);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}

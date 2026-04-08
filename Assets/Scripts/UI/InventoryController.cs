@@ -126,12 +126,10 @@ namespace _2D_Roguelike
 
         private void Update()
         {
-            if (Keyboard.current == null) return;
-
-            if (Keyboard.current.tabKey.wasPressedThisFrame)
+            if (KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Inventory))
             {
                 if (IsOpen) Close();
-                else Open();
+                else if (Time.timeScale > 0f) Open(); // 포즈 중에는 열지 않음
                 return;
             }
 

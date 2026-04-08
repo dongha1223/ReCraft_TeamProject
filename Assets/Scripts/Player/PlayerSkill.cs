@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace _2D_Roguelike
 {
@@ -94,13 +93,10 @@ namespace _2D_Roguelike
 
         private void Update()
         {
-            var kb = Keyboard.current;
-            if (kb == null) return;
-
-            if (kb.aKey.wasPressedThisFrame && _canSkill1)
+            if (KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Skill1) && _canSkill1)
                 StartCoroutine(Skill1_SwordEnergy());
 
-            if (kb.sKey.wasPressedThisFrame && _canSkill2 && !IsRolling)
+            if (KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Skill2) && _canSkill2 && !IsRolling)
                 StartCoroutine(Skill2_RollingSlash());
         }
 
