@@ -17,9 +17,13 @@ MonoBehaviour:
   _icon: {fileID: 0}
   _animatorController: {fileID: 9100000, guid: 735461bc904fad34eb2ffc913fc73729, type: 2}
   _idleSprite: {fileID: 7892010473777940420, guid: 00d4ea5c0d7a07e498b7ece35a2dbc3e, type: 3}
-  _baseScale: {x: 1, y: 1, z: 1}
-  _colliderSize: {x: 0.5, y: 1}
-  _colliderOffset: {x: 0, y: 0}
-  _primaryDamageType: 0
+  _baseScale: {x: 0.3, y: 0.3, z: 0.3}
+  _colliderSize: {x: 2.04, y: 3.27}
+  _colliderOffset: {x: -0.9, y: -0.31}
+  _primaryDamageType: 1
   _baseAttackPower: 10
   _baseSkillPower: 20
+  _tagTechniques:
+  - {fileID: 11400000, guid: 0c580fb6b9b1148449276ae73fde66cf, type: 2}
+  - {fileID: 11400000, guid: 8b4ec8b16abd91b4a8aa9a4ecfce35c2, type: 2}
+  - {fileID: 11400000, guid: 35c8cd7bcff515040a18dce3f7ae1d01, type: 2}
