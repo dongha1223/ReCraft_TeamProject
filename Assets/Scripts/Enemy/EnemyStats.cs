@@ -18,6 +18,7 @@ namespace _2D_Roguelike
         private DamageFlash       _damageFlash;
         private KnockbackReceiver _knockback;
         private StatusController  _statusController;
+        private TagTokenBank      _tagTokenBank;
 
         private static readonly int AnimDie = Animator.StringToHash("Die");
         private static readonly int AnimHit = Animator.StringToHash("Hit");
@@ -33,6 +34,12 @@ namespace _2D_Roguelike
             _damageFlash      = GetComponent<DamageFlash>();
             _knockback        = GetComponent<KnockbackReceiver>();
             _statusController = GetComponent<StatusController>();
+        }
+
+        private void Start()
+        {
+            // 풀링 시 재사용되므로 Start에서 캐싱 (씬 로드 후 플레이어가 생성된 뒤)
+            _tagTokenBank = FindFirstObjectByType<TagTokenBank>();
         }
 
         /// <summary>파라미터가 존재할 때만 SetTrigger — 없으면 조용히 무시</summary>
@@ -115,6 +122,9 @@ namespace _2D_Roguelike
             Debug.Log($"[EnemyStats] {name} 사망.");
             if (_brain != null) _brain.enabled = false;
             SafeSetTrigger(AnimDie);
+
+            // 처치 시 플레이어 태그 토큰 게이지 획득
+            _tagTokenBank?.Gain(_tagTokenBank.GainPerKill);
 
             StageManager.Instance?.OnEnemyDied();
             StartCoroutine(ReturnToPoolAfterDelay(1.5f));

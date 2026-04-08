@@ -30,6 +30,10 @@ namespace _2D_Roguelike
         [SerializeField] private float _baseAttackPower = 10f;
         [SerializeField] private float _baseSkillPower  = 20f;
 
+        [Header("교체기 (인덱스 0=1단계, 1=2단계, 2=3단계)")]
+        [Tooltip("이 폼이 진입할 때 사용하는 교체기. 토큰 소비량에 따라 단계 결정.")]
+        [SerializeField] private TagTechniqueDefinition[] _tagTechniques = new TagTechniqueDefinition[3];
+
         // ── 프로퍼티 ──────────────────────────────────────────────────
         public string FormId              => _formId;
         public string DisplayName         => _displayName;
@@ -42,5 +46,6 @@ namespace _2D_Roguelike
         public DamageType PrimaryDamageType => _primaryDamageType;
         public float BaseAttackPower      => _baseAttackPower;
         public float BaseSkillPower       => _baseSkillPower;
+        public TagTechniqueDefinition[] TagTechniques => _tagTechniques;
     }
 }
