@@ -1,4 +1,5 @@
 using UnityEngine;
+using _2D_Roguelike;
 
 public abstract class ProjectileBase : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public abstract class ProjectileBase : MonoBehaviour
     [SerializeField] private   float          _maxDistance = 0f;   // 0 = 비활성
 
     protected MovementRigidBody2d movementRigidBody2D;
+
+    // HitInfo를 보관 — 서브클래스가 Setup에서 채우고, OnHit에서 IDamageable로 전달
+    protected HitInfo _hitInfo;
 
     private float   _elapsed;
     private Vector3 _startPosition;
@@ -24,7 +28,10 @@ public abstract class ProjectileBase : MonoBehaviour
         _startPosition = transform.position;
     }
 
-    public virtual void Setup(Transform target, float damage, int maxCount = 1, int index = 0) { }
+    public virtual void Setup(Transform target, HitInfo info, int maxCount = 1, int index = 0)
+    {
+        _hitInfo = info;
+    }
 
     private void Update()
     {
@@ -54,11 +61,23 @@ public abstract class ProjectileBase : MonoBehaviour
 
     /// <summary>
     /// 충돌 반응 — 서브클래스에서 override하여 구현.
-    /// 기본 동작: PlayerHitBox 태그에 닿으면 이펙트 생성 후 소멸 (적 발사체용)
+    /// 기본 동작: PlayerHitBox 태그에 닿으면 IDamageable로 데미지 전달 후 소멸 (적 발사체용)
     /// </summary>
     protected virtual void OnHit(Collider2D col)
     {
-        if (!col.CompareTag("PlayerHitBox")) return;
+        if (!col.CompareTag("Player")) return;
+
+        // PlayerHitBox가 자식 오브젝트일 수 있으므로 InParent로 탐색
+        var damageable = col.GetComponentInParent<IDamageable>();
+        if (damageable == null) return;
+
+        // 무적 중이고 관통 불가 공격이면 투사체가 통과 (소멸하지 않음)
+        if (damageable.IsInvincible && !_hitInfo.IgnoreInvincibility) return;
+
+        var info = _hitInfo;
+        info.SourcePosition = transform.position;
+        damageable.TakeDamage(info);
+
         if (hitEffect != null) Instantiate(hitEffect, transform.position, Quaternion.identity);
         OnLifetimeExpired();
     }

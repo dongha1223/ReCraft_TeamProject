@@ -21,10 +21,12 @@ namespace _2D_Roguelike
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _platformLayer;
 
-        private Rigidbody2D _rb;
-        private Animator    _animator;
-        private PlayerDash  _playerDash;
-        private PlayerSkill _playerSkill;
+        private Rigidbody2D       _rb;
+        private Animator          _animator;
+        private PlayerDash        _playerDash;
+        private PlayerSkill       _playerSkill;
+        private KnockbackReceiver _knockback;
+
 
         private int  _jumpCount;
         private bool _isGrounded;
@@ -44,6 +46,8 @@ namespace _2D_Roguelike
             _animator    = GetComponent<Animator>();
             _playerDash  = GetComponent<PlayerDash>();
             _playerSkill = GetComponent<PlayerSkill>();
+            _knockback   = GetComponent<KnockbackReceiver>();
+            
         }
 
         private void Update()
@@ -85,8 +89,8 @@ namespace _2D_Roguelike
         // ─── 좌우 이동 ────────────────────────────────────────────────────
         private void HandleMovement()
         {
-            // 대시 / 롤링 슬레쉬 중에는 이동 입력 차단
-            if (_playerDash  != null && _playerDash.IsDashing)   return;
+            // 대시(감속 포함) / 롤링 슬레쉬 중에는 이동 입력 차단
+            if (_playerDash  != null && _playerDash.IsDashing) return;
             if (_playerSkill != null && _playerSkill.IsRolling)   return;
 
             var keyboard = Keyboard.current;
@@ -96,7 +100,9 @@ namespace _2D_Roguelike
             if (keyboard.leftArrowKey.isPressed)  horizontal = -1f;
             if (keyboard.rightArrowKey.isPressed) horizontal =  1f;
 
-            _rb.linearVelocity = new Vector2(horizontal * _moveSpeed, _rb.linearVelocity.y);
+            // 입력 이동 + 외부 힘(넉백 등) 합산
+            float externalX = _knockback != null ? _knockback.ExternalVelocity.x : 0f;
+            _rb.linearVelocity = new Vector2(horizontal * _moveSpeed + externalX, _rb.linearVelocity.y);
 
             if (horizontal != 0f)
                 Flip(horizontal);
@@ -125,6 +131,7 @@ namespace _2D_Roguelike
             {
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
                 _jumpCount++;
+                _playerDash?.OnJump(); // 점프 후 대시 잠금
             }
         }
 

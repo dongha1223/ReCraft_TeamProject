@@ -1,0 +1,178 @@
+/* ── 컨트롤 창 전체 오버레이 ─────────────────────────────── */
+
+.controls-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.82);
+    display: none;
+}
+
+/* ── 메인 패널 ───────────────────────────────────────────── */
+
+.controls-panel {
+    width: 780px;
+    background-color: rgb(10, 6, 28);
+    border-color: rgb(140, 100, 40);
+    border-width: 3px;
+    border-radius: 4px;
+    padding: 0;
+    flex-direction: column;
+}
+
+/* ── 헤더 ────────────────────────────────────────────────── */
+
+.ctrl-header {
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 0;
+}
+
+.ctrl-title {
+    font-size: 28px;
+    color: rgb(230, 215, 170);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin-bottom: 12px;
+}
+
+.ctrl-header-divider {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(140, 100, 40);
+}
+
+/* ── 본문 ────────────────────────────────────────────────── */
+
+.ctrl-body {
+    flex-direction: row;
+    flex-grow: 1;
+    padding: 16px 20px;
+}
+
+.ctrl-column {
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* ── 세로 구분선 ─────────────────────────────────────────── */
+
+.ctrl-vdivider {
+    width: 1px;
+    background-color: rgb(80, 60, 110);
+    margin-left: 12px;
+    margin-right: 12px;
+    align-self: stretch;
+}
+
+/* ── 개별 행 ─────────────────────────────────────────────── */
+
+.ctrl-row {
+    flex-direction: row;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 3px;
+}
+
+/* 선택된 행 */
+.ctrl-row--selected {
+    background-color: rgba(140, 100, 40, 0.25);
+}
+
+.ctrl-action {
+    font-size: 17px;
+    color: rgb(160, 145, 120);
+    -unity-text-align: middle-left;
+    width: 90px;
+    flex-shrink: 0;
+}
+
+/* 선택 시 액션 라벨 밝게 */
+.ctrl-row--selected .ctrl-action {
+    color: rgb(230, 215, 170);
+    -unity-font-style: bold;
+}
+
+.ctrl-arrow {
+    font-size: 13px;
+    color: rgb(100, 80, 60);
+    -unity-text-align: middle-center;
+    width: 16px;
+    flex-shrink: 0;
+}
+
+/* 선택 시 화살표 밝게 */
+.ctrl-row--selected .ctrl-arrow {
+    color: rgb(200, 160, 80);
+}
+
+/* ── 키 뱃지 ─────────────────────────────────────────────── */
+
+.ctrl-key-badge {
+    font-size: 14px;
+    color: rgb(200, 185, 150);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    min-width: 42px;
+    padding: 3px 8px;
+    border-color: rgb(110, 85, 50);
+    border-width: 2px;
+    border-radius: 5px;
+    background-color: rgb(22, 15, 45);
+    flex-shrink: 0;
+}
+
+/* 꺼짐 상태 뱃지 (border 없음, 흐릿하게) */
+.ctrl-key-badge--off {
+    color: rgb(110, 100, 80);
+    border-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* ── 하단 푸터 ───────────────────────────────────────────── */
+
+.ctrl-footer {
+    flex-direction: column;
+    align-items: center;
+    border-color: rgb(140, 100, 40);
+    border-top-width: 1px;
+}
+
+.ctrl-footer-item {
+    font-size: 18px;
+    color: rgb(150, 135, 100);
+    -unity-text-align: middle-center;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.ctrl-footer-item--selected {
+    color: rgb(255, 230, 140);
+    -unity-font-style: bold;
+    font-size: 20px;
+}
+
+.ctrl-footer-divider {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(80, 60, 40);
+}
+
+.ctrl-footer-back {
+    font-size: 22px;
+    color: rgb(200, 185, 150);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    padding: 12px 0;
+    width: 100%;
+}
+
+.ctrl-footer-back--selected {
+    color: rgb(255, 230, 140);
+    font-size: 24px;
+}

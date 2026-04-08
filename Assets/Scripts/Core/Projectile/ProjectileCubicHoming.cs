@@ -1,4 +1,5 @@
 using System.Drawing;
+using _2D_Roguelike;
 using UnityEngine;
 
 public class ProjectileCubicHoming : ProjectileBase
@@ -7,9 +8,9 @@ public class ProjectileCubicHoming : ProjectileBase
     private float       duration, t = 0f;
     private Transform   target;
 
-    public override void Setup(Transform target, float damage, int maxCount = 1, int index = 0)
+    public override void Setup(Transform target, HitInfo info, int maxCount = 1, int index = 0)
     {
-        base.Setup(target, damage);
+        base.Setup(target, info);
 
         this.target = target;
         start       = transform.position;

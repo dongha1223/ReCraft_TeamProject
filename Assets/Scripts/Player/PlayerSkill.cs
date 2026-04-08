@@ -20,14 +20,21 @@ namespace _2D_Roguelike
     {
         // ── 검기 발산 ─────────────────────────────────────────────────
         [Header("검기 발산 (A 키)")]
-        [SerializeField] private LayerMask _enemyLayer; 
+        [SerializeField] private LayerMask _enemyLayer;
         [SerializeField] private float _energy_Damage     = 30f;
         [SerializeField] private float _energy_Cooldown   = 1.5f;
         [SerializeField] private float _energy_VertOffset = 0.25f;
 
+        [Tooltip("검기 발산 고유 상태이상 (아이템 무관 고정 효과)")]
+        [SerializeField] private StatusEffectSpec[] _skill1InnateEffects;
+
         // ── 롤링 슬레쉬 ──────────────────────────────────────────────
         [Header("롤링 슬레쉬 (S 키)")]
-        [SerializeField] private float   _roll_Damage    = 25f;
+        [SerializeField] private float   _roll_Damage          = 25f;
+        [SerializeField] private float   _roll_KnockbackForce  = 6f;
+
+        [Tooltip("롤링 슬레쉬 고유 상태이상 (아이템 무관 고정 효과)")]
+        [SerializeField] private StatusEffectSpec[] _skill2InnateEffects;
         [Tooltip("1회 구르기당 전진 거리")]
         [SerializeField] private float   _roll_Distance  = 1.1f;
         [Tooltip("1회 구르기 소요 시간 (초)")]
@@ -37,8 +44,10 @@ namespace _2D_Roguelike
         [SerializeField] private Vector2 _roll_OvalSize  = new Vector2(2.6f, 1.0f);
 
         // ── 컴포넌트 ─────────────────────────────────────────────────
-        private Rigidbody2D _rb;
-        private Animator    _anim;
+        private Rigidbody2D          _rb;
+        private Animator             _anim;
+        private PlayerStatController _statController;
+        private OnHitStatusRegistry  _onHitRegistry;
 
         // ── 상태 ─────────────────────────────────────────────────────
         private bool  _canSkill1   = true;
@@ -51,13 +60,36 @@ namespace _2D_Roguelike
         public float Skill1CooldownRatio { get; private set; } = 0f;
         public float Skill2CooldownRatio { get; private set; } = 0f;
 
+        /// <summary>스킬 상태 전체 초기화 (스테이지 재시작 시 호출)</summary>
+        public void ResetSkills()
+        {
+            StopAllCoroutines();
+            _canSkill1          = true;
+            _canSkill2          = true;
+            IsRolling           = false;
+            Skill1CooldownRatio = 0f;
+            Skill2CooldownRatio = 0f;
+            transform.rotation  = Quaternion.identity; // 롤링 도중이었으면 회전 복원
+            if (_rb != null)
+                _rb.linearVelocity = new Vector2(0f, _rb.linearVelocity.y);
+        }
+
         private static readonly int AnimRollingSlash = Animator.StringToHash("RollingSlash");
 
         // ═════════════════════════════════════════════════════════════
         private void Awake()
         {
-            _rb   = GetComponent<Rigidbody2D>();
-            _anim = GetComponent<Animator>();
+            _rb             = GetComponent<Rigidbody2D>();
+            _anim           = GetComponent<Animator>();
+            _statController = GetComponent<PlayerStatController>();
+            _onHitRegistry  = GetComponent<OnHitStatusRegistry>();
+        }
+
+        private void Start()
+        {
+            // Inspector 수치를 기본값으로 StatService에 등록
+            _statController?.StatService.SetBaseValue(StatType.SkillPower, _energy_Damage);
+            _statController?.StatService.SetBaseValue(StatType.RollPower,  _roll_Damage);
         }
 
         private void Update()
@@ -79,11 +111,14 @@ namespace _2D_Roguelike
         {
             _canSkill1 = false;
 
-            bool    facingLeft = transform.localScale.x < 0f;
-            Vector2 dir        = facingLeft ? Vector2.left : Vector2.right;
+            bool    facingLeft   = transform.localScale.x < 0f;
+            Vector2 dir          = facingLeft ? Vector2.left : Vector2.right;
+            var     statusSpecs  = MergeSpecs(
+                _skill1InnateEffects,
+                _onHitRegistry?.GetSpecsFor(OnHitTarget.Skill1));
 
-            SpawnCrescent(dir,  _energy_VertOffset);
-            SpawnCrescent(dir, -_energy_VertOffset);
+            SpawnCrescent(dir,  _energy_VertOffset, statusSpecs);
+            SpawnCrescent(dir, -_energy_VertOffset, statusSpecs);
 
             // 쿨타임 진행 (UI 비율 갱신)
             float elapsed = 0f;
@@ -97,7 +132,7 @@ namespace _2D_Roguelike
             _canSkill1 = true;
         }
 
-        private void SpawnCrescent(Vector2 dir, float yOffset)
+        private void SpawnCrescent(Vector2 dir, float yOffset, StatusEffectSpec[] statusEffects)
         {
             if (SkillObjectPool.Instance == null)
             {
@@ -105,11 +140,15 @@ namespace _2D_Roguelike
                 return;
             }
 
+            float finalDamage = _statController != null
+                ? _statController.StatService.GetFinalValue(StatType.SkillPower)
+                : _energy_Damage;
+
             Vector2 pos = (Vector2)transform.position + new Vector2(0f, yOffset);
             var p = SkillObjectPool.Instance.GetProjectile(pos);
             if (p == null) return;
 
-            p.Launch(dir, _energy_Damage);
+            p.Launch(dir, finalDamage, statusEffects);
         }
 
         // ═════════════════════════════════════════════════════════════
@@ -223,6 +262,20 @@ namespace _2D_Roguelike
 
         private void ApplyOvalHit(Vector2 center, HashSet<Collider2D> alreadyHit)
         {
+            float finalDamage = _statController != null
+                ? _statController.StatService.GetFinalValue(StatType.RollPower)
+                : _roll_Damage;
+
+            var hitInfo = new HitInfo
+            {
+                Damage         = finalDamage,
+                SourcePosition = transform.position,
+                KnockbackForce = _roll_KnockbackForce,
+                StatusEffects  = MergeSpecs(
+                    _skill2InnateEffects,
+                    _onHitRegistry?.GetSpecsFor(OnHitTarget.Skill2))
+            };
+
             // 1차: LayerMask
             if (_enemyLayer.value != 0)
             {
@@ -231,8 +284,10 @@ namespace _2D_Roguelike
                 foreach (var col in hits)
                 {
                     if (alreadyHit.Contains(col)) continue;
+                    var damageable = col.GetComponent<IDamageable>();
+                    if (damageable == null) continue;
                     alreadyHit.Add(col);
-                    col.GetComponent<EnemyStats>()?.TakeDamage(_roll_Damage);
+                    damageable.TakeDamage(hitInfo);
                 }
             }
 
@@ -243,8 +298,10 @@ namespace _2D_Roguelike
             {
                 if (alreadyHit.Contains(col)) continue;
                 if (!col.CompareTag("Enemy")) continue;
+                var damageable = col.GetComponent<IDamageable>();
+                if (damageable == null) continue;
                 alreadyHit.Add(col);
-                col.GetComponent<EnemyStats>()?.TakeDamage(_roll_Damage);
+                damageable.TakeDamage(hitInfo);
             }
         }
 
@@ -256,6 +313,22 @@ namespace _2D_Roguelike
             if (anim == null) return;
             foreach (var p in anim.parameters)
                 if (p.nameHash == hash) { anim.SetTrigger(hash); return; }
+        }
+
+        /// <summary>인스펙터 고정 스펙과 레지스트리(아이템·각인) 스펙을 하나의 배열로 합산</summary>
+        private static StatusEffectSpec[] MergeSpecs(StatusEffectSpec[] innate, StatusEffectSpec[] fromRegistry)
+        {
+            bool hasInnate   = innate       != null && innate.Length       > 0;
+            bool hasRegistry = fromRegistry != null && fromRegistry.Length > 0;
+
+            if (!hasInnate && !hasRegistry) return null;
+            if (!hasInnate)   return fromRegistry;
+            if (!hasRegistry) return innate;
+
+            var merged = new StatusEffectSpec[innate.Length + fromRegistry.Length];
+            innate.CopyTo(merged, 0);
+            fromRegistry.CopyTo(merged, innate.Length);
+            return merged;
         }
 
         private void OnDrawGizmosSelected()

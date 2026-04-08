@@ -212,6 +212,9 @@ GameObject:
   - component: {fileID: 5189206807556595207}
   - component: {fileID: 7691351559711684000}
   - component: {fileID: 7005310041534395738}
+  - component: {fileID: 5848955428172590524}
+  - component: {fileID: 405865992303132494}
+  - component: {fileID: 1479415362747439518}
   m_Layer: 11
   m_Name: Enemy_Wizard
   m_TagString: Enemy
@@ -262,7 +265,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ffbea5f82662bff4984a15b4896fc077, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -310,7 +313,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -404,24 +407,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EnemyRangedController
   _moveSpeed: 2
   _patrolDistance: 3
-  _detectionRange: 5
-  _attackRange: 5
-  _attackDamage: 8
-  _windupDuration: 1
-  _attackCooldown: 5
-  _projectilePrefab: {fileID: 1576396758319343985, guid: c486a95a3df4f9a4d987f30308a064a3, type: 3}
-  _spawnPoint: {fileID: 829411367020565937}
-  _windupIndicator: {fileID: 2402637249286965575}
-  _platformYThreshold: 5
+  _detectionRange: 10
+  _attackRange: 10
+  _attackCooldown: 10
+  _platformYThreshold: 10
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   _platformLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   _ledgeCheckOffsetX: 0.4
   _ledgeCheckOffsetY: -0.1
   _ledgeCheckDist: 0.8
+  _attackDamage: 10
+  _knockbackForce: 3
+  _windupDuration: 1
+  _projectilePrefab: {fileID: 1576396758319343985, guid: c486a95a3df4f9a4d987f30308a064a3, type: 3}
+  _spawnPoint: {fileID: 829411367020565937}
+  _windupIndicator: {fileID: 2402637249286965575}
 --- !u!114 &7005310041534395738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,8 +439,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EnemyStats
   _maxHp: 70
-  _hitFlashColor: {r: 1, g: 0.15, b: 0.15, a: 1}
-  _hitFlashDuration: 0.12
+  _damageSpawnPos: {fileID: 0}
+--- !u!114 &5848955428172590524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4766984313013767839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3688f077618794f986a0bccb93893b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.StatusController
+--- !u!114 &405865992303132494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4766984313013767839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d00c05d3148833438e592d34b233393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashTime: 0.25
+--- !u!114 &1479415362747439518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4766984313013767839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edad1d64c54a21b4d91183fd8d0fff99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.KnockbackReceiver
+  _decayRate: 12
+  _verticalForce: 3
+  _staggerThreshold: 2
+  _resistance: 0
 --- !u!1 &8378760307128419014
 GameObject:
   m_ObjectHideFlags: 0

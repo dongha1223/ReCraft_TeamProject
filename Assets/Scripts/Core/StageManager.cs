@@ -53,6 +53,8 @@ namespace _2D_Roguelike
 
         public void TriggerGameClear() => StartCoroutine(DoGameClear());
 
+        public void RestartGame() => StartCoroutine(DoRestart());
+
         // ── 내부 코루틴 ───────────────────────────────────────────────────
         private IEnumerator DoTransition(int nextIndex)
         {
@@ -61,6 +63,20 @@ namespace _2D_Roguelike
 
             _stageRoots[CurrentStage].SetActive(false);
             ActivateStage(nextIndex);
+
+            if (FadeManager.Instance != null)
+                yield return StartCoroutine(FadeManager.Instance.FadeIn());
+        }
+
+        private IEnumerator DoRestart()
+        {
+            if (FadeManager.Instance != null)
+                yield return StartCoroutine(FadeManager.Instance.FadeOut());
+
+            ResetPlayer();
+
+            _stageRoots[CurrentStage].SetActive(false);
+            ActivateStage(0);
 
             if (FadeManager.Instance != null)
                 yield return StartCoroutine(FadeManager.Instance.FadeIn());
@@ -81,6 +97,7 @@ namespace _2D_Roguelike
             yield return StartCoroutine(FadeManager.Instance.FadeOut());
             FadeManager.Instance.ShowGameClear(false);
 
+            ResetPlayer();
             _stageRoots[CurrentStage].SetActive(false);
             ActivateStage(0);
 
@@ -111,6 +128,14 @@ namespace _2D_Roguelike
             yield return null;
             if (AllEnemiesDead)
                 OnAllEnemiesDead?.Invoke();
+        }
+
+        private void ResetPlayer()
+        {
+            if (_playerTransform == null) return;
+            _playerTransform.GetComponent<PlayerStats>()?.FullRestore();
+            _playerTransform.GetComponent<PlayerSkill>()?.ResetSkills();
+            _playerTransform.GetComponent<PlayerDash>()?.ResetDash();
         }
 
         private void MovePlayerToSpawn(int stageIndex)
