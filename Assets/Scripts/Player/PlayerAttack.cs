@@ -41,7 +41,7 @@ namespace _2D_Roguelike
 
         private void Update()
         {
-            if (_isAttacking) return;
+            if (UIState.IsBlockingInput || _isAttacking) return;
 
             if (KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Attack) && _canAttack)
                 StartCoroutine(AttackCoroutine());

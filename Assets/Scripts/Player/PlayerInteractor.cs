@@ -85,7 +85,7 @@ namespace _2D_Roguelike
 
         private void HandleInput()
         {
-            if (_focused == null) return;
+            if (_focused == null || UIState.IsBlockingInput) return;
 
             if (_focused is IHoldInteractable holdable)
                 HandleHoldInput(holdable);

@@ -93,6 +93,8 @@ namespace _2D_Roguelike
 
         private void Update()
         {
+            if (UIState.IsBlockingInput) return;
+
             if (KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Skill1) && _canSkill1)
                 StartCoroutine(Skill1_SwordEnergy());
 

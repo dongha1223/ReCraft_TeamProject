@@ -30,6 +30,8 @@ namespace _2D_Roguelike
 
         private void Update()
         {
+            if (UIState.IsBlockingInput) return;
+
             var kb = Keyboard.current;
             if (kb == null || _isBusy) return;
             if (kb.qKey.wasPressedThisFrame)

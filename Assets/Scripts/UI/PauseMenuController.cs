@@ -14,7 +14,7 @@ namespace _2D_Roguelike
         private VisualElement _overlay;
         private Label[] _menuItems;
         private int _selectedIndex = 0;
-        private bool _isPaused = false;
+        public static bool IsPaused { get; private set; }
 
         private ControlsMenuController  _controlsMenu;
         private SettingsMenuController  _settingsMenu;
@@ -54,10 +54,11 @@ namespace _2D_Roguelike
         {
             if (Keyboard.current == null) return;
 
-            // ESC는 항상 최우선으로 처리 — 인벤토리 → 하위 창 → 포즈 메뉴 순으로 닫기
+            // ESC는 항상 최우선으로 처리 — 대화 → 인벤토리 → 하위 창 → 포즈 메뉴 순으로 닫기
             if (Keyboard.current.escapeKey.wasPressedThisFrame)
             {
-                if (_inventoryController != null && _inventoryController.IsOpen) { _inventoryController.Close(); return; }
+                if (DialogueUIController.IsActive) return; // 대화 중 포즈 열기 차단
+                if (InventoryController.IsOpen) { _inventoryController?.Close(); return; }
                 if (_controlsMenu != null && _controlsMenu.IsOpen)
                 {
                     // 리바인딩 중이면 ControlsMenuController가 ESC를 처리하도록 넘김
@@ -66,7 +67,7 @@ namespace _2D_Roguelike
                 }
                 if (_settingsMenu != null && _settingsMenu.IsOpen) { _settingsMenu.Close(); return; }
                 if (_isConfirmOpen) { CloseConfirmDialog(); return; }
-                if (_isPaused) ClosePauseMenu();
+                if (IsPaused) ClosePauseMenu();
                 else OpenPauseMenu();
                 return;
             }
@@ -83,7 +84,7 @@ namespace _2D_Roguelike
                 return;
             }
 
-            if (!_isPaused) return;
+            if (!IsPaused) return;
 
             // 위/아래 화살표로 항목 이동
             if (Keyboard.current.upArrowKey.wasPressedThisFrame)
@@ -122,7 +123,7 @@ namespace _2D_Roguelike
                 return;
             }
 
-            if (!_isPaused) return;
+            if (!IsPaused) return;
 
             if (_isConfirmOpen)
             {
@@ -154,7 +155,7 @@ namespace _2D_Roguelike
 
         private void OpenPauseMenu()
         {
-            _isPaused = true;
+            IsPaused = true;
             Time.timeScale = 0f;
             _overlay.style.display = DisplayStyle.Flex;
             SetSelection(0);
@@ -162,7 +163,7 @@ namespace _2D_Roguelike
 
         private void ClosePauseMenu()
         {
-            _isPaused = false;
+            IsPaused = false;
             Time.timeScale = 1f;
             _overlay.style.display = DisplayStyle.None;
         }
