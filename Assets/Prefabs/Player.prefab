@@ -76,7 +76,6 @@ GameObject:
   - component: {fileID: 6938523472620405455}
   - component: {fileID: 3120186885240537118}
   - component: {fileID: 1022380014179050773}
-  - component: {fileID: 8562788984221187737}
   - component: {fileID: 2654814052658389906}
   - component: {fileID: 8536688657561273402}
   - component: {fileID: 5376198581866448210}
@@ -92,6 +91,7 @@ GameObject:
   - component: {fileID: 4681461030792060647}
   - component: {fileID: 8887725379683572282}
   - component: {fileID: 6941020546704722743}
+  - component: {fileID: 7650421397877566157}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -294,37 +294,6 @@ MonoBehaviour:
   _platformLayer:
     serializedVersion: 2
     m_Bits: 1024
---- !u!114 &8562788984221187737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9222165908665990148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ccba1b381b9ded4eb7573b175ba6dfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.PlayerSkill
-  _enemyLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  _energy_Damage: 10
-  _energy_Cooldown: 5
-  _energy_VertOffset: 0.25
-  _skill1InnateEffects: []
-  _roll_Damage: 25
-  _roll_KnockbackForce: 6
-  _skill2InnateEffects:
-  - effectType: 0
-    duration: 2
-    tickDamage: 0
-    tickInterval: 0
-    chance: 1
-  _roll_Distance: 1.1
-  _roll_RollTime: 0.22
-  _roll_Cooldown: 5
-  _roll_OvalSize: {x: 2.6, y: 1}
 --- !u!114 &2654814052658389906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,8 +443,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.FormManager
   _equippedForms:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 97890e31f502f8947a5047c2b74bb20f, type: 2}
+  - {fileID: 11400000, guid: 3074906662835d44eb0b87b93e2fd669, type: 2}
 --- !u!114 &8555570872568785922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,8 +457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c3e4b37ee06494fb75225169e17305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.FormInventory
-  _startingFormSlot0: {fileID: 0}
-  _startingFormSlot1: {fileID: 0}
+  _startingFormSlot0: {fileID: 11400000, guid: 97890e31f502f8947a5047c2b74bb20f, type: 2}
+  _startingFormSlot1: {fileID: 11400000, guid: 3074906662835d44eb0b87b93e2fd669, type: 2}
 --- !u!114 &4743903829171932526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,3 +510,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.AreaSkillExecutor
   _statController: {fileID: 3647720866536534529}
   _previewSpec: {fileID: 0}
+--- !u!114 &7650421397877566157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9222165908665990148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd280b4c8fc44704ab4287170493ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.FormSkillController

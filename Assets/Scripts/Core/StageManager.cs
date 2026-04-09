@@ -134,7 +134,7 @@ namespace _2D_Roguelike
         {
             if (_playerTransform == null) return;
             _playerTransform.GetComponent<PlayerStats>()?.FullRestore();
-            _playerTransform.GetComponent<PlayerSkill>()?.ResetSkills();
+            _playerTransform.GetComponent<FormSkillController>()?.ResetSkills();
             _playerTransform.GetComponent<PlayerDash>()?.ResetDash();
         }
 
