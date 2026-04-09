@@ -47,7 +47,7 @@ namespace _2D_Roguelike
         private PlayerStatController _stat;
         private int _selectedSlot = -1;
 
-        public bool IsOpen { get; private set; }
+        public static bool IsOpen { get; private set; }
 
         // ── 생명주기 ─────────────────────────────────────────────────
 
@@ -129,7 +129,7 @@ namespace _2D_Roguelike
             if (KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Inventory))
             {
                 if (IsOpen) Close();
-                else if (Time.timeScale > 0f) Open(); // 포즈 중에는 열지 않음
+                else if (!DialogueUIController.IsActive && !PauseMenuController.IsPaused) Open();
                 return;
             }
 

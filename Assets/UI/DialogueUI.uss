@@ -1,0 +1,141 @@
+#dialogue-root {
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    pointer-events: none;
+}
+
+/* ── 시네마틱 상단 검은 바 ─────────────────────────────────── */
+#cinematic-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 0px;
+    background-color: rgb(0, 0, 0);
+    transition-property: height;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in-out;
+}
+
+#cinematic-top.bar-open {
+    height: 80px;
+}
+
+/* ── 시네마틱 하단 검은 바 ─────────────────────────────────── */
+#cinematic-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 0px;
+    background-color: rgb(0, 0, 0);
+    transition-property: height;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in-out;
+}
+
+#cinematic-bottom.bar-open {
+    height: 190px;
+}
+
+/* ── 대화 패널 (하단, 중앙 기준 좌우 여백) ──────────────────── */
+#dialogue-panel {
+    position: absolute;
+    bottom: 0; left: 80px; right: 80px;
+    height: 175px;
+    flex-direction: row;
+    align-items: stretch;
+    background-color: rgba(10, 8, 28, 0.97);
+    border-top-width: 2px;
+    border-top-color: rgb(120, 95, 40);
+    opacity: 0;
+    pointer-events: none;
+    transition-property: opacity;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+}
+
+#dialogue-panel.panel-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ── 대화 텍스트 영역 (왼쪽) ─────────────────────────────────── */
+#dialogue-left {
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 12px 16px;
+}
+
+/* ── NPC 이름 박스 ───────────────────────────────────────────── */
+#npc-name-box {
+    background-color: rgba(30, 22, 58, 0.95);
+    border-width: 2px;
+    border-color: rgb(160, 125, 45);
+    border-radius: 3px;
+    padding: 4px 14px;
+    margin-bottom: 10px;
+    align-self: flex-start;
+    min-width: 110px;
+}
+
+#npc-name-label {
+    font-size: 20px;
+    color: rgb(225, 185, 70);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+/* ── 대화 텍스트 ──────────────────────────────────────────────── */
+#dialogue-text {
+    flex-grow: 1;
+    font-size: 18px;
+    color: rgb(215, 195, 150);
+    white-space: normal;
+    overflow: hidden;
+    padding: 0 4px;
+}
+
+/* ── 선택 패널 (오른쪽) ──────────────────────────────────────── */
+#choice-panel {
+    width: 190px;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding: 12px 14px;
+    border-left-width: 1px;
+    border-left-color: rgb(70, 55, 100);
+}
+
+/* ── 버튼 공통 ───────────────────────────────────────────────── */
+#btn-continue,
+#btn-cancel {
+    height: 52px;
+    background-color: rgba(40, 32, 68, 0.95);
+    border-width: 2px;
+    border-color: rgb(110, 88, 38);
+    border-radius: 3px;
+    font-size: 20px;
+    color: rgb(215, 195, 150);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin-bottom: 10px;
+    cursor: link;
+    transition-property: background-color, border-color;
+    transition-duration: 0.1s;
+}
+
+#btn-continue:hover,
+#btn-cancel:hover {
+    background-color: rgba(70, 55, 110, 0.95);
+    border-color: rgb(170, 135, 55);
+}
+
+/* 키보드로 선택된 버튼 */
+#btn-continue.btn-selected,
+#btn-cancel.btn-selected {
+    background-color: rgba(90, 68, 140, 0.95);
+    border-color: rgb(210, 170, 60);
+    color: rgb(255, 230, 130);
+}
+
+#btn-cancel {
+    margin-bottom: 0;
+}

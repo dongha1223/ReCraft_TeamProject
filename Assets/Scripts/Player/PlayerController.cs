@@ -38,7 +38,7 @@ namespace _2D_Roguelike
 
         // ─── 발 감지 박스 중심 (월드 좌표) ───────────────────────────────
         private Vector2 FeetCenter  => (Vector2)transform.position + _feetOffset;
-        private Vector2 FeetBoxSize => new Vector2(_feetWidth, _feetHeight);
+        private Vector2 _feetBoxSize; // Awake에서 캐싱
 
         private void Awake()
         {
@@ -47,14 +47,13 @@ namespace _2D_Roguelike
             _playerDash  = GetComponent<PlayerDash>();
             _playerSkill = GetComponent<PlayerSkill>();
             _knockback   = GetComponent<KnockbackReceiver>();
-            
+            _feetBoxSize = new Vector2(_feetWidth, _feetHeight);
         }
 
         private void Update()
         {
             HandleMovement();
             HandleJump();
-            DrawDebugGizmos();
         }
 
         private void FixedUpdate()
@@ -75,8 +74,8 @@ namespace _2D_Roguelike
 
             bool wasGrounded = _isGrounded;
 
-            bool onGround   = Physics2D.OverlapBox(FeetCenter, FeetBoxSize, 0f, _groundLayer);
-            bool onPlatform = Physics2D.OverlapBox(FeetCenter, FeetBoxSize, 0f, _platformLayer);
+            bool onGround   = Physics2D.OverlapBox(FeetCenter, _feetBoxSize, 0f, _groundLayer);
+            bool onPlatform = Physics2D.OverlapBox(FeetCenter, _feetBoxSize, 0f, _platformLayer);
 
             _isOnPlatform = onPlatform;
             _isGrounded   = onGround || onPlatform;
@@ -89,7 +88,13 @@ namespace _2D_Roguelike
         // ─── 좌우 이동 ────────────────────────────────────────────────────
         private void HandleMovement()
         {
-            // 대시(감속 포함) / 롤링 슬레쉬 중에는 이동 입력 차단
+            // UI 차단 중(대화·포즈·인벤) / 대시(감속 포함) / 롤링 슬레쉬 중에는 이동 입력 차단
+            if (UIState.IsBlockingInput)
+            {
+                _rb.linearVelocity = new Vector2(0f, _rb.linearVelocity.y);
+                _animator?.SetBool(AnimIsMoving, false);
+                return;
+            }
             if (_playerDash  != null && _playerDash.IsDashing) return;
             if (_playerSkill != null && _playerSkill.IsRolling)   return;
 
@@ -110,6 +115,7 @@ namespace _2D_Roguelike
         // ─── 점프 / 아래 점프 ─────────────────────────────────────────────
         private void HandleJump()
         {
+            if (UIState.IsBlockingInput) return;
             bool spacePressed = KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Jump);
             bool downHeld     = KeyBindingService.IsPressed(KeyBindingService.Action.MoveDown);
 
@@ -133,7 +139,7 @@ namespace _2D_Roguelike
         // 발 아래 플랫폼 콜라이더를 isTrigger로 전환 → 즉시 통과 가능
         private IEnumerator DropThroughPlatform()
         {
-            Collider2D[] cols = Physics2D.OverlapBoxAll(FeetCenter, FeetBoxSize, 0f, _platformLayer);
+            Collider2D[] cols = Physics2D.OverlapBoxAll(FeetCenter, _feetBoxSize, 0f, _platformLayer);
 
             foreach (var col in cols)
                 col.isTrigger = true;
@@ -154,24 +160,7 @@ namespace _2D_Roguelike
             transform.localScale = scale;
         }
 
-        // ─── 시각화 ───────────────────────────────────────────────────────
-        private void DrawDebugGizmos()
-        {
-            Color col = _isOnPlatform ? Color.cyan
-                      : _isGrounded   ? Color.green
-                                      : Color.red;
-
-            Vector2 c  = FeetCenter;
-            float   hw = _feetWidth  * 0.5f;
-            float   hh = _feetHeight * 0.5f;
-
-            Debug.DrawLine(new Vector3(c.x - hw, c.y + hh), new Vector3(c.x + hw, c.y + hh), col);
-            Debug.DrawLine(new Vector3(c.x + hw, c.y + hh), new Vector3(c.x + hw, c.y - hh), col);
-            Debug.DrawLine(new Vector3(c.x + hw, c.y - hh), new Vector3(c.x - hw, c.y - hh), col);
-            Debug.DrawLine(new Vector3(c.x - hw, c.y - hh), new Vector3(c.x - hw, c.y + hh), col);
-        }
-
-        // Editor Scene 뷰 — 항상 표시
+        // ─── 시각화 (Scene 뷰 — 항상 표시) ──────────────────────────────
         private void OnDrawGizmos()
         {
             Gizmos.color = Application.isPlaying

@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="DialogueUI.uss" />
+    <ui:VisualElement name="dialogue-root">
+        <ui:VisualElement name="cinematic-top" />
+        <ui:VisualElement name="cinematic-bottom" />
+        <ui:VisualElement name="dialogue-panel">
+            <ui:VisualElement name="dialogue-left">
+                <ui:VisualElement name="npc-name-box">
+                    <ui:Label name="npc-name-label" text="NPC" />
+                </ui:VisualElement>
+                <ui:Label name="dialogue-text" text="" />
+            </ui:VisualElement>
+            <ui:VisualElement name="choice-panel">
+                <ui:Button name="btn-continue" text="대화" />
+                <ui:Button name="btn-cancel" text="취소" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
