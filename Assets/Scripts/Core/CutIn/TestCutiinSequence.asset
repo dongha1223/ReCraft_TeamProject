@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 947a81fc24c3eca42966fbe26228d1f9, type: 3}
-  m_Name: NewCutinSequence
+  m_Name: TestCutiinSequence
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.CutinSequenceData
   _illustSprite: {fileID: -3588066451763546801, guid: cf6bc739d2ca027409f47d7f92813f42, type: 3}
   _illustScale: {x: 1, y: 1}
@@ -102,4 +102,4 @@ MonoBehaviour:
     Fps: 0
     OverrideDuration: 0.4
     StartOffsetFromFloat: 0.2
-    Scale: {x: 15, y: 15}
+    Scale: {x: 17, y: 17}
