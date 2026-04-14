@@ -84,9 +84,11 @@ namespace _2D_Roguelike
 
         private IEnumerator DoGameClear()
         {
-            yield return StartCoroutine(FadeManager.Instance.FadeOut());
-            FadeManager.Instance.ShowGameClear(true);
-            yield return StartCoroutine(FadeManager.Instance.FadeIn());
+            if (FadeManager.Instance != null)
+                yield return StartCoroutine(FadeManager.Instance.FadeOut());
+            FadeManager.Instance?.ShowGameClear(true);
+            if (FadeManager.Instance != null)
+                yield return StartCoroutine(FadeManager.Instance.FadeIn());
 
             for (int i = 10; i >= 0; i--)
             {

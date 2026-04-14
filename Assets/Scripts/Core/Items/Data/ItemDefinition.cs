@@ -24,6 +24,13 @@ namespace _2D_Roguelike
         public List<InscriptionEntry> inscriptions;
 
         [Header("효과")]
+
+        [Header("드랍 설정")]
+        [Tooltip("가중치가 높을수록 드랍 확률 상승")]
+        public float baseDropWeight = 1f;
+
+        [Tooltip("드랍되는 맵 테마. 비어있으면 모든 테마에서 드랍 가능 (Common 아이템 등)")]
+        public MapTheme[] dropThemes;
         public List<EffectDefinition> effects;
     }
 }
