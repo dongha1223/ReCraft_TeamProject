@@ -15,5 +15,7 @@ MonoBehaviour:
   _animTrigger: SkillS
   _preDelay: 0.2
   _phases:
-  - {fileID: 11400000, guid: 10746bbb53638754aa9c8b5a68d32a95, type: 2}
-  _phaseDelays: []
+  - {fileID: 11400000, guid: ed10303178710954191ad2fa01191066, type: 2}
+  - {fileID: 11400000, guid: ed10303178710954191ad2fa01191066, type: 2}
+  _phaseDelays:
+  - 0.5

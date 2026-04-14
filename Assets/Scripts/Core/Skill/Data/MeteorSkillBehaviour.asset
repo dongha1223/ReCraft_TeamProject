@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.MeteorSkillBehaviour
   _animTrigger: SkillA
   _meteorCount: 6
-  _startOffset: -2
-  _meteorStep: 1
-  _fallDuration: 0.1
-  _meteorInterval: 0.2
+  _startOffset: -3
+  _meteorStep: 2
+  _fallDuration: 0.2
+  _meteorInterval: 0.1
   _spawnHeight: 5
   _spawnXOffset: 3
   _explosionSpec: {fileID: 11400000, guid: b736b3573a6e66d43b068f369b0fb99b, type: 2}
