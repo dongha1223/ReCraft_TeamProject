@@ -71,7 +71,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _dimTargetAlpha: 0.7
   _dimFadeInDuration: 1.6
-  _dimFadeOutDuration: 0.25
+  _dimFadeOutDuration: 0.5
   _effects:
   - Frames:
     - {fileID: 1004384805702441716, guid: 2c741f75722ddb34abd875e5f3e8aec5, type: 3}
@@ -100,6 +100,6 @@ MonoBehaviour:
     - {fileID: -5564631229909606936, guid: 7e8aac83c6d219549a830e2dd0c8d078, type: 3}
     - {fileID: -5564631229909606936, guid: 7e8aac83c6d219549a830e2dd0c8d078, type: 3}
     Fps: 0
-    OverrideDuration: 1.1
-    StartOffsetFromFloat: 0
+    OverrideDuration: 0.4
+    StartOffsetFromFloat: 0.2
     Scale: {x: 15, y: 15}
