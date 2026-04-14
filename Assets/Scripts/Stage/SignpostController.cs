@@ -39,6 +39,7 @@ namespace _2D_Roguelike
 
         public void OnInteract(PlayerStatController statController)
         {
+            Debug.Log($"[Signpost] OnInteract called. isLastStage={_isLastStage}, StageManager={(StageManager.Instance != null ? "OK" : "NULL")}");
             if (StageManager.Instance == null) return;
             if (_fKeyPrompt != null) _fKeyPrompt.SetActive(false);
 
@@ -70,7 +71,10 @@ namespace _2D_Roguelike
             if (_fKeyPrompt != null) _fKeyPrompt.SetActive(false);
 
             if (StageManager.Instance != null)
+            {
+                StageManager.Instance.OnAllEnemiesDead -= HandleAllEnemiesDead;
                 StageManager.Instance.OnAllEnemiesDead += HandleAllEnemiesDead;
+            }
         }
 
         private void OnDisable()
@@ -101,6 +105,7 @@ namespace _2D_Roguelike
 
         private void HandleAllEnemiesDead()
         {
+            Debug.Log($"[Signpost] HandleAllEnemiesDead — activating signpost on '{gameObject.scene.name}'");
             _isActivated = true;
             UpdateAlpha();
         }

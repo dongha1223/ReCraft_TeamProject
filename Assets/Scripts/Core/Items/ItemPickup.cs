@@ -51,6 +51,14 @@ namespace _2D_Roguelike
         }
 
         // ── 생명주기 ─────────────────────────────────────────────────
+        /// <summary>런타임 스폰 시 아이템 정의를 주입한다.</summary>
+        public void Init(ItemDefinition definition)
+        {
+            _definition = definition;
+            if (_definition != null && _definition.icon != null)
+                _spriteRenderer.sprite = _definition.icon;
+        }
+
 
         private void Awake()
         {

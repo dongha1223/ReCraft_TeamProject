@@ -23,5 +23,7 @@ MonoBehaviour:
     amount: 1
   - inscription: {fileID: 11400000, guid: 673fa3ce0de8388489621c56a02efe6f, type: 2}
     amount: 1
+  baseDropWeight: 0.5
+  dropThemes: []
   effects:
   - {fileID: 11400000, guid: bc2fe5c4ab406dd4fba0bda87cd8a65b, type: 2}
