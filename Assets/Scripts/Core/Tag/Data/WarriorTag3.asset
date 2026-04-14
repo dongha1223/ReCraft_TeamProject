@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.TagTechniqueDefinition
   _level: 3
   _duration: 0.5
-  _invincibleDuration: 0.3
-  _defaultPhases:
-  - {fileID: 11400000, guid: 10746bbb53638754aa9c8b5a68d32a95, type: 2}
+  _invincibleDuration: 2
+  _defaultPhases: []
   _phaseDelays: []
-  _behaviour: {fileID: 0}
+  _preCutscene: {fileID: 11400000, guid: e214f41f5d233fd49a9af6d6a23facd5, type: 2}
+  _behaviour: {fileID: 11400000, guid: 2f2ea2a7bd7bc2645bd38096dfbdf071, type: 2}
   _hasBuff: 0
   _buffStat: 1
   _buffOperation: 1

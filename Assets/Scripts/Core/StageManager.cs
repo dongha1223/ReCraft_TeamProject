@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace _2D_Roguelike
@@ -35,6 +36,24 @@ namespace _2D_Roguelike
 
         // ── 적 카운트 관리 ───────────────────────────────────────────────
         public void RegisterEnemy() => _aliveEnemyCount++;
+
+        /// <summary>
+        /// 현재 스테이지에서 살아있는(활성화된) 적의 Transform 목록을 반환한다.
+        /// WarriorTagTech3Behaviour 등 적 위치를 순회해야 하는 스킬에서 사용.
+        /// </summary>
+        public List<Transform> GetAliveEnemyTransforms()
+        {
+            var result = new List<Transform>();
+
+            if (_stageRoots == null || CurrentStage >= _stageRoots.Length) return result;
+            var root = _stageRoots[CurrentStage];
+            if (root == null) return result;
+
+            foreach (var e in root.GetComponentsInChildren<EnemyStats>(includeInactive: false))
+                result.Add(e.transform);
+
+            return result;
+        }
 
         public void OnEnemyDied()
         {

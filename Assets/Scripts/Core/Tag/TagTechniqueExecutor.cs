@@ -13,7 +13,10 @@ namespace _2D_Roguelike
     ///   - 버프 임시 적용/해제
     ///
     /// 호출 순서 (TagController):
-    ///   1. Execute(definition)  — 공격 + 무적 + 후딜
+    ///   1. Execute(definition)
+    ///      a. PreCutscene 재생 (있으면 블로킹 — 컷신 완료 후 교체기 발동)
+    ///      b. Behaviour 비블로킹 시작 (또는 DefaultPhases 블로킹 실행)
+    ///      c. Duration 후딜 대기 (컷신 종료 시점 기준)
     ///   2. FormManager.SwapSlots()
     ///   3. ApplyTempBuff(definition) — 필요 시
     /// </summary>
@@ -22,12 +25,14 @@ namespace _2D_Roguelike
         private AreaSkillExecutor    _areaExecutor;
         private InvincibilityHandler _invincibility;
         private PlayerStatController _statController;
+        private CutinIllustPlayer    _cutinPlayer;
 
         private void Awake()
         {
             _areaExecutor   = GetComponent<AreaSkillExecutor>();
             _invincibility  = GetComponent<InvincibilityHandler>();
             _statController = GetComponent<PlayerStatController>();
+            _cutinPlayer    = GetComponent<CutinIllustPlayer>();
         }
 
         // ── 공개 실행 진입점 ──────────────────────────────────────────
@@ -38,12 +43,17 @@ namespace _2D_Roguelike
         /// </summary>
         public IEnumerator Execute(TagTechniqueDefinition definition)
         {
-            float startTime = Time.time;
-
-            // 1. 무적 부여
+            // 1. 무적 부여 (컷신 재생 중에도 무적 유지)
             _invincibility?.SetInvincible(definition.InvincibleDuration);
 
-            // 2. 컨텍스트 생성
+            // 2. 컷인 연출 (있으면 블로킹 — 끝난 뒤 교체기 발동)
+            if (definition.PreCutscene != null && _cutinPlayer != null)
+                yield return StartCoroutine(_cutinPlayer.Play(definition.PreCutscene));
+
+            // 3. 교체기 발동 시점 기록 (컷신 종료 이후, Duration 카운트 기준)
+            float startTime = Time.time;
+
+            // 4. 컨텍스트 생성
             var ctx = new TagTechniqueContext(
                 transform,
                 GetComponent<Rigidbody2D>(),
@@ -52,13 +62,15 @@ namespace _2D_Roguelike
                 _statController,
                 definition);
 
-            // 3. Behaviour 있으면 위임, 없으면 기본 페이즈 실행
+            // 5. Behaviour 있으면 비블로킹 시작, 없으면 기본 페이즈 실행
+            // Behaviour는 Duration 경과 후 폼 체인지와 무관하게 독립 실행된다.
+            // 연출 시간이 있는 Behaviour는 Definition.Duration을 연출 시간에 맞출 것.
             if (definition.Behaviour != null)
-                yield return StartCoroutine(definition.Behaviour.Execute(ctx));
+                StartCoroutine(definition.Behaviour.Execute(ctx));
             else
                 yield return StartCoroutine(ExecuteDefaultPhases(ctx));
 
-            // 4. Duration까지 남은 시간 후딜 처리
+            // 6. Duration까지 남은 시간 후딜 처리 (컷신 종료 시점 기준)
             float remaining = definition.Duration - (Time.time - startTime);
             if (remaining > 0f)
                 yield return new WaitForSeconds(remaining);
