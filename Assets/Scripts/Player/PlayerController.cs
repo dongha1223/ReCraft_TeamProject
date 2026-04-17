@@ -14,6 +14,9 @@ namespace _2D_Roguelike
         [SerializeField] private float _jumpForce = 12f;
         [SerializeField] private int _maxJumpCount = 2;
 
+        [Header("이펙트")]
+        [SerializeField] private GameObject _jumpEFXPrefab;
+
         [Header("발 감지")]
         [SerializeField] private Vector2 _feetOffset  = new Vector2(0f, -0.32f);
         [SerializeField] private float _feetWidth     = 0.40f;
@@ -140,6 +143,10 @@ namespace _2D_Roguelike
             // 일반 / 2단 점프
             if (spacePressed && _jumpCount < _maxJumpCount)
             {
+                // 2단 점프 시점에 이펙트 스폰
+                if (_jumpCount == 1 && _jumpEFXPrefab != null)
+                    Instantiate(_jumpEFXPrefab, transform.position, Quaternion.identity);
+
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
                 _jumpCount++;
                 _playerDash?.OnJump(); // 점프 후 대시 잠금
