@@ -24,6 +24,7 @@ namespace _2D_Roguelike
         private Rigidbody2D       _rb;
         private Animator          _animator;
         private PlayerDash            _playerDash;
+        private PlayerAttack          _playerAttack;
         private FormSkillController   _formSkillController;
         private KnockbackReceiver     _knockback;
 
@@ -34,7 +35,8 @@ namespace _2D_Roguelike
 
         public bool IsGrounded => _isGrounded;
 
-        private static readonly int AnimIsMoving = Animator.StringToHash("IsMoving");
+        private static readonly int AnimIsMoving  = Animator.StringToHash("IsMoving");
+        private static readonly int AnimIsJumping = Animator.StringToHash("IsJumping");
 
         // ─── 발 감지 박스 중심 (월드 좌표) ───────────────────────────────
         private Vector2 FeetCenter  => (Vector2)transform.position + _feetOffset;
@@ -45,6 +47,7 @@ namespace _2D_Roguelike
             _rb          = GetComponent<Rigidbody2D>();
             _animator    = GetComponent<Animator>();
             _playerDash          = GetComponent<PlayerDash>();
+            _playerAttack        = GetComponent<PlayerAttack>();
             _formSkillController = GetComponent<FormSkillController>();
             _knockback           = GetComponent<KnockbackReceiver>();
             _feetBoxSize = new Vector2(_feetWidth, _feetHeight);
@@ -83,6 +86,8 @@ namespace _2D_Roguelike
             // 착지 순간 점프 횟수 초기화
             if (!wasGrounded && _isGrounded)
                 _jumpCount = 0;
+
+            _animator?.SetBool(AnimIsJumping, !_isGrounded);
         }
 
         // ─── 좌우 이동 ────────────────────────────────────────────────────
@@ -97,6 +102,12 @@ namespace _2D_Roguelike
             }
             if (_playerDash          != null && _playerDash.IsDashing)             return;
             if (_formSkillController != null && _formSkillController.IsRolling)   return;
+            if (_playerAttack        != null && _playerAttack.IsAttacking)
+            {
+                // 공격 중 이동 입력 차단 — 임펄스로 부여된 속도는 그대로 유지
+                _animator?.SetBool(AnimIsMoving, false);
+                return;
+            }
 
             float horizontal = 0f;
             if (KeyBindingService.IsPressed(KeyBindingService.Action.MoveLeft))  horizontal = -1f;

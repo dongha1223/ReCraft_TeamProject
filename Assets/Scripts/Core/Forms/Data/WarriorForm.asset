@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.FormDefinition
   _formId: form-guid-001
   _displayName: "\uC804\uC0AC\uD3FC"
-  _icon: {fileID: 21300000, guid: faf2accdcbbd542fd8a78c80f9fc6756, type: 3}
+  _icon: {fileID: 4723107735738678597, guid: 6d0ae9a84ef967c4caf5958c73cb09f1, type: 3}
   _animatorController: {fileID: 9100000, guid: 2ca7610334a76bd42b68162e490ab4b9, type: 2}
-  _idleSprite: {fileID: 21300000, guid: faf2accdcbbd542fd8a78c80f9fc6756, type: 3}
+  _idleSprite: {fileID: 4723107735738678597, guid: 6d0ae9a84ef967c4caf5958c73cb09f1, type: 3}
   _baseScale: {x: 3, y: 3, z: 3}
-  _colliderSize: {x: 0.25, y: 0.4}
-  _colliderOffset: {x: 0, y: 0}
+  _colliderSize: {x: 0.3200586, y: 0.5003509}
+  _colliderOffset: {x: -0.01698911, y: -0.0757431}
   _primaryDamageType: 0
   _baseAttackPower: 10
   _skills:
