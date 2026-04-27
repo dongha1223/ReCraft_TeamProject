@@ -516,6 +516,7 @@ MonoBehaviour:
   _boxStep: 2.74
   _boxInterval: 0.3
   _slamEndLag: 0.3
+  _slamEffectPrefab: {fileID: 7664200203069993174, guid: 435281f2103e4b44f8152faa87797d1d, type: 3}
 --- !u!114 &1480237410701609010
 MonoBehaviour:
   m_ObjectHideFlags: 0

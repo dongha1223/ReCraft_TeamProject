@@ -15,7 +15,11 @@ namespace _2D_Roguelike
     {
         [Header("단계 정보")]
         [SerializeField] private int   _level    = 1;
-        [Tooltip("교체기 총 연출 시간(초). Execute 완료 후 이 시간까지 남은 만큼 후딜로 처리.")]
+        [Tooltip("폼 체인지까지 대기하는 시간(초).\n" +
+                 "Behaviour가 연결된 경우 Behaviour는 비블로킹으로 실행되므로\n" +
+                 "이 값이 경과하는 즉시 폼 체인지가 발생한다.\n\n" +
+                 "※ 스프라이트·이동·카메라 등 시간 있는 연출을 포함하는 Behaviour라면\n" +
+                 "   Duration을 연출 총 시간 이상으로 설정할 것.")]
         [SerializeField] private float _duration = 0.5f;
 
         [Header("무적")]
@@ -27,6 +31,13 @@ namespace _2D_Roguelike
         [SerializeField] private AreaSkillSpec[] _defaultPhases;
         [Tooltip("각 Phase 실행 후 대기 시간(초). 길이가 부족하면 0으로 처리.")]
         [SerializeField] private float[]         _phaseDelays;
+
+        [Header("컷인 연출 (선택)")]
+        [Tooltip("교체기 발동 전 재생할 컷인 연출 데이터.\n" +
+                 "null이면 건너뛴다.\n" +
+                 "컷신이 완전히 끝난 뒤 Behaviour가 발동되며,\n" +
+                 "Duration은 컷신 종료 시점부터 카운트된다.")]
+        [SerializeField] private CutinSequenceData _preCutscene;
 
         [Header("커스텀 실행 로직")]
         [Tooltip("null이면 DefaultPhases 실행. 이동/특수 연출이 필요한 경우 여기에 연결.")]
@@ -47,6 +58,7 @@ namespace _2D_Roguelike
 
         public AreaSkillSpec[]       DefaultPhases => _defaultPhases;
         public float[]               PhaseDelays   => _phaseDelays;
+        public CutinSequenceData     PreCutscene   => _preCutscene;
         public TagTechniqueBehaviour Behaviour     => _behaviour;
 
         public bool              HasBuff        => _hasBuff;

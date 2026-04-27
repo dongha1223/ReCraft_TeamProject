@@ -22,8 +22,10 @@ MonoBehaviour:
   _colliderOffset: {x: 0, y: 0}
   _primaryDamageType: 0
   _baseAttackPower: 10
-  _baseSkillPower: 20
+  _skills:
+  - {fileID: 11400000, guid: 6e06be26b2568a3478731d8de36c3b9e, type: 2}
+  - {fileID: 11400000, guid: 3e8c2e3991816104a9b53f62ac1ed6d3, type: 2}
   _tagTechniques:
   - {fileID: 11400000, guid: b5f1429d32aef4d4d9f7970a2ff32539, type: 2}
   - {fileID: 11400000, guid: a3835c2dc87a74647879a0700cf7c9d6, type: 2}
-  - {fileID: 11400000, guid: 824b5ec9da834d546ab130c7dfb3421a, type: 2}
+  - {fileID: 11400000, guid: 2f8dc4d98556fd24a804623afaa678a6, type: 2}

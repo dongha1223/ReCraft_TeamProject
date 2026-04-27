@@ -28,6 +28,32 @@ namespace _2D_Roguelike
 
         private float _totalGauge;
 
+#if UNITY_EDITOR
+        [Header("디버그 (에디터 전용)")]
+        [Tooltip("플레이 중 이 값을 바꾸면 즉시 게이지에 반영된다. 범위: 0~300.")]
+        [SerializeField] private float _debugGauge = 0f;
+
+        private float _prevDebugGauge;
+
+        private void Update()
+        {
+            // Inspector에서 _debugGauge가 변경됐을 때만 반영
+            if (!Mathf.Approximately(_debugGauge, _prevDebugGauge))
+            {
+                _prevDebugGauge = _debugGauge;
+                _totalGauge = Mathf.Clamp(_debugGauge, 0f, MaxGauge);
+                OnGaugeChanged?.Invoke(_totalGauge);
+            }
+
+            // _totalGauge가 외부(Gain/ConsumeAll)에 의해 바뀌었을 때 Inspector 표시도 동기화
+            if (!Mathf.Approximately(_totalGauge, _debugGauge))
+            {
+                _debugGauge      = _totalGauge;
+                _prevDebugGauge  = _totalGauge;
+            }
+        }
+#endif
+
         // ── 프로퍼티 ──────────────────────────────────────────────────
         /// <summary>완전히 채워진 토큰 수 (0~3)</summary>
         public int FilledCount => Mathf.FloorToInt(_totalGauge / GaugePerToken);
@@ -65,14 +91,5 @@ namespace _2D_Roguelike
             return level;
         }
 
-#if UNITY_EDITOR
-        // 에디터에서 게이지 상태 확인용
-        private void OnGUI()
-        {
-            if (!Application.isPlaying) return;
-            GUI.Label(new Rect(10, 10, 300, 20),
-                $"TokenGauge: {_totalGauge:F0}/300  Filled: {FilledCount}");
-        }
-#endif
     }
 }

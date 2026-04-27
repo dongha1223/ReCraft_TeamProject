@@ -70,8 +70,8 @@ namespace _2D_Roguelike
         public void ApplyFormStats(FormDefinition form)
         {
             if (form == null) return;
+            // 기본 공격 데미지만 폼에서 관리. 스킬 데미지는 SkillDefinition.BaseDamage가 담당.
             StatService.SetBaseValue(StatType.AttackPower, form.BaseAttackPower);
-            StatService.SetBaseValue(StatType.SkillPower,  form.BaseSkillPower);
         }
     }
 }

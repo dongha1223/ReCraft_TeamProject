@@ -23,9 +23,9 @@ namespace _2D_Roguelike
 
         private Rigidbody2D       _rb;
         private Animator          _animator;
-        private PlayerDash        _playerDash;
-        private PlayerSkill       _playerSkill;
-        private KnockbackReceiver _knockback;
+        private PlayerDash            _playerDash;
+        private FormSkillController   _formSkillController;
+        private KnockbackReceiver     _knockback;
 
 
         private int  _jumpCount;
@@ -44,9 +44,9 @@ namespace _2D_Roguelike
         {
             _rb          = GetComponent<Rigidbody2D>();
             _animator    = GetComponent<Animator>();
-            _playerDash  = GetComponent<PlayerDash>();
-            _playerSkill = GetComponent<PlayerSkill>();
-            _knockback   = GetComponent<KnockbackReceiver>();
+            _playerDash          = GetComponent<PlayerDash>();
+            _formSkillController = GetComponent<FormSkillController>();
+            _knockback           = GetComponent<KnockbackReceiver>();
             _feetBoxSize = new Vector2(_feetWidth, _feetHeight);
         }
 
@@ -95,8 +95,8 @@ namespace _2D_Roguelike
                 _animator?.SetBool(AnimIsMoving, false);
                 return;
             }
-            if (_playerDash  != null && _playerDash.IsDashing) return;
-            if (_playerSkill != null && _playerSkill.IsRolling)   return;
+            if (_playerDash          != null && _playerDash.IsDashing)             return;
+            if (_formSkillController != null && _formSkillController.IsRolling)   return;
 
             float horizontal = 0f;
             if (KeyBindingService.IsPressed(KeyBindingService.Action.MoveLeft))  horizontal = -1f;

@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947a81fc24c3eca42966fbe26228d1f9, type: 3}
+  m_Name: Test2
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.CutinSequenceData
+  _illustSprite: {fileID: 6433702041151875737, guid: 90469c46ee8705a49ab8a680f3689775, type: 3}
+  _illustScale: {x: 1, y: 1}
+  _centerPos: {x: 0, y: 0}
+  _offscreenOffsetY: 800
+  _slideInDuration: 0.4
+  _slideInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 3
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _floatAmplitude: 12
+  _floatFrequency: 1.2
+  _floatDuration: 1
+  _slideOutDuration: 0.3
+  _slideOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _dimTargetAlpha: 0.7
+  _dimFadeInDuration: 0.3
+  _dimFadeOutDuration: 0.25
+  _effects:
+  - Frames:
+    - {fileID: 6365136426406113538, guid: d09de2a96b9536947bb42bf560320da1, type: 3}
+    - {fileID: 2270870532802138159, guid: d09de2a96b9536947bb42bf560320da1, type: 3}
+    - {fileID: 7085113043558226925, guid: d09de2a96b9536947bb42bf560320da1, type: 3}
+    - {fileID: 2684194432548538220, guid: d09de2a96b9536947bb42bf560320da1, type: 3}
+    - {fileID: -626080630016679329, guid: d09de2a96b9536947bb42bf560320da1, type: 3}
+    - {fileID: 4777867452266166020, guid: d09de2a96b9536947bb42bf560320da1, type: 3}
+    - {fileID: 256889383601606067, guid: d09de2a96b9536947bb42bf560320da1, type: 3}
+    - {fileID: 8852017654578186957, guid: d09de2a96b9536947bb42bf560320da1, type: 3}
+    - {fileID: -5378379057373244022, guid: 2e4d7da8740c7eb4e9ebf69899854a10, type: 3}
+    - {fileID: 1495725657783746320, guid: 2e4d7da8740c7eb4e9ebf69899854a10, type: 3}
+    - {fileID: 6723012765519490717, guid: 2e4d7da8740c7eb4e9ebf69899854a10, type: 3}
+    - {fileID: -7028587099396357484, guid: 2e4d7da8740c7eb4e9ebf69899854a10, type: 3}
+    - {fileID: 1063528677686351914, guid: 2e4d7da8740c7eb4e9ebf69899854a10, type: 3}
+    - {fileID: -7123880150263875453, guid: d641ca101d3606746bcf5b8b46342983, type: 3}
+    - {fileID: -3474097457502810575, guid: d641ca101d3606746bcf5b8b46342983, type: 3}
+    - {fileID: -7703164542345601718, guid: d641ca101d3606746bcf5b8b46342983, type: 3}
+    - {fileID: -2099351609872554605, guid: d641ca101d3606746bcf5b8b46342983, type: 3}
+    - {fileID: 6123626538423005126, guid: d641ca101d3606746bcf5b8b46342983, type: 3}
+    - {fileID: -978245200303631045, guid: d641ca101d3606746bcf5b8b46342983, type: 3}
+    Fps: 0
+    OverrideDuration: 1.4
+    StartOffsetFromFloat: 0.2
+    Scale: {x: 15, y: 15}

@@ -20,6 +20,7 @@ namespace _2D_Roguelike
         private Animator             _animator;
         private PlayerStatController _statController;
         private OnHitStatusRegistry  _onHitRegistry;
+        private FormManager          _formManager;
 
         private bool _isAttacking;
         private bool _canAttack = true;
@@ -31,6 +32,7 @@ namespace _2D_Roguelike
             _animator       = GetComponent<Animator>();
             _statController = GetComponent<PlayerStatController>();
             _onHitRegistry  = GetComponent<OnHitStatusRegistry>();
+            _formManager    = GetComponent<FormManager>();
         }
 
         private void Start()
@@ -86,6 +88,7 @@ namespace _2D_Roguelike
                 damageable.TakeDamage(new HitInfo
                 {
                     Damage         = finalDamage,
+                    DamageType     = _formManager?.Current?.PrimaryDamageType ?? DamageType.Physical,
                     SourcePosition = transform.position,
                     KnockbackForce = _knockbackForce,
                     StatusEffects  = statusEffects
