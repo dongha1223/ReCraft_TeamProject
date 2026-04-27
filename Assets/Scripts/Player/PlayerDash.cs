@@ -26,6 +26,9 @@ namespace _2D_Roguelike
         [SerializeField] private float _jumpLockDuration  = 0.25f; // 점프 후 대시 잠금 시간
         [SerializeField] private float _postDashHangTime  = 0.20f; // 감속 후 공중 정지 시간 (중력 지연 복원)
 
+        [Header("이펙트")]
+        [SerializeField] private GameObject _dashEFXPrefab;
+
         private Rigidbody2D          _rb;
         private Animator             _animator;
         private PlayerController     _playerController;
@@ -98,6 +101,17 @@ namespace _2D_Roguelike
 
             _isDashing      = true;
             ghost.makeGhost = true;
+
+            // 대시 시작 위치에 이펙트 스폰 (방향 반영)
+            if (_dashEFXPrefab != null)
+            {
+                var efx = Instantiate(_dashEFXPrefab, transform.position + new Vector3(0f, -0.5f, 0f), Quaternion.identity);
+                // 플레이어 방향에 맞게 이펙트 미러링
+                float efxDir = transform.localScale.x < 0f ? -1f : 1f;
+                Vector3 efxScale = efx.transform.localScale;
+                efxScale.x = efxDir * Mathf.Abs(efxScale.x);
+                efx.transform.localScale = efxScale;
+            }
 
             // 대시 페이즈 동안 무적 (근접 공격 차단 + 투사체 통과)
             _invincibility?.SetInvincible(_dashDuration);
