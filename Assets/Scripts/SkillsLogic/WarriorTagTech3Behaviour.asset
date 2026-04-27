@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594ccc5bb478d044d88f72981058e43c, type: 3}
+  m_Name: WarriorTagTech3Behaviour
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.WarriorTagTech3Behaviour
+  _slashPrefabs:
+  - {fileID: 2086038496018972347, guid: cdac00b0c67cbcb4dad0457bc4ece0c8, type: 3}
+  - {fileID: 4296301066627048242, guid: 804b272994ea61743b8775dfb52acb8b, type: 3}
+  - {fileID: 4217659321239237406, guid: b3e9a19cc47da8c4f9d2f868d9784d2b, type: 3}
+  - {fileID: 7698629837243313814, guid: 7cc20e588d1c0934ca38da5b31388c06, type: 3}
+  _overlapOffset: 0.15
+  _damageSpec: {fileID: 11400000, guid: 81c4b1881b9a50141b375457e226e4df, type: 2}
+  _damageInterval: 0.2
+  _multiEnemyRepeatCount: 3
+  _singleEnemyRepeatCount: 10

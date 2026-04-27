@@ -14,6 +14,9 @@ namespace _2D_Roguelike
         [SerializeField] private float _jumpForce = 12f;
         [SerializeField] private int _maxJumpCount = 2;
 
+        [Header("이펙트")]
+        [SerializeField] private GameObject _jumpEFXPrefab;
+
         [Header("발 감지")]
         [SerializeField] private Vector2 _feetOffset  = new Vector2(0f, -0.32f);
         [SerializeField] private float _feetWidth     = 0.40f;
@@ -23,9 +26,10 @@ namespace _2D_Roguelike
 
         private Rigidbody2D       _rb;
         private Animator          _animator;
-        private PlayerDash        _playerDash;
-        private PlayerSkill       _playerSkill;
-        private KnockbackReceiver _knockback;
+        private PlayerDash            _playerDash;
+        private PlayerAttack          _playerAttack;
+        private FormSkillController   _formSkillController;
+        private KnockbackReceiver     _knockback;
 
 
         private int  _jumpCount;
@@ -34,27 +38,28 @@ namespace _2D_Roguelike
 
         public bool IsGrounded => _isGrounded;
 
-        private static readonly int AnimIsMoving = Animator.StringToHash("IsMoving");
+        private static readonly int AnimIsMoving  = Animator.StringToHash("IsMoving");
+        private static readonly int AnimIsJumping = Animator.StringToHash("IsJumping");
 
         // ─── 발 감지 박스 중심 (월드 좌표) ───────────────────────────────
         private Vector2 FeetCenter  => (Vector2)transform.position + _feetOffset;
-        private Vector2 FeetBoxSize => new Vector2(_feetWidth, _feetHeight);
+        private Vector2 _feetBoxSize; // Awake에서 캐싱
 
         private void Awake()
         {
             _rb          = GetComponent<Rigidbody2D>();
             _animator    = GetComponent<Animator>();
-            _playerDash  = GetComponent<PlayerDash>();
-            _playerSkill = GetComponent<PlayerSkill>();
-            _knockback   = GetComponent<KnockbackReceiver>();
-            
+            _playerDash          = GetComponent<PlayerDash>();
+            _playerAttack        = GetComponent<PlayerAttack>();
+            _formSkillController = GetComponent<FormSkillController>();
+            _knockback           = GetComponent<KnockbackReceiver>();
+            _feetBoxSize = new Vector2(_feetWidth, _feetHeight);
         }
 
         private void Update()
         {
             HandleMovement();
             HandleJump();
-            DrawDebugGizmos();
         }
 
         private void FixedUpdate()
@@ -75,8 +80,8 @@ namespace _2D_Roguelike
 
             bool wasGrounded = _isGrounded;
 
-            bool onGround   = Physics2D.OverlapBox(FeetCenter, FeetBoxSize, 0f, _groundLayer);
-            bool onPlatform = Physics2D.OverlapBox(FeetCenter, FeetBoxSize, 0f, _platformLayer);
+            bool onGround   = Physics2D.OverlapBox(FeetCenter, _feetBoxSize, 0f, _groundLayer);
+            bool onPlatform = Physics2D.OverlapBox(FeetCenter, _feetBoxSize, 0f, _platformLayer);
 
             _isOnPlatform = onPlatform;
             _isGrounded   = onGround || onPlatform;
@@ -84,21 +89,32 @@ namespace _2D_Roguelike
             // 착지 순간 점프 횟수 초기화
             if (!wasGrounded && _isGrounded)
                 _jumpCount = 0;
+
+            _animator?.SetBool(AnimIsJumping, !_isGrounded);
         }
 
         // ─── 좌우 이동 ────────────────────────────────────────────────────
         private void HandleMovement()
         {
-            // 대시(감속 포함) / 롤링 슬레쉬 중에는 이동 입력 차단
-            if (_playerDash  != null && _playerDash.IsDashing) return;
-            if (_playerSkill != null && _playerSkill.IsRolling)   return;
-
-            var keyboard = Keyboard.current;
-            if (keyboard == null) return;
+            // UI 차단 중(대화·포즈·인벤) / 대시(감속 포함) / 롤링 슬레쉬 중에는 이동 입력 차단
+            if (UIState.IsBlockingInput)
+            {
+                _rb.linearVelocity = new Vector2(0f, _rb.linearVelocity.y);
+                _animator?.SetBool(AnimIsMoving, false);
+                return;
+            }
+            if (_playerDash          != null && _playerDash.IsDashing)             return;
+            if (_formSkillController != null && _formSkillController.IsRolling)   return;
+            if (_playerAttack        != null && _playerAttack.IsAttacking)
+            {
+                // 공격 중 이동 입력 차단 — 임펄스로 부여된 속도는 그대로 유지
+                _animator?.SetBool(AnimIsMoving, false);
+                return;
+            }
 
             float horizontal = 0f;
-            if (keyboard.leftArrowKey.isPressed)  horizontal = -1f;
-            if (keyboard.rightArrowKey.isPressed) horizontal =  1f;
+            if (KeyBindingService.IsPressed(KeyBindingService.Action.MoveLeft))  horizontal = -1f;
+            if (KeyBindingService.IsPressed(KeyBindingService.Action.MoveRight)) horizontal =  1f;
 
             // 입력 이동 + 외부 힘(넉백 등) 합산
             float externalX = _knockback != null ? _knockback.ExternalVelocity.x : 0f;
@@ -113,11 +129,9 @@ namespace _2D_Roguelike
         // ─── 점프 / 아래 점프 ─────────────────────────────────────────────
         private void HandleJump()
         {
-            var keyboard = Keyboard.current;
-            if (keyboard == null) return;
-
-            bool spacePressed = keyboard.spaceKey.wasPressedThisFrame;
-            bool downHeld     = keyboard.downArrowKey.isPressed;
+            if (UIState.IsBlockingInput) return;
+            bool spacePressed = KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Jump);
+            bool downHeld     = KeyBindingService.IsPressed(KeyBindingService.Action.MoveDown);
 
             // 아래 점프: 플랫폼 위에 있을 때만
             if (spacePressed && downHeld && _isOnPlatform)
@@ -129,6 +143,10 @@ namespace _2D_Roguelike
             // 일반 / 2단 점프
             if (spacePressed && _jumpCount < _maxJumpCount)
             {
+                // 2단 점프 시점에 이펙트 스폰
+                if (_jumpCount == 1 && _jumpEFXPrefab != null)
+                    Instantiate(_jumpEFXPrefab, transform.position, Quaternion.identity);
+
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
                 _jumpCount++;
                 _playerDash?.OnJump(); // 점프 후 대시 잠금
@@ -139,7 +157,7 @@ namespace _2D_Roguelike
         // 발 아래 플랫폼 콜라이더를 isTrigger로 전환 → 즉시 통과 가능
         private IEnumerator DropThroughPlatform()
         {
-            Collider2D[] cols = Physics2D.OverlapBoxAll(FeetCenter, FeetBoxSize, 0f, _platformLayer);
+            Collider2D[] cols = Physics2D.OverlapBoxAll(FeetCenter, _feetBoxSize, 0f, _platformLayer);
 
             foreach (var col in cols)
                 col.isTrigger = true;
@@ -160,24 +178,7 @@ namespace _2D_Roguelike
             transform.localScale = scale;
         }
 
-        // ─── 시각화 ───────────────────────────────────────────────────────
-        private void DrawDebugGizmos()
-        {
-            Color col = _isOnPlatform ? Color.cyan
-                      : _isGrounded   ? Color.green
-                                      : Color.red;
-
-            Vector2 c  = FeetCenter;
-            float   hw = _feetWidth  * 0.5f;
-            float   hh = _feetHeight * 0.5f;
-
-            Debug.DrawLine(new Vector3(c.x - hw, c.y + hh), new Vector3(c.x + hw, c.y + hh), col);
-            Debug.DrawLine(new Vector3(c.x + hw, c.y + hh), new Vector3(c.x + hw, c.y - hh), col);
-            Debug.DrawLine(new Vector3(c.x + hw, c.y - hh), new Vector3(c.x - hw, c.y - hh), col);
-            Debug.DrawLine(new Vector3(c.x - hw, c.y - hh), new Vector3(c.x - hw, c.y + hh), col);
-        }
-
-        // Editor Scene 뷰 — 항상 표시
+        // ─── 시각화 (Scene 뷰 — 항상 표시) ──────────────────────────────
         private void OnDrawGizmos()
         {
             Gizmos.color = Application.isPlaying

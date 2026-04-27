@@ -36,7 +36,7 @@ namespace _2D_Roguelike
             Debug.Log($"Enemy 레이어 인덱스={enemyLayerIndex}, 마스크 비트={mask}");
 
             // PlayerSkill 레이어 설정
-            var skill = player.GetComponent<PlayerSkill>();
+            var skill = player.GetComponent<FormSkillController>();
             if (skill != null)
             {
                 var so   = new UnityEditor.SerializedObject(skill);

@@ -47,7 +47,7 @@ namespace _2D_Roguelike
         private PlayerStatController _stat;
         private int _selectedSlot = -1;
 
-        public bool IsOpen { get; private set; }
+        public static bool IsOpen { get; private set; }
 
         // ── 생명주기 ─────────────────────────────────────────────────
 
@@ -126,12 +126,10 @@ namespace _2D_Roguelike
 
         private void Update()
         {
-            if (Keyboard.current == null) return;
-
-            if (Keyboard.current.tabKey.wasPressedThisFrame)
+            if (KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Inventory))
             {
                 if (IsOpen) Close();
-                else Open();
+                else if (!DialogueUIController.IsActive && !PauseMenuController.IsPaused) Open();
                 return;
             }
 

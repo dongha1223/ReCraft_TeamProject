@@ -11,6 +11,7 @@ namespace _2D_Roguelike
     public class SignpostController : MonoBehaviour, IInteractable
     {
         [Header("설정")]
+        [Tooltip("StageManager가 런타임에 자동 주입 — 직접 수정 불필요")]
         [SerializeField] private bool _isLastStage = false;
 
         [Header("참조 — 비워두면 자동 탐색")]
@@ -21,6 +22,11 @@ namespace _2D_Roguelike
 
         private const float AlphaInactive = 50f  / 255f;
         private const float AlphaActive   = 255f / 255f;
+
+        // ── 외부 주입 ─────────────────────────────────────────────────
+
+        /// <summary>StageManager가 스테이지 활성화 시 자동 주입 — Inspector 값을 덮어씀</summary>
+        public void SetIsLastStage(bool isLast) => _isLastStage = isLast;
 
         // ── IInteractable ─────────────────────────────────────────────
 
@@ -39,6 +45,9 @@ namespace _2D_Roguelike
 
         public void OnInteract(PlayerStatController statController)
         {
+#if UNITY_EDITOR
+            Debug.Log($"[Signpost] OnInteract called. isLastStage={_isLastStage}, StageManager={(StageManager.Instance != null ? "OK" : "NULL")}");
+#endif
             if (StageManager.Instance == null) return;
             if (_fKeyPrompt != null) _fKeyPrompt.SetActive(false);
 
@@ -70,7 +79,10 @@ namespace _2D_Roguelike
             if (_fKeyPrompt != null) _fKeyPrompt.SetActive(false);
 
             if (StageManager.Instance != null)
+            {
+                StageManager.Instance.OnAllEnemiesDead -= HandleAllEnemiesDead;
                 StageManager.Instance.OnAllEnemiesDead += HandleAllEnemiesDead;
+            }
         }
 
         private void OnDisable()
@@ -101,6 +113,9 @@ namespace _2D_Roguelike
 
         private void HandleAllEnemiesDead()
         {
+#if UNITY_EDITOR
+            Debug.Log($"[Signpost] HandleAllEnemiesDead — activating signpost on '{gameObject.scene.name}'");
+#endif
             _isActivated = true;
             UpdateAlpha();
         }

@@ -31,6 +31,7 @@ namespace _2D_Roguelike
         private int  _row    = 0;
         private int  _col    = 0;
         private bool _isOpen = false;
+        private bool _openedThisFrame = false;
         public  bool IsOpen  => _isOpen;
 
         private void Start()
@@ -66,6 +67,7 @@ namespace _2D_Roguelike
         private void Update()
         {
             if (!_isOpen) return;
+            if (_openedThisFrame) { _openedThisFrame = false; return; }
             if (Keyboard.current == null) return;
 
             if (Keyboard.current.upArrowKey.wasPressedThisFrame)
@@ -158,6 +160,7 @@ namespace _2D_Roguelike
         public void Open()
         {
             _isOpen = true;
+            _openedThisFrame = true;
             _overlay.style.display = DisplayStyle.Flex;
             SetSelection(0, 0);
         }

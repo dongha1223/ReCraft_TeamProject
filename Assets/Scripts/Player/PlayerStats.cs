@@ -8,11 +8,14 @@ namespace _2D_Roguelike
         [SerializeField] private Transform _damageSpawnPos;  // 플레이어 머리 위 빈 Transform (없으면 중심 + offset 사용)
 
         private float                _currentHp;
+        private Animator             _animator;
         private DamageFlash          _damageFlash;
         private KnockbackReceiver    _knockback;
         private InvincibilityHandler _invincibility;
         private PlayerStatController _statController;
         private StatusController     _statusController;
+
+        private static readonly int AnimIsHurt = Animator.StringToHash("IsHurt");
 
         public float CurrentHp    => _currentHp;
         /// <summary>아이템/각인 효과가 반영된 최대 체력</summary>
@@ -24,6 +27,7 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
+            _animator         = GetComponent<Animator>();
             _damageFlash      = GetComponent<DamageFlash>();
             _knockback        = GetComponent<KnockbackReceiver>();
             _invincibility    = GetComponent<InvincibilityHandler>();
@@ -53,6 +57,7 @@ namespace _2D_Roguelike
 
             SpawnFloatingText(info.Damage, FloatingTextType.Damage);
             _damageFlash?.CallDamageFlash();
+            _animator?.SetTrigger(AnimIsHurt);
 
             if (info.KnockbackForce > 0f)
                 _knockback?.ApplyKnockback(info.SourcePosition, info.KnockbackForce);
