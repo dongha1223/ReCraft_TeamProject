@@ -9,29 +9,83 @@ namespace _2D_Roguelike
     {
         public static StageManager Instance { get; private set; }
 
-        [SerializeField] private GameObject[] _stageRoots;   // Inspector 할당
-        [SerializeField] private Transform[]  _spawnPoints;  // Inspector 할당
-        [SerializeField] private Transform    _playerTransform;
+        // ── 스테이지 엔트리 ───────────────────────────────────────────────
+        [System.Serializable]
+        private struct StageEntry
+        {
+            [Tooltip("스테이지 데이터 SO")]
+            public StageDataSO data;
+
+            [Tooltip("씬 내 스테이지 루트 오브젝트")]
+            public GameObject root;
+
+            [Tooltip("플레이어 스폰 위치")]
+            public Transform spawnPoint;
+        }
+
+        [Header("스테이지 목록 (배열 순서 = 게임 진행 순서)")]
+        [SerializeField] private StageEntry[] _stages;
+
+        [Header("플레이어")]
+        [SerializeField] private Transform _playerTransform;
 
         public int  CurrentStage    { get; private set; } = 0;
         public bool AllEnemiesDead  => _aliveEnemyCount == 0;
         public int  AliveEnemyCount => _aliveEnemyCount;
+
+        /// <summary>현재 스테이지의 StageDataSO. 없으면 null.</summary>
+        public StageDataSO CurrentStageData =>
+            (_stages != null && CurrentStage < _stages.Length) ? _stages[CurrentStage].data : null;
 
         private int _aliveEnemyCount;
 
         // 적이 전멸했을 때 발행 — SignpostController가 구독
         public event Action OnAllEnemiesDead;
 
+        // ── 캐시 ─────────────────────────────────────────────────────────
+        private PlayerStats          _playerStats;
+        private FormSkillController  _formSkillController;
+        private PlayerDash           _playerDash;
+        private Rigidbody2D          _playerRb;
+        private SignpostController[] _signpostCache; // 인덱스 = 스테이지 인덱스
+
+        // GetAliveEnemyTransforms 재사용 버퍼
+        private readonly List<Transform> _aliveEnemyBuffer = new List<Transform>();
+
         // ── 생명주기 ─────────────────────────────────────────────────────
         private void Awake()
         {
             if (Instance != null) { Destroy(gameObject); return; }
             Instance = this;
+
+            CachePlayerComponents();
+            CacheSignposts();
         }
 
         private void Start()
         {
             ActivateStage(0);
+        }
+
+        // ── 캐싱 ─────────────────────────────────────────────────────────
+        private void CachePlayerComponents()
+        {
+            if (_playerTransform == null) return;
+            _playerStats         = _playerTransform.GetComponent<PlayerStats>();
+            _formSkillController = _playerTransform.GetComponent<FormSkillController>();
+            _playerDash          = _playerTransform.GetComponent<PlayerDash>();
+            _playerRb            = _playerTransform.GetComponent<Rigidbody2D>();
+        }
+
+        private void CacheSignposts()
+        {
+            if (_stages == null) return;
+            _signpostCache = new SignpostController[_stages.Length];
+            for (int i = 0; i < _stages.Length; i++)
+            {
+                if (_stages[i].root != null)
+                    _signpostCache[i] = _stages[i].root.GetComponentInChildren<SignpostController>(includeInactive: true);
+            }
         }
 
         // ── 적 카운트 관리 ───────────────────────────────────────────────
@@ -40,19 +94,20 @@ namespace _2D_Roguelike
         /// <summary>
         /// 현재 스테이지에서 살아있는(활성화된) 적의 Transform 목록을 반환한다.
         /// WarriorTagTech3Behaviour 등 적 위치를 순회해야 하는 스킬에서 사용.
+        /// 내부 버퍼를 재사용하므로 반환된 리스트를 캐싱하지 말 것.
         /// </summary>
         public List<Transform> GetAliveEnemyTransforms()
         {
-            var result = new List<Transform>();
+            _aliveEnemyBuffer.Clear();
 
-            if (_stageRoots == null || CurrentStage >= _stageRoots.Length) return result;
-            var root = _stageRoots[CurrentStage];
-            if (root == null) return result;
+            if (_stages == null || CurrentStage >= _stages.Length) return _aliveEnemyBuffer;
+            var root = _stages[CurrentStage].root;
+            if (root == null) return _aliveEnemyBuffer;
 
             foreach (var e in root.GetComponentsInChildren<EnemyStats>(includeInactive: false))
-                result.Add(e.transform);
+                _aliveEnemyBuffer.Add(e.transform);
 
-            return result;
+            return _aliveEnemyBuffer;
         }
 
         public void OnEnemyDied()
@@ -66,7 +121,7 @@ namespace _2D_Roguelike
         public void TransitionToNextStage()
         {
             int next = CurrentStage + 1;
-            if (next >= _stageRoots.Length) return;
+            if (next >= _stages.Length) return;
             StartCoroutine(DoTransition(next));
         }
 
@@ -80,7 +135,7 @@ namespace _2D_Roguelike
             if (FadeManager.Instance != null)
                 yield return StartCoroutine(FadeManager.Instance.FadeOut());
 
-            _stageRoots[CurrentStage].SetActive(false);
+            _stages[CurrentStage].root.SetActive(false);
             ActivateStage(nextIndex);
 
             if (FadeManager.Instance != null)
@@ -94,7 +149,7 @@ namespace _2D_Roguelike
 
             ResetPlayer();
 
-            _stageRoots[CurrentStage].SetActive(false);
+            _stages[CurrentStage].root.SetActive(false);
             ActivateStage(0);
 
             if (FadeManager.Instance != null)
@@ -119,7 +174,7 @@ namespace _2D_Roguelike
             FadeManager.Instance.ShowGameClear(false);
 
             ResetPlayer();
-            _stageRoots[CurrentStage].SetActive(false);
+            _stages[CurrentStage].root.SetActive(false);
             ActivateStage(0);
 
             yield return StartCoroutine(FadeManager.Instance.FadeIn());
@@ -131,11 +186,16 @@ namespace _2D_Roguelike
             CurrentStage     = index;
             _aliveEnemyCount = 0; // ★ SetActive 전 초기화 — EnemySpawner.OnEnable이 올바르게 카운트
 
-            for (int i = 0; i < _stageRoots.Length; i++)
+            for (int i = 0; i < _stages.Length; i++)
             {
-                if (_stageRoots[i] != null)
-                    _stageRoots[i].SetActive(i == index);
+                if (_stages[i].root != null)
+                    _stages[i].root.SetActive(i == index);
             }
+
+            // 마지막 스테이지 여부를 캐시된 표지판에 자동 주입
+            bool isLast = (index == _stages.Length - 1);
+            if (_signpostCache != null && index < _signpostCache.Length && _signpostCache[index] != null)
+                _signpostCache[index].SetIsLastStage(isLast);
 
             MovePlayerToSpawn(index);
 
@@ -153,22 +213,20 @@ namespace _2D_Roguelike
 
         private void ResetPlayer()
         {
-            if (_playerTransform == null) return;
-            _playerTransform.GetComponent<PlayerStats>()?.FullRestore();
-            _playerTransform.GetComponent<FormSkillController>()?.ResetSkills();
-            _playerTransform.GetComponent<PlayerDash>()?.ResetDash();
+            _playerStats?.FullRestore();
+            _formSkillController?.ResetSkills();
+            _playerDash?.ResetDash();
         }
 
         private void MovePlayerToSpawn(int stageIndex)
         {
             if (_playerTransform == null) return;
-            if (_spawnPoints == null || stageIndex >= _spawnPoints.Length) return;
-            if (_spawnPoints[stageIndex] == null) return;
+            if (_stages == null || stageIndex >= _stages.Length) return;
+            if (_stages[stageIndex].spawnPoint == null) return;
 
-            _playerTransform.position = _spawnPoints[stageIndex].position;
+            _playerTransform.position = _stages[stageIndex].spawnPoint.position;
 
-            var rb = _playerTransform.GetComponent<Rigidbody2D>();
-            if (rb != null) rb.linearVelocity = Vector2.zero;
+            if (_playerRb != null) _playerRb.linearVelocity = Vector2.zero;
         }
     }
 }
