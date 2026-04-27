@@ -7,7 +7,7 @@ namespace _2D_Roguelike
     public class PlayerHPUI : MonoBehaviour
     {
         private PlayerStats             _playerStats;
-        private PlayerSkill             _playerSkill;
+        private FormSkillController     _formSkillController;
 
         private VisualElement _hpBarFill;
         private Label         _hpLabel;
@@ -20,8 +20,8 @@ namespace _2D_Roguelike
             var playerGO = GameObject.FindWithTag("Player");
             if (playerGO != null)
             {
-                _playerStats = playerGO.GetComponent<PlayerStats>();
-                _playerSkill = playerGO.GetComponent<PlayerSkill>();
+                _playerStats         = playerGO.GetComponent<PlayerStats>();
+                _formSkillController = playerGO.GetComponent<FormSkillController>();
             }
 
             var root = GetComponent<UIDocument>().rootVisualElement;
@@ -68,13 +68,13 @@ namespace _2D_Roguelike
         // ── 스킬 쿨타임 오버레이 갱신 ────────────────────────────────
         private void UpdateSkillCooldowns()
         {
-            if (_playerSkill == null) return;
+            if (_formSkillController == null) return;
 
             if (_skillACooldown != null)
-                _skillACooldown.style.height = Length.Percent(_playerSkill.Skill1CooldownRatio * 100f);
+                _skillACooldown.style.height = Length.Percent(_formSkillController.Skill1CooldownRatio * 100f);
 
             if (_skillSCooldown != null)
-                _skillSCooldown.style.height = Length.Percent(_playerSkill.Skill2CooldownRatio * 100f);
+                _skillSCooldown.style.height = Length.Percent(_formSkillController.Skill2CooldownRatio * 100f);
         }
     }
 }

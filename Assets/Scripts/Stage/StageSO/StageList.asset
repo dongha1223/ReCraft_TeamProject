@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271d13e5c44a4504096c23f39b8ad3ee, type: 3}
+  m_Name: StageList
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.StageListSO
+  stages:
+  - {fileID: 11400000, guid: ee1ff8d549096814bb83e586b8312a3d, type: 2}
+  - {fileID: 11400000, guid: 7bf50f6e23e79b941bdf44c9d58427e1, type: 2}
+  - {fileID: 11400000, guid: bc4a7c3f64eab994887ccc5ac9d26423, type: 2}
+  - {fileID: 11400000, guid: feadd8da96fe4d645b5a6203fce9c1d1, type: 2}

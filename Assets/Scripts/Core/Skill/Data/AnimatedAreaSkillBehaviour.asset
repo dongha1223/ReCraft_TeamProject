@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c263005bfdd8e8c40839467c5b39e8ac, type: 3}
+  m_Name: AnimatedAreaSkillBehaviour
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.AnimatedAreaSkillBehaviour
+  _animTrigger: SkillS
+  _preDelay: 0.2
+  _phases:
+  - {fileID: 11400000, guid: ed10303178710954191ad2fa01191066, type: 2}
+  - {fileID: 11400000, guid: ed10303178710954191ad2fa01191066, type: 2}
+  _phaseDelays:
+  - 0.5

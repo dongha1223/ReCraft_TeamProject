@@ -1,0 +1,134 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/InventoryUI.uss?fileID=7433441132597879392&amp;guid=0a735af89cd789342bcae8a27100ffc3&amp;type=3#InventoryUI"/>
+    <ui:VisualElement name="inventory-overlay" class="inv-overlay">
+        <ui:VisualElement name="inventory-panel" class="inv-panel">
+
+            <!-- ── 왼쪽: 시너지 ── -->
+            <ui:VisualElement name="inv-left" class="inv-left">
+                <ui:Label text="시너지" class="inv-section-title"/>
+                <ui:VisualElement class="inv-divider"/>
+
+                <ui:VisualElement name="synergy-slot-0" class="synergy-card">
+                    <ui:VisualElement name="synergy-icon-0" class="synergy-card-icon"/>
+                    <ui:Label name="synergy-cur-0" text="" class="synergy-card-cur"/>
+                    <ui:VisualElement class="synergy-card-info">
+                        <ui:Label name="synergy-name-0" text="" class="synergy-card-name"/>
+                        <ui:Label name="synergy-count-0" text="" class="synergy-card-count"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="synergy-slot-1" class="synergy-card">
+                    <ui:VisualElement name="synergy-icon-1" class="synergy-card-icon"/>
+                    <ui:Label name="synergy-cur-1" text="" class="synergy-card-cur"/>
+                    <ui:VisualElement class="synergy-card-info">
+                        <ui:Label name="synergy-name-1" text="" class="synergy-card-name"/>
+                        <ui:Label name="synergy-count-1" text="" class="synergy-card-count"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="synergy-slot-2" class="synergy-card">
+                    <ui:VisualElement name="synergy-icon-2" class="synergy-card-icon"/>
+                    <ui:Label name="synergy-cur-2" text="" class="synergy-card-cur"/>
+                    <ui:VisualElement class="synergy-card-info">
+                        <ui:Label name="synergy-name-2" text="" class="synergy-card-name"/>
+                        <ui:Label name="synergy-count-2" text="" class="synergy-card-count"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="synergy-slot-3" class="synergy-card">
+                    <ui:VisualElement name="synergy-icon-3" class="synergy-card-icon"/>
+                    <ui:Label name="synergy-cur-3" text="" class="synergy-card-cur"/>
+                    <ui:VisualElement class="synergy-card-info">
+                        <ui:Label name="synergy-name-3" text="" class="synergy-card-name"/>
+                        <ui:Label name="synergy-count-3" text="" class="synergy-card-count"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="synergy-slot-4" class="synergy-card">
+                    <ui:VisualElement name="synergy-icon-4" class="synergy-card-icon"/>
+                    <ui:Label name="synergy-cur-4" text="" class="synergy-card-cur"/>
+                    <ui:VisualElement class="synergy-card-info">
+                        <ui:Label name="synergy-name-4" text="" class="synergy-card-name"/>
+                        <ui:Label name="synergy-count-4" text="" class="synergy-card-count"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="synergy-slot-5" class="synergy-card">
+                    <ui:VisualElement name="synergy-icon-5" class="synergy-card-icon"/>
+                    <ui:Label name="synergy-cur-5" text="" class="synergy-card-cur"/>
+                    <ui:VisualElement class="synergy-card-info">
+                        <ui:Label name="synergy-name-5" text="" class="synergy-card-name"/>
+                        <ui:Label name="synergy-count-5" text="" class="synergy-card-count"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="inv-spacer"/>
+                <ui:Label text="캐릭터 정보" class="inv-char-info-placeholder"/>
+            </ui:VisualElement>
+
+            <!-- ── 가운데: 직업 / 정수 / 아이템 ── -->
+            <ui:VisualElement name="inv-center" class="inv-center">
+
+                <ui:Label text="직업" class="inv-section-title"/>
+                <ui:VisualElement class="inv-divider"/>
+                <ui:VisualElement name="job-slot" class="inv-job-slot"/>
+
+                <ui:Label text="정수" class="inv-section-title inv-section-title--gap"/>
+                <ui:VisualElement class="inv-divider"/>
+                <ui:VisualElement name="essence-slot" class="inv-essence-slot"/>
+
+                <ui:Label text="아이템" class="inv-section-title inv-section-title--gap"/>
+                <ui:VisualElement class="inv-divider"/>
+                <ui:VisualElement name="item-grid" class="inv-item-grid">
+                    <ui:VisualElement class="inv-item-row">
+                        <ui:VisualElement name="item-slot-0" class="inv-item-slot"/>
+                        <ui:VisualElement name="item-slot-1" class="inv-item-slot"/>
+                        <ui:VisualElement name="item-slot-2" class="inv-item-slot"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="inv-item-row">
+                        <ui:VisualElement name="item-slot-3" class="inv-item-slot"/>
+                        <ui:VisualElement name="item-slot-4" class="inv-item-slot"/>
+                        <ui:VisualElement name="item-slot-5" class="inv-item-slot"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="inv-item-row">
+                        <ui:VisualElement name="item-slot-6" class="inv-item-slot"/>
+                        <ui:VisualElement name="item-slot-7" class="inv-item-slot"/>
+                        <ui:VisualElement name="item-slot-8" class="inv-item-slot"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+
+            <!-- ── 오른쪽: 아이템 상세 ── -->
+            <ui:VisualElement name="inv-right" class="inv-right">
+
+                <ui:VisualElement name="detail-empty" class="detail-empty"/>
+
+                <ui:VisualElement name="detail-content" class="detail-content">
+                    <ui:VisualElement name="detail-icon-bg" class="detail-icon-bg">
+                        <ui:VisualElement name="detail-icon" class="detail-icon"/>
+                    </ui:VisualElement>
+                    <ui:Label name="detail-rarity" text="레어도" class="detail-rarity"/>
+                    <ui:Label name="detail-name" text="아이템 이름" class="detail-name"/>
+                    <ui:VisualElement class="detail-desc-bg">
+                        <ui:Label name="detail-description" text="" class="detail-description"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="detail-synergies" class="detail-synergies">
+                        <ui:VisualElement name="detail-synergy-0" class="detail-synergy-card">
+                            <ui:VisualElement name="detail-syn-icon-0" class="detail-syn-icon"/>
+                            <ui:VisualElement class="detail-syn-info">
+                                <ui:Label name="detail-syn-name-0" text="" class="detail-syn-name"/>
+                                <ui:Label name="detail-syn-count-0" text="" class="detail-syn-count"/>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="detail-synergy-1" class="detail-synergy-card">
+                            <ui:VisualElement name="detail-syn-icon-1" class="detail-syn-icon"/>
+                            <ui:VisualElement class="detail-syn-info">
+                                <ui:Label name="detail-syn-name-1" text="" class="detail-syn-name"/>
+                                <ui:Label name="detail-syn-count-1" text="" class="detail-syn-count"/>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:Label name="detail-more-btn" text="자세히" class="detail-more-btn"/>
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

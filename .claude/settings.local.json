@@ -18,7 +18,8 @@
       "mcp__UnityMCP__manage_asset",
       "mcp__UnityMCP__create_script",
       "Bash(find /c/ReCraft_TeamProject -name *.json -o -name *EditorBuildSettings*)",
-      "Bash(find C:ReCraft_TeamProjectAssetsPrefabs -type f -name *.prefab)"
+      "Bash(find C:ReCraft_TeamProjectAssetsPrefabs -type f -name *.prefab)",
+      "mcp__UnityMCP__manage_scriptable_object"
     ]
   }
 }
