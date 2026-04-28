@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.DialogueData
   _npcName: NPC
   _lines:
-  - "\uC5EC\uD589\uAC00\uB294\uAC70\uC57C? \uB098\uB3C4 \uAEF4\uC918!"
-  - "\uACA0\uB0D0? \u314B\u314B"
+  - "\uC548\uB155!\t"
+  - "\uBC25 \uBA39\uC744\uB798??"
+  _hasChoice: 1
+  _yesResponse: "\uC5EC\uAE30\uC788\uC5B4!\n"
+  _noResponse: "\uC774\uAC78 \uC548\uBA39\uC5B4 \u3160\u3160"

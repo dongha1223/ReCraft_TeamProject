@@ -703,7 +703,7 @@ RectTransform:
   - {fileID: 847716408}
   - {fileID: 912423098}
   - {fileID: 1617430667}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1540201796}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1253,6 +1253,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1604789526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1244613322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4306224007931707632, guid: 6344c98a4355e304bb4d8164094c082f, type: 3}
+  m_PrefabInstance: {fileID: 5410759214938201457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1244613328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244613322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a08a0ef8a2f2c458ed354e7b563b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.NPCHealEffect
+  _healAmount: 50
 --- !u!1 &1267994488 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7566245203521804597, guid: f5ea632431d023c44a06b4abd085def2, type: 3}
@@ -1514,6 +1532,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8536688657561273402, guid: e483922004626cb4498ec24aad9be462, type: 3}
+      propertyPath: _comboSteps.Array.data[0].damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536688657561273402, guid: e483922004626cb4498ec24aad9be462, type: 3}
       propertyPath: _comboSteps.Array.data[1].damage
       value: 10
       objectReference: {fileID: 0}
@@ -1603,7 +1625,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4004526320312041989, guid: e483922004626cb4498ec24aad9be462, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 618206516}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 9222165908665990148, guid: e483922004626cb4498ec24aad9be462, type: 3}
       insertIndex: 16
@@ -2443,6 +2468,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 700827265}
     m_Modifications:
+    - target: {fileID: 840075786014422604, guid: 6344c98a4355e304bb4d8164094c082f, type: 3}
+      propertyPath: _onYesChosen.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 840075786014422604, guid: 6344c98a4355e304bb4d8164094c082f, type: 3}
+      propertyPath: _onYesChosen.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 840075786014422604, guid: 6344c98a4355e304bb4d8164094c082f, type: 3}
+      propertyPath: _onYesChosen.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1244613328}
+    - target: {fileID: 840075786014422604, guid: 6344c98a4355e304bb4d8164094c082f, type: 3}
+      propertyPath: _onYesChosen.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 840075786014422604, guid: 6344c98a4355e304bb4d8164094c082f, type: 3}
+      propertyPath: _onYesChosen.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Execute
+      objectReference: {fileID: 0}
+    - target: {fileID: 840075786014422604, guid: 6344c98a4355e304bb4d8164094c082f, type: 3}
+      propertyPath: _onYesChosen.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: _2D_Roguelike.NPCHealEffect, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 840075786014422604, guid: 6344c98a4355e304bb4d8164094c082f, type: 3}
+      propertyPath: _onYesChosen.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1892697736429061214, guid: 6344c98a4355e304bb4d8164094c082f, type: 3}
       propertyPath: m_Name
       value: StageShopRoot
@@ -2490,7 +2543,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4306224007931707632, guid: 6344c98a4355e304bb4d8164094c082f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1244613328}
   m_SourcePrefab: {fileID: 100100000, guid: 6344c98a4355e304bb4d8164094c082f, type: 3}
 --- !u!1001 &5547528031574094044
 PrefabInstance:
@@ -2562,7 +2618,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1540201795}
-  - {fileID: 618206516}
   - {fileID: 1604789526}
   - {fileID: 745630757}
   - {fileID: 863882830}

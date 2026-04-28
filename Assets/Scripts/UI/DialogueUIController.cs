@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -36,10 +37,15 @@ namespace _2D_Roguelike
 
         private DialogueData _currentData;
         private int          _lineIndex;
-        private int          _selectedIndex;  // 0=대화, 1=취소
-        private bool         _isPanelVisible; // 패널 완전히 열린 후에만 키 입력 수락
-        private bool         _isTyping;       // 타이프라이터 진행 중
+        private int          _selectedIndex;    // 0=대화, 1=취소
+        private bool         _isPanelVisible;   // 패널 완전히 열린 후에만 키 입력 수락
+        private bool         _isTyping;         // 타이프라이터 진행 중
+        private bool         _showingResponse;  // 선택 후 반응 문구 표시 중
+        private string       _currentResponseText;
         private Coroutine    _typewriterCoroutine;
+
+        private Action _onYes;
+        private Action _onNo;
 
         // ── 생명주기 ─────────────────────────────────────────────
 
@@ -96,11 +102,15 @@ namespace _2D_Roguelike
 
         // ── 공개 API ─────────────────────────────────────────────
 
-        public void StartDialogue(DialogueData data)
+        public void StartDialogue(DialogueData data, Action onYes = null, Action onNo = null)
         {
             if (IsActive) return;
-            _currentData = data;
-            _lineIndex   = 0;
+            _currentData         = data;
+            _lineIndex           = 0;
+            _showingResponse     = false;
+            _currentResponseText = null;
+            _onYes               = onYes;
+            _onNo                = onNo;
             StartCoroutine(OpenSequence());
         }
 
@@ -113,29 +123,80 @@ namespace _2D_Roguelike
             // 타이핑 중이면 전체 텍스트 즉시 표시 (스킵)
             if (_isTyping) { SkipTypewriter(); return; }
 
+            // 반응 문구 표시 중 → 닫기
+            if (_showingResponse) { StartCoroutine(CloseSequence()); return; }
+
             _lineIndex++;
             if (_lineIndex >= _currentData.Lines.Length)
-                StartCoroutine(CloseSequence());
+            {
+                if (_currentData.HasChoice)
+                {
+                    _onYes?.Invoke();
+                    ShowResponse(_currentData.YesResponse);
+                }
+                else
+                {
+                    StartCoroutine(CloseSequence());
+                }
+            }
             else
+            {
                 ShowCurrentLine();
+            }
         }
 
         private void OnCancelClicked()
         {
             if (!_isPanelVisible) return;
-            StartCoroutine(CloseSequence());
+
+            if (_showingResponse)
+            {
+                if (_isTyping) { SkipTypewriter(); return; }
+                StartCoroutine(CloseSequence());
+                return;
+            }
+
+            if (_currentData.HasChoice)
+            {
+                if (_isTyping) { SkipTypewriter(); return; }
+                _onNo?.Invoke();
+                ShowResponse(_currentData.NoResponse);
+            }
+            else
+            {
+                StartCoroutine(CloseSequence());
+            }
         }
 
         // ── 내부 ─────────────────────────────────────────────────
 
         private void ShowCurrentLine()
         {
-            _npcNameLabel.text = _currentData.NpcName;
+            // 마지막 줄이 선택지 질문이면 버튼 레이블 변경
+            bool isChoiceLine = _currentData.HasChoice && _lineIndex == _currentData.Lines.Length - 1;
+            _btnContinue.text = isChoiceLine ? "예"    : "대화";
+            _btnCancel.text   = isChoiceLine ? "아니오" : "취소";
 
-            if (_typewriterCoroutine != null)
-                StopCoroutine(_typewriterCoroutine);
-
+            StopTypewriterIfRunning();
             _typewriterCoroutine = StartCoroutine(TypewriterCoroutine(_currentData.Lines[_lineIndex]));
+        }
+
+        private void ShowResponse(string text)
+        {
+            _showingResponse     = true;
+            _currentResponseText = text ?? "";
+            _btnContinue.text    = "대화";
+            _btnCancel.text      = "취소";
+
+            StopTypewriterIfRunning();
+            _typewriterCoroutine = StartCoroutine(TypewriterCoroutine(_currentResponseText));
+        }
+
+        private void StopTypewriterIfRunning()
+        {
+            if (_typewriterCoroutine == null) return;
+            StopCoroutine(_typewriterCoroutine);
+            _typewriterCoroutine = null;
         }
 
         private IEnumerator TypewriterCoroutine(string fullText)
@@ -166,12 +227,8 @@ namespace _2D_Roguelike
 
         private void SkipTypewriter()
         {
-            if (_typewriterCoroutine != null)
-            {
-                StopCoroutine(_typewriterCoroutine);
-                _typewriterCoroutine = null;
-            }
-            _dialogueText.text = _currentData.Lines[_lineIndex];
+            StopTypewriterIfRunning();
+            _dialogueText.text = _showingResponse ? _currentResponseText : _currentData.Lines[_lineIndex];
             _isTyping          = false;
         }
 
@@ -189,6 +246,7 @@ namespace _2D_Roguelike
             _cinematicBottom.AddToClassList("bar-open");
             yield return _waitBar;
 
+            _npcNameLabel.text = _currentData.NpcName;
             ShowCurrentLine();
             SetSelection(0); // 대화 버튼 기본 선택
             _dialoguePanel.AddToClassList("panel-visible");
@@ -208,8 +266,12 @@ namespace _2D_Roguelike
             _cinematicBottom.RemoveFromClassList("bar-open");
             yield return _waitBar;
 
-            IsActive     = false;
-            _currentData = null;
+            IsActive             = false;
+            _currentData         = null;
+            _onYes               = null;
+            _onNo                = null;
+            _showingResponse     = false;
+            _currentResponseText = null;
         }
     }
 }

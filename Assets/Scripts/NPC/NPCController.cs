@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace _2D_Roguelike
 {
@@ -11,6 +12,10 @@ namespace _2D_Roguelike
     {
         [SerializeField] private DialogueData _dialogueData;
         [SerializeField] private GameObject   _fKeyPrompt;
+
+        [Header("선택지 이벤트 (DialogueData.HasChoice 활성화 시 사용)")]
+        [SerializeField] private UnityEvent _onYesChosen;
+        [SerializeField] private UnityEvent _onNoChosen;
 
         public bool CanInteract => !DialogueUIController.IsActive;
 
@@ -33,7 +38,8 @@ namespace _2D_Roguelike
         {
             if (_dialogueData == null) return;
             _fKeyPrompt?.SetActive(false);
-            DialogueUIController.Instance?.StartDialogue(_dialogueData);
+            DialogueUIController.Instance?.StartDialogue(
+                _dialogueData, _onYesChosen.Invoke, _onNoChosen.Invoke);
         }
     }
 }
