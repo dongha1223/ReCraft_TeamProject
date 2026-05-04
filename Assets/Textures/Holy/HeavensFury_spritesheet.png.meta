@@ -1,43 +1,61 @@
 fileFormatVersion: 2
-guid: 832969b13c8ef5a4dac1ec034ff3083b
+guid: 3560dcec55d9a6a4f98e7ca31a59c0c8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8451040785994364204
-    second: ranger_idle_0
+      213: 1242735697722940052
+    second: HeavensFury_spritesheet_0
   - first:
-      213: 125882448125311956
-    second: ranger_idle_1
+      213: 8634043463700170510
+    second: HeavensFury_spritesheet_1
   - first:
-      213: -3416363271208147
-    second: ranger_idle_2
+      213: -1753075076689173663
+    second: HeavensFury_spritesheet_2
   - first:
-      213: -8391530797398999300
-    second: ranger_idle_3
+      213: 5201187845077482403
+    second: HeavensFury_spritesheet_3
   - first:
-      213: 1160660515470390352
-    second: ranger_idle_4
+      213: 7355553711237220943
+    second: HeavensFury_spritesheet_4
   - first:
-      213: -2937212730090100088
-    second: ranger_idle_5
+      213: -5930611091000583847
+    second: HeavensFury_spritesheet_5
   - first:
-      213: 4062561679628660003
-    second: ranger_idle_6
+      213: 394631480346703232
+    second: HeavensFury_spritesheet_6
   - first:
-      213: 6381879397259399404
-    second: ranger_idle_7
+      213: -833906880329238136
+    second: HeavensFury_spritesheet_7
   - first:
-      213: -7100861735829214290
-    second: ranger_idle_8
+      213: 7333948056882302991
+    second: HeavensFury_spritesheet_8
   - first:
-      213: 8157809060303132690
-    second: ranger_idle_9
+      213: -2400987455029667621
+    second: HeavensFury_spritesheet_9
   - first:
-      213: -7075961513607757374
-    second: ranger_idle_10
+      213: -5436759577513620380
+    second: HeavensFury_spritesheet_10
   - first:
-      213: -8172534613549005314
-    second: ranger_idle_11
+      213: -3232181132849641669
+    second: HeavensFury_spritesheet_11
+  - first:
+      213: -2784452433551910164
+    second: HeavensFury_spritesheet_12
+  - first:
+      213: -220620792101870879
+    second: HeavensFury_spritesheet_13
+  - first:
+      213: -4166675989295059983
+    second: HeavensFury_spritesheet_14
+  - first:
+      213: -524116850460292518
+    second: HeavensFury_spritesheet_15
+  - first:
+      213: 2972764216633559416
+    second: HeavensFury_spritesheet_16
+  - first:
+      213: 3989434436778156843
+    second: HeavensFury_spritesheet_17
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -105,7 +123,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -146,265 +164,243 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ranger_idle_0
+      name: HeavensFury_spritesheet_0
       rect:
         serializedVersion: 2
-        x: 117
-        y: 70
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4dac7704e2fd7ba80800000000000000
-      internalID: -8451040785994364204
+      spriteID: 49a197468851f3110800000000000000
+      internalID: 1242735697722940052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ranger_idle_1
+      name: HeavensFury_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 405
-        y: 70
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4db37fb6b693fb100800000000000000
-      internalID: 125882448125311956
+      spriteID: e07c12df8c842d770800000000000000
+      internalID: 8634043463700170510
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ranger_idle_2
+      name: HeavensFury_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 693
-        y: 70
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d23cbc0f5dcd3fff0800000000000000
-      internalID: -3416363271208147
+      spriteID: 163e9558183dba7e0800000000000000
+      internalID: -1753075076689173663
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ranger_idle_3
+      name: HeavensFury_spritesheet_3
       rect:
         serializedVersion: 2
-        x: 981
-        y: 70
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cfe3843333b4b8b80800000000000000
-      internalID: -8391530797398999300
+      spriteID: 3ab3cebb9c45e2840800000000000000
+      internalID: 5201187845077482403
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ranger_idle_4
+      name: HeavensFury_spritesheet_4
       rect:
         serializedVersion: 2
-        x: 1269
-        y: 70
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0543f61e69e7b1010800000000000000
-      internalID: 1160660515470390352
+      spriteID: f4ac994012d241660800000000000000
+      internalID: 7355553711237220943
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ranger_idle_5
+      name: HeavensFury_spritesheet_5
       rect:
         serializedVersion: 2
-        x: 1557
-        y: 70
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 88a6931859cec37d0800000000000000
-      internalID: -2937212730090100088
+      spriteID: 9591beb62ac32bda0800000000000000
+      internalID: -5930611091000583847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ranger_idle_6
+      name: HeavensFury_spritesheet_6
       rect:
         serializedVersion: 2
-        x: 1845
-        y: 70
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 32d6160c25e116830800000000000000
-      internalID: 4062561679628660003
+      spriteID: 08570439d330a7500800000000000000
+      internalID: 394631480346703232
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ranger_idle_7
+      name: HeavensFury_spritesheet_7
       rect:
         serializedVersion: 2
-        x: 2133
-        y: 70
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 1024
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ce0d709cf7df09850800000000000000
-      internalID: 6381879397259399404
+      spriteID: 889b83e4c1e5d64f0800000000000000
+      internalID: -833906880329238136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ranger_idle_8
+      name: HeavensFury_spritesheet_8
       rect:
         serializedVersion: 2
-        x: 2421
-        y: 70
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 1152
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eab6cbc8fdba47d90800000000000000
-      internalID: -7100861735829214290
+      spriteID: f00d2ab96ea67c560800000000000000
+      internalID: 7333948056882302991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ranger_idle_9
+      name: HeavensFury_spritesheet_9
       rect:
         serializedVersion: 2
-        x: 2709
-        y: 70
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 1280
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 218d4d05e1c563170800000000000000
-      internalID: 8157809060303132690
+      spriteID: bd899c071aafdaed0800000000000000
+      internalID: -2400987455029667621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ranger_idle_10
+      name: HeavensFury_spritesheet_10
       rect:
         serializedVersion: 2
-        x: 2997
-        y: 70
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 1408
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c103115e722dcd90800000000000000
-      internalID: -7075961513607757374
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ranger_idle_11
-      rect:
-        serializedVersion: 2
-        x: 3285
-        y: 70
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ef5c3d4a113559e80800000000000000
-      internalID: -8172534613549005314
+      spriteID: 46c091d28ffbc84b0800000000000000
+      internalID: -5436759577513620380
       vertices: []
       indices: 
       edges: []
@@ -413,7 +409,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9df168a5c246b6847a52a0acbf1bd8dd
+    spriteID: b9f5b5e22fa61534aa893aca130e41dd
     internalID: 0
     vertices: []
     indices: 
@@ -423,20 +419,19 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":117.0,"y":54.0},"gridSpritePadding":{"x":224.0,"y":26.0},"pivot":{"x":0.0,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":6,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      ranger_idle_0: -8451040785994364204
-      ranger_idle_1: 125882448125311956
-      ranger_idle_10: -7075961513607757374
-      ranger_idle_11: -8172534613549005314
-      ranger_idle_2: -3416363271208147
-      ranger_idle_3: -8391530797398999300
-      ranger_idle_4: 1160660515470390352
-      ranger_idle_5: -2937212730090100088
-      ranger_idle_6: 4062561679628660003
-      ranger_idle_7: 6381879397259399404
-      ranger_idle_8: -7100861735829214290
-      ranger_idle_9: 8157809060303132690
+      HeavensFury_spritesheet_0: 1242735697722940052
+      HeavensFury_spritesheet_1: 8634043463700170510
+      HeavensFury_spritesheet_10: -5436759577513620380
+      HeavensFury_spritesheet_2: -1753075076689173663
+      HeavensFury_spritesheet_3: 5201187845077482403
+      HeavensFury_spritesheet_4: 7355553711237220943
+      HeavensFury_spritesheet_5: -5930611091000583847
+      HeavensFury_spritesheet_6: 394631480346703232
+      HeavensFury_spritesheet_7: -833906880329238136
+      HeavensFury_spritesheet_8: 7333948056882302991
+      HeavensFury_spritesheet_9: -2400987455029667621
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

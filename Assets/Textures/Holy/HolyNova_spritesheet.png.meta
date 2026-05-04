@@ -1,0 +1,497 @@
+fileFormatVersion: 2
+guid: dd70a782fa960534f9a8cb17f7864e61
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -293437914244106510
+    second: HolyNova_spritesheet_0
+  - first:
+      213: -1380563034501967443
+    second: HolyNova_spritesheet_1
+  - first:
+      213: -7177793497215625297
+    second: HolyNova_spritesheet_2
+  - first:
+      213: -2548826826855212479
+    second: HolyNova_spritesheet_3
+  - first:
+      213: -5897785685371909056
+    second: HolyNova_spritesheet_4
+  - first:
+      213: -7190274406409247221
+    second: HolyNova_spritesheet_5
+  - first:
+      213: -1472120218851227769
+    second: HolyNova_spritesheet_6
+  - first:
+      213: -2450066866362299050
+    second: HolyNova_spritesheet_7
+  - first:
+      213: 9210844391137857161
+    second: HolyNova_spritesheet_8
+  - first:
+      213: -7672301598043554314
+    second: HolyNova_spritesheet_9
+  - first:
+      213: 3924568898360378220
+    second: HolyNova_spritesheet_10
+  - first:
+      213: -2969133551346471893
+    second: HolyNova_spritesheet_11
+  - first:
+      213: 3819722747460171760
+    second: HolyNova_spritesheet_12
+  - first:
+      213: 5855677295399415561
+    second: HolyNova_spritesheet_13
+  - first:
+      213: 8850037488068930199
+    second: HolyNova_spritesheet_14
+  - first:
+      213: -2522084294041232007
+    second: HolyNova_spritesheet_15
+  - first:
+      213: -1294583123130191869
+    second: HolyNova_spritesheet_16
+  - first:
+      213: -6018490138133638928
+    second: HolyNova_spritesheet_17
+  - first:
+      213: 2556969906032136792
+    second: HolyNova_spritesheet_18
+  - first:
+      213: 3253447893758634575
+    second: HolyNova_spritesheet_19
+  - first:
+      213: 3115457848106609338
+    second: HolyNova_spritesheet_20
+  - first:
+      213: -280281129668174810
+    second: HolyNova_spritesheet_21
+  - first:
+      213: -6817068770896330779
+    second: HolyNova_spritesheet_22
+  - first:
+      213: -6532000995148746346
+    second: HolyNova_spritesheet_23
+  - first:
+      213: 7035434111303767402
+    second: HolyNova_spritesheet_24
+  - first:
+      213: 1621472979704489336
+    second: HolyNova_spritesheet_25
+  - first:
+      213: -7383179765822561601
+    second: HolyNova_spritesheet_26
+  - first:
+      213: 5102234894647243808
+    second: HolyNova_spritesheet_27
+  - first:
+      213: 1467957129709120973
+    second: HolyNova_spritesheet_28
+  - first:
+      213: 5973052302550931331
+    second: HolyNova_spritesheet_29
+  - first:
+      213: 4742173493838993288
+    second: HolyNova_spritesheet_30
+  - first:
+      213: -1710683450700598429
+    second: HolyNova_spritesheet_31
+  - first:
+      213: 5303461492687980841
+    second: HolyNova_spritesheet_32
+  - first:
+      213: 7550653522242211419
+    second: HolyNova_spritesheet_33
+  - first:
+      213: -6814677278932014459
+    second: HolyNova_spritesheet_34
+  - first:
+      213: -4354503172198653240
+    second: HolyNova_spritesheet_35
+  - first:
+      213: 1614668543146271520
+    second: HolyNova_spritesheet_36
+  - first:
+      213: -9161922603541573665
+    second: HolyNova_spritesheet_37
+  - first:
+      213: -1895933474559571245
+    second: HolyNova_spritesheet_38
+  - first:
+      213: -5321387541604945560
+    second: HolyNova_spritesheet_39
+  - first:
+      213: 2265181315488920272
+    second: HolyNova_spritesheet_40
+  - first:
+      213: -1639510409768602057
+    second: HolyNova_spritesheet_41
+  - first:
+      213: 6023466964134905017
+    second: HolyNova_spritesheet_42
+  - first:
+      213: -9106095523295344559
+    second: HolyNova_spritesheet_43
+  - first:
+      213: -7053487915203297708
+    second: HolyNova_spritesheet_44
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HolyNova_spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aeadb64edf49ed45a0d34739de68360
+      internalID: -1650554214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyNova_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e27f56b0308dda14e9c96b761f3ea5cb
+      internalID: 1035073714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyNova_spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 402f2b8094ebc6a4b8ea62f69ca4f035
+      internalID: -227256324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyNova_spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81f5eda2d36d50c4181d6a3fe6ca55e3
+      internalID: 1918442000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyNova_spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae0340f9a56423e4d8045e75572db1ee
+      internalID: 1693661418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyNova_spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c31cf442e0db4c459a7f1504db5f701
+      internalID: -162233637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyNova_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 056092fe06e25e848b24ff5980dbf7c7
+      internalID: -1077303806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyNova_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f95bfb4049d7bd45adb1e6f6f85ad1e
+      internalID: -1637820720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyNova_spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 128
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fe1fa2c6bd13f543bcb93e0a4ce3cb5
+      internalID: 1073039580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HolyNova_spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 128
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e3a4f1a770ccf843b1f0647909e200e
+      internalID: -948688589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f9259638992275f40b68d1c2c167ca05
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      HolyNova_spritesheet_0: -1650554214
+      HolyNova_spritesheet_1: 1035073714
+      HolyNova_spritesheet_2: -227256324
+      HolyNova_spritesheet_3: 1918442000
+      HolyNova_spritesheet_4: 1693661418
+      HolyNova_spritesheet_5: -162233637
+      HolyNova_spritesheet_6: -1077303806
+      HolyNova_spritesheet_7: -1637820720
+      HolyNova_spritesheet_8: 1073039580
+      HolyNova_spritesheet_9: -948688589
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
