@@ -9,5 +9,11 @@ public class ProjectileStraight : ProjectileBase
         movementRigidBody2D.MoveTo((target.position - transform.position).normalized);
     }
 
+    public override void Setup(Vector3 targetPosition, HitInfo info)
+    {
+        base.Setup(targetPosition, info);
+        movementRigidBody2D.MoveTo((targetPosition - transform.position).normalized);
+    }
+
     public override void Process() { }
 }

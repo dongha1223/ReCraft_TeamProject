@@ -38,28 +38,30 @@ namespace _2D_Roguelike
             _canAttack   = false;
             _isAttacking = true;
 
-            // 전조 연출 시작
+            // 전조 연출 — transform 변경 없이 활성화만 (방향은 localScale.x 플립에 의해 자동 반영)
             _animator?.SetTrigger(AnimWindup);
             _windupIndicator?.SetActive(true);
 
-            // 전조 대기 — 빙결 시 일시정지, 해제 후 발사로 이어짐
+            // 전조 대기 — 빙결 시 일시정지
             yield return StartCoroutine(PauseableWait(_windupDuration));
 
-            // 전조 종료 → 투사체 발사
             _windupIndicator?.SetActive(false);
 
-            if (_projectilePrefab != null && _player != null)
+            // 바라보는 방향으로 수평 직선 발사
+            if (_projectilePrefab != null)
             {
+                Vector3 fireDir   = new Vector3(Mathf.Sign(transform.localScale.x), 0f, 0f);
+                Vector3 targetPos = _spawnPoint.position + fireDir * 100f;
+
                 var go = Instantiate(_projectilePrefab, _spawnPoint.position, Quaternion.identity);
-                go.GetComponent<ProjectileBase>()?.Setup(_player, new HitInfo
+                go.GetComponent<ProjectileBase>()?.Setup(targetPos, new HitInfo
                 {
                     Damage         = _attackDamage,
                     KnockbackForce = _knockbackForce
                 });
             }
 
-            // 쿨타임 잔여 대기 (windupDuration이 cooldown보다 길어지는 케이스 방지)
-            yield return new WaitForSeconds(Mathf.Max(0f, _attackCooldown - _windupDuration));  // 쿨타임
+            yield return new WaitForSeconds(Mathf.Max(0f, _attackCooldown - _windupDuration));
 
             _isAttacking = false;
             _canAttack   = true;

@@ -1,0 +1,704 @@
+fileFormatVersion: 2
+guid: e74744c27d63ee1489bc3fb88d7f2deb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 938131362888770086
+    second: ranger_jump_0
+  - first:
+      213: 8837118775582299149
+    second: ranger_jump_1
+  - first:
+      213: -5740525009622193116
+    second: ranger_jump_2
+  - first:
+      213: 6315324553112640955
+    second: ranger_jump_3
+  - first:
+      213: 6176518697994309527
+    second: ranger_jump_4
+  - first:
+      213: 5684677031354927778
+    second: ranger_jump_5
+  - first:
+      213: 4449821803736566581
+    second: ranger_jump_6
+  - first:
+      213: 476083720915201756
+    second: ranger_jump_7
+  - first:
+      213: -90511291707707954
+    second: ranger_jump_8
+  - first:
+      213: -379090694641218705
+    second: ranger_jump_9
+  - first:
+      213: -305308334335871992
+    second: ranger_jump_10
+  - first:
+      213: 9130052456952705865
+    second: ranger_jump_11
+  - first:
+      213: 2520431083655533239
+    second: ranger_jump_12
+  - first:
+      213: -4146614013030297950
+    second: ranger_jump_13
+  - first:
+      213: 6853581987943807826
+    second: ranger_jump_14
+  - first:
+      213: 4708422766793101470
+    second: ranger_jump_15
+  - first:
+      213: 3855916423609853201
+    second: ranger_jump_16
+  - first:
+      213: 8821626617438881315
+    second: ranger_jump_17
+  - first:
+      213: 1994215731818370866
+    second: ranger_jump_18
+  - first:
+      213: -4572493373272802914
+    second: ranger_jump_19
+  - first:
+      213: 1489497914495912801
+    second: ranger_jump_20
+  - first:
+      213: 7873569606071737543
+    second: ranger_jump_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ranger_jump_0
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62263ad0189e40d00800000000000000
+      internalID: 938131362888770086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_1
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d04948094b0c3aa70800000000000000
+      internalID: 8837118775582299149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_2
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42c29391bee8550b0800000000000000
+      internalID: -5740525009622193116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_3
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbdd495983a84a750800000000000000
+      internalID: 6315324553112640955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_4
+      rect:
+        serializedVersion: 2
+        x: 1258
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79f428ef70767b550800000000000000
+      internalID: 6176518697994309527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_5
+      rect:
+        serializedVersion: 2
+        x: 1546
+        y: 36
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aa8bbc24a704ee40800000000000000
+      internalID: 5684677031354927778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_6
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53b8185ba51f0cd30800000000000000
+      internalID: 4449821803736566581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_7
+      rect:
+        serializedVersion: 2
+        x: 2124
+        y: 36
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cde2f7c2f936b9600800000000000000
+      internalID: 476083720915201756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_8
+      rect:
+        serializedVersion: 2
+        x: 2413
+        y: 36
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecda991b5707ebef0800000000000000
+      internalID: -90511291707707954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_9
+      rect:
+        serializedVersion: 2
+        x: 2698
+        y: 36
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6b014095033dbaf0800000000000000
+      internalID: -379090694641218705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_10
+      rect:
+        serializedVersion: 2
+        x: 2989
+        y: 38
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 804b1f000b353cbf0800000000000000
+      internalID: -305308334335871992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_11
+      rect:
+        serializedVersion: 2
+        x: 3272
+        y: 40
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9433955265674be70800000000000000
+      internalID: 9130052456952705865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_12
+      rect:
+        serializedVersion: 2
+        x: 3566
+        y: 37
+        width: 64
+        height: 84
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b92fd231a0c333b438abec2a702cca9d
+      internalID: 2520431083655533239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_13
+      rect:
+        serializedVersion: 2
+        x: 3853
+        y: 38
+        width: 64
+        height: 82
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a96b0d3f4bcf8d44796c8b30c7333002
+      internalID: -4146614013030297950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_14
+      rect:
+        serializedVersion: 2
+        x: 4142
+        y: 39
+        width: 64
+        height: 83
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea4bc19372e11054b9a420e2d442c1f3
+      internalID: 6853581987943807826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_15
+      rect:
+        serializedVersion: 2
+        x: 4428
+        y: 39
+        width: 64
+        height: 84
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b71721ffe829cc4f87b3b65456c9436
+      internalID: 4708422766793101470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_16
+      rect:
+        serializedVersion: 2
+        x: 4718
+        y: 40
+        width: 64
+        height: 82
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f53e020e4f36d59479573ce8d9a547b5
+      internalID: 3855916423609853201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_17
+      rect:
+        serializedVersion: 2
+        x: 5005
+        y: 40
+        width: 64
+        height: 82
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7fe304722423b244aec31a4808a3d41
+      internalID: 8821626617438881315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_18
+      rect:
+        serializedVersion: 2
+        x: 5293
+        y: 39
+        width: 64
+        height: 71
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d49133898810ae04285dfc582a9206d6
+      internalID: 1994215731818370866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_19
+      rect:
+        serializedVersion: 2
+        x: 5586
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e04ab7a71631a65479cd964e34e8ca5a
+      internalID: -4572493373272802914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_20
+      rect:
+        serializedVersion: 2
+        x: 5878
+        y: 36
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c40de37bc156950418bc6009a91cc334
+      internalID: 1489497914495912801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jump_21
+      rect:
+        serializedVersion: 2
+        x: 6168
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10d68bf266d84e3448ad1f6235be6801
+      internalID: 7873569606071737543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 790295c4ea50baf4588f79a6682805b2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":117.0,"y":39.0},"gridSpritePadding":{"x":220.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":6,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      ranger_jump_0: 938131362888770086
+      ranger_jump_1: 8837118775582299149
+      ranger_jump_10: -305308334335871992
+      ranger_jump_11: 9130052456952705865
+      ranger_jump_12: 2520431083655533239
+      ranger_jump_13: -4146614013030297950
+      ranger_jump_14: 6853581987943807826
+      ranger_jump_15: 4708422766793101470
+      ranger_jump_16: 3855916423609853201
+      ranger_jump_17: 8821626617438881315
+      ranger_jump_18: 1994215731818370866
+      ranger_jump_19: -4572493373272802914
+      ranger_jump_2: -5740525009622193116
+      ranger_jump_20: 1489497914495912801
+      ranger_jump_21: 7873569606071737543
+      ranger_jump_3: 6315324553112640955
+      ranger_jump_4: 6176518697994309527
+      ranger_jump_5: 5684677031354927778
+      ranger_jump_6: 4449821803736566581
+      ranger_jump_7: 476083720915201756
+      ranger_jump_8: -90511291707707954
+      ranger_jump_9: -379090694641218705
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

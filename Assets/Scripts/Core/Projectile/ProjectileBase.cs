@@ -33,6 +33,12 @@ public abstract class ProjectileBase : MonoBehaviour
         _hitInfo = info;
     }
 
+    // 고정 월드 위치를 목표로 하는 오버로드 (전조 후 발사 등 위치 고정이 필요한 경우)
+    public virtual void Setup(Vector3 targetPosition, HitInfo info)
+    {
+        _hitInfo = info;
+    }
+
     private void Update()
     {
         if (_lifetime > 0f)
