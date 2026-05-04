@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ad4f278939a0d4ba275ee3522b3848, type: 3}
   m_Name: ShopGirl_Trans
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.DialogueData
-  _npcName: "\uC0C1\uC810 \uC544\uAC00\uC528"
+  _npcName: "상점 아가씨"
   _lines:
-  - ".....\uC544\uC9C1 \uC544\uBB34\uAC83\uB3C4 \uC5C6\uC5B4"
-  - .....
-  - ...
-  - "\uC5C6\uB2E4\uACE0..."
+  - "어서 오세요!"
+  - "기본 스펙을 강화해 드릴 수 있어요."
+  - "강화하고 싶으세요?"
+  _hasChoice: 1
+  _yesResponse: "좋아요! 원하는 항목을 선택해주세요."
+  _noResponse: "그래요... 또 오세요!"

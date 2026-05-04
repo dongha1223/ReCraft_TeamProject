@@ -1,0 +1,108 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="EnhanceUI.uss" />
+    <ui:VisualElement name="enhance-root">
+        <ui:VisualElement name="enhance-panel">
+            <ui:VisualElement name="enhance-main">
+                <ui:VisualElement name="enhance-left">
+                    <ui:VisualElement name="upgrade-grid">
+                        <!-- 용기 행 -->
+                        <ui:VisualElement name="row-courage" class="upgrade-row">
+                            <ui:VisualElement class="category-section">
+                                <ui:VisualElement class="category-icon" />
+                                <ui:Label class="category-label" text="용기" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="node-chain">
+                                <ui:VisualElement class="chain-connector" />
+                                <ui:VisualElement name="courage-node-0" class="upgrade-node">
+                                    <ui:Label class="node-level" text="0" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="chain-connector" />
+                                <ui:VisualElement name="courage-node-1" class="upgrade-node">
+                                    <ui:Label class="node-level" text="0" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="chain-connector" />
+                                <ui:VisualElement name="courage-node-2" class="upgrade-node">
+                                    <ui:Label class="node-level" text="0" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="chain-connector" />
+                                <ui:VisualElement name="courage-node-3" class="upgrade-node">
+                                    <ui:Label class="node-level" text="0" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="row-divider" />
+                        <!-- 강인함 행 -->
+                        <ui:VisualElement name="row-endurance" class="upgrade-row">
+                            <ui:VisualElement class="category-section">
+                                <ui:VisualElement class="category-icon" />
+                                <ui:Label class="category-label" text="강인함" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="node-chain">
+                                <ui:VisualElement class="chain-connector" />
+                                <ui:VisualElement name="endurance-node-0" class="upgrade-node">
+                                    <ui:Label class="node-level" text="0" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="chain-connector" />
+                                <ui:VisualElement name="endurance-node-1" class="upgrade-node">
+                                    <ui:Label class="node-level" text="0" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="chain-connector" />
+                                <ui:VisualElement name="endurance-node-2" class="upgrade-node">
+                                    <ui:Label class="node-level" text="0" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="chain-connector" />
+                                <ui:VisualElement name="endurance-node-3" class="upgrade-node">
+                                    <ui:Label class="node-level" text="0" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="row-divider" />
+                        <!-- 영혼 행 -->
+                        <ui:VisualElement name="row-soul" class="upgrade-row">
+                            <ui:VisualElement class="category-section">
+                                <ui:VisualElement class="category-icon" />
+                                <ui:Label class="category-label" text="영혼" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="node-chain">
+                                <ui:VisualElement class="chain-connector" />
+                                <ui:VisualElement name="soul-node-0" class="upgrade-node">
+                                    <ui:Label class="node-level" text="0" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="chain-connector" />
+                                <ui:VisualElement name="soul-node-1" class="upgrade-node">
+                                    <ui:Label class="node-level" text="0" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="chain-connector" />
+                                <ui:VisualElement name="soul-node-2" class="upgrade-node">
+                                    <ui:Label class="node-level" text="0" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="chain-connector" />
+                                <ui:VisualElement name="soul-node-3" class="upgrade-node">
+                                    <ui:Label class="node-level" text="0" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <!-- 강화 정보 패널 -->
+                    <ui:VisualElement name="upgrade-info">
+                        <ui:VisualElement name="info-header">
+                            <ui:Label name="info-name-label" text="강화 선택" />
+                            <ui:Label name="info-level-label" text="Lv. 0/0" />
+                        </ui:VisualElement>
+                        <ui:Label name="info-current-desc" text="강화할 항목을 선택하세요." />
+                        <ui:VisualElement name="info-next-row">
+                            <ui:VisualElement name="info-cost-icon" />
+                            <ui:Label name="info-cost-amount" text="0" />
+                            <ui:Label name="info-arrow" text="▶" />
+                            <ui:Label name="info-next-desc" text="" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <!-- NPC 초상화 -->
+                <ui:VisualElement name="portrait-panel">
+                    <ui:VisualElement name="portrait-image" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
