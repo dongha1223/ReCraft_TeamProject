@@ -16,6 +16,7 @@ namespace _2D_Roguelike
         private Animator          _animator;
         private EnemyBrainBase    _brain;
         private DamageFlash       _damageFlash;
+        private HitEffectSpawner  _hitEffectSpawner;
         private KnockbackReceiver _knockback;
         private StatusController  _statusController;
         private TagTokenBank      _tagTokenBank;
@@ -39,7 +40,8 @@ namespace _2D_Roguelike
         private void Start()
         {
             // 풀링 시 재사용되므로 Start에서 캐싱 (씬 로드 후 플레이어가 생성된 뒤)
-            _tagTokenBank = FindFirstObjectByType<TagTokenBank>();
+            _tagTokenBank     = FindFirstObjectByType<TagTokenBank>();
+            _hitEffectSpawner = HitEffectSpawner.Instance;
         }
 
         /// <summary>파라미터가 존재할 때만 SetTrigger — 없으면 조용히 무시</summary>
@@ -87,6 +89,7 @@ namespace _2D_Roguelike
             {
                 _damageFlash?.CallDamageFlash();
                 SafeSetTrigger(AnimHit);
+                _hitEffectSpawner?.Spawn(transform.position);
             }
         }
 
