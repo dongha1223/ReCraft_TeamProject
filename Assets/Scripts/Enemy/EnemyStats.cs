@@ -11,6 +11,10 @@ namespace _2D_Roguelike
         [Header("데미지 텍스트")]
         [SerializeField] private Transform _damageSpawnPos;  // 적 머리 위 빈 Transform (없으면 중심 + offset 사용)
 
+        [Header("피격 사운드")]
+        [SerializeField] private AudioClip[] _hitClips;
+        [SerializeField] private AudioClip[] _heavyHitClips; // 다중 적중 시 사용 (비워두면 hitClips로 대체)
+
         private float             _currentHp;
         private bool              _isDead;
         private Animator          _animator;
@@ -90,6 +94,8 @@ namespace _2D_Roguelike
                 _damageFlash?.CallDamageFlash();
                 SafeSetTrigger(AnimHit);
                 _hitEffectSpawner?.Spawn(transform.position);
+                HitSoundAggregator.Instance?.RegisterHit(
+                    info.AttackId, transform.position, _hitClips, _heavyHitClips);
             }
         }
 

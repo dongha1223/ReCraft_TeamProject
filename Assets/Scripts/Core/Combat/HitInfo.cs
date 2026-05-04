@@ -8,6 +8,12 @@ namespace _2D_Roguelike
     /// </summary>
     public struct HitInfo
     {
+        /// <summary>
+        /// 공격 1회를 식별하는 ID. AttackIdGenerator.Next()로 채운다.
+        /// 0이면 미설정 — HitSoundAggregator가 즉시 단독 재생한다.
+        /// </summary>
+        public int AttackId;
+
         /// <summary>입힐 데미지량</summary>
         public float Damage;
 

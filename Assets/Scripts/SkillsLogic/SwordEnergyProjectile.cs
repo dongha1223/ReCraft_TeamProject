@@ -18,6 +18,7 @@ namespace _2D_Roguelike
         private float                    _damage;
         private DamageType               _damageType;
         private StatusEffectSpec[]       _statusEffects;
+        private int                      _attackId;
         private bool                     _isReturning;
         private readonly HashSet<Collider2D> _hit = new HashSet<Collider2D>();
 
@@ -34,11 +35,12 @@ namespace _2D_Roguelike
         /// damage는 런타임 값, 속도/_maxDistance/_hitLayers는 Inspector(프리팹) 설정.
         /// </summary>
         public void Launch(Vector2 direction, float damage, StatusEffectSpec[] statusEffects = null,
-                           DamageType damageType = DamageType.Physical)
+                           DamageType damageType = DamageType.Physical, int attackId = 0)
         {
             _damage        = damage;
             _damageType    = damageType;
             _statusEffects = statusEffects;
+            _attackId      = attackId;
 
             // 진행 방향에 따라 오브젝트 전체 반전
             Vector3 scale = transform.localScale;
@@ -60,6 +62,7 @@ namespace _2D_Roguelike
             _hit.Add(col);
             damageable.TakeDamage(new HitInfo
             {
+                AttackId       = _attackId,
                 Damage         = _damage,
                 DamageType     = _damageType,
                 SourcePosition = transform.position,

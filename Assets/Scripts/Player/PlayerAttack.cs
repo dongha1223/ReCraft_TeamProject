@@ -8,12 +8,13 @@ namespace _2D_Roguelike
         [System.Serializable]
         private struct ComboStep
         {
-            public float    damage;
-            public Vector2  hitboxSize;
-            public Vector2  hitboxOffset;
-            public float    hitTiming;      // 모션 시작 후 히트박스 판정까지 대기 시간
-            public float    duration;       // 이 단계 전체 지속 시간 (다음 입력 윈도우 포함)
-            public float    impulseForce;   // 공격 시작 시 앞으로 가해지는 단발 힘
+            public float      damage;
+            public Vector2    hitboxSize;
+            public Vector2    hitboxOffset;
+            public float      hitTiming;      // 모션 시작 후 히트박스 판정까지 대기 시간
+            public float      duration;       // 이 단계 전체 지속 시간 (다음 입력 윈도우 포함)
+            public float      impulseForce;   // 공격 시작 시 앞으로 가해지는 단발 힘
+            public AudioClip  swingClip;      // 이 콤보 단계의 스윙 사운드
         }
 
         [Header("콤보 설정")]
@@ -32,6 +33,10 @@ namespace _2D_Roguelike
 
         [Header("기본 공격 고유 상태이상 (아이템 무관 고정 효과)")]
         [SerializeField] private StatusEffectSpec[] _innateStatusEffects;
+
+        [Header("사운드")]
+        [Range(0f, 0.2f)]
+        [SerializeField] private float _swingPitchVariance = 0.05f;
 
         [SerializeField] private LayerMask _enemyLayer;
 
@@ -99,6 +104,13 @@ namespace _2D_Roguelike
                 // ComboStage: 1=Attack, 2=Attack2, 3=Attack3
                 _animator?.SetInteger(AnimComboStage, _comboIndex + 1);
 
+                // 스윙 사운드
+                if (step.swingClip != null && SfxManager.Instance != null)
+                {
+                    float pitch = 1f + Random.Range(-_swingPitchVariance, _swingPitchVariance);
+                    SfxManager.Instance.PlayOneShot(step.swingClip, transform.position, 1f, pitch);
+                }
+
                 // 히트박스 판정 타이밍 대기
                 yield return new WaitForSeconds(step.hitTiming);
                 ApplyHitbox(step);
@@ -156,6 +168,8 @@ namespace _2D_Roguelike
                 _innateStatusEffects,
                 _onHitRegistry?.GetSpecsFor(OnHitTarget.BasicAttack));
 
+            int attackId = AttackIdGenerator.Next();
+
             Collider2D[] hits = Physics2D.OverlapBoxAll(center, step.hitboxSize, 0f, _enemyLayer);
             foreach (var hit in hits)
             {
@@ -164,6 +178,7 @@ namespace _2D_Roguelike
 
                 damageable.TakeDamage(new HitInfo
                 {
+                    AttackId       = attackId,
                     Damage         = finalDamage,
                     DamageType     = _formManager?.Current?.PrimaryDamageType ?? DamageType.Physical,
                     SourcePosition = transform.position,

@@ -19,6 +19,10 @@ namespace _2D_Roguelike
     [CreateAssetMenu(menuName = "Game/Skill Behaviour/Meteor", fileName = "MeteorSkillBehaviour")]
     public class MeteorSkillBehaviour : SkillBehaviour
     {
+        [Header("사운드")]
+        [SerializeField] private AudioClip _castClip;
+        [SerializeField] private AudioClip _impactClip;
+
         [Header("애니메이션")]
         [Tooltip("MageAnimator의 트리거 이름")]
         [SerializeField] private string _animTrigger = "SkillA";
@@ -56,6 +60,7 @@ namespace _2D_Roguelike
         // ── 실행 진입점 ───────────────────────────────────────────────
         public override IEnumerator Execute(SkillContext ctx)
         {
+            SfxManager.Instance?.PlayOneShot(_castClip, ctx.PlayerTransform.position);
             SafeAnimTrigger(ctx.Animator, _animTrigger);
 
             float dir = ctx.FacingDirection.x; // 1 or -1
@@ -106,6 +111,8 @@ namespace _2D_Roguelike
             // 착지: 메테오 오브젝트 제거
             if (meteorObj != null)
                 Destroy(meteorObj);
+
+            SfxManager.Instance?.PlayOneShot(_impactClip, landingPos);
 
             // 즉발 폭발 판정
             if (_explosionSpec != null)

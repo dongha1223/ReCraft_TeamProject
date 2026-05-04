@@ -1,0 +1,577 @@
+fileFormatVersion: 2
+guid: cc065989de68b554bb65b670cdcc6bc9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8967784432814007037
+    second: ranger_attack_03_0
+  - first:
+      213: 8366954951606772949
+    second: ranger_attack_03_1
+  - first:
+      213: 8672677360754573809
+    second: ranger_attack_03_2
+  - first:
+      213: 5599873413380761023
+    second: ranger_attack_03_3
+  - first:
+      213: 6104103953620960133
+    second: ranger_attack_03_4
+  - first:
+      213: 78054262441324099
+    second: ranger_attack_03_5
+  - first:
+      213: 7140084074720522930
+    second: ranger_attack_03_6
+  - first:
+      213: 2346818992162448577
+    second: ranger_attack_03_7
+  - first:
+      213: -769501561815038447
+    second: ranger_attack_03_8
+  - first:
+      213: -2838222304066426761
+    second: ranger_attack_03_9
+  - first:
+      213: 6548166471241185178
+    second: ranger_attack_03_10
+  - first:
+      213: 9029380938554629009
+    second: ranger_attack_03_11
+  - first:
+      213: 713005565826822092
+    second: ranger_attack_03_12
+  - first:
+      213: -5365079829051032844
+    second: ranger_attack_03_13
+  - first:
+      213: 4112474299075945017
+    second: ranger_attack_03_14
+  - first:
+      213: -1413019814281239945
+    second: ranger_attack_03_15
+  - first:
+      213: 8931988212304057816
+    second: ranger_attack_03_16
+  - first:
+      213: 2828639644210757076
+    second: ranger_attack_03_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ranger_attack_03_0
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30dd7db52970c8380800000000000000
+      internalID: -8967784432814007037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_1
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d4a73ec2356d1470800000000000000
+      internalID: 8366954951606772949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_2
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f1495b1c1a8b5870800000000000000
+      internalID: 8672677360754573809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_3
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb5e6b7333fb6bd40800000000000000
+      internalID: 5599873413380761023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_4
+      rect:
+        serializedVersion: 2
+        x: 1249
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58382a3743226b450800000000000000
+      internalID: 6104103953620960133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_5
+      rect:
+        serializedVersion: 2
+        x: 1539
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34e250a20fd451100800000000000000
+      internalID: 78054262441324099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_6
+      rect:
+        serializedVersion: 2
+        x: 1837
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b2f32cd2aca61360800000000000000
+      internalID: 7140084074720522930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_7
+      rect:
+        serializedVersion: 2
+        x: 2120
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c4abfb7073919020800000000000000
+      internalID: 2346818992162448577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_8
+      rect:
+        serializedVersion: 2
+        x: 2407
+        y: 35
+        width: 74
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11608e1186e2255f0800000000000000
+      internalID: -769501561815038447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_9
+      rect:
+        serializedVersion: 2
+        x: 2694
+        y: 35
+        width: 181
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 778a78c1adb9c98d0800000000000000
+      internalID: -2838222304066426761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_10
+      rect:
+        serializedVersion: 2
+        x: 2976
+        y: 35
+        width: 188
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a97347046b2cfda50800000000000000
+      internalID: 6548166471241185178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_11
+      rect:
+        serializedVersion: 2
+        x: 3256
+        y: 35
+        width: 197
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19b5b38bf1ece4d70800000000000000
+      internalID: 9029380938554629009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_12
+      rect:
+        serializedVersion: 2
+        x: 3543
+        y: 36
+        width: 197
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccfebf1d8ca15e900800000000000000
+      internalID: 713005565826822092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_13
+      rect:
+        serializedVersion: 2
+        x: 3830
+        y: 34
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fabcc522586b85b0800000000000000
+      internalID: -5365079829051032844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_14
+      rect:
+        serializedVersion: 2
+        x: 4126
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93268501691721930800000000000000
+      internalID: 4112474299075945017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_15
+      rect:
+        serializedVersion: 2
+        x: 4429
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 772ad2527f1f36ce0800000000000000
+      internalID: -1413019814281239945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_attack_03_16
+      rect:
+        serializedVersion: 2
+        x: 4717
+        y: 35
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d51c5494fbc4fb70800000000000000
+      internalID: 8931988212304057816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 12970a61e0562e744add0da0758cbeba
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":109.0,"y":39.0},"gridSpritePadding":{"x":224.0,"y":73.0},"pivot":{"x":0.0,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":6,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      ranger_attack_03_0: -8967784432814007037
+      ranger_attack_03_1: 8366954951606772949
+      ranger_attack_03_10: 6548166471241185178
+      ranger_attack_03_11: 9029380938554629009
+      ranger_attack_03_12: 713005565826822092
+      ranger_attack_03_13: -5365079829051032844
+      ranger_attack_03_14: 4112474299075945017
+      ranger_attack_03_15: -1413019814281239945
+      ranger_attack_03_16: 8931988212304057816
+      ranger_attack_03_2: 8672677360754573809
+      ranger_attack_03_3: 5599873413380761023
+      ranger_attack_03_4: 6104103953620960133
+      ranger_attack_03_5: 78054262441324099
+      ranger_attack_03_6: 7140084074720522930
+      ranger_attack_03_7: 2346818992162448577
+      ranger_attack_03_8: -769501561815038447
+      ranger_attack_03_9: -2838222304066426761
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

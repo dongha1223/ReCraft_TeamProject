@@ -29,6 +29,9 @@ namespace _2D_Roguelike
         [Header("이펙트")]
         [SerializeField] private GameObject _dashEFXPrefab;
 
+        [Header("사운드")]
+        [SerializeField] private AudioClip _dashClip;
+
         private Rigidbody2D          _rb;
         private Animator             _animator;
         private PlayerController     _playerController;
@@ -101,6 +104,8 @@ namespace _2D_Roguelike
 
             _isDashing      = true;
             ghost.makeGhost = true;
+
+            SfxManager.Instance?.PlayOneShot(_dashClip, transform.position);
 
             // 대시 시작 위치에 이펙트 스폰 (방향 반영)
             if (_dashEFXPrefab != null)
