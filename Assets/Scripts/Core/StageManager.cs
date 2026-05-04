@@ -47,10 +47,14 @@ namespace _2D_Roguelike
         private FormSkillController  _formSkillController;
         private PlayerDash           _playerDash;
         private Rigidbody2D          _playerRb;
+        private PlayerStatController _playerStatController;
+        private TagTokenBank         _tagTokenBank;
         private SignpostController[] _signpostCache; // 인덱스 = 스테이지 인덱스
 
         // GetAliveEnemyTransforms 재사용 버퍼
         private readonly List<Transform> _aliveEnemyBuffer = new List<Transform>();
+
+        private static readonly WaitForSeconds _waitOneSecond = new(1f);
 
         // ── 생명주기 ─────────────────────────────────────────────────────
         private void Awake()
@@ -71,10 +75,12 @@ namespace _2D_Roguelike
         private void CachePlayerComponents()
         {
             if (_playerTransform == null) return;
-            _playerStats         = _playerTransform.GetComponent<PlayerStats>();
-            _formSkillController = _playerTransform.GetComponent<FormSkillController>();
-            _playerDash          = _playerTransform.GetComponent<PlayerDash>();
-            _playerRb            = _playerTransform.GetComponent<Rigidbody2D>();
+            _playerStats          = _playerTransform.GetComponent<PlayerStats>();
+            _formSkillController  = _playerTransform.GetComponent<FormSkillController>();
+            _playerDash           = _playerTransform.GetComponent<PlayerDash>();
+            _playerRb             = _playerTransform.GetComponent<Rigidbody2D>();
+            _playerStatController = _playerTransform.GetComponent<PlayerStatController>();
+            _tagTokenBank         = _playerTransform.GetComponent<TagTokenBank>();
         }
 
         private void CacheSignposts()
@@ -132,52 +138,48 @@ namespace _2D_Roguelike
         // ── 내부 코루틴 ───────────────────────────────────────────────────
         private IEnumerator DoTransition(int nextIndex)
         {
-            if (FadeManager.Instance != null)
-                yield return StartCoroutine(FadeManager.Instance.FadeOut());
+            var fm = FadeManager.Instance;
+            if (fm != null) yield return StartCoroutine(fm.FadeOut());
 
             _stages[CurrentStage].root.SetActive(false);
             ActivateStage(nextIndex);
 
-            if (FadeManager.Instance != null)
-                yield return StartCoroutine(FadeManager.Instance.FadeIn());
+            if (fm != null) yield return StartCoroutine(fm.FadeIn());
         }
 
         private IEnumerator DoRestart()
         {
-            if (FadeManager.Instance != null)
-                yield return StartCoroutine(FadeManager.Instance.FadeOut());
+            var fm = FadeManager.Instance;
+            if (fm != null) yield return StartCoroutine(fm.FadeOut());
 
             ResetPlayer();
-
             _stages[CurrentStage].root.SetActive(false);
             ActivateStage(0);
 
-            if (FadeManager.Instance != null)
-                yield return StartCoroutine(FadeManager.Instance.FadeIn());
+            if (fm != null) yield return StartCoroutine(fm.FadeIn());
         }
 
         private IEnumerator DoGameClear()
         {
-            if (FadeManager.Instance != null)
-                yield return StartCoroutine(FadeManager.Instance.FadeOut());
-            FadeManager.Instance?.ShowGameClear(true);
-            if (FadeManager.Instance != null)
-                yield return StartCoroutine(FadeManager.Instance.FadeIn());
+            var fm = FadeManager.Instance;
+            if (fm != null) yield return StartCoroutine(fm.FadeOut());
+            fm?.ShowGameClear(true);
+            if (fm != null) yield return StartCoroutine(fm.FadeIn());
 
             for (int i = 10; i >= 0; i--)
             {
-                FadeManager.Instance.SetCountdown(i);
-                yield return new WaitForSeconds(1f);
+                fm.SetCountdown(i);
+                yield return _waitOneSecond;
             }
 
-            yield return StartCoroutine(FadeManager.Instance.FadeOut());
-            FadeManager.Instance.ShowGameClear(false);
+            yield return StartCoroutine(fm.FadeOut());
+            fm.ShowGameClear(false);
 
             ResetPlayer();
             _stages[CurrentStage].root.SetActive(false);
             ActivateStage(0);
 
-            yield return StartCoroutine(FadeManager.Instance.FadeIn());
+            yield return StartCoroutine(fm.FadeIn());
         }
 
         // ── 핵심 스테이지 활성화 ──────────────────────────────────────────
@@ -216,6 +218,9 @@ namespace _2D_Roguelike
             _playerStats?.FullRestore();
             _formSkillController?.ResetSkills();
             _playerDash?.ResetDash();
+            _playerStatController?.EquipmentService.Clear();
+            _playerStatController?.InventoryService.Clear();
+            _tagTokenBank?.ConsumeAll();
         }
 
         private void MovePlayerToSpawn(int stageIndex)

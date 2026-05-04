@@ -32,6 +32,10 @@ namespace _2D_Roguelike
         private Label         _dialogueText;
         private Button        _btnContinue;
         private Button        _btnCancel;
+        private Label         _beliefCountLabel;
+        private VisualElement _beliefPanel;
+
+        private TagTokenBank _tagTokenBank;
 
         [SerializeField] private float _typewriterSpeed = 40f; // 초당 출력 문자 수
 
@@ -67,8 +71,13 @@ namespace _2D_Roguelike
             _btnContinue   = root.Q<Button>("btn-continue");
             _btnCancel     = root.Q<Button>("btn-cancel");
 
+            _beliefPanel      = root.Q<VisualElement>("belief-panel");
+            _beliefCountLabel = root.Q<Label>("belief-count");
+
             _btnContinue.clicked += OnContinueClicked;
             _btnCancel.clicked   += OnCancelClicked;
+
+            _tagTokenBank = FindFirstObjectByType<TagTokenBank>();
         }
 
         private void Update()
@@ -95,12 +104,19 @@ namespace _2D_Roguelike
                 return;
             }
 
-            // ESC → 취소
-            if (kb.escapeKey.wasPressedThisFrame)
+            // ESC → 취소 (강화 UI가 열려있으면 EnhanceUIController가 ESC를 처리)
+            if (kb.escapeKey.wasPressedThisFrame && !EnhanceUIController.IsOpen)
                 OnCancelClicked();
         }
 
         // ── 공개 API ─────────────────────────────────────────────
+
+        public void ShowBeliefPanel(bool visible)
+        {
+            if (_beliefPanel == null) return;
+            _beliefPanel.EnableInClassList("belief-visible", visible);
+            if (visible) UpdateBeliefLabel();
+        }
 
         public void StartDialogue(DialogueData data, Action onYes = null, Action onNo = null)
         {
@@ -148,17 +164,12 @@ namespace _2D_Roguelike
         private void OnCancelClicked()
         {
             if (!_isPanelVisible) return;
+            if (_isTyping) { SkipTypewriter(); return; }
 
-            if (_showingResponse)
-            {
-                if (_isTyping) { SkipTypewriter(); return; }
-                StartCoroutine(CloseSequence());
-                return;
-            }
+            if (_showingResponse) { StartCoroutine(CloseSequence()); return; }
 
             if (_currentData.HasChoice)
             {
-                if (_isTyping) { SkipTypewriter(); return; }
                 _onNo?.Invoke();
                 ShowResponse(_currentData.NoResponse);
             }
@@ -181,8 +192,30 @@ namespace _2D_Roguelike
             _typewriterCoroutine = StartCoroutine(TypewriterCoroutine(_currentData.Lines[_lineIndex]));
         }
 
+        /// <summary>강화 UI 등 외부 UI가 즉시 대화를 닫을 때 사용. 애니메이션 없이 즉시 초기화.</summary>
+        public void ForceClose()
+        {
+            if (!IsActive) return;
+            StopAllCoroutines();
+            _isPanelVisible = false;
+            _cinematicTop.RemoveFromClassList("bar-open");
+            _cinematicBottom.RemoveFromClassList("bar-open");
+            _dialoguePanel.RemoveFromClassList("panel-visible");
+            _btnContinue.RemoveFromClassList("btn-selected");
+            _btnCancel.RemoveFromClassList("btn-selected");
+            ShowBeliefPanel(false);
+            if (_tagTokenBank != null) _tagTokenBank.OnGaugeChanged -= OnBeliefGaugeChanged;
+            IsActive             = false;
+            _currentData         = null;
+            _onYes               = null;
+            _onNo                = null;
+            _showingResponse     = false;
+            _currentResponseText = null;
+        }
+
         private void ShowResponse(string text)
         {
+            if (!IsActive) return;
             _showingResponse     = true;
             _currentResponseText = text ?? "";
             _btnContinue.text    = "대화";
@@ -246,6 +279,9 @@ namespace _2D_Roguelike
             _cinematicBottom.AddToClassList("bar-open");
             yield return _waitBar;
 
+            UpdateBeliefLabel();
+            if (_tagTokenBank != null) _tagTokenBank.OnGaugeChanged += OnBeliefGaugeChanged;
+
             _npcNameLabel.text = _currentData.NpcName;
             ShowCurrentLine();
             SetSelection(0); // 대화 버튼 기본 선택
@@ -257,21 +293,31 @@ namespace _2D_Roguelike
         {
             _isPanelVisible = false;
             _dialoguePanel.RemoveFromClassList("panel-visible");
-            // 버튼 선택 상태 초기화
             _btnContinue.RemoveFromClassList("btn-selected");
             _btnCancel.RemoveFromClassList("btn-selected");
+            ShowBeliefPanel(false);
+            EnhanceUIController.Instance?.FadeOutWithDialogue();
             yield return _waitPanel;
 
             _cinematicTop.RemoveFromClassList("bar-open");
             _cinematicBottom.RemoveFromClassList("bar-open");
             yield return _waitBar;
 
+            if (_tagTokenBank != null) _tagTokenBank.OnGaugeChanged -= OnBeliefGaugeChanged;
             IsActive             = false;
             _currentData         = null;
             _onYes               = null;
             _onNo                = null;
             _showingResponse     = false;
             _currentResponseText = null;
+        }
+
+        private void OnBeliefGaugeChanged(float _) => UpdateBeliefLabel();
+
+        private void UpdateBeliefLabel()
+        {
+            if (_beliefCountLabel != null)
+                _beliefCountLabel.text = (_tagTokenBank?.FilledCount ?? 0).ToString();
         }
     }
 }

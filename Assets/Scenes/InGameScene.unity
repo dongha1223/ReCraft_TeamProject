@@ -1501,6 +1501,7 @@ Transform:
   - {fileID: 1037812949}
   - {fileID: 2000997184}
   - {fileID: 1597286722}
+  - {fileID: 1155885110}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &907365823 stripped
@@ -1691,6 +1692,76 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1604789526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1155885109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1155885110}
+  - component: {fileID: 1155885112}
+  - component: {fileID: 1155885111}
+  m_Layer: 0
+  m_Name: EnhanceUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1155885110
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155885109}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 863882830}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1155885111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155885109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3374ca0e1ab2b574a8f0cd6a9bc36cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EnhanceUIController
+  _uiDocument: {fileID: 1155885112}
+  _portraitSprite: {fileID: 0}
+--- !u!114 &1155885112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155885109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: 2f8c9a1572d681b448746e941ab13820, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 6c33bf6e54faa0f42b8573d4892768be, type: 3}
+  m_SortingOrder: 50
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
 --- !u!1 &1190635552 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4702112818437778567, guid: 536979e21582597469052e5aaf3afe63, type: 3}
@@ -3531,6 +3602,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 700827265}
     m_Modifications:
+    - target: {fileID: 4149717307296341996, guid: 181e0d313f3496046b7b66659ca1a7b7, type: 3}
+      propertyPath: _onYesChosen.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149717307296341996, guid: 181e0d313f3496046b7b66659ca1a7b7, type: 3}
+      propertyPath: _onYesChosen.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149717307296341996, guid: 181e0d313f3496046b7b66659ca1a7b7, type: 3}
+      propertyPath: _onYesChosen.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1155885111}
+    - target: {fileID: 4149717307296341996, guid: 181e0d313f3496046b7b66659ca1a7b7, type: 3}
+      propertyPath: _onYesChosen.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149717307296341996, guid: 181e0d313f3496046b7b66659ca1a7b7, type: 3}
+      propertyPath: _onYesChosen.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149717307296341996, guid: 181e0d313f3496046b7b66659ca1a7b7, type: 3}
+      propertyPath: _onYesChosen.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: _2D_Roguelike.EnhanceUIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149717307296341996, guid: 181e0d313f3496046b7b66659ca1a7b7, type: 3}
+      propertyPath: _onYesChosen.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4491644059559834463, guid: 181e0d313f3496046b7b66659ca1a7b7, type: 3}
       propertyPath: m_Name
       value: Stage1Root
