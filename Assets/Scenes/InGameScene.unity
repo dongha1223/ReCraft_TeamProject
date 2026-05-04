@@ -1487,11 +1487,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 536386245572279983, guid: 659359e64d2bb86409639945e8a6b280, type: 3}
       propertyPath: m_Offset.x
-      value: 0
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 536386245572279983, guid: 659359e64d2bb86409639945e8a6b280, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 536386245572279983, guid: 659359e64d2bb86409639945e8a6b280, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -1644,19 +1644,19 @@ MonoBehaviour:
     - type: 0
       paramName: Attack1
     waits: []
-    recoveryTime: 1
+    recoveryTime: 6
   - patternName: Attack2
     steps:
     - type: 0
       paramName: Attack2
     waits: []
-    recoveryTime: 1
+    recoveryTime: 6
   - patternName: Attack3
     steps:
     - type: 0
       paramName: Attack3
     waits: []
-    recoveryTime: 1
+    recoveryTime: 6
   - patternName: DashJump
     steps:
     - type: 1
@@ -1666,16 +1666,21 @@ MonoBehaviour:
     - type: 0
       paramName: JumpAttack
     waits:
-    - 1
-    recoveryTime: 1
+    - 0.5
+    - 0
+    recoveryTime: 5
   - patternName: BlockMelee
     steps:
     - type: 0
       paramName: Block
     - type: 1
       paramName: IsMelee
-    waits: []
-    recoveryTime: 1
+    - type: 2
+      paramName: IsMelee
+    waits:
+    - 1
+    - 1
+    recoveryTime: 5
 --- !u!1 &1155885109
 GameObject:
   m_ObjectHideFlags: 0
