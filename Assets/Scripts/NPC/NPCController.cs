@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,10 +18,16 @@ namespace _2D_Roguelike
         [SerializeField] private UnityEvent _onYesChosen;
         [SerializeField] private UnityEvent _onNoChosen;
 
-        public bool CanInteract => !DialogueUIController.IsActive;
+        public bool CanInteract => !UIState.IsBlockingInput;
+
+        private Action _yesAction;
+        private Action _noAction;
 
         private void Awake()
         {
+            _yesAction = _onYesChosen.Invoke;
+            _noAction  = _onNoChosen.Invoke;
+
             // Inspector에서 미할당 시 자식 오브젝트에서 자동 탐색
             if (_fKeyPrompt == null)
             {
@@ -39,7 +46,7 @@ namespace _2D_Roguelike
             if (_dialogueData == null) return;
             _fKeyPrompt?.SetActive(false);
             DialogueUIController.Instance?.StartDialogue(
-                _dialogueData, _onYesChosen.Invoke, _onNoChosen.Invoke);
+                _dialogueData, _yesAction, _noAction);
         }
     }
 }
