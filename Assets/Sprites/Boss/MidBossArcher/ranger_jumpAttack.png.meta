@@ -1,0 +1,395 @@
+fileFormatVersion: 2
+guid: 3b99cd721caac974d96bd433ef04d064
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -260459518483018285
+    second: ranger_jumpAttack_0
+  - first:
+      213: -1685886464996533815
+    second: ranger_jumpAttack_1
+  - first:
+      213: 1338508432229228280
+    second: ranger_jumpAttack_2
+  - first:
+      213: -3345598931697395396
+    second: ranger_jumpAttack_3
+  - first:
+      213: 7357983380274582047
+    second: ranger_jumpAttack_4
+  - first:
+      213: -1678635260274576191
+    second: ranger_jumpAttack_5
+  - first:
+      213: 1508723762932464895
+    second: ranger_jumpAttack_6
+  - first:
+      213: -2619795101588785
+    second: ranger_jumpAttack_7
+  - first:
+      213: -6081264447536802259
+    second: ranger_jumpAttack_8
+  - first:
+      213: -4099233702826542581
+    second: ranger_jumpAttack_9
+  - first:
+      213: 2923977067174563713
+    second: ranger_jumpAttack_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ranger_jumpAttack_0
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 49
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dd437aa279a26cf0800000000000000
+      internalID: -260459518483018285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jumpAttack_1
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 49
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c91e3a31378a98e0800000000000000
+      internalID: -1685886464996533815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jumpAttack_2
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 49
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fe53efc356539210800000000000000
+      internalID: 1338508432229228280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jumpAttack_3
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 49
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3910435f7b0291d0800000000000000
+      internalID: -3345598931697395396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jumpAttack_4
+      rect:
+        serializedVersion: 2
+        x: 1265
+        y: 49
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f129e7c66eecc1660800000000000000
+      internalID: 7357983380274582047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jumpAttack_5
+      rect:
+        serializedVersion: 2
+        x: 1553
+        y: 49
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c473e3ef1a44b8e0800000000000000
+      internalID: -1678635260274576191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jumpAttack_6
+      rect:
+        serializedVersion: 2
+        x: 1841
+        y: 49
+        width: 70
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffcb7c1d44010f410800000000000000
+      internalID: 1508723762932464895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jumpAttack_7
+      rect:
+        serializedVersion: 2
+        x: 2134
+        y: 49
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc2e59b6f41b6fff0800000000000000
+      internalID: -2619795101588785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jumpAttack_8
+      rect:
+        serializedVersion: 2
+        x: 2419
+        y: 49
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d265b5374320b9ba0800000000000000
+      internalID: -6081264447536802259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_jumpAttack_9
+      rect:
+        serializedVersion: 2
+        x: 2708
+        y: 48
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0af6bb7aa89c17c0800000000000000
+      internalID: -4099233702826542581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 295e16338fcc71f489967971afd858e7
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":123.0,"y":18.0},"gridSpritePadding":{"x":220.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":6,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      ranger_jumpAttack_0: -260459518483018285
+      ranger_jumpAttack_1: -1685886464996533815
+      ranger_jumpAttack_2: 1338508432229228280
+      ranger_jumpAttack_3: -3345598931697395396
+      ranger_jumpAttack_4: 7357983380274582047
+      ranger_jumpAttack_5: -1678635260274576191
+      ranger_jumpAttack_6: 1508723762932464895
+      ranger_jumpAttack_7: -2619795101588785
+      ranger_jumpAttack_8: -6081264447536802259
+      ranger_jumpAttack_9: -4099233702826542581
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

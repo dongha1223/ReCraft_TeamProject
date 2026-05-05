@@ -11,6 +11,9 @@ namespace _2D_Roguelike
     [CreateAssetMenu(menuName = "Game/Skill Behaviour/Sword Energy", fileName = "SwordEnergySkillBehaviour")]
     public class SwordEnergySkillBehaviour : SkillBehaviour
     {
+        [Header("사운드")]
+        [SerializeField] private AudioClip _castClip;
+
         [Header("검기 발산")]
         [Tooltip("상·하현달 수직 오프셋 (두 발의 Y 간격 절반)")]
         [SerializeField] private float _verticalOffset = 0.25f;
@@ -20,6 +23,8 @@ namespace _2D_Roguelike
 
         public override IEnumerator Execute(SkillContext ctx)
         {
+            SfxManager.Instance?.PlayOneShot(_castClip, ctx.PlayerTransform.position);
+
             bool    facingLeft  = ctx.PlayerTransform.localScale.x < 0f;
             Vector2 dir         = facingLeft ? Vector2.left : Vector2.right;
 
@@ -27,14 +32,15 @@ namespace _2D_Roguelike
                 _innateEffects,
                 ctx.OnHitRegistry?.GetSpecsFor(OnHitTarget.Skill1));
 
-            SpawnCrescent(ctx, dir,  _verticalOffset, statusSpecs);
-            SpawnCrescent(ctx, dir, -_verticalOffset, statusSpecs);
+            int attackId = AttackIdGenerator.Next();
+            SpawnCrescent(ctx, dir,  _verticalOffset, statusSpecs, attackId);
+            SpawnCrescent(ctx, dir, -_verticalOffset, statusSpecs, attackId);
 
             yield break;
         }
 
         private static void SpawnCrescent(SkillContext ctx, Vector2 dir, float yOffset,
-                                          StatusEffectSpec[] statusEffects)
+                                          StatusEffectSpec[] statusEffects, int attackId)
         {
             if (SkillObjectPool.Instance == null)
             {
@@ -50,7 +56,7 @@ namespace _2D_Roguelike
             var p = SkillObjectPool.Instance.GetProjectile(pos);
             if (p == null) return;
 
-            p.Launch(dir, finalDamage, statusEffects, ctx.Definition.DamageType);
+            p.Launch(dir, finalDamage, statusEffects, ctx.Definition.DamageType, attackId);
         }
 
         private static StatusEffectSpec[] MergeSpecs(StatusEffectSpec[] innate, StatusEffectSpec[] fromRegistry)

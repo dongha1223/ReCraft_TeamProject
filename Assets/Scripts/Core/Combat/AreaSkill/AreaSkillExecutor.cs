@@ -44,6 +44,7 @@ namespace _2D_Roguelike
                 spec.ObstacleLayer);
 
             float typeMultiplier = GetTypeMultiplier(spec.DamageType);
+            int   attackId       = AttackIdGenerator.Next();
 
             foreach (var target in targets)
             {
@@ -56,12 +57,13 @@ namespace _2D_Roguelike
 
                 target.TakeDamage(new HitInfo
                 {
-                    Damage             = damage,
-                    DamageType         = spec.DamageType,
-                    SourcePosition     = origin,      // KnockbackReceiver가 방향 자동 계산
-                    KnockbackForce     = spec.KnockbackForce,
+                    AttackId            = attackId,
+                    Damage              = damage,
+                    DamageType          = spec.DamageType,
+                    SourcePosition      = origin,
+                    KnockbackForce      = spec.KnockbackForce,
                     IgnoreInvincibility = false,
-                    StatusEffects      = spec.StatusEffects,
+                    StatusEffects       = spec.StatusEffects,
                 });
             }
         }

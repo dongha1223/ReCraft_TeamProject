@@ -1,0 +1,626 @@
+fileFormatVersion: 2
+guid: 58907da6e28fff244aec1a658b0d7980
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6687349979088320271
+    second: ranger_die_0
+  - first:
+      213: 5032890921779362892
+    second: ranger_die_1
+  - first:
+      213: 1754863056275493443
+    second: ranger_die_2
+  - first:
+      213: 7438953019234511050
+    second: ranger_die_3
+  - first:
+      213: -6471503654603709245
+    second: ranger_die_4
+  - first:
+      213: 9211378263185558669
+    second: ranger_die_5
+  - first:
+      213: 3325997706047081190
+    second: ranger_die_6
+  - first:
+      213: 6172773130976237200
+    second: ranger_die_7
+  - first:
+      213: -8209907662937554551
+    second: ranger_die_8
+  - first:
+      213: 7330498874369084029
+    second: ranger_die_9
+  - first:
+      213: 8605955148263004274
+    second: ranger_die_10
+  - first:
+      213: -7388615344651126426
+    second: ranger_die_11
+  - first:
+      213: -3166673250268125793
+    second: ranger_die_12
+  - first:
+      213: -441401948621433456
+    second: ranger_die_13
+  - first:
+      213: -6667281743612075338
+    second: ranger_die_14
+  - first:
+      213: -6901497549965150482
+    second: ranger_die_15
+  - first:
+      213: -8481490643491880150
+    second: ranger_die_16
+  - first:
+      213: 8441931220242932225
+    second: ranger_die_17
+  - first:
+      213: -6387697728137417153
+    second: ranger_die_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ranger_die_0
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f889b700a2c133a0800000000000000
+      internalID: -6687349979088320271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_1
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4c72f1c0ab68d540800000000000000
+      internalID: 5032890921779362892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_2
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 342d1cae6a68a5810800000000000000
+      internalID: 1754863056275493443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_3
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac8ea449b587c3760800000000000000
+      internalID: 7438953019234511050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_4
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c424b0b6b99036a0800000000000000
+      internalID: -6471503654603709245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_5
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8c0ee4f9b365df70800000000000000
+      internalID: 9211378263185558669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_6
+      rect:
+        serializedVersion: 2
+        x: 1856
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ea43b0ba41582e20800000000000000
+      internalID: 3325997706047081190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_7
+      rect:
+        serializedVersion: 2
+        x: 2144
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0961ae635781aa550800000000000000
+      internalID: 6172773130976237200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_8
+      rect:
+        serializedVersion: 2
+        x: 2432
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98189df7a7c801e80800000000000000
+      internalID: -8209907662937554551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_9
+      rect:
+        serializedVersion: 2
+        x: 2720
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7a8b2933e92bb560800000000000000
+      internalID: 7330498874369084029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_10
+      rect:
+        serializedVersion: 2
+        x: 3008
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 278192d6c9e7e6770800000000000000
+      internalID: 8605955148263004274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_11
+      rect:
+        serializedVersion: 2
+        x: 3296
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 669b1189d7d567990800000000000000
+      internalID: -7388615344651126426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_12
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f956906e477bd04d0800000000000000
+      internalID: -3166673250268125793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_13
+      rect:
+        serializedVersion: 2
+        x: 3872
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09511413443dfd9f0800000000000000
+      internalID: -441401948621433456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_14
+      rect:
+        serializedVersion: 2
+        x: 4160
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b22e86349e0973a0800000000000000
+      internalID: -6667281743612075338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_15
+      rect:
+        serializedVersion: 2
+        x: 4448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee639144b84f830a0800000000000000
+      internalID: -6901497549965150482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_16
+      rect:
+        serializedVersion: 2
+        x: 4736
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a230ed45231bb4a80800000000000000
+      internalID: -8481490643491880150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_17
+      rect:
+        serializedVersion: 2
+        x: 5024
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1022cd0b7b3c72570800000000000000
+      internalID: 8441931220242932225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranger_die_18
+      rect:
+        serializedVersion: 2
+        x: 5312
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3eaccd72c65a57a0800000000000000
+      internalID: -6387697728137417153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 299c6ea09617be14f860614a28d3b87c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":128.0,"y":39.0},"gridSpritePadding":{"x":224.0,"y":73.0},"pivot":{"x":0.0,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":6,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      ranger_die_0: -6687349979088320271
+      ranger_die_1: 5032890921779362892
+      ranger_die_10: 8605955148263004274
+      ranger_die_11: -7388615344651126426
+      ranger_die_12: -3166673250268125793
+      ranger_die_13: -441401948621433456
+      ranger_die_14: -6667281743612075338
+      ranger_die_15: -6901497549965150482
+      ranger_die_16: -8481490643491880150
+      ranger_die_17: 8441931220242932225
+      ranger_die_18: -6387697728137417153
+      ranger_die_2: 1754863056275493443
+      ranger_die_3: 7438953019234511050
+      ranger_die_4: -6471503654603709245
+      ranger_die_5: 9211378263185558669
+      ranger_die_6: 3325997706047081190
+      ranger_die_7: 6172773130976237200
+      ranger_die_8: -8209907662937554551
+      ranger_die_9: 7330498874369084029
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

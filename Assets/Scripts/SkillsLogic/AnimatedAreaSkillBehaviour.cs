@@ -14,6 +14,9 @@ namespace _2D_Roguelike
     [CreateAssetMenu(menuName = "Game/Skill Behaviour/Animated Area", fileName = "AnimatedAreaSkillBehaviour")]
     public class AnimatedAreaSkillBehaviour : SkillBehaviour
     {
+        [Header("사운드")]
+        [SerializeField] private AudioClip _castClip;
+
         [Header("애니메이션")]
         [Tooltip("Animator 트리거 이름. 파라미터가 없으면 무시됨.")]
         [SerializeField] private string _animTrigger = "SkillS";
@@ -29,6 +32,8 @@ namespace _2D_Roguelike
         // ── 실행 진입점 ───────────────────────────────────────────────
         public override IEnumerator Execute(SkillContext ctx)
         {
+            SfxManager.Instance?.PlayOneShot(_castClip, ctx.PlayerTransform.position);
+
             // 1. 애니메이션 트리거
             SafeAnimTrigger(ctx.Animator, _animTrigger);
 

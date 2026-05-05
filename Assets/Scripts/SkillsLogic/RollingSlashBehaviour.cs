@@ -12,6 +12,9 @@ namespace _2D_Roguelike
     [CreateAssetMenu(menuName = "Game/Skill Behaviour/Rolling Slash", fileName = "RollingSlashBehaviour")]
     public class RollingSlashBehaviour : SkillBehaviour
     {
+        [Header("사운드")]
+        [SerializeField] private AudioClip _castClip;
+
         [Header("롤링 슬래쉬")]
         [Tooltip("1회 구르기당 전진 거리")]
         [SerializeField] private float    _rollDistance   = 1.1f;
@@ -33,6 +36,7 @@ namespace _2D_Roguelike
             float moveSpeed   = _rollDistance / _rollTime;
 
             SafeAnimTrigger(ctx.Animator, AnimRollingSlash);
+            SfxManager.Instance?.PlayOneShot(_castClip, ctx.PlayerTransform.position);
 
             var alreadyHit = new HashSet<Collider2D>();
 
@@ -102,6 +106,7 @@ namespace _2D_Roguelike
 
             var hitInfo = new HitInfo
             {
+                AttackId       = AttackIdGenerator.Next(),
                 Damage         = finalDamage,
                 DamageType     = ctx.Definition.DamageType,
                 SourcePosition = ctx.PlayerTransform.position,

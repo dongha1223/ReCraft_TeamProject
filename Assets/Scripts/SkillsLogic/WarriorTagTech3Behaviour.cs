@@ -24,6 +24,9 @@ namespace _2D_Roguelike
                      fileName = "WarriorTagTech3Behaviour")]
     public class WarriorTagTech3Behaviour : TagTechniqueBehaviour
     {
+        [Header("사운드")]
+        [SerializeField] private AudioClip _activationClip;
+
         [Header("슬래시 이펙트 프리팹 (slash0 → slash3 순서로 연결)")]
         [SerializeField] private GameObject[] _slashPrefabs;
 
@@ -47,6 +50,8 @@ namespace _2D_Roguelike
 
         public override IEnumerator Execute(TagTechniqueContext ctx)
         {
+            SfxManager.Instance?.PlayOneShot(_activationClip, ctx.PlayerTransform.position);
+
             var stageManager = StageManager.Instance;
             if (stageManager == null) yield break;
 
