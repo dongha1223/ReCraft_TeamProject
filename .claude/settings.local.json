@@ -27,7 +27,13 @@
       "Bash(grep -E \"\\\\.\\(uxml|uss\\)$\")",
       "Bash(Select-String -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scenes\\\\InGameScene.unity\" -Pattern \"EnhanceUI|EnhanceUIController|_uiDocument|_onYesChosen\" -Context 2)",
       "Bash(Select-Object -First 60)",
-      "mcp__UnityMCP__find_in_file"
+      "mcp__UnityMCP__find_in_file",
+      "Bash(Get-ChildItem -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\" -Recurse -Name)",
+      "Bash(Head -50)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Core\" -File -Recurse | Where-Object {$_.Extension -eq '.cs'} | Select-Object -ExpandProperty FullName | ForEach-Object { $_.Replace\\('C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\', ''\\) })",
+      "Bash(Get-ChildItem -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\UI\" -Recurse -Filter \"*nhance*\" -o -Filter \"*pgrade*\" -o -Filter \"*einforce*\" -o -Filter \"*trengthen*\")",
+      "Bash(Select-Object FullName)",
+      "Bash(Get-ChildItem *)"
     ]
   }
 }
