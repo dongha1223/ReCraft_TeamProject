@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.AreaSkillSpec
   ShapeType: 1
   Radius: 0
-  BoxSize: {x: 2, y: 1}
+  BoxSize: {x: 2, y: 2}
   BoxRotation: 0
   ConeAngle: 90
   BaseDamage: 20
-  DamageType: 0
+  DamageType: 1
   KnockbackForce: 5
   UseDistanceFalloff: 0
   FalloffInnerMultiplier: 1.5
