@@ -13,10 +13,21 @@ namespace _2D_Roguelike
         [SerializeField, TextArea(2, 4)] private string _yesResponse;
         [SerializeField, TextArea(2, 4)] private string _noResponse;
 
+        [Header("줄별 버튼 텍스트 오버라이드 (비워두면 기본값 사용)")]
+        [SerializeField] private string[] _confirmLabels;
+        [SerializeField] private string[] _cancelLabels;
+
         public string   NpcName     => _npcName;
         public string[] Lines       => _lines;
         public bool     HasChoice   => _hasChoice;
         public string   YesResponse => _yesResponse;
         public string   NoResponse  => _noResponse;
+
+        public string GetConfirmLabel(int lineIndex) => GetLabel(_confirmLabels, lineIndex);
+        public string GetCancelLabel(int lineIndex)  => GetLabel(_cancelLabels,  lineIndex);
+
+        private static string GetLabel(string[] labels, int lineIndex) =>
+            (labels != null && lineIndex < labels.Length && !string.IsNullOrEmpty(labels[lineIndex]))
+            ? labels[lineIndex] : null;
     }
 }

@@ -23,6 +23,34 @@
     pointer-events: auto;
 }
 
+/* ── 초기화 버튼 ─────────────────────────────────────────────── */
+#btn-reset {
+    position: absolute;
+    top: -34px;
+    right: 0;
+    width: 72px;
+    height: 28px;
+    background-color: rgba(80, 20, 20, 0.92);
+    border-color: rgb(160, 60, 60);
+    border-width: 1px;
+    border-radius: 4px;
+    color: rgb(230, 150, 150);
+    font-size: 13px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    padding: 0;
+}
+
+#btn-reset:hover {
+    background-color: rgba(120, 30, 30, 0.95);
+    border-color: rgb(210, 80, 80);
+    color: rgb(255, 190, 190);
+}
+
+#btn-reset:active {
+    background-color: rgba(160, 40, 40, 0.95);
+}
+
 /* ── 컨텐츠 영역 (그리드 + 초상화) ──────────────────────────── */
 #enhance-main {
     flex-direction: row;

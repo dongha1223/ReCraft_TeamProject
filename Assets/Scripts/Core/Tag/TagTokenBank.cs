@@ -23,8 +23,8 @@ namespace _2D_Roguelike
         [Tooltip("적 처치 시 획득하는 게이지량. 100 = 토큰 1개 완충.")]
         [SerializeField] private float _gainPerKill = 50f;
 
-        private const float GaugePerToken = 100f;
-        private const float MaxGauge      = 300f;
+        public const float GaugePerToken = 100f;
+        public const float MaxGauge      = 300f;
 
         private float _totalGauge;
 
@@ -74,7 +74,9 @@ namespace _2D_Roguelike
         /// <summary>게이지 획득. 적 처치, 대시 회피 등에서 호출.</summary>
         public void Gain(float amount)
         {
-            _totalGauge = Mathf.Clamp(_totalGauge + amount, 0f, MaxGauge);
+            float newGauge = Mathf.Clamp(_totalGauge + amount, 0f, MaxGauge);
+            if (Mathf.Approximately(newGauge, _totalGauge)) return;
+            _totalGauge = newGauge;
             OnGaugeChanged?.Invoke(_totalGauge);
         }
 

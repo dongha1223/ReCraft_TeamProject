@@ -2,6 +2,7 @@
     <Style src="EnhanceUI.uss" />
     <ui:VisualElement name="enhance-root">
         <ui:VisualElement name="enhance-panel">
+            <ui:Button name="btn-reset" text="초기화" />
             <ui:VisualElement name="enhance-main">
                 <ui:VisualElement name="enhance-left">
                     <ui:VisualElement name="upgrade-grid">

@@ -8,12 +8,17 @@ namespace _2D_Roguelike
     {
         private PlayerStats             _playerStats;
         private FormSkillController     _formSkillController;
+        private TagTokenBank            _tagTokenBank;
 
         private VisualElement _hpBarFill;
         private Label         _hpLabel;
         private VisualElement _skillACooldown;
         private VisualElement _skillSCooldown;
         private Label         _enemyCountLabel;
+        private VisualElement _tokenBarFill;
+        private Label         _tokenCountLabel;
+
+        private static readonly int _maxFilledCount = (int)(TagTokenBank.MaxGauge / TagTokenBank.GaugePerToken);
 
         private void Start()
         {
@@ -22,6 +27,7 @@ namespace _2D_Roguelike
             {
                 _playerStats         = playerGO.GetComponent<PlayerStats>();
                 _formSkillController = playerGO.GetComponent<FormSkillController>();
+                _tagTokenBank        = playerGO.GetComponent<TagTokenBank>();
             }
 
             var root = GetComponent<UIDocument>().rootVisualElement;
@@ -30,6 +36,20 @@ namespace _2D_Roguelike
             _skillACooldown  = root.Q<VisualElement>("skill-a-cooldown");
             _skillSCooldown  = root.Q<VisualElement>("skill-s-cooldown");
             _enemyCountLabel = root.Q<Label>("enemy-count");
+            _tokenBarFill    = root.Q<VisualElement>("token-bar-fill");
+            _tokenCountLabel = root.Q<Label>("token-count-label");
+
+            if (_tagTokenBank != null)
+            {
+                _tagTokenBank.OnGaugeChanged += OnTokenGaugeChanged;
+                OnTokenGaugeChanged(_tagTokenBank.TotalGauge);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (_tagTokenBank != null)
+                _tagTokenBank.OnGaugeChanged -= OnTokenGaugeChanged;
         }
 
         private void Update()
@@ -56,6 +76,20 @@ namespace _2D_Roguelike
                 int max = Mathf.CeilToInt(_playerStats.MaxHp);
                 _hpLabel.text = $"{cur} / {max}";
             }
+        }
+
+        // ── 토큰 게이지 갱신 ─────────────────────────────────────────
+        private void OnTokenGaugeChanged(float totalGauge)
+        {
+            if (_tokenBarFill == null || _tokenCountLabel == null) return;
+
+            int   filled  = _tagTokenBank.FilledCount;
+            float partial = filled >= _maxFilledCount
+                ? 0f
+                : (totalGauge % TagTokenBank.GaugePerToken) / TagTokenBank.GaugePerToken;
+
+            _tokenBarFill.style.width = Length.Percent(partial * 100f);
+            _tokenCountLabel.text     = $"({filled}/{_maxFilledCount})";
         }
 
         // ── 몬스터 카운터 갱신 ────────────────────────────────────────
