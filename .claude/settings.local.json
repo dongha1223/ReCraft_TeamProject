@@ -33,7 +33,9 @@
       "PowerShell(Get-ChildItem -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Core\" -File -Recurse | Where-Object {$_.Extension -eq '.cs'} | Select-Object -ExpandProperty FullName | ForEach-Object { $_.Replace\\('C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\', ''\\) })",
       "Bash(Get-ChildItem -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\UI\" -Recurse -Filter \"*nhance*\" -o -Filter \"*pgrade*\" -o -Filter \"*einforce*\" -o -Filter \"*trengthen*\")",
       "Bash(Select-Object FullName)",
-      "Bash(Get-ChildItem *)"
+      "Bash(Get-ChildItem *)",
+      "mcp__UnityMCP__validate_script",
+      "mcp__UnityMCP__manage_texture"
     ]
   }
 }
