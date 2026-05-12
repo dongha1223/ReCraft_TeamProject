@@ -17,6 +17,12 @@ namespace _2D_Roguelike
         [Header("이펙트")]
         [SerializeField] private GameObject _jumpEFXPrefab;
 
+        [Header("점프 사운드")]
+        [SerializeField] private AudioClip _jumpClip;
+        [SerializeField] private AudioClip _doubleJumpClip;
+        [Range(0f, 1f)]
+        [SerializeField] private float _jumpVolume = 1f;
+
         [Header("발 감지")]
         [SerializeField] private Vector2 _feetOffset  = new Vector2(0f, -0.32f);
         [SerializeField] private float _feetWidth     = 0.40f;
@@ -146,6 +152,9 @@ namespace _2D_Roguelike
                 // 2단 점프 시점에 이펙트 스폰
                 if (_jumpCount == 1 && _jumpEFXPrefab != null)
                     Instantiate(_jumpEFXPrefab, transform.position, Quaternion.identity);
+
+                AudioClip clip = _jumpCount == 1 ? (_doubleJumpClip != null ? _doubleJumpClip : _jumpClip) : _jumpClip;
+                SfxManager.Instance?.PlayOneShot(clip, transform.position, _jumpVolume);
 
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
                 _jumpCount++;

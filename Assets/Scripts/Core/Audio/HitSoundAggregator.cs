@@ -21,6 +21,10 @@ namespace _2D_Roguelike
         [Tooltip("이 수 이상 적중 시 heavyClips를 우선 사용한다.")]
         [SerializeField] private int _heavyHitThreshold = 3;
 
+        [Range(0f, 1f)]
+        [Tooltip("타격음 볼륨 (0~1).")]
+        [SerializeField] private float _hitVolume = 1f;
+
         [Range(0f, 0.2f)]
         [Tooltip("재생 시 pitch 랜덤 범위 (±값). 0이면 pitch 고정.")]
         [SerializeField] private float _pitchVariance = 0.05f;
@@ -111,7 +115,7 @@ namespace _2D_Roguelike
         {
             if (clip == null) return;
             float pitch = 1f + Random.Range(-_pitchVariance, _pitchVariance);
-            SfxManager.Instance.PlayOneShot(clip, pos, 1f, pitch);
+            SfxManager.Instance.PlayOneShot(clip, pos, _hitVolume, pitch);
         }
 
         private static AudioClip PickRandom(AudioClip[] clips)

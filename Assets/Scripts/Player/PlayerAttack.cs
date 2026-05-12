@@ -34,8 +34,13 @@ namespace _2D_Roguelike
         [SerializeField] private StatusEffectSpec[] _innateStatusEffects;
 
         [Header("사운드")]
+        [Range(0f, 1f)]
+        [SerializeField] private float _swingVolume = 1f;
         [Range(0f, 0.2f)]
         [SerializeField] private float _swingPitchVariance = 0.05f;
+
+        [Header("공격 이펙트")]
+        [SerializeField] private GameObject _attackEffectPrefab;
 
         [SerializeField] private LayerMask _enemyLayer;
 
@@ -107,7 +112,7 @@ namespace _2D_Roguelike
                 if (step.swingClip != null && SfxManager.Instance != null)
                 {
                     float pitch = 1f + Random.Range(-_swingPitchVariance, _swingPitchVariance);
-                    SfxManager.Instance.PlayOneShot(step.swingClip, transform.position, 1f, pitch);
+                    SfxManager.Instance.PlayOneShot(step.swingClip, transform.position, _swingVolume, pitch);
                 }
 
                 // 히트박스 판정 타이밍 대기
@@ -157,6 +162,17 @@ namespace _2D_Roguelike
                 _onHitRegistry?.GetSpecsFor(OnHitTarget.BasicAttack));
 
             int attackId = AttackIdGenerator.Next();
+
+            if (_attackEffectPrefab != null)
+            {
+                var fx = Instantiate(_attackEffectPrefab, center, Quaternion.identity);
+                if (dir < 0f)
+                {
+                    Vector3 s = fx.transform.localScale;
+                    s.x = -Mathf.Abs(s.x);
+                    fx.transform.localScale = s;
+                }
+            }
 
             Collider2D[] hits = Physics2D.OverlapBoxAll(center, step.hitboxSize, 0f, _enemyLayer);
             foreach (var hit in hits)
