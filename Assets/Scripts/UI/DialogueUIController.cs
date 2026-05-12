@@ -34,8 +34,7 @@ namespace _2D_Roguelike
         private Button        _btnCancel;
         private Label         _beliefCountLabel;
         private VisualElement _beliefPanel;
-
-        private TagTokenBank _tagTokenBank;
+        private IPanel        _panel;
 
         [SerializeField] private float _typewriterSpeed = 40f; // 초당 출력 문자 수
 
@@ -73,16 +72,40 @@ namespace _2D_Roguelike
 
             _beliefPanel      = root.Q<VisualElement>("belief-panel");
             _beliefCountLabel = root.Q<Label>("belief-count");
-
-            _btnContinue.clicked += OnContinueClicked;
-            _btnCancel.clicked   += OnCancelClicked;
-
-            _tagTokenBank = FindFirstObjectByType<TagTokenBank>();
+            _panel            = root.panel;
         }
 
         private void Update()
         {
             if (!_isPanelVisible) return;
+
+            // 마우스 클릭/호버 처리 (UIToolkit 이벤트 우회, Input System 직접 폴링)
+            var mouse = Mouse.current;
+            if (mouse != null)
+            {
+                var screenPos = mouse.position.ReadValue();
+                var flipped   = new Vector2(screenPos.x, Screen.height - screenPos.y);
+                var uiPos     = RuntimePanelUtils.ScreenToPanel(_panel, flipped);
+
+                bool overContinue = _btnContinue.worldBound.Contains(uiPos);
+                bool overCancel   = _btnCancel.worldBound.Contains(uiPos);
+
+                if      (overContinue) SetSelection(0);
+                else if (overCancel)   SetSelection(1);
+
+                if (mouse.leftButton.wasPressedThisFrame)
+                {
+                    if (overContinue)
+                    {
+                        if (EnhanceUIController.IsOpen) EnhanceUIController.Instance?.TryConfirmUpgrade();
+                        else                            OnContinueClicked();
+                    }
+                    else if (overCancel)
+                    {
+                        OnCancelClicked();
+                    }
+                }
+            }
 
             var kb = Keyboard.current;
             if (kb == null) return;
@@ -99,8 +122,16 @@ namespace _2D_Roguelike
                         || KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Interact);
             if (confirm)
             {
-                if (_selectedIndex == 0) OnContinueClicked();
-                else                     OnCancelClicked();
+                if (EnhanceUIController.IsOpen)
+                {
+                    if (_selectedIndex == 0) EnhanceUIController.Instance?.TryConfirmUpgrade();
+                    else                     OnCancelClicked();
+                }
+                else
+                {
+                    if (_selectedIndex == 0) OnContinueClicked();
+                    else                     OnCancelClicked();
+                }
                 return;
             }
 
@@ -111,11 +142,37 @@ namespace _2D_Roguelike
 
         // ── 공개 API ─────────────────────────────────────────────
 
+        public void SetActionLabels(string confirm, string cancel)
+        {
+            if (_btnContinue != null) _btnContinue.text = confirm;
+            if (_btnCancel   != null) _btnCancel.text   = cancel;
+        }
+
         public void ShowBeliefPanel(bool visible)
         {
             if (_beliefPanel == null) return;
             _beliefPanel.EnableInClassList("belief-visible", visible);
-            if (visible) UpdateBeliefLabel();
+
+            var bm = BeliefManager.Instance;
+            if (bm == null) return;
+
+            if (visible)
+            {
+                bm.OnBeliefChanged -= UpdateBeliefLabel;
+                bm.OnBeliefChanged += UpdateBeliefLabel;
+                UpdateBeliefLabel();
+            }
+            else
+            {
+                bm.OnBeliefChanged -= UpdateBeliefLabel;
+            }
+        }
+
+        public void ShowEnhanceFeedback(string text)
+        {
+            if (!IsActive) return;
+            StopTypewriterIfRunning();
+            _typewriterCoroutine = StartCoroutine(TypewriterCoroutine(text));
         }
 
         public void StartDialogue(DialogueData data, Action onYes = null, Action onNo = null)
@@ -183,10 +240,17 @@ namespace _2D_Roguelike
 
         private void ShowCurrentLine()
         {
-            // 마지막 줄이 선택지 질문이면 버튼 레이블 변경
             bool isChoiceLine = _currentData.HasChoice && _lineIndex == _currentData.Lines.Length - 1;
-            _btnContinue.text = isChoiceLine ? "예"    : "대화";
-            _btnCancel.text   = isChoiceLine ? "아니오" : "취소";
+            if (isChoiceLine)
+            {
+                _btnContinue.text = "예";
+                _btnCancel.text   = "아니오";
+            }
+            else
+            {
+                _btnContinue.text = _currentData.GetConfirmLabel(_lineIndex) ?? "대화";
+                _btnCancel.text   = _currentData.GetCancelLabel(_lineIndex)  ?? "취소";
+            }
 
             StopTypewriterIfRunning();
             _typewriterCoroutine = StartCoroutine(TypewriterCoroutine(_currentData.Lines[_lineIndex]));
@@ -204,7 +268,6 @@ namespace _2D_Roguelike
             _btnContinue.RemoveFromClassList("btn-selected");
             _btnCancel.RemoveFromClassList("btn-selected");
             ShowBeliefPanel(false);
-            if (_tagTokenBank != null) _tagTokenBank.OnGaugeChanged -= OnBeliefGaugeChanged;
             IsActive             = false;
             _currentData         = null;
             _onYes               = null;
@@ -218,8 +281,13 @@ namespace _2D_Roguelike
             if (!IsActive) return;
             _showingResponse     = true;
             _currentResponseText = text ?? "";
-            _btnContinue.text    = "대화";
-            _btnCancel.text      = "취소";
+
+            // 강화 UI가 열린 경우 Open()이 설정한 레이블("강화"/"나가기")을 유지
+            if (!EnhanceUIController.IsOpen)
+            {
+                _btnContinue.text = "대화";
+                _btnCancel.text   = "취소";
+            }
 
             StopTypewriterIfRunning();
             _typewriterCoroutine = StartCoroutine(TypewriterCoroutine(_currentResponseText));
@@ -267,6 +335,7 @@ namespace _2D_Roguelike
 
         private void SetSelection(int index)
         {
+            if (_selectedIndex == index) return;
             _selectedIndex = index;
             _btnContinue.EnableInClassList("btn-selected", index == 0);
             _btnCancel.EnableInClassList("btn-selected",   index == 1);
@@ -278,9 +347,6 @@ namespace _2D_Roguelike
             _cinematicTop.AddToClassList("bar-open");
             _cinematicBottom.AddToClassList("bar-open");
             yield return _waitBar;
-
-            UpdateBeliefLabel();
-            if (_tagTokenBank != null) _tagTokenBank.OnGaugeChanged += OnBeliefGaugeChanged;
 
             _npcNameLabel.text = _currentData.NpcName;
             ShowCurrentLine();
@@ -303,7 +369,6 @@ namespace _2D_Roguelike
             _cinematicBottom.RemoveFromClassList("bar-open");
             yield return _waitBar;
 
-            if (_tagTokenBank != null) _tagTokenBank.OnGaugeChanged -= OnBeliefGaugeChanged;
             IsActive             = false;
             _currentData         = null;
             _onYes               = null;
@@ -312,12 +377,10 @@ namespace _2D_Roguelike
             _currentResponseText = null;
         }
 
-        private void OnBeliefGaugeChanged(float _) => UpdateBeliefLabel();
-
         private void UpdateBeliefLabel()
         {
             if (_beliefCountLabel != null)
-                _beliefCountLabel.text = (_tagTokenBank?.FilledCount ?? 0).ToString();
+                _beliefCountLabel.text = (BeliefManager.Instance?.TotalBelief ?? 0).ToString();
         }
     }
 }

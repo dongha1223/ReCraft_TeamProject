@@ -42,6 +42,9 @@ namespace _2D_Roguelike
         // 적이 전멸했을 때 발행 — SignpostController가 구독
         public event Action OnAllEnemiesDead;
 
+        public event Action OnNormalStageCleared;
+        public event Action OnRunRestarted;
+
         // ── 캐시 ─────────────────────────────────────────────────────────
         private PlayerStats          _playerStats;
         private FormSkillController  _formSkillController;
@@ -126,12 +129,21 @@ namespace _2D_Roguelike
         // ── 스테이지 전환 ─────────────────────────────────────────────────
         public void TransitionToNextStage()
         {
+            if (CurrentStageData?.stageType == StageType.Normal)
+                OnNormalStageCleared?.Invoke();
+
             int next = CurrentStage + 1;
             if (next >= _stages.Length) return;
             StartCoroutine(DoTransition(next));
         }
 
-        public void TriggerGameClear() => StartCoroutine(DoGameClear());
+        public void TriggerGameClear()
+        {
+            if (CurrentStageData?.stageType == StageType.Normal)
+                OnNormalStageCleared?.Invoke();
+
+            StartCoroutine(DoGameClear());
+        }
 
         public void RestartGame() => StartCoroutine(DoRestart());
 
@@ -154,6 +166,7 @@ namespace _2D_Roguelike
 
             ResetPlayer();
             _stages[CurrentStage].root.SetActive(false);
+            OnRunRestarted?.Invoke();
             ActivateStage(0);
 
             if (fm != null) yield return StartCoroutine(fm.FadeIn());
@@ -177,6 +190,7 @@ namespace _2D_Roguelike
 
             ResetPlayer();
             _stages[CurrentStage].root.SetActive(false);
+            OnRunRestarted?.Invoke();
             ActivateStage(0);
 
             yield return StartCoroutine(fm.FadeIn());
