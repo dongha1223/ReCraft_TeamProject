@@ -7,9 +7,17 @@
             </ui:VisualElement>
             <ui:Label name="token-count-label" text="(0/3)"/>
         </ui:VisualElement>
-        <ui:VisualElement name="enemy-counter">
+        <ui:VisualElement name="gold-counter" class="counter-panel">
+            <ui:VisualElement name="gold-icon" class="counter-icon"/>
+            <ui:Label name="gold-count" class="counter-label" text="0"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="belief-counter" class="counter-panel">
+            <ui:VisualElement name="belief-icon" class="counter-icon"/>
+            <ui:Label name="belief-count" class="counter-label" text="0"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="enemy-counter" class="counter-panel">
             <ui:Label name="enemy-skull" text="☠"/>
-            <ui:Label name="enemy-count" text="0"/>
+            <ui:Label name="enemy-count" class="counter-label" text="0"/>
         </ui:VisualElement>
         <ui:VisualElement name="hud-panel">
             <ui:VisualElement name="hud-top-row">

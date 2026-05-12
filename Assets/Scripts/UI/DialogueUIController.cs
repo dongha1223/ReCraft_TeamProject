@@ -34,6 +34,7 @@ namespace _2D_Roguelike
         private Button        _btnCancel;
         private Label         _beliefCountLabel;
         private VisualElement _beliefPanel;
+        private IPanel        _panel;
 
         [SerializeField] private float _typewriterSpeed = 40f; // 초당 출력 문자 수
 
@@ -71,14 +72,40 @@ namespace _2D_Roguelike
 
             _beliefPanel      = root.Q<VisualElement>("belief-panel");
             _beliefCountLabel = root.Q<Label>("belief-count");
-
-            _btnContinue.clicked += OnContinueClicked;
-            _btnCancel.clicked   += OnCancelClicked;
+            _panel            = root.panel;
         }
 
         private void Update()
         {
             if (!_isPanelVisible) return;
+
+            // 마우스 클릭/호버 처리 (UIToolkit 이벤트 우회, Input System 직접 폴링)
+            var mouse = Mouse.current;
+            if (mouse != null)
+            {
+                var screenPos = mouse.position.ReadValue();
+                var flipped   = new Vector2(screenPos.x, Screen.height - screenPos.y);
+                var uiPos     = RuntimePanelUtils.ScreenToPanel(_panel, flipped);
+
+                bool overContinue = _btnContinue.worldBound.Contains(uiPos);
+                bool overCancel   = _btnCancel.worldBound.Contains(uiPos);
+
+                if      (overContinue) SetSelection(0);
+                else if (overCancel)   SetSelection(1);
+
+                if (mouse.leftButton.wasPressedThisFrame)
+                {
+                    if (overContinue)
+                    {
+                        if (EnhanceUIController.IsOpen) EnhanceUIController.Instance?.TryConfirmUpgrade();
+                        else                            OnContinueClicked();
+                    }
+                    else if (overCancel)
+                    {
+                        OnCancelClicked();
+                    }
+                }
+            }
 
             var kb = Keyboard.current;
             if (kb == null) return;
@@ -308,6 +335,7 @@ namespace _2D_Roguelike
 
         private void SetSelection(int index)
         {
+            if (_selectedIndex == index) return;
             _selectedIndex = index;
             _btnContinue.EnableInClassList("btn-selected", index == 0);
             _btnCancel.EnableInClassList("btn-selected",   index == 1);

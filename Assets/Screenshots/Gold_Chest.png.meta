@@ -1,31 +1,19 @@
 fileFormatVersion: 2
-guid: 6d0ae9a84ef967c4caf5958c73cb09f1
+guid: 2a146ef08533e1e4f9923cadcf49b8cb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4723107735738678597
-    second: Idle_0
+      213: 7442011444649371041
+    second: "ChatGPT Image 2026\uB144 5\uC6D4 12\uC77C \uC624\uD6C4 05_23_39_0"
   - first:
-      213: -7385789195546760866
-    second: Idle_1
+      213: 6460441671387049039
+    second: "ChatGPT Image 2026\uB144 5\uC6D4 12\uC77C \uC624\uD6C4 05_23_39_1"
   - first:
-      213: 3234629978573100161
-    second: Idle_2
+      213: -7616624004884344313
+    second: "ChatGPT Image 2026\uB144 5\uC6D4 12\uC77C \uC624\uD6C4 05_23_39_2"
   - first:
-      213: 6373048116405451881
-    second: Idle_3
-  - first:
-      213: 7264182050183361747
-    second: Idle_4
-  - first:
-      213: -2834552850196481573
-    second: Idle_5
-  - first:
-      213: 3278449094680734212
-    second: Idle_6
-  - first:
-      213: 3384493420599841878
-    second: Idle_7
+      213: -1682906470877063030
+    second: "ChatGPT Image 2026\uB144 5\uC6D4 12\uC77C \uC624\uD6C4 05_23_39_3"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -134,177 +122,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle_0
+      name: "ChatGPT Image 2026\uB144 5\uC6D4 12\uC77C \uC624\uD6C4 05_23_39_0"
       rect:
         serializedVersion: 2
-        x: 48
-        y: 191
-        width: 29
-        height: 49
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6531}
+        x: 18
+        y: 197
+        width: 96
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 54d7a982679db8140800000000000000
-      internalID: 4723107735738678597
+      spriteID: 1a5a7bcbaf5574760800000000000000
+      internalID: 7442011444649371041
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_1
+      name: "ChatGPT Image 2026\uB144 5\uC6D4 12\uC77C \uC624\uD6C4 05_23_39_1"
       rect:
         serializedVersion: 2
-        x: 176
-        y: 191
-        width: 29
-        height: 49
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6531}
+        x: 144
+        y: 197
+        width: 94
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e596485bbd7608990800000000000000
-      internalID: -7385789195546760866
+      spriteID: f4ce723a87918a950800000000000000
+      internalID: 6460441671387049039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_2
+      name: "ChatGPT Image 2026\uB144 5\uC6D4 12\uC77C \uC624\uD6C4 05_23_39_2"
       rect:
         serializedVersion: 2
-        x: 48
-        y: 127
-        width: 29
-        height: 49
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6531}
+        x: 264
+        y: 197
+        width: 94
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 184dda4e3d6b3ec20800000000000000
-      internalID: 3234629978573100161
+      spriteID: 702d72972d05c4690800000000000000
+      internalID: -7616624004884344313
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_3
+      name: "ChatGPT Image 2026\uB144 5\uC6D4 12\uC77C \uC624\uD6C4 05_23_39_3"
       rect:
         serializedVersion: 2
-        x: 176
-        y: 127
-        width: 29
-        height: 49
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6531}
+        x: 388
+        y: 197
+        width: 93
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 96cb1dafe7d917850800000000000000
-      internalID: 6373048116405451881
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_4
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 63
-        width: 29
-        height: 49
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6531}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3d4b2fc561f8fc460800000000000000
-      internalID: 7264182050183361747
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_5
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 63
-        width: 29
-        height: 49
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6531}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bd9b7fa6335a9a8d0800000000000000
-      internalID: -2834552850196481573
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_6
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 29
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6809}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 40a65a6e4146f7d20800000000000000
-      internalID: 3278449094680734212
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_7
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 0
-        width: 29
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6809}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 654108f85d228fe20800000000000000
-      internalID: 3384493420599841878
+      spriteID: a889a2d2b7d15a8e0800000000000000
+      internalID: -1682906470877063030
       vertices: []
       indices: 
       edges: []
@@ -323,14 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Idle_0: 4723107735738678597
-      Idle_1: -7385789195546760866
-      Idle_2: 3234629978573100161
-      Idle_3: 6373048116405451881
-      Idle_4: 7264182050183361747
-      Idle_5: -2834552850196481573
-      Idle_6: 3278449094680734212
-      Idle_7: 3384493420599841878
+      "ChatGPT Image 2026\uB144 5\uC6D4 12\uC77C \uC624\uD6C4 05_23_39_0": 7442011444649371041
+      "ChatGPT Image 2026\uB144 5\uC6D4 12\uC77C \uC624\uD6C4 05_23_39_1": 6460441671387049039
+      "ChatGPT Image 2026\uB144 5\uC6D4 12\uC77C \uC624\uD6C4 05_23_39_2": -7616624004884344313
+      "ChatGPT Image 2026\uB144 5\uC6D4 12\uC77C \uC624\uD6C4 05_23_39_3": -1682906470877063030
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
