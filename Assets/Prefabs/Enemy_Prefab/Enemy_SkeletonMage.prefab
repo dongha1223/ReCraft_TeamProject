@@ -514,6 +514,7 @@ MonoBehaviour:
   _detectionRange: 5
   _attackRange: 5
   _attackCooldown: 5
+  _preAttackDelay: 0
   _platformYThreshold: 5
   _groundLayer:
     serializedVersion: 2
@@ -546,6 +547,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EnemyStats
   _maxHp: 70
   _damageSpawnPos: {fileID: 0}
+  _hitClips:
+  - {fileID: 8300000, guid: 74198389e177d0948b63ca9a3fb22801, type: 3}
+  _heavyHitClips: []
 --- !u!114 &3135765806488432440
 MonoBehaviour:
   m_ObjectHideFlags: 0
