@@ -273,7 +273,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EnemyStats
   _maxHp: 1000
   _damageSpawnPos: {fileID: 2745350729630267351}
-  _hitClips: []
+  _hitClips:
+  - {fileID: 8300000, guid: 74198389e177d0948b63ca9a3fb22801, type: 3}
   _heavyHitClips: []
 --- !u!114 &1983927001044841078
 MonoBehaviour:
@@ -289,6 +290,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossArcherController
   _animator: {fileID: 6152121862076459557}
   _moveSpeed: 2
+  _chaseStartRange: 7
+  _chaseStopRange: 5
+  _patrolDistance: 4
+  _patrolChangeMin: 1
+  _patrolChangeMax: 3
   _cooldownMin: 3
   _cooldownMax: 6
   _patterns:
@@ -334,6 +340,14 @@ MonoBehaviour:
     - 1
     - 1
     recoveryTime: 5
+  _attack2Spec: {fileID: 11400000, guid: 10746bbb53638754aa9c8b5a68d32a95, type: 2}
+  _attack2BoxCount: 4
+  _attack2BoxStep: 1.5
+  _attack2BoxInterval: 0.3
+  _attack2PreDelay: 0.5
+  _attack2EffectPrefab: {fileID: 1911976551703256359, guid: 5d58def4933dcc94999f4190565cc561, type: 3}
+  _attack2EffectOffsetY: 0
+  _attack2DamageDelay: 0.5
 --- !u!114 &839558192611039241
 MonoBehaviour:
   m_ObjectHideFlags: 0

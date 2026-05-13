@@ -189,7 +189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EnemyStats
   _maxHp: 70
   _damageSpawnPos: {fileID: 6127553377112245433}
-  _hitClips: []
+  _hitClips:
+  - {fileID: 8300000, guid: 74198389e177d0948b63ca9a3fb22801, type: 3}
   _heavyHitClips: []
 --- !u!114 &1897967970774116831
 MonoBehaviour:

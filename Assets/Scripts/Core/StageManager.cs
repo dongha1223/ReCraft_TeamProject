@@ -214,6 +214,7 @@ namespace _2D_Roguelike
                 _signpostCache[index].SetIsLastStage(isLast);
 
             MovePlayerToSpawn(index);
+            BGMManager.Instance?.PlayBGM(_stages[index].data?.bgm);
 
             // SetActive로 발생한 모든 OnEnable이 완료된 다음 프레임에 검사
             // → EnemySpawner.OnEnable이 먼저 실행돼 카운트가 채워진 뒤 판단
