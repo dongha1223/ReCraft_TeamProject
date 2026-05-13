@@ -157,6 +157,7 @@ namespace _2D_Roguelike
         {
             IsPaused = true;
             Time.timeScale = 0f;
+            AudioListener.pause = true;
             _overlay.style.display = DisplayStyle.Flex;
             SetSelection(0);
         }
@@ -165,6 +166,7 @@ namespace _2D_Roguelike
         {
             IsPaused = false;
             Time.timeScale = 1f;
+            AudioListener.pause = false;
             _overlay.style.display = DisplayStyle.None;
         }
 

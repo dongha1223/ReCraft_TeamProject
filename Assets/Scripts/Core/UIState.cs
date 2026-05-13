@@ -10,6 +10,7 @@ namespace _2D_Roguelike
         public static bool IsBlockingInput =>
             DialogueUIController.IsActive ||
             PauseMenuController.IsPaused  ||
-            InventoryController.IsOpen;
+            InventoryController.IsOpen    ||
+            EnhanceUIController.IsOpen;
     }
 }

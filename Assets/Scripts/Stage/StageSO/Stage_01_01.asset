@@ -16,6 +16,6 @@ MonoBehaviour:
   stageType: 0
   mapTheme: 0
   reward:
-    itemChoiceCount: 0
+    itemChoiceCount: 3
     bonusGold: 0
-  bgm: {fileID: 0}
+  bgm: {fileID: 8300000, guid: 2ccc481475ec7e54c83a6db01256dace, type: 3}

@@ -8,12 +8,13 @@ namespace _2D_Roguelike
         [System.Serializable]
         private struct ComboStep
         {
-            public float    damage;
-            public Vector2  hitboxSize;
-            public Vector2  hitboxOffset;
-            public float    hitTiming;      // 모션 시작 후 히트박스 판정까지 대기 시간
-            public float    duration;       // 이 단계 전체 지속 시간 (다음 입력 윈도우 포함)
-            public float    impulseForce;   // 공격 시작 시 앞으로 가해지는 단발 힘
+            public float      damage;
+            public Vector2    hitboxSize;
+            public Vector2    hitboxOffset;
+            public float      hitTiming;      // 모션 시작 후 히트박스 판정까지 대기 시간
+            public float      duration;       // 이 단계 전체 지속 시간 (다음 입력 윈도우 포함)
+            public float      impulseForce;   // 공격 시작 시 앞으로 가해지는 단발 힘
+            public AudioClip  swingClip;      // 이 콤보 단계의 스윙 사운드
         }
 
         [Header("콤보 설정")]
@@ -21,7 +22,6 @@ namespace _2D_Roguelike
         {
             new ComboStep { damage = 10f, hitboxSize = new Vector2(1.2f, 0.8f), hitboxOffset = new Vector2(0.7f, 0f), hitTiming = 0.15f, duration = 0.40f, impulseForce = 3f },
             new ComboStep { damage = 12f, hitboxSize = new Vector2(1.3f, 0.8f), hitboxOffset = new Vector2(0.8f, 0f), hitTiming = 0.15f, duration = 0.40f, impulseForce = 3f },
-            new ComboStep { damage = 18f, hitboxSize = new Vector2(1.5f, 1.0f), hitboxOffset = new Vector2(0.8f, 0f), hitTiming = 0.20f, duration = 0.55f, impulseForce = 5f },
         };
 
         [Header("콤보 입력 윈도우")]
@@ -32,6 +32,15 @@ namespace _2D_Roguelike
 
         [Header("기본 공격 고유 상태이상 (아이템 무관 고정 효과)")]
         [SerializeField] private StatusEffectSpec[] _innateStatusEffects;
+
+        [Header("사운드")]
+        [Range(0f, 1f)]
+        [SerializeField] private float _swingVolume = 1f;
+        [Range(0f, 0.2f)]
+        [SerializeField] private float _swingPitchVariance = 0.05f;
+
+        [Header("공격 이펙트")]
+        [SerializeField] private GameObject _attackEffectPrefab;
 
         [SerializeField] private LayerMask _enemyLayer;
 
@@ -81,10 +90,10 @@ namespace _2D_Roguelike
             _isAttacking = true;
             _comboIndex  = 0;
 
-            while (_comboIndex < _comboSteps.Length)
+            while (true)
             {
-                ComboStep step = _comboSteps[_comboIndex];
-                _nextInputQueued = false;
+                int stepIndex  = _comboIndex % _comboSteps.Length;
+                ComboStep step = _comboSteps[stepIndex];
 
                 // 방향키 입력 중일 때만 단발 전진 임펄스 적용
                 bool movingLeft  = KeyBindingService.IsPressed(KeyBindingService.Action.MoveLeft);
@@ -96,8 +105,15 @@ namespace _2D_Roguelike
                     _rb.AddForce(new Vector2(dir * step.impulseForce, 0f), ForceMode2D.Impulse);
                 }
 
-                // ComboStage: 1=Attack, 2=Attack2, 3=Attack3
-                _animator?.SetInteger(AnimComboStage, _comboIndex + 1);
+                // ComboStage: 1=Attack1, 2=Attack2 (순환)
+                _animator?.SetInteger(AnimComboStage, stepIndex + 1);
+
+                // 스윙 사운드
+                if (step.swingClip != null && SfxManager.Instance != null)
+                {
+                    float pitch = 1f + Random.Range(-_swingPitchVariance, _swingPitchVariance);
+                    SfxManager.Instance.PlayOneShot(step.swingClip, transform.position, _swingVolume, pitch);
+                }
 
                 // 히트박스 판정 타이밍 대기
                 yield return new WaitForSeconds(step.hitTiming);
@@ -109,37 +125,26 @@ namespace _2D_Roguelike
 
                 _comboIndex++;
 
-                // 마지막 콤보면 바로 종료
-                if (_comboIndex >= _comboSteps.Length)
-                {
-                    
-                    break;
-                }
-                
+                // 모션 중 선입력 무효화 — 윈도우 구간 입력만 유효
+                _nextInputQueued = false;
 
-                // 콤보 윈도우: 이미 입력이 예약돼 있거나, 시간 내 새 입력 수락
+                // 콤보 윈도우: 시간 내 새 입력 수락
                 float windowElapsed = 0f;
                 while (windowElapsed < _comboWindowTime)
                 {
-                    if (_nextInputQueued)
-                        break;
-
+                    if (_nextInputQueued) break;
                     windowElapsed += Time.deltaTime;
                     yield return null;
                 }
 
                 // 윈도우 내 입력 없으면 콤보 종료
-                if (!_nextInputQueued)
-                {
-                    
-                    break;
-                }
+                if (!_nextInputQueued) break;
             }
 
             _isAttacking     = false;
             _nextInputQueued = false;
             _comboIndex      = 0;
-            _animator?.SetInteger(AnimComboStage, 0); // 콤보 종료 → 비공격 상태
+            _animator?.SetInteger(AnimComboStage, 0);
         }
 
         private void ApplyHitbox(ComboStep step)
@@ -156,6 +161,19 @@ namespace _2D_Roguelike
                 _innateStatusEffects,
                 _onHitRegistry?.GetSpecsFor(OnHitTarget.BasicAttack));
 
+            int attackId = AttackIdGenerator.Next();
+
+            if (_attackEffectPrefab != null)
+            {
+                var fx = Instantiate(_attackEffectPrefab, center, Quaternion.identity);
+                if (dir < 0f)
+                {
+                    Vector3 s = fx.transform.localScale;
+                    s.x = -Mathf.Abs(s.x);
+                    fx.transform.localScale = s;
+                }
+            }
+
             Collider2D[] hits = Physics2D.OverlapBoxAll(center, step.hitboxSize, 0f, _enemyLayer);
             foreach (var hit in hits)
             {
@@ -164,6 +182,7 @@ namespace _2D_Roguelike
 
                 damageable.TakeDamage(new HitInfo
                 {
+                    AttackId       = attackId,
                     Damage         = finalDamage,
                     DamageType     = _formManager?.Current?.PrimaryDamageType ?? DamageType.Physical,
                     SourcePosition = transform.position,

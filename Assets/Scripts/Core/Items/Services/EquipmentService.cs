@@ -38,5 +38,11 @@ namespace _2D_Roguelike
             if (!_equippedItems.Remove(item)) return;
             OnItemUnequipped?.Invoke(item);
         }
+
+        public void Clear()
+        {
+            for (int i = _equippedItems.Count - 1; i >= 0; i--)
+                Unequip(_equippedItems[i]);
+        }
     }
 }

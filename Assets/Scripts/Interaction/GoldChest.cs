@@ -1,0 +1,52 @@
+using UnityEngine;
+
+namespace _2D_Roguelike
+{
+    public class GoldChest : MonoBehaviour, IInteractable
+    {
+        [Header("보상")]
+        [SerializeField] private int          _goldAmount       = 50;
+        [SerializeField] private int          _coinCount        = 5;
+        [SerializeField] private CoinFlyEffect _coinEffectPrefab;
+
+        private Animator _animator;
+        private bool     _opened;
+
+        private static readonly int AnimOpen = Animator.StringToHash("Open");
+
+        public bool CanInteract => !_opened;
+
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+        }
+
+        public void OnFocused()   { }
+        public void OnUnfocused() { }
+
+        public void OnInteract(PlayerStatController statController)
+        {
+            if (_opened) return;
+            _opened = true;
+            _animator.SetTrigger(AnimOpen);
+            SpawnCoinEffects();
+        }
+
+        private void SpawnCoinEffects()
+        {
+            if (_coinEffectPrefab == null || _goldAmount <= 0) return;
+
+            int     count       = Mathf.Min(_coinCount, _goldAmount);
+            int     goldPerCoin = _goldAmount / count;
+            int     remainder   = _goldAmount % count;
+            Vector3 target      = PlayerHPUI.GoldIconWorldPos;
+
+            for (int i = 0; i < count; i++)
+            {
+                int coinGold = goldPerCoin + (i == count - 1 ? remainder : 0);
+                var effect = Instantiate(_coinEffectPrefab, transform.position, Quaternion.identity);
+                effect.Play(transform.position, target, coinGold);
+            }
+        }
+    }
+}

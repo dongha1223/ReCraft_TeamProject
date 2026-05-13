@@ -27,5 +27,7 @@ namespace _2D_Roguelike
         {
             return _items.Exists(i => i.InstanceId == instanceId);
         }
+
+        public void Clear() => _items.Clear();
     }
 }

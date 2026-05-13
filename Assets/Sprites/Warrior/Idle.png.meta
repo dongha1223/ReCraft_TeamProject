@@ -118,7 +118,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WindowsStoreApps
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -137,12 +137,12 @@ TextureImporter:
       name: Idle_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 192
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 48
+        y: 191
+        width: 29
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6531}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -159,12 +159,12 @@ TextureImporter:
       name: Idle_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 192
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 176
+        y: 191
+        width: 29
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6531}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -181,12 +181,12 @@ TextureImporter:
       name: Idle_2
       rect:
         serializedVersion: 2
-        x: 32
-        y: 128
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 48
+        y: 127
+        width: 29
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6531}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -203,12 +203,12 @@ TextureImporter:
       name: Idle_3
       rect:
         serializedVersion: 2
-        x: 160
-        y: 128
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 176
+        y: 127
+        width: 29
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6531}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -225,12 +225,12 @@ TextureImporter:
       name: Idle_4
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 48
+        y: 63
+        width: 29
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6531}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -247,12 +247,12 @@ TextureImporter:
       name: Idle_5
       rect:
         serializedVersion: 2
-        x: 160
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 176
+        y: 63
+        width: 29
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6531}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -269,12 +269,12 @@ TextureImporter:
       name: Idle_6
       rect:
         serializedVersion: 2
-        x: 32
+        x: 48
         y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 29
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6809}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -291,12 +291,12 @@ TextureImporter:
       name: Idle_7
       rect:
         serializedVersion: 2
-        x: 160
+        x: 176
         y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 29
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6809}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -313,7 +313,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0883156bf21c01f47ad930656049460a
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -321,9 +321,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":32.0,"y":0.0},"gridSpritePadding":{"x":64.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
       Idle_0: 4723107735738678597
       Idle_1: -7385789195546760866

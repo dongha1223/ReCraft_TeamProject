@@ -15,5 +15,10 @@
                 <ui:Button name="btn-cancel" text="취소" />
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="belief-panel">
+            <ui:VisualElement name="belief-icon" />
+            <ui:Label name="belief-title" text="보유한 신념" />
+            <ui:Label name="belief-count" text="0" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

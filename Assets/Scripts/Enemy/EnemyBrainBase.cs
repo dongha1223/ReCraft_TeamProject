@@ -14,9 +14,11 @@ namespace _2D_Roguelike
         [SerializeField] protected float _patrolDistance = 3f;
 
         [Header("감지 & 공격")]
-        [SerializeField] protected float _detectionRange = 5f;
-        [SerializeField] protected float _attackRange    = 0.8f;
-        [SerializeField] protected float _attackCooldown = 1.2f;
+        [SerializeField] protected float _detectionRange  = 5f;
+        [SerializeField] protected float _attackRange     = 0.8f;
+        [SerializeField] protected float _attackCooldown  = 1.2f;
+        [Tooltip("공격 범위 진입 후 실제 공격까지의 대기 시간 (0이면 즉시 공격)")]
+        [SerializeField] protected float _preAttackDelay  = 0f;
 
         [Header("플랫폼 인식")]
         [Tooltip("이 값 이상 Y 차이가 나면 다른 플랫폼으로 간주하고 순찰로 복귀")]
@@ -153,7 +155,18 @@ namespace _2D_Roguelike
             _animator?.SetBool(AnimIsMoving, false);
 
             if (!_canAttack) return;
-            _attackHandle = StartCoroutine(AttackCoroutine());
+            _attackHandle = StartCoroutine(WindUpAndAttack());
+        }
+
+        private IEnumerator WindUpAndAttack()
+        {
+            _canAttack   = false;
+            _isAttacking = true;
+
+            if (_preAttackDelay > 0f)
+                yield return StartCoroutine(PauseableWait(_preAttackDelay));
+
+            yield return StartCoroutine(AttackCoroutine());
         }
 
         /// <summary>실제 공격 패턴 구현. 서브클래스에서 반드시 구현.</summary>
@@ -213,7 +226,6 @@ namespace _2D_Roguelike
         private bool IsPlayerOnSamePlatform()
         {
             if (_playerController == null) return true;
-            if (!_playerController.IsGrounded) return true;
             return Mathf.Abs(_player.position.y - transform.position.y) <= _platformYThreshold;
         }
 
