@@ -57,6 +57,12 @@ namespace _2D_Roguelike
             _fadeCoroutine = StartCoroutine(CrossFade(clip));
         }
 
+        public void SetVolume(float volume)
+        {
+            _volume        = Mathf.Clamp01(volume);
+            Current.volume = _volume;
+        }
+
         public void StopBGM()
         {
             if (_fadeCoroutine != null) StopCoroutine(_fadeCoroutine);
@@ -74,13 +80,14 @@ namespace _2D_Roguelike
             fadeIn.volume = 0f;
             fadeIn.Play();
 
-            float elapsed = 0f;
+            float elapsed     = 0f;
+            float invDuration = 1f / _crossFadeDuration;
             while (elapsed < _crossFadeDuration)
             {
                 elapsed += Time.unscaledDeltaTime;
-                float t  = elapsed / _crossFadeDuration;
-                fadeOut.volume = Mathf.Lerp(_volume, 0f, t);
-                fadeIn.volume  = Mathf.Lerp(0f, _volume, t);
+                float t  = elapsed * invDuration;
+                fadeOut.volume = _volume * (1f - t);
+                fadeIn.volume  = _volume * t;
                 yield return null;
             }
 
@@ -95,12 +102,13 @@ namespace _2D_Roguelike
 
         private IEnumerator FadeOut(AudioSource src)
         {
-            float start   = src.volume;
-            float elapsed = 0f;
+            float start       = src.volume;
+            float elapsed     = 0f;
+            float invDuration = 1f / _crossFadeDuration;
             while (elapsed < _crossFadeDuration)
             {
                 elapsed   += Time.unscaledDeltaTime;
-                src.volume = Mathf.Lerp(start, 0f, elapsed / _crossFadeDuration);
+                src.volume = start * (1f - elapsed * invDuration);
                 yield return null;
             }
             src.volume = 0f;
