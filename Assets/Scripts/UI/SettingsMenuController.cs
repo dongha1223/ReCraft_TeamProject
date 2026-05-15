@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -60,6 +61,9 @@ namespace _2D_Roguelike
                 _leftSliders[4], _leftSliders[5],
                 _rightSliders[0], _rightSliders[1], _rightSliders[2]
             };
+
+            _rightSliders[1].OnValueChanged += v => BGMManager.Instance?.SetVolume(v);
+            BGMManager.Instance?.SetVolume(_rightSliders[1].Value);
 
             _overlay.style.display = DisplayStyle.None;
         }
@@ -241,12 +245,18 @@ namespace _2D_Roguelike
         private class SettingsSlider
         {
             private readonly Slider _slider;
+            private readonly float  _lowValue;
+            private readonly float  _highValue;
 
+            public event Action<float> OnValueChanged;
             public float Value => _slider.value;
 
             public SettingsSlider(Slider slider)
             {
-                _slider = slider;
+                _slider    = slider;
+                _lowValue  = slider.lowValue;
+                _highValue = slider.highValue;
+                _slider.RegisterValueChangedCallback(evt => OnValueChanged?.Invoke(evt.newValue));
             }
 
             // 슬라이더 전체 bound 기준으로 히트 검사
@@ -259,14 +269,13 @@ namespace _2D_Roguelike
                 Rect b = _slider.worldBound;
                 if (b.width <= 0f) return;
                 float t = Mathf.Clamp01((panelPos.x - b.x) / b.width);
-                _slider.value = Mathf.Lerp(_slider.lowValue, _slider.highValue, t);
+                _slider.value = Mathf.Lerp(_lowValue, _highValue, t);
             }
 
             // 방향키 조절 (1/10 단위)
             public void AdjustValue(float delta)
             {
-                _slider.value = Mathf.Clamp(_slider.value + delta,
-                                            _slider.lowValue, _slider.highValue);
+                _slider.value = Mathf.Clamp(_slider.value + delta, _lowValue, _highValue);
             }
         }
     }
