@@ -87,7 +87,7 @@
 #belief-icon {
     width: 36px;
     height: 36px;
-    background-image: url('../Screenshots/신념_아이콘.png');
+    background-image: url('../Screenshots/Assets/신념_아이콘.png');
     -unity-background-scale-mode: scale-to-fit;
     margin-bottom: 4px;
 }

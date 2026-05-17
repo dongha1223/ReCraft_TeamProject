@@ -243,8 +243,8 @@ namespace _2D_Roguelike
             bool isChoiceLine = _currentData.HasChoice && _lineIndex == _currentData.Lines.Length - 1;
             if (isChoiceLine)
             {
-                _btnContinue.text = "예";
-                _btnCancel.text   = "아니오";
+                _btnContinue.text = _currentData.ChoiceConfirmLabel;
+                _btnCancel.text   = _currentData.ChoiceNoLabel;
             }
             else
             {

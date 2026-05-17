@@ -7,6 +7,7 @@ namespace _2D_Roguelike
     /// <summary>
     /// NPC 상호작용 컨트롤러.
     /// 플레이어 근접 시 F키 프롬프트를 표시하고, 상호작용 시 대화를 시작한다.
+    /// HasChoice NPC의 경우 한 번 선택하면 이후 재대화 시 선택한 반응만 표시한다.
     /// </summary>
     [RequireComponent(typeof(Collider2D))]
     public class NPCController : MonoBehaviour, IInteractable
@@ -23,10 +24,15 @@ namespace _2D_Roguelike
         private Action _yesAction;
         private Action _noAction;
 
+        // 재대화 상태 — HasChoice NPC에서만 사용
+        private bool         _hasChosen;
+        private DialogueData _retalkData; // CreateInstance로 생성, OnDestroy에서 해제
+
         private void Awake()
         {
-            _yesAction = _onYesChosen.Invoke;
-            _noAction  = _onNoChosen.Invoke;
+            // 선택 기록 후 이벤트 발행
+            _yesAction = () => { RecordChoice(); _onYesChosen.Invoke(); };
+            _noAction  = () => { RecordChoice(); _onNoChosen.Invoke(); };
 
             // Inspector에서 미할당 시 자식 오브젝트에서 자동 탐색
             if (_fKeyPrompt == null)
@@ -34,6 +40,11 @@ namespace _2D_Roguelike
                 var child = transform.Find("FKeyPrompt");
                 if (child != null) _fKeyPrompt = child.gameObject;
             }
+        }
+
+        private void OnDestroy()
+        {
+            if (_retalkData != null) Destroy(_retalkData);
         }
 
         private void OnEnable() => _fKeyPrompt?.SetActive(false);
@@ -45,8 +56,27 @@ namespace _2D_Roguelike
         {
             if (_dialogueData == null) return;
             _fKeyPrompt?.SetActive(false);
-            DialogueUIController.Instance?.StartDialogue(
-                _dialogueData, _yesAction, _noAction);
+
+            if (_hasChosen)
+            {
+                // 선택 완료 후 재대화: 선택한 반응 텍스트만 표시
+                DialogueUIController.Instance?.StartDialogue(_retalkData);
+            }
+            else
+            {
+                DialogueUIController.Instance?.StartDialogue(
+                    _dialogueData, _yesAction, _noAction);
+            }
+        }
+
+        private void RecordChoice()
+        {
+            // HasChoice가 없거나, 반복 대화 허용이거나, 이미 선택한 경우 무시
+            if (!_dialogueData.HasChoice || _dialogueData.RepeatDialogue || _hasChosen) return;
+
+            _hasChosen  = true;
+            _retalkData = ScriptableObject.CreateInstance<DialogueData>();
+            _retalkData.InitSingleLine(_dialogueData.NpcName, _dialogueData.RetalkLine);
         }
     }
 }

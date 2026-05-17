@@ -77,12 +77,12 @@
 
 /* ── 골드 카운터 ─────────────────────────────────────────────── */
 #gold-counter  { bottom: 114px; }
-#gold-icon     { background-image: url('../Screenshots/Coin.png'); }
+#gold-icon     { background-image: url('../Screenshots/Assets/Coin.png'); }
 #gold-count    { color: rgb(240, 210, 80); }
 
 /* ── 신념 카운터 ─────────────────────────────────────────────── */
 #belief-counter { bottom: 64px; }
-#belief-icon    { background-image: url('../Screenshots/신념_아이콘.png'); }
+#belief-icon    { background-image: url('../Screenshots/Assets/신념_아이콘.png'); }
 #belief-count   { color: rgb(225, 185, 70); }
 
 /* ── 몬스터 카운터 ───────────────────────────────────────────── */

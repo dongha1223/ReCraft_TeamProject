@@ -17,5 +17,5 @@ MonoBehaviour:
   mapTheme: 1
   reward:
     itemChoiceCount: 3
-    bonusGold: 0
+    bonusGold: 50
   bgm: {fileID: 0}

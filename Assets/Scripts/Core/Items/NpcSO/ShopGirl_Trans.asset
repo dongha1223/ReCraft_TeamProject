@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ad4f278939a0d4ba275ee3522b3848, type: 3}
   m_Name: ShopGirl_Trans
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.DialogueData
-  _npcName: "상점 아가씨"
+  _npcName: "\uC0C1\uC810 \uC544\uAC00\uC528"
   _lines:
-  - "어서 오세요!"
-  - "기본 스펙을 강화해 드릴 수 있어요."
-  - "강화하고 싶으세요?"
+  - "\uC5B4\uC11C \uC624\uC138\uC694!"
+  - "\uAE30\uBCF8 \uC2A4\uD399\uC744 \uAC15\uD654\uD574 \uB4DC\uB9B4 \uC218 \uC788\uC5B4\uC694."
+  - "\uAC15\uD654\uD558\uACE0 \uC2F6\uC73C\uC138\uC694?"
   _hasChoice: 1
-  _yesResponse: "좋아요! 원하는 항목을 선택해주세요."
-  _noResponse: "그래요... 또 오세요!"
+  _repeatDialogue: 1
+  _yesResponse: "\uC88B\uC544\uC694! \uC6D0\uD558\uB294 \uD56D\uBAA9\uC744 \uC120\uD0DD\uD574\uC8FC\uC138\uC694."
+  _noResponse: "\uADF8\uB798\uC694... \uB610 \uC624\uC138\uC694!"
+  _choiceConfirmLabel: 
+  _choiceNoLabel: 
+  _confirmLabels: []
+  _cancelLabels: []
