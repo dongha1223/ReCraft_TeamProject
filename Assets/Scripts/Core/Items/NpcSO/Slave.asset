@@ -10,18 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0ad4f278939a0d4ba275ee3522b3848, type: 3}
-  m_Name: NPC_01_Dialogue
+  m_Name: Slave
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.DialogueData
-  _npcName: NPC
+  _npcName: "\uC0C1\uC810 \uC544\uAC00\uC528"
   _lines:
-  - "\uC548\uB155!\t"
-  - "\uBC25 \uBA39\uC744\uB798??"
-  _hasChoice: 1
-  _repeatDialogue: 0
-  _yesResponse: "\uC5EC\uAE30\uC788\uC5B4!\n"
-  _noResponse: "\uC774\uAC78 \uC548\uBA39\uC5B4 \u3160\u3160"
-  _retalkLine: "\uC774\uC81C\uB294 \uC548\uC904\uAC70\uC57C!"
-  _choiceConfirmLabel: 
-  _choiceNoLabel: 
+  - "\uC73C\uC73D.. \uC0B4\uB824\uC918.."
+  _hasChoice: 0
+  _yesResponse: 
+  _noResponse: 
   _confirmLabels: []
   _cancelLabels: []
