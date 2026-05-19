@@ -36,6 +36,7 @@ namespace _2D_Roguelike
         private PlayerAttack          _playerAttack;
         private FormSkillController   _formSkillController;
         private KnockbackReceiver     _knockback;
+        private Collider2D[]          _ownColliders;
 
 
         private int  _jumpCount;
@@ -59,6 +60,7 @@ namespace _2D_Roguelike
             _playerAttack        = GetComponent<PlayerAttack>();
             _formSkillController = GetComponent<FormSkillController>();
             _knockback           = GetComponent<KnockbackReceiver>();
+            _ownColliders        = GetComponents<Collider2D>();
             _feetBoxSize = new Vector2(_feetWidth, _feetHeight);
         }
 
@@ -163,20 +165,22 @@ namespace _2D_Roguelike
         }
 
         // ─── 플랫폼 통과 낙하 ─────────────────────────────────────────────
-        // 발 아래 플랫폼 콜라이더를 isTrigger로 전환 → 즉시 통과 가능
+        // 플레이어-플랫폼 콜라이더 쌍만 IgnoreCollision → 몬스터는 영향 없음
         private IEnumerator DropThroughPlatform()
         {
-            Collider2D[] cols = Physics2D.OverlapBoxAll(FeetCenter, _feetBoxSize, 0f, _platformLayer);
+            Collider2D[] platforms = Physics2D.OverlapBoxAll(FeetCenter, _feetBoxSize, 0f, _platformLayer);
 
-            foreach (var col in cols)
-                col.isTrigger = true;
+            foreach (var platform in platforms)
+                foreach (var own in _ownColliders)
+                    Physics2D.IgnoreCollision(own, platform, true);
 
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -4f);
 
             yield return new WaitForSeconds(0.4f);
 
-            foreach (var col in cols)
-                col.isTrigger = false;
+            foreach (var platform in platforms)
+                foreach (var own in _ownColliders)
+                    Physics2D.IgnoreCollision(own, platform, false);
         }
 
         // ─── 방향 전환 ────────────────────────────────────────────────────

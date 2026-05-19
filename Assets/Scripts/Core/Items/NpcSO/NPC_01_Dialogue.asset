@@ -17,5 +17,11 @@ MonoBehaviour:
   - "\uC548\uB155!\t"
   - "\uBC25 \uBA39\uC744\uB798??"
   _hasChoice: 1
+  _repeatDialogue: 0
   _yesResponse: "\uC5EC\uAE30\uC788\uC5B4!\n"
   _noResponse: "\uC774\uAC78 \uC548\uBA39\uC5B4 \u3160\u3160"
+  _retalkLine: "\uC774\uC81C\uB294 \uC548\uC904\uAC70\uC57C!"
+  _choiceConfirmLabel: 
+  _choiceNoLabel: 
+  _confirmLabels: []
+  _cancelLabels: []
