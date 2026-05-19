@@ -43,7 +43,6 @@ namespace _2D_Roguelike
             (labels != null && lineIndex < labels.Length && !string.IsNullOrEmpty(labels[lineIndex]))
             ? labels[lineIndex] : null;
 
-        /// <summary>재대화용 단일 줄 데이터를 런타임에 초기화한다 (CreateInstance 후 즉시 호출).</summary>
         public void InitSingleLine(string npcName, string line)
         {
             _npcName   = npcName;
