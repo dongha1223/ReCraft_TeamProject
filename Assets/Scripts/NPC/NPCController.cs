@@ -4,11 +4,6 @@ using UnityEngine.Events;
 
 namespace _2D_Roguelike
 {
-    /// <summary>
-    /// NPC 상호작용 컨트롤러.
-    /// 플레이어 근접 시 F키 프롬프트를 표시하고, 상호작용 시 대화를 시작한다.
-    /// HasChoice NPC의 경우 한 번 선택하면 이후 재대화 시 선택한 반응만 표시한다.
-    /// </summary>
     [RequireComponent(typeof(Collider2D))]
     public class NPCController : MonoBehaviour, IInteractable
     {
