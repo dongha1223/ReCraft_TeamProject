@@ -2262,12 +2262,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3470183957737558783, guid: 9749594eff514ac4f98a435eff445600, type: 3}
       propertyPath: _comboSteps.Array.data[1].hitboxOffset.x
-      value: 0.36
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 4155503037009357505, guid: 9749594eff514ac4f98a435eff445600, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5215381409218622416, guid: 9749594eff514ac4f98a435eff445600, type: 3}
+      propertyPath: _jumpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c266e86e5ec11e344bf66dede26cbc46, type: 3}
+    - target: {fileID: 5215381409218622416, guid: 9749594eff514ac4f98a435eff445600, type: 3}
+      propertyPath: _jumpVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215381409218622416, guid: 9749594eff514ac4f98a435eff445600, type: 3}
+      propertyPath: _doubleJumpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d7ea6b2cca581414e87717a0d085aa62, type: 3}
+    - target: {fileID: 7099700125686314327, guid: 9749594eff514ac4f98a435eff445600, type: 3}
+      propertyPath: _dashClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 90fb91c5d9f18df4183363d36d921429, type: 3}
     - target: {fileID: 8197140170518680768, guid: 9749594eff514ac4f98a435eff445600, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
