@@ -1,43 +1,85 @@
 fileFormatVersion: 2
-guid: e6be3a8f8e4f47e49ae2ec295a6cfc90
+guid: ee2e27bb78dbfbf47bf9018edfd236b4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6813359137437708528
-    second: Pray_0
+      213: -2143311611671380719
+    second: whirlwind_0
   - first:
-      213: 2983206854398222527
-    second: Pray_1
+      213: 3814658714469787902
+    second: whirlwind_1
   - first:
-      213: 4319848972091448377
-    second: Pray_2
+      213: -3363077706360333099
+    second: whirlwind_2
   - first:
-      213: 6298971191251928567
-    second: Pray_3
+      213: 3997541654523531110
+    second: whirlwind_3
   - first:
-      213: -526226890536159778
-    second: Pray_4
+      213: -5626955498363525968
+    second: whirlwind_4
   - first:
-      213: -2707595251105077971
-    second: Pray_5
+      213: -7460860437181615208
+    second: whirlwind_5
   - first:
-      213: -4537022824502587473
-    second: Pray_6
+      213: 7090017829340757437
+    second: whirlwind_6
   - first:
-      213: 4107309687625058474
-    second: Pray_7
+      213: 6763115369441160611
+    second: whirlwind_7
   - first:
-      213: 8396631232147661200
-    second: Pray_8
+      213: 658090013954357873
+    second: whirlwind_8
   - first:
-      213: -1908439624742957022
-    second: Pray_9
+      213: 6555553598729916732
+    second: whirlwind_9
   - first:
-      213: 7009541124574959372
-    second: Pray_10
+      213: 1901258955162409566
+    second: whirlwind_10
   - first:
-      213: 4033242490783163653
-    second: Pray_11
+      213: -6075304495317727076
+    second: whirlwind_11
+  - first:
+      213: -8371420547418554021
+    second: whirlwind_12
+  - first:
+      213: -2968405993391921918
+    second: whirlwind_13
+  - first:
+      213: 6069706558620948622
+    second: whirlwind_14
+  - first:
+      213: -6021157984540584109
+    second: whirlwind_15
+  - first:
+      213: 2248681547379725011
+    second: whirlwind_16
+  - first:
+      213: -4666953336327851680
+    second: whirlwind_17
+  - first:
+      213: 1520510066432382665
+    second: whirlwind_18
+  - first:
+      213: 7757308841341167340
+    second: whirlwind_19
+  - first:
+      213: -3846357873004342154
+    second: whirlwind_20
+  - first:
+      213: 240756172948599252
+    second: whirlwind_21
+  - first:
+      213: -1389678528889568229
+    second: whirlwind_22
+  - first:
+      213: -2654329364286924757
+    second: whirlwind_23
+  - first:
+      213: 5002781440213515708
+    second: whirlwind_24
+  - first:
+      213: 559687156807024284
+    second: whirlwind_25
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -146,13 +188,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pray_0
+      name: whirlwind_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 128
-        width: 64
-        height: 64
+        x: 0
+        y: 808
+        width: 150
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +203,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0f0f22a690aed8e50800000000000000
-      internalID: 6813359137437708528
+      spriteID: 11d7b57e17d6142e0800000000000000
+      internalID: -2143311611671380719
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pray_1
+      name: whirlwind_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 128
-        width: 64
-        height: 64
+        x: 0
+        y: 683
+        width: 150
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,20 +225,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fb0aaef04da766920800000000000000
-      internalID: 2983206854398222527
+      spriteID: ef8e15fc3e360f430800000000000000
+      internalID: 3814658714469787902
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pray_2
+      name: whirlwind_2
       rect:
         serializedVersion: 2
-        x: 288
-        y: 128
-        width: 64
-        height: 64
+        x: 0
+        y: 531
+        width: 150
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +247,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 93cd8d8a0cf23fb30800000000000000
-      internalID: 4319848972091448377
+      spriteID: 5dc5b58f4a2f351d0800000000000000
+      internalID: -3363077706360333099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pray_3
+      name: whirlwind_3
       rect:
         serializedVersion: 2
-        x: 416
-        y: 128
-        width: 64
-        height: 64
+        x: 0
+        y: 387
+        width: 150
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,20 +269,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7f58df0dce07a6750800000000000000
-      internalID: 6298971191251928567
+      spriteID: 66fc3b474fe1a7730800000000000000
+      internalID: 3997541654523531110
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pray_4
+      name: whirlwind_4
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
-        width: 64
-        height: 64
+        x: 0
+        y: 250
+        width: 150
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,20 +291,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ed5755e5e6772b8f0800000000000000
-      internalID: -526226890536159778
+      spriteID: 0b46c1189c909e1b0800000000000000
+      internalID: -5626955498363525968
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pray_5
+      name: whirlwind_5
       rect:
         serializedVersion: 2
-        x: 160
-        y: 64
-        width: 64
-        height: 64
+        x: 1
+        y: 96
+        width: 150
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,20 +313,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d25e85ee670bc6ad0800000000000000
-      internalID: -2707595251105077971
+      spriteID: 893360336f2b57890800000000000000
+      internalID: -7460860437181615208
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pray_6
+      name: whirlwind_6
       rect:
         serializedVersion: 2
-        x: 288
-        y: 64
-        width: 64
-        height: 64
+        x: 245
+        y: 98
+        width: 150
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,118 +335,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: faf0faf77c14901c0800000000000000
-      internalID: -4537022824502587473
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pray_7
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aa889614668100930800000000000000
-      internalID: 4107309687625058474
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pray_8
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 091ac1e4e93d68470800000000000000
-      internalID: 8396631232147661200
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pray_9
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2209aebc54cd385e0800000000000000
-      internalID: -1908439624742957022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pray_10
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c0758c0c384e64160800000000000000
-      internalID: 7009541124574959372
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pray_11
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 50564242da4f8f730800000000000000
-      internalID: 4033242490783163653
+      spriteID: dbdba09b6adc46260800000000000000
+      internalID: 7090017829340757437
       vertices: []
       indices: 
       edges: []
@@ -413,7 +345,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c22531d5a1eada240857879b7add1778
+    spriteID: 25df3b6e9c3fd7a4599dc1ec6e579ad0
     internalID: 0
     vertices: []
     indices: 
@@ -423,20 +355,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":32.0,"y":0.0},"gridSpritePadding":{"x":64.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":150.0,"y":100.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":25.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Pray_0: 6813359137437708528
-      Pray_1: 2983206854398222527
-      Pray_10: 7009541124574959372
-      Pray_11: 4033242490783163653
-      Pray_2: 4319848972091448377
-      Pray_3: 6298971191251928567
-      Pray_4: -526226890536159778
-      Pray_5: -2707595251105077971
-      Pray_6: -4537022824502587473
-      Pray_7: 4107309687625058474
-      Pray_8: 8396631232147661200
-      Pray_9: -1908439624742957022
+      whirlwind_0: -2143311611671380719
+      whirlwind_1: 3814658714469787902
+      whirlwind_2: -3363077706360333099
+      whirlwind_3: 3997541654523531110
+      whirlwind_4: -5626955498363525968
+      whirlwind_5: -7460860437181615208
+      whirlwind_6: 7090017829340757437
+      whirlwind_7: 6763115369441160611
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -78,6 +78,7 @@ namespace _2D_Roguelike
                 _jumpLockTimer -= Time.deltaTime;
 
             if (UIState.IsBlockingInput) return;
+            if (_playerController != null && _playerController.IsSkillLocked) return;
 
             // 대시 중(감속 포함)에는 입력 차단
             if (_isDashing) return;

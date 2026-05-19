@@ -9,13 +9,16 @@ namespace _2D_Roguelike
     /// </summary>
     public class SkillContext
     {
-        public Transform             PlayerTransform { get; }
-        public Rigidbody2D           PlayerRb        { get; }
-        public Animator              Animator        { get; }
-        public PlayerStatController  StatController  { get; }
-        public OnHitStatusRegistry   OnHitRegistry   { get; }
-        public AreaSkillExecutor     AreaExecutor    { get; }
-        public SkillDefinition       Definition      { get; }
+        public Transform             PlayerTransform  { get; }
+        public Rigidbody2D           PlayerRb         { get; }
+        public Animator              Animator         { get; }
+        public PlayerStatController  StatController   { get; }
+        public OnHitStatusRegistry   OnHitRegistry    { get; }
+        public AreaSkillExecutor     AreaExecutor     { get; }
+        public SkillDefinition       Definition       { get; }
+
+        /// <summary>이동 잠금 콜백. true = 잠금, false = 해제. 차지 스킬 전용.</summary>
+        public System.Action<bool>   SetMovementLock  { get; }
 
         /// <summary>현재 바라보는 방향 (localScale.x 부호 기반)</summary>
         public Vector2 FacingDirection =>
@@ -28,7 +31,8 @@ namespace _2D_Roguelike
             PlayerStatController statController,
             OnHitStatusRegistry  onHitRegistry,
             AreaSkillExecutor    areaExecutor,
-            SkillDefinition      definition)
+            SkillDefinition      definition,
+            System.Action<bool>  setMovementLock = null)
         {
             PlayerTransform = playerTransform;
             PlayerRb        = playerRb;
@@ -37,6 +41,7 @@ namespace _2D_Roguelike
             OnHitRegistry   = onHitRegistry;
             AreaExecutor    = areaExecutor;
             Definition      = definition;
+            SetMovementLock = setMovementLock;
         }
     }
 }

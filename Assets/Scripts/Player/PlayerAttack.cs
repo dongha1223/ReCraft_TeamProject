@@ -49,6 +49,7 @@ namespace _2D_Roguelike
         private PlayerStatController _statController;
         private OnHitStatusRegistry  _onHitRegistry;
         private FormManager          _formManager;
+        private PlayerController     _playerController;
 
         private int  _comboIndex;       // 다음에 실행할 콤보 단계
         private bool _isAttacking;
@@ -60,11 +61,12 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
-            _rb             = GetComponent<Rigidbody2D>();
-            _animator       = GetComponent<Animator>();
-            _statController = GetComponent<PlayerStatController>();
-            _onHitRegistry  = GetComponent<OnHitStatusRegistry>();
-            _formManager    = GetComponent<FormManager>();
+            _rb               = GetComponent<Rigidbody2D>();
+            _animator         = GetComponent<Animator>();
+            _statController   = GetComponent<PlayerStatController>();
+            _onHitRegistry    = GetComponent<OnHitStatusRegistry>();
+            _formManager      = GetComponent<FormManager>();
+            _playerController = GetComponent<PlayerController>();
         }
 
         private void Start()
@@ -75,6 +77,7 @@ namespace _2D_Roguelike
         private void Update()
         {
             if (UIState.IsBlockingInput) return;
+            if (_playerController != null && _playerController.IsSkillLocked) return;
 
             if (KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Attack))
             {
@@ -189,6 +192,7 @@ namespace _2D_Roguelike
                     KnockbackForce = _knockbackForce,
                     StatusEffects  = statusEffects
                 });
+                PlayerCombatEvents.InvokeDamageDealt(finalDamage);
             }
         }
 

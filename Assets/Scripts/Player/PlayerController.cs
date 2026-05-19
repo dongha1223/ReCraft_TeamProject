@@ -43,7 +43,10 @@ namespace _2D_Roguelike
         private bool _isGrounded;
         private bool _isOnPlatform;
 
-        public bool IsGrounded => _isGrounded;
+        public bool IsGrounded    => _isGrounded;
+
+        /// <summary>차지·롤링 등 이동·점프·공격·대시를 모두 차단하는 스킬 실행 중 여부.</summary>
+        public bool IsSkillLocked => _formSkillController != null && _formSkillController.IsMovementLocked;
 
         private static readonly int AnimIsMoving  = Animator.StringToHash("IsMoving");
         private static readonly int AnimIsJumping = Animator.StringToHash("IsJumping");
@@ -111,8 +114,8 @@ namespace _2D_Roguelike
                 _animator?.SetBool(AnimIsMoving, false);
                 return;
             }
-            if (_playerDash          != null && _playerDash.IsDashing)             return;
-            if (_formSkillController != null && _formSkillController.IsRolling)   return;
+            if (_playerDash          != null && _playerDash.IsDashing) return;
+            if (IsSkillLocked)                                         return;
             if (_playerAttack        != null && _playerAttack.IsAttacking)
             {
                 // 공격 중 이동 입력 차단 — 임펄스로 부여된 속도는 그대로 유지
@@ -138,6 +141,7 @@ namespace _2D_Roguelike
         private void HandleJump()
         {
             if (UIState.IsBlockingInput) return;
+            if (IsSkillLocked)           return;
             bool spacePressed = KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Jump);
             bool downHeld     = KeyBindingService.IsPressed(KeyBindingService.Action.MoveDown);
 
