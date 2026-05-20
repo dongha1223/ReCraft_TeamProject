@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401f90ac87f32794dad1b628a8a876a6, type: 3}
+  m_Name: WhirlwindSkillBehaviour
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.WhirlwindSkillBehaviour
+  _maxChargeTime: 2.5
+  _chargeAnimTrigger: WhirlwindCharge
+  _chargeClip: {fileID: 0}
+  _whirlwindAnimTrigger: Whirlwind
+  _whirlwindClip: {fileID: 0}
+  _knockbackForce: 5
+  _stages:
+  - chargeThreshold: 0
+    hitCount: 3
+    attackRadius: 2.5
+    castDuration: 0.6
+  - chargeThreshold: 0.83
+    hitCount: 5
+    attackRadius: 3.5
+    castDuration: 0.9
+  - chargeThreshold: 1.67
+    hitCount: 8
+    attackRadius: 5
+    castDuration: 1.2
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _searchRadius: 15
+  _sameHeightTolerance: 2
+  _approachThreshold: 5
+  _approachStopDist: 1.5
+  _approachSpeed: 8
+  _maxApproachTime: 1.5
+  _innateEffects: []

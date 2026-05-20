@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21567668b0998f74e94eba84466be314, type: 3}
+  m_Name: PraySkillBehaviour
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.PraySkillBehaviour
+  _prayAnimTrigger: Pray
+  _prayDuration: 1.2
+  _sparkleEffectPrefab: {fileID: 0}
+  _sparkleLifetime: 1.2
+  _aboveEffectPrefab: {fileID: 0}
+  _aboveEffectYOffset: 2.5
+  _aboveEffectLifetime: 1.5
+  _lifeStealDuration: 5
+  _lifeStealRatio: 0.1
+  _praySfx: {fileID: 0}

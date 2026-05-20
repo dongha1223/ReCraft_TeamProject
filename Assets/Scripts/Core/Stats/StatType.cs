@@ -4,7 +4,7 @@ namespace _2D_Roguelike
     {
         MaxHp,
         AttackPower,     // 기본 공격 데미지
-        SkillPower,      // 검기 발산 데미지
+        SkillPower,      // 검기 발산(SwordEnergy) 데미지
         RollPower,       // 롤링 슬래시 데미지
         MoveSpeed,
         KnockbackForce,
@@ -14,5 +14,9 @@ namespace _2D_Roguelike
         PhysicalPower,   // 물리 데미지 배율 (기본 1.0)
         MagicPower,      // 마법 데미지 배율 (기본 1.0)
         CriticalPower,   // 치명 데미지 배율 (기본 1.5)
+
+        // ── 스킬별 전용 스탯 (기존 값 뒤에 추가해 직렬화 깨짐 방지) ──
+        WhirlwindPower,  // 회전베기 데미지
+        PrayPower,       // Pray 스킬 전용 (현재 미사용, 예약)
     }
 }

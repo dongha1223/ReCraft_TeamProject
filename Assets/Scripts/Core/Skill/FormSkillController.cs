@@ -24,8 +24,14 @@ namespace _2D_Roguelike
         private readonly float[] _cooldownTimers = new float[2];
         private readonly bool[]  _isBusy         = new bool[2];
 
-        /// <summary>S스킬(롤링 슬래쉬) 실행 중 여부. PlayerController가 이동 입력 차단에 사용.</summary>
+        // 차지 스킬(WhirlwindSkillBehaviour 등)이 SetMovementLock 콜백으로 설정
+        private bool _isMovementLocked;
+
+        /// <summary>S스킬(롤링 슬래쉬) 실행 중 여부. 하위 호환 유지용.</summary>
         public bool IsRolling => _isBusy[1];
+
+        /// <summary>이동·점프·공격·대시를 모두 차단해야 하는 스킬 실행 중 여부.</summary>
+        public bool IsMovementLocked => _isMovementLocked;
 
         /// <summary>0 = 사용 가능, 1 = 방금 사용. UI 냉각 오버레이용.</summary>
         public float Skill1CooldownRatio => GetCooldownRatio(0);
@@ -104,7 +110,9 @@ namespace _2D_Roguelike
         {
             _isBusy[slotIndex] = true;
 
-            var ctx = new SkillContext(transform, _rb, _anim, _statController, _onHitRegistry, _areaExecutor, def);
+            var ctx = new SkillContext(
+                transform, _rb, _anim, _statController, _onHitRegistry, _areaExecutor, def,
+                locked => _isMovementLocked = locked);
 
             switch (def.Type)
             {
@@ -158,6 +166,7 @@ namespace _2D_Roguelike
                 _cooldownTimers[i] = 0f;
                 _isBusy[i]         = false;
             }
+            _isMovementLocked  = false;
             transform.rotation = Quaternion.identity;
             if (_rb != null)
                 _rb.linearVelocity = new Vector2(0f, _rb.linearVelocity.y);
