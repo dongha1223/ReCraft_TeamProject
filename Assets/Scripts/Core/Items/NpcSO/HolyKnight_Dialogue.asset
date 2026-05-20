@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ad4f278939a0d4ba275ee3522b3848, type: 3}
   m_Name: HolyKnight_Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.DialogueData
-  _npcName: "신성기사"
+  _npcName: "\uC2E0\uC131\uAE30\uC0AC"
   _lines:
-  - "..."
+  - ...
   _hasChoice: 1
   _repeatDialogue: 0
-  _yesResponse: "..."
-  _noResponse: "..."
-  _retalkLine: "..."
-  _choiceConfirmLabel:
-  _choiceNoLabel:
+  _yesResponse: ...
+  _noResponse: ...
+  _retalkLine: ...
+  _choiceConfirmLabel: 
+  _choiceNoLabel: 
   _confirmLabels: []
   _cancelLabels: []

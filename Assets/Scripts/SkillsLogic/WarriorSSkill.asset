@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: WarriorSSkill
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.SkillDefinition
   _type: 1
-  _cooldown: 1.5
+  _cooldown: 10
   _damageType: 0
   _statType: 2
-  _baseDamage: 20
+  _baseDamage: 0
   _areaPhases: []
   _phaseDelays: []
-  _behaviour: {fileID: 0}
+  _behaviour: {fileID: 11400000, guid: 9ab1f4178031c0a4cbde85d125d4832a, type: 2}
