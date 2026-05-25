@@ -2,6 +2,8 @@ using UnityEngine;
 
 namespace _2D_Roguelike
 {
+    // ParallaxLayer보다 반드시 먼저 실행되어야 카메라 delta가 정확히 전달됨
+    [DefaultExecutionOrder(-10)]
     public class CameraFollow : MonoBehaviour
     {
         [SerializeField] private Transform _target;
