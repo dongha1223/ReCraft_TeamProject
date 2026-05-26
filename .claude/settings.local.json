@@ -39,10 +39,7 @@
       "Bash(Select-String -Pattern \"[Bb]uff|[Vv]igilante|[Pp]aladin|[Bb]ard\")",
       "PowerShell(Find-ChildItem *)",
       "PowerShell(ls *)",
-      "mcp__UnityMCP__delete_script",
-      "Bash(grep -A 30 \"fileID: 7227042614296148696$\" \"C:/ReCraft_TeamProject/Assets/Scenes/InGameScene.unity\")",
-      "Bash(python3 *)",
-      "Bash(Get-Content *)"
+      "mcp__UnityMCP__delete_script"
     ]
   }
 }

@@ -30,13 +30,14 @@ namespace _2D_Roguelike
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _platformLayer;
 
-        private Rigidbody2D          _rb;
-        private Animator             _animator;
-        private PlayerDash           _playerDash;
-        private PlayerAttack         _playerAttack;
-        private FormSkillController  _formSkillController;
-        private KnockbackReceiver    _knockback;
-        private Collider2D[]         _ownColliders;
+        private Rigidbody2D       _rb;
+        private Animator          _animator;
+        private PlayerDash            _playerDash;
+        private PlayerAttack          _playerAttack;
+        private FormSkillController   _formSkillController;
+        private KnockbackReceiver     _knockback;
+        private Collider2D[]          _ownColliders;
+
 
         private int  _jumpCount;
         private bool _isGrounded;
@@ -53,26 +54,20 @@ namespace _2D_Roguelike
         private static readonly int AnimIsMoving  = Animator.StringToHash("IsMoving");
         private static readonly int AnimIsJumping = Animator.StringToHash("IsJumping");
 
-        // ─── 컨트롤러별 파라미터 캐시 (form 전환 시 컨트롤러가 교체됨) ──
-        private RuntimeAnimatorController _cachedController;
-        private bool _cachedHasIsJumping;
-
         // ─── 발 감지 박스 중심 (월드 좌표) ───────────────────────────────
-        private Vector2 FeetCenter => (Vector2)transform.position + _feetOffset;
-        private Vector2        _feetBoxSize;
-        private WaitForSeconds _waitDropThrough;
+        private Vector2 FeetCenter  => (Vector2)transform.position + _feetOffset;
+        private Vector2 _feetBoxSize; // Awake에서 캐싱
 
         private void Awake()
         {
-            _rb                  = GetComponent<Rigidbody2D>();
-            _animator            = GetComponent<Animator>();
+            _rb          = GetComponent<Rigidbody2D>();
+            _animator    = GetComponent<Animator>();
             _playerDash          = GetComponent<PlayerDash>();
             _playerAttack        = GetComponent<PlayerAttack>();
             _formSkillController = GetComponent<FormSkillController>();
             _knockback           = GetComponent<KnockbackReceiver>();
             _ownColliders        = GetComponents<Collider2D>();
-            _feetBoxSize         = new Vector2(_feetWidth, _feetHeight);
-            _waitDropThrough     = new WaitForSeconds(0.4f);
+            _feetBoxSize = new Vector2(_feetWidth, _feetHeight);
         }
 
         private void Update()
@@ -92,15 +87,15 @@ namespace _2D_Roguelike
             // 상승 중에는 착지 판정 스킵 → 플랫폼 아래 통과 시 오감지 방지
             if (_rb.linearVelocity.y > 0.1f)
             {
-                _isGrounded = false;
+                _isGrounded   = false;
+                
                 return;
             }
 
             bool wasGrounded = _isGrounded;
-            Vector2 feetCenter = FeetCenter;
 
-            bool onGround   = Physics2D.OverlapBox(feetCenter, _feetBoxSize, 0f, _groundLayer);
-            bool onPlatform = Physics2D.OverlapBox(feetCenter, _feetBoxSize, 0f, _platformLayer);
+            bool onGround   = Physics2D.OverlapBox(FeetCenter, _feetBoxSize, 0f, _groundLayer);
+            bool onPlatform = Physics2D.OverlapBox(FeetCenter, _feetBoxSize, 0f, _platformLayer);
 
             _isOnPlatform = onPlatform;
             _isGrounded   = onGround || onPlatform;
@@ -109,23 +104,22 @@ namespace _2D_Roguelike
             if (!wasGrounded && _isGrounded)
                 _jumpCount = 0;
 
-            if (HasIsJumping()) _animator.SetBool(AnimIsJumping, !_isGrounded);
+            _animator?.SetBool(AnimIsJumping, !_isGrounded);
         }
 
         // ─── 좌우 이동 ────────────────────────────────────────────────────
         private void HandleMovement()
         {
             // UI 차단 중(대화·포즈·인벤) / 대시(감속 포함) / 롤링 슬레쉬 중에는 이동 입력 차단
-            float velY = _rb.linearVelocity.y;
             if (UIState.IsBlockingInput)
             {
-                _rb.linearVelocity = new Vector2(0f, velY);
+                _rb.linearVelocity = new Vector2(0f, _rb.linearVelocity.y);
                 _animator?.SetBool(AnimIsMoving, false);
                 return;
             }
-            if (_playerDash   != null && _playerDash.IsDashing)  return;
-            if (IsSkillLocked)                                    return;
-            if (_playerAttack != null && _playerAttack.IsAttacking)
+            if (_playerDash          != null && _playerDash.IsDashing) return;
+            if (IsSkillLocked)                                         return;
+            if (_playerAttack        != null && _playerAttack.IsAttacking)
             {
                 // 공격 중 이동 입력 차단 — 임펄스로 부여된 속도는 그대로 유지
                 _animator?.SetBool(AnimIsMoving, false);
@@ -138,7 +132,7 @@ namespace _2D_Roguelike
 
             // 입력 이동 + 외부 힘(넉백 등) 합산
             float externalX = _knockback != null ? _knockback.ExternalVelocity.x : 0f;
-            _rb.linearVelocity = new Vector2(horizontal * _moveSpeed + externalX, velY);
+            _rb.linearVelocity = new Vector2(horizontal * _moveSpeed + externalX, _rb.linearVelocity.y);
 
             if (horizontal != 0f)
                 Flip(horizontal);
@@ -193,7 +187,7 @@ namespace _2D_Roguelike
 
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -4f);
 
-            yield return _waitDropThrough;
+            yield return new WaitForSeconds(0.4f);
 
             foreach (var platform in platforms)
                 foreach (var own in _ownColliders)
@@ -206,23 +200,6 @@ namespace _2D_Roguelike
             Vector3 scale = transform.localScale;
             scale.x = horizontal > 0f ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
             transform.localScale = scale;
-        }
-
-        // ─── 애니메이터 파라미터 캐시 ────────────────────────────────────
-        // form 전환 시 runtimeAnimatorController가 교체되므로 변경 감지 후 재캐싱
-        private bool HasIsJumping()
-        {
-            if (_animator == null) return false;
-            var ctrl = _animator.runtimeAnimatorController;
-            if (ctrl == _cachedController) return _cachedHasIsJumping;
-
-            _cachedController    = ctrl;
-            _cachedHasIsJumping  = false;
-            foreach (var p in _animator.parameters)
-            {
-                if (p.nameHash == AnimIsJumping) { _cachedHasIsJumping = true; break; }
-            }
-            return _cachedHasIsJumping;
         }
 
         // ─── 시각화 (Scene 뷰 — 항상 표시) ──────────────────────────────
