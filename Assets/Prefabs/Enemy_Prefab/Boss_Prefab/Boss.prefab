@@ -160,7 +160,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.49, y: 5.74, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5859663828942979771}
@@ -339,6 +339,9 @@ MonoBehaviour:
   _platformManager: {fileID: 0}
   _phase1Root: {fileID: 0}
   _spawnPoint_Boss: {fileID: 0}
+  _bossStageCenterPoint: {fileID: 0}
+  _bossOrthoSize: 7.5
+  _cameraTransitionDuration: 1.5
 --- !u!114 &6783428480635361243
 MonoBehaviour:
   m_ObjectHideFlags: 0

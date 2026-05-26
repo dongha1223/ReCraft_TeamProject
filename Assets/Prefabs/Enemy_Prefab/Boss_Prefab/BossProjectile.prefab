@@ -84,7 +84,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 120
   m_MaskInteraction: 0
   m_Sprite: {fileID: -8694665474056538844, guid: c123093f7f7c8c94e8457277a1677b83, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -135,7 +135,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _lifetime: 5
-  _maxDistance: 15
+  _maxDistance: 40
   _damageZonePrefab: {fileID: 2486611490223450399, guid: 3448843a37652d840a90129cba5bed1a, type: 3}
   _damageZoneSpec: {fileID: 11400000, guid: 249f5871809a8c0479f9765c4bbfdf3b, type: 2}
   _groundLayer:
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310145fffdf16e64e994c39a218c845d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementRigidBody2d
-  moveSpeed: 5
+  moveSpeed: 7
 --- !u!50 &-3221623695607200482
 Rigidbody2D:
   serializedVersion: 5

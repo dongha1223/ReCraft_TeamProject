@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5028487031163995751}
   - component: {fileID: 7488453668361373211}
   - component: {fileID: 1179706127563900779}
-  - component: {fileID: -8417963266509914655}
   m_Layer: 0
   m_Name: AOEIndicator
   m_TagString: Untagged
@@ -29,8 +28,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -115,19 +114,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-8417963266509914655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4694582562624452857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9381eaa180aad0942bb1d22d06b23916, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.SkillEffectActor
-  _frames: []
-  _fps: 12
-  _overrideDuration: 0
-  _scale: {x: 1, y: 1}

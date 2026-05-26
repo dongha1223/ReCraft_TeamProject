@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5050622380403439929}
   - component: {fileID: 572201181614857967}
   - component: {fileID: 1661305788658944889}
-  - component: {fileID: -4315786025447639047}
   m_Layer: 0
   m_Name: minionPortal
   m_TagString: Untagged
@@ -29,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -115,26 +114,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-4315786025447639047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100492234547886168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9381eaa180aad0942bb1d22d06b23916, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.SkillEffectActor
-  _frames:
-  - {fileID: 7773031391787181946, guid: c6cc195ce6a88c143a621fb180f290a0, type: 3}
-  - {fileID: -1426790471357470633, guid: c6cc195ce6a88c143a621fb180f290a0, type: 3}
-  - {fileID: -2506210909196879853, guid: c6cc195ce6a88c143a621fb180f290a0, type: 3}
-  - {fileID: -8907015550746980148, guid: c6cc195ce6a88c143a621fb180f290a0, type: 3}
-  - {fileID: -3085487725770422062, guid: c6cc195ce6a88c143a621fb180f290a0, type: 3}
-  - {fileID: -7371053094594084745, guid: c6cc195ce6a88c143a621fb180f290a0, type: 3}
-  - {fileID: -3062665138650254500, guid: c6cc195ce6a88c143a621fb180f290a0, type: 3}
-  _fps: 30
-  _overrideDuration: 0
-  _scale: {x: 1, y: 1}
