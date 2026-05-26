@@ -423,10 +423,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04da76c6b425d994eabfef5e9c768e6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.SkillObjectPool
-  _projectilePrefab: {fileID: 183671539507655738, guid: cae58b31d6e16c246800143338363237, type: 3}
+  _projectilePrefab: {fileID: 7746623140079303136, guid: 57a7393b477bc264190a8394a415ad9c, type: 3}
   _slashVFXPrefab: {fileID: 6438811975416736645, guid: 9f9e5972d4aa84545b6da5d63c048d25, type: 3}
+  _whirlwindVFXPrefab: {fileID: 7746623140079303136, guid: 57a7393b477bc264190a8394a415ad9c, type: 3}
   _initialProjectileCount: 4
   _initialSlashVFXCount: 5
+  _initialWhirlwindVFXCount: 3
 --- !u!4 &313766471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2928621924486789474, guid: b46e0141256772c468186651e6837534, type: 3}
@@ -2738,7 +2740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1810355394
 Transform:
   m_ObjectHideFlags: 0
@@ -3024,12 +3026,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3470183957737558783, guid: 9749594eff514ac4f98a435eff445600, type: 3}
       propertyPath: _comboSteps.Array.data[1].hitboxOffset.x
-      value: 0.36
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 4155503037009357505, guid: 9749594eff514ac4f98a435eff445600, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5215381409218622416, guid: 9749594eff514ac4f98a435eff445600, type: 3}
+      propertyPath: _jumpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c266e86e5ec11e344bf66dede26cbc46, type: 3}
+    - target: {fileID: 5215381409218622416, guid: 9749594eff514ac4f98a435eff445600, type: 3}
+      propertyPath: _jumpVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215381409218622416, guid: 9749594eff514ac4f98a435eff445600, type: 3}
+      propertyPath: _doubleJumpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d7ea6b2cca581414e87717a0d085aa62, type: 3}
+    - target: {fileID: 7099700125686314327, guid: 9749594eff514ac4f98a435eff445600, type: 3}
+      propertyPath: _dashClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 90fb91c5d9f18df4183363d36d921429, type: 3}
     - target: {fileID: 8197140170518680768, guid: 9749594eff514ac4f98a435eff445600, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1

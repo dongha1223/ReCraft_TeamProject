@@ -23,8 +23,8 @@ MonoBehaviour:
   _primaryDamageType: 0
   _baseAttackPower: 10
   _skills:
-  - {fileID: 11400000, guid: 6e06be26b2568a3478731d8de36c3b9e, type: 2}
-  - {fileID: 11400000, guid: 3e8c2e3991816104a9b53f62ac1ed6d3, type: 2}
+  - {fileID: 11400000, guid: 7d0d189af2aff3e4f8fa0be6f878012d, type: 2}
+  - {fileID: 11400000, guid: d5e21ba6006cf8a4d97f767dffde763e, type: 2}
   _tagTechniques:
   - {fileID: 11400000, guid: b5f1429d32aef4d4d9f7970a2ff32539, type: 2}
   - {fileID: 11400000, guid: a3835c2dc87a74647879a0700cf7c9d6, type: 2}

@@ -18,6 +18,9 @@ namespace _2D_Roguelike
     /// </summary>
     public abstract class SkillBehaviour : ScriptableObject
     {
+        /// <summary>A키 홀드 차지가 필요한 스킬이면 true를 반환한다.</summary>
+        public virtual bool IsChargeSkill => false;
+
         /// <summary>
         /// 스킬 실행 로직.
         /// FormSkillController가 StartCoroutine으로 호출한다.

@@ -65,6 +65,10 @@ namespace _2D_Roguelike
                     IgnoreInvincibility = false,
                     StatusEffects       = spec.StatusEffects,
                 });
+
+                // 플레이어 시전 시에만 전투 이벤트 발행 (흡혈 등 효과 연동)
+                if (_statController != null)
+                    PlayerCombatEvents.InvokeDamageDealt(damage);
             }
         }
 

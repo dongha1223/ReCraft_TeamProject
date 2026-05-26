@@ -7,6 +7,7 @@ namespace _2D_Roguelike
     /// A/S 스킬 오브젝트 풀.
     /// - SwordEnergyProjectile: 프리팹 기반 풀링 (_projectilePrefab Inspector 할당 필수)
     /// - RollingSlashVisual   : 프리팹 기반 풀링 (_slashVFXPrefab Inspector 할당 필수)
+    /// - WhirlwindVisual      : 프리팹 기반 풀링 (_whirlwindVFXPrefab Inspector 할당 필수)
     /// </summary>
     public class SkillObjectPool : MonoBehaviour
     {
@@ -14,11 +15,14 @@ namespace _2D_Roguelike
 
         [SerializeField] private GameObject _projectilePrefab;
         [SerializeField] private GameObject _slashVFXPrefab;
-        [SerializeField] private int        _initialProjectileCount = 4;
-        [SerializeField] private int        _initialSlashVFXCount   = 5;
+        [SerializeField] private GameObject _whirlwindVFXPrefab;
+        [SerializeField] private int        _initialProjectileCount   = 4;
+        [SerializeField] private int        _initialSlashVFXCount     = 5;
+        [SerializeField] private int        _initialWhirlwindVFXCount = 3;
 
-        private readonly Queue<SwordEnergyProjectile> _projectilePool = new Queue<SwordEnergyProjectile>();
-        private readonly Queue<RollingSlashVisual>     _slashVFXPool   = new Queue<RollingSlashVisual>();
+        private readonly Queue<SwordEnergyProjectile> _projectilePool    = new Queue<SwordEnergyProjectile>();
+        private readonly Queue<RollingSlashVisual>     _slashVFXPool      = new Queue<RollingSlashVisual>();
+        private readonly Queue<WhirlwindVisual>        _whirlwindVFXPool  = new Queue<WhirlwindVisual>();
 
         private void Awake()
         {
@@ -30,6 +34,9 @@ namespace _2D_Roguelike
 
             for (int i = 0; i < _initialSlashVFXCount; i++)
                 _slashVFXPool.Enqueue(CreateSlashVFX());
+
+            for (int i = 0; i < _initialWhirlwindVFXCount; i++)
+                _whirlwindVFXPool.Enqueue(CreateWhirlwindVFX());
         }
 
         // ── SwordEnergyProjectile ─────────────────────────────────────────
@@ -92,6 +99,37 @@ namespace _2D_Roguelike
             v.gameObject.SetActive(false);
             v.transform.SetParent(transform);
             _slashVFXPool.Enqueue(v);
+        }
+
+        // ── WhirlwindVisual ───────────────────────────────────────────────
+        private WhirlwindVisual CreateWhirlwindVFX()
+        {
+            if (_whirlwindVFXPrefab == null)
+            {
+                Debug.LogError("[SkillObjectPool] _whirlwindVFXPrefab이 할당되지 않았습니다.");
+                return null;
+            }
+            var go = Instantiate(_whirlwindVFXPrefab, transform);
+            go.SetActive(false);
+            return go.GetComponent<WhirlwindVisual>();
+        }
+
+        public WhirlwindVisual GetWhirlwindVFX(Vector2 pos)
+        {
+            var v = (_whirlwindVFXPool.Count > 0) ? _whirlwindVFXPool.Dequeue() : CreateWhirlwindVFX();
+            if (v == null) return null;
+
+            v.transform.SetParent(null);
+            v.transform.position = pos;
+            v.gameObject.SetActive(true);
+            return v;
+        }
+
+        public void ReturnWhirlwindVFX(WhirlwindVisual v)
+        {
+            v.gameObject.SetActive(false);
+            v.transform.SetParent(transform);
+            _whirlwindVFXPool.Enqueue(v);
         }
     }
 }
