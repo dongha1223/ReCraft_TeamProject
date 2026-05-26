@@ -43,11 +43,28 @@ namespace _2D_Roguelike
         private float _jumpLockTimer;
         private float _originalGravityScale;
 
+        // Phase 2 연동: 원본 최대 충전 수 보존용
+        private int _originalMaxCharges;
+
         private static readonly int AnimDash = Animator.StringToHash("Dash");
 
         public bool IsDashing => _isDashing;
 
         public GhostFade ghost;
+
+        /// <summary>Phase 2 진입 시 최대 충전 수를 변경한다. 현재 충전 수도 초과하지 않도록 조정.</summary>
+        public void SetMaxCharges(int count)
+        {
+            _maxCharges     = Mathf.Max(1, count);
+            _currentCharges = Mathf.Min(_currentCharges, _maxCharges);
+        }
+
+        /// <summary>Phase 2 종료 시 원래 최대 충전 수로 복구한다.</summary>
+        public void RestoreMaxCharges()
+        {
+            _maxCharges     = _originalMaxCharges;
+            _currentCharges = _maxCharges;
+        }
 
         /// <summary>대시 상태 전체 초기화 (스테이지 재시작 시 호출)</summary>
         public void ResetDash()
@@ -69,6 +86,7 @@ namespace _2D_Roguelike
             _invincibility        = GetComponent<InvincibilityHandler>();
             _currentCharges       = _maxCharges;
             _originalGravityScale = _rb.gravityScale;
+            _originalMaxCharges   = _maxCharges;
         }
 
         private void Update()

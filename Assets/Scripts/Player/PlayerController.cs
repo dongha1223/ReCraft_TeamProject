@@ -43,6 +43,9 @@ namespace _2D_Roguelike
         private bool _isGrounded;
         private bool _isOnPlatform;
 
+        // Phase 2 연동: false이면 점프 입력을 무시한다
+        private bool _jumpEnabled = true;
+
         public bool IsGrounded    => _isGrounded;
 
         /// <summary>차지·롤링 등 이동·점프·공격·대시를 모두 차단하는 스킬 실행 중 여부.</summary>
@@ -137,11 +140,15 @@ namespace _2D_Roguelike
             _animator?.SetBool(AnimIsMoving, horizontal != 0f);
         }
 
+        /// <summary>Phase 2 진입/종료 시 점프 가능 여부를 토글한다.</summary>
+        public void SetJumpEnabled(bool enabled) => _jumpEnabled = enabled;
+
         // ─── 점프 / 아래 점프 ─────────────────────────────────────────────
         private void HandleJump()
         {
             if (UIState.IsBlockingInput) return;
             if (IsSkillLocked)           return;
+            if (!_jumpEnabled)           return;
             bool spacePressed = KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Jump);
             bool downHeld     = KeyBindingService.IsPressed(KeyBindingService.Action.MoveDown);
 
