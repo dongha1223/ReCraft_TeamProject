@@ -29,6 +29,9 @@ namespace _2D_Roguelike
         [Header("플레이어")]
         [SerializeField] private Transform _playerTransform;
 
+        [Header("테스트 — 빌드 전 반드시 0으로 복구")]
+        [SerializeField] private int _startStageIndex = 0;
+
         public int  CurrentStage    { get; private set; } = 0;
         public bool AllEnemiesDead  => _aliveEnemyCount == 0;
         public int  AliveEnemyCount => _aliveEnemyCount;
@@ -71,7 +74,7 @@ namespace _2D_Roguelike
 
         private void Start()
         {
-            ActivateStage(0);
+            ActivateStage(_startStageIndex);
         }
 
         // ── 캐싱 ─────────────────────────────────────────────────────────
@@ -208,10 +211,14 @@ namespace _2D_Roguelike
                     _stages[i].root.SetActive(i == index);
             }
 
-            // 마지막 스테이지 여부를 캐시된 표지판에 자동 주입
+            // 마지막/보스 스테이지 여부를 캐시된 표지판에 자동 주입
             bool isLast = (index == _stages.Length - 1);
+            bool isBoss = _stages[index].data != null && _stages[index].data.stageType == StageType.Boss;
             if (_signpostCache != null && index < _signpostCache.Length && _signpostCache[index] != null)
+            {
                 _signpostCache[index].SetIsLastStage(isLast);
+                _signpostCache[index].SetIsBossStage(isBoss);
+            }
 
             MovePlayerToSpawn(index);
             BGMManager.Instance?.PlayBGM(_stages[index].data?.bgm);

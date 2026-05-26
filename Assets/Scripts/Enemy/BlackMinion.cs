@@ -31,6 +31,17 @@ namespace _2D_Roguelike
         [SerializeField] private GameObject _laserEffectPrefab;
 
         private GameObject _activeLaserEffect;
+        private Animator   _animator;
+
+        private static readonly int AnimLaser = Animator.StringToHash("Laser");
+
+        // ── 생명주기 ──────────────────────────────────────────────────────
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _animator = GetComponent<Animator>();
+        }
 
         // ── MinionBase 구현 ───────────────────────────────────────────────
 
@@ -44,7 +55,10 @@ namespace _2D_Roguelike
 
             if (_stats.IsDead) yield break;
 
-            // ② 레이저 이펙트 생성
+            // ② 레이저 애니메이션 트리거 (전조 종료 시점 — 레이저 발사와 동시)
+            SafeSetTrigger(AnimLaser);
+
+            // ③ 레이저 이펙트 생성
             if (_laserEffectPrefab != null)
             {
                 _activeLaserEffect = Instantiate(
@@ -53,12 +67,12 @@ namespace _2D_Roguelike
                     GetFacingRotation());
             }
 
-            // ③ 데미지 판정 (BoxCast2D로 레이저 범위 내 플레이어 감지)
+            // ④ 데미지 판정 (BoxCast2D로 레이저 범위 내 플레이어 감지)
             ApplyLaserDamage();
 
             yield return new WaitForSeconds(_laserDuration);
 
-            // ④ 레이저 이펙트 제거
+            // ⑤ 레이저 이펙트 제거
             if (_activeLaserEffect != null)
                 Destroy(_activeLaserEffect);
         }
@@ -99,6 +113,13 @@ namespace _2D_Roguelike
                     KnockbackForce = 0f,
                 });
             }
+        }
+
+        private void SafeSetTrigger(int hash)
+        {
+            if (_animator == null) return;
+            foreach (var p in _animator.parameters)
+                if (p.nameHash == hash) { _animator.SetTrigger(hash); return; }
         }
 
         private Quaternion GetFacingRotation()

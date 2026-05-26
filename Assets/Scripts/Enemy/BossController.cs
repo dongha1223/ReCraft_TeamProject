@@ -39,6 +39,12 @@ namespace _2D_Roguelike
         [Header("Phase 2 — 플랫폼")]
         [SerializeField] private PlatformManager _platformManager;
 
+        [Header("지형 전환")]
+        [Tooltip("Phase 1 바닥 루트 오브젝트 — Phase 2 전환 시 비활성화, 보스 사망 시 재활성화")]
+        [SerializeField] private GameObject _phase1Root;
+        [Tooltip("보스 사망 후 플레이어를 이동시킬 스폰 포인트 (StageManager spawnPoint와 동일 Transform)")]
+        [SerializeField] private Transform  _spawnPoint_Boss;
+
         // ── 내부 상태 ─────────────────────────────────────────────────────
         private BossPhase          _phase = BossPhase.Phase1;
         private BossStats          _stats;
@@ -119,6 +125,12 @@ namespace _2D_Roguelike
             RestorePlayerAbilities();
 
             _platformManager?.DisablePlatforms();
+
+            // 바닥 복원 → 플레이어 복귀 (순서 중요: 바닥 먼저 활성화한 뒤 이동)
+            if (_phase1Root != null) _phase1Root.SetActive(true);
+            if (_spawnPoint_Boss != null && _playerStats != null)
+                _playerStats.transform.position = _spawnPoint_Boss.position;
+
             _animator?.SetTrigger(AnimDie);
 
             OnBossDead?.Invoke();
@@ -157,7 +169,8 @@ namespace _2D_Roguelike
             if (transObelisk != null)
                 Destroy(transObelisk);
 
-            // ⑦ 플랫폼 활성화 + 플레이어 이동
+            // ⑦ Phase1 바닥 비활성화 → 플랫폼 활성화 + 플레이어 이동
+            if (_phase1Root != null) _phase1Root.SetActive(false);
             _platformManager?.ActivatePlatforms();
             _platformManager?.TeleportPlayerToPlatform(0);
 

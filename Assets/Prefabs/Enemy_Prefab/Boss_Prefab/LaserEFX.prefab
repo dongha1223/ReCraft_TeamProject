@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1138852926492233839}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.664, y: 1.59, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -127,7 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9381eaa180aad0942bb1d22d06b23916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.SkillEffectActor
-  _frames: []
+  _frames:
+  - {fileID: 0}
   _fps: 12
   _overrideDuration: 0
   _scale: {x: 1, y: 1}

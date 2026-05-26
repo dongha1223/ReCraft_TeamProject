@@ -34,18 +34,24 @@ namespace _2D_Roguelike
         [SerializeField] private GameObject _windupEffectPrefab;
         [Tooltip("폭발 이펙트 프리팹")]
         [SerializeField] private GameObject _explosionEffectPrefab;
+        [Tooltip("폭발 애니메이션 재생 후 오브젝트 제거까지 대기 시간 (초) — Explode 애니메이션 길이에 맞춰 설정")]
+        [SerializeField] private float _explodeAnimDuration = 0.5f;
 
         private Rigidbody2D _rb;
+        private Animator    _animator;
         private bool        _isDashing;
         private bool        _hasExploded;
         private Vector2     _dashStartPos;
+
+        private static readonly int AnimExplode = Animator.StringToHash("Explode");
 
         // ── 생명주기 ──────────────────────────────────────────────────────
 
         protected override void Awake()
         {
             base.Awake();
-            _rb = GetComponent<Rigidbody2D>();
+            _rb       = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
         }
 
         // ── MinionBase 구현 ───────────────────────────────────────────────
@@ -107,6 +113,9 @@ namespace _2D_Roguelike
             _isDashing   = false;
             _rb.linearVelocity = Vector2.zero;
 
+            // 폭발 애니메이션 트리거 (Idle 자동 복귀 — 이미 Destroy 예정이라 복귀는 무의미)
+            SafeSetTrigger(AnimExplode);
+
             // 폭발 이펙트 재생
             if (_explosionEffectPrefab != null)
                 Instantiate(_explosionEffectPrefab, transform.position, Quaternion.identity);
@@ -114,7 +123,15 @@ namespace _2D_Roguelike
             // 범위 내 플레이어에게 데미지
             ApplyExplosionDamage();
 
-            Destroy(gameObject);
+            // 애니메이션이 재생될 시간을 확보한 뒤 오브젝트 제거
+            Destroy(gameObject, _explodeAnimDuration);
+        }
+
+        private void SafeSetTrigger(int hash)
+        {
+            if (_animator == null) return;
+            foreach (var p in _animator.parameters)
+                if (p.nameHash == hash) { _animator.SetTrigger(hash); return; }
         }
 
         private void ApplyExplosionDamage()

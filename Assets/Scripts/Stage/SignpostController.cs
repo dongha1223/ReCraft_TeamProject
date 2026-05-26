@@ -13,6 +13,8 @@ namespace _2D_Roguelike
         [Header("설정")]
         [Tooltip("StageManager가 런타임에 자동 주입 — 직접 수정 불필요")]
         [SerializeField] private bool _isLastStage = false;
+        [Tooltip("StageManager가 런타임에 자동 주입 — 직접 수정 불필요")]
+        [SerializeField] private bool _isBossStage = false;
 
         [Header("참조 — 비워두면 자동 탐색")]
         [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -27,6 +29,13 @@ namespace _2D_Roguelike
 
         /// <summary>StageManager가 스테이지 활성화 시 자동 주입 — Inspector 값을 덮어씀</summary>
         public void SetIsLastStage(bool isLast) => _isLastStage = isLast;
+
+        /// <summary>보스 스테이지이면 OnAllEnemiesDead 대신 BossController.OnBossDead를 구독</summary>
+        public void SetIsBossStage(bool isBoss)
+        {
+            _isBossStage = isBoss;
+            RefreshSubscription();
+        }
 
         // ── IInteractable ─────────────────────────────────────────────
 
@@ -78,31 +87,23 @@ namespace _2D_Roguelike
 
             if (_fKeyPrompt != null) _fKeyPrompt.SetActive(false);
 
-            if (StageManager.Instance != null)
-            {
-                StageManager.Instance.OnAllEnemiesDead -= HandleAllEnemiesDead;
-                StageManager.Instance.OnAllEnemiesDead += HandleAllEnemiesDead;
-            }
+            RefreshSubscription();
         }
 
         private void OnDisable()
         {
-            if (StageManager.Instance != null)
-                StageManager.Instance.OnAllEnemiesDead -= HandleAllEnemiesDead;
-
+            UnsubscribeAll();
             if (_fKeyPrompt != null) _fKeyPrompt.SetActive(false);
         }
 
         private void Start()
         {
-            if (StageManager.Instance == null) return;
-
             // OnEnable 시점에 StageManager가 없었을 수 있으므로 재구독
-            StageManager.Instance.OnAllEnemiesDead -= HandleAllEnemiesDead;
-            StageManager.Instance.OnAllEnemiesDead += HandleAllEnemiesDead;
+            RefreshSubscription();
 
-            // 이미 전멸 상태로 시작하는 스테이지 대응
-            if (!_isActivated && StageManager.Instance.AllEnemiesDead)
+            // 이미 전멸 상태로 시작하는 일반 스테이지 대응
+            if (!_isBossStage && !_isActivated
+                && StageManager.Instance != null && StageManager.Instance.AllEnemiesDead)
             {
                 _isActivated = true;
                 UpdateAlpha();
@@ -111,10 +112,31 @@ namespace _2D_Roguelike
 
         // ── 내부 ─────────────────────────────────────────────────────
 
-        private void HandleAllEnemiesDead()
+        private void RefreshSubscription()
+        {
+            UnsubscribeAll();
+
+            if (_isBossStage)
+            {
+                BossController.OnBossDead += HandleClearConditionMet;
+            }
+            else if (StageManager.Instance != null)
+            {
+                StageManager.Instance.OnAllEnemiesDead += HandleClearConditionMet;
+            }
+        }
+
+        private void UnsubscribeAll()
+        {
+            BossController.OnBossDead               -= HandleClearConditionMet;
+            if (StageManager.Instance != null)
+                StageManager.Instance.OnAllEnemiesDead -= HandleClearConditionMet;
+        }
+
+        private void HandleClearConditionMet()
         {
 #if UNITY_EDITOR
-            Debug.Log($"[Signpost] HandleAllEnemiesDead — activating signpost on '{gameObject.scene.name}'");
+            Debug.Log($"[Signpost] 클리어 조건 충족 — '{gameObject.scene.name}' (보스스테이지={_isBossStage})");
 #endif
             _isActivated = true;
             UpdateAlpha();
