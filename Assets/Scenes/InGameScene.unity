@@ -423,10 +423,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04da76c6b425d994eabfef5e9c768e6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.SkillObjectPool
-  _projectilePrefab: {fileID: 183671539507655738, guid: cae58b31d6e16c246800143338363237, type: 3}
+  _projectilePrefab: {fileID: 7746623140079303136, guid: 57a7393b477bc264190a8394a415ad9c, type: 3}
   _slashVFXPrefab: {fileID: 6438811975416736645, guid: 9f9e5972d4aa84545b6da5d63c048d25, type: 3}
+  _whirlwindVFXPrefab: {fileID: 7746623140079303136, guid: 57a7393b477bc264190a8394a415ad9c, type: 3}
   _initialProjectileCount: 4
   _initialSlashVFXCount: 5
+  _initialWhirlwindVFXCount: 3
 --- !u!4 &313766471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2928621924486789474, guid: b46e0141256772c468186651e6837534, type: 3}
@@ -2505,7 +2507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1810355394
 Transform:
   m_ObjectHideFlags: 0

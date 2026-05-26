@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: PraySkillBehaviour
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.PraySkillBehaviour
   _prayAnimTrigger: Pray
-  _prayDuration: 1.2
-  _sparkleEffectPrefab: {fileID: 0}
-  _sparkleLifetime: 1.2
-  _aboveEffectPrefab: {fileID: 0}
-  _aboveEffectYOffset: 2.5
-  _aboveEffectLifetime: 1.5
-  _lifeStealDuration: 5
-  _lifeStealRatio: 0.1
+  _prayDuration: 1
+  _sparkleEffectPrefab: {fileID: 1020653043921505558, guid: 30b4740489cd32f4b8b39c4b5113e06f, type: 3}
+  _sparkleLifetime: 1
+  _aboveEffectPrefab: {fileID: 2610316740608799962, guid: 61dd2b389b063b149ae9a7f2f18d832b, type: 3}
+  _aboveEffectYOffset: 1.75
+  _aboveEffectLifetime: 1
+  _lifeStealDuration: 10
+  _lifeStealRatio: 0.2
   _praySfx: {fileID: 0}

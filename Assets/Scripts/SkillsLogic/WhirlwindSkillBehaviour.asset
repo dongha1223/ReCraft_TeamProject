@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WhirlwindSkillBehaviour
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.WhirlwindSkillBehaviour
   _maxChargeTime: 2.5
-  _chargeAnimTrigger: WhirlwindCharge
+  _chargeAnimBool: Charging
   _chargeClip: {fileID: 0}
   _whirlwindAnimTrigger: Whirlwind
   _whirlwindClip: {fileID: 0}
@@ -21,23 +21,17 @@ MonoBehaviour:
   _stages:
   - chargeThreshold: 0
     hitCount: 3
-    attackRadius: 2.5
+    attackRadius: 2
     castDuration: 0.6
   - chargeThreshold: 0.83
     hitCount: 5
-    attackRadius: 3.5
-    castDuration: 0.9
+    attackRadius: 2.5
+    castDuration: 1.5
   - chargeThreshold: 1.67
     hitCount: 8
-    attackRadius: 5
-    castDuration: 1.2
+    attackRadius: 3
+    castDuration: 2
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
-  _searchRadius: 15
-  _sameHeightTolerance: 2
-  _approachThreshold: 5
-  _approachStopDist: 1.5
-  _approachSpeed: 8
-  _maxApproachTime: 1.5
+    m_Bits: 2048
   _innateEffects: []
