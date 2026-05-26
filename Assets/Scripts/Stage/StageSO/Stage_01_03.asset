@@ -17,5 +17,5 @@ MonoBehaviour:
   mapTheme: 0
   reward:
     itemChoiceCount: 3
-    bonusGold: 50
-  bgm: {fileID: 0}
+    bonusGold: 0
+  bgm: {fileID: 8300000, guid: 3c7af41e066478c448e983dba58bfe21, type: 3}
