@@ -36,13 +36,17 @@ namespace _2D_Roguelike
         private PlayerAttack          _playerAttack;
         private FormSkillController   _formSkillController;
         private KnockbackReceiver     _knockback;
+        private Collider2D[]          _ownColliders;
 
 
         private int  _jumpCount;
         private bool _isGrounded;
         private bool _isOnPlatform;
 
-        public bool IsGrounded => _isGrounded;
+        public bool IsGrounded    => _isGrounded;
+
+        /// <summary>차지·롤링 등 이동·점프·공격·대시를 모두 차단하는 스킬 실행 중 여부.</summary>
+        public bool IsSkillLocked => _formSkillController != null && _formSkillController.IsMovementLocked;
 
         private static readonly int AnimIsMoving  = Animator.StringToHash("IsMoving");
         private static readonly int AnimIsJumping = Animator.StringToHash("IsJumping");
@@ -59,6 +63,7 @@ namespace _2D_Roguelike
             _playerAttack        = GetComponent<PlayerAttack>();
             _formSkillController = GetComponent<FormSkillController>();
             _knockback           = GetComponent<KnockbackReceiver>();
+            _ownColliders        = GetComponents<Collider2D>();
             _feetBoxSize = new Vector2(_feetWidth, _feetHeight);
         }
 
@@ -109,8 +114,8 @@ namespace _2D_Roguelike
                 _animator?.SetBool(AnimIsMoving, false);
                 return;
             }
-            if (_playerDash          != null && _playerDash.IsDashing)             return;
-            if (_formSkillController != null && _formSkillController.IsRolling)   return;
+            if (_playerDash          != null && _playerDash.IsDashing) return;
+            if (IsSkillLocked)                                         return;
             if (_playerAttack        != null && _playerAttack.IsAttacking)
             {
                 // 공격 중 이동 입력 차단 — 임펄스로 부여된 속도는 그대로 유지
@@ -136,6 +141,7 @@ namespace _2D_Roguelike
         private void HandleJump()
         {
             if (UIState.IsBlockingInput) return;
+            if (IsSkillLocked)           return;
             bool spacePressed = KeyBindingService.WasPressedThisFrame(KeyBindingService.Action.Jump);
             bool downHeld     = KeyBindingService.IsPressed(KeyBindingService.Action.MoveDown);
 
@@ -163,20 +169,22 @@ namespace _2D_Roguelike
         }
 
         // ─── 플랫폼 통과 낙하 ─────────────────────────────────────────────
-        // 발 아래 플랫폼 콜라이더를 isTrigger로 전환 → 즉시 통과 가능
+        // 플레이어-플랫폼 콜라이더 쌍만 IgnoreCollision → 몬스터는 영향 없음
         private IEnumerator DropThroughPlatform()
         {
-            Collider2D[] cols = Physics2D.OverlapBoxAll(FeetCenter, _feetBoxSize, 0f, _platformLayer);
+            Collider2D[] platforms = Physics2D.OverlapBoxAll(FeetCenter, _feetBoxSize, 0f, _platformLayer);
 
-            foreach (var col in cols)
-                col.isTrigger = true;
+            foreach (var platform in platforms)
+                foreach (var own in _ownColliders)
+                    Physics2D.IgnoreCollision(own, platform, true);
 
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -4f);
 
             yield return new WaitForSeconds(0.4f);
 
-            foreach (var col in cols)
-                col.isTrigger = false;
+            foreach (var platform in platforms)
+                foreach (var own in _ownColliders)
+                    Physics2D.IgnoreCollision(own, platform, false);
         }
 
         // ─── 방향 전환 ────────────────────────────────────────────────────

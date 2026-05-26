@@ -32,6 +32,8 @@ namespace _2D_Roguelike
 
         public override IEnumerator Execute(SkillContext ctx)
         {
+            ctx.SetMovementLock?.Invoke(true);
+
             float rollDirSign = ctx.PlayerTransform.localScale.x < 0f ? -1f : 1f;
             float moveSpeed   = _rollDistance / _rollTime;
 
@@ -55,6 +57,8 @@ namespace _2D_Roguelike
             if (ctx.PlayerRb != null)
                 ctx.PlayerRb.linearVelocity = new Vector2(0f, ctx.PlayerRb.linearVelocity.y);
             ctx.PlayerTransform.rotation = Quaternion.identity;
+
+            ctx.SetMovementLock?.Invoke(false);
         }
 
         /// <summary>1회 구르기: rollTime 동안 전진 + Z축 360° 회전 후 정자세 스냅</summary>

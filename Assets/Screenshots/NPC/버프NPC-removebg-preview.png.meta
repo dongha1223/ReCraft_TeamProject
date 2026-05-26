@@ -1,0 +1,520 @@
+fileFormatVersion: 2
+guid: 96abec5ee9dc0d542a45e04e508bc969
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8630480634500048830
+    second: "\uBC84\uD504NPC-removebg-preview_0"
+  - first:
+      213: -8338347584306042428
+    second: "\uBC84\uD504NPC-removebg-preview_1"
+  - first:
+      213: -8188697429062957239
+    second: "\uBC84\uD504NPC-removebg-preview_2"
+  - first:
+      213: 2295282678351828131
+    second: "\uBC84\uD504NPC-removebg-preview_3"
+  - first:
+      213: -2608628789359317182
+    second: "\uBC84\uD504NPC-removebg-preview_4"
+  - first:
+      213: -917894693130930143
+    second: "\uBC84\uD504NPC-removebg-preview_5"
+  - first:
+      213: -5439891476451786481
+    second: "\uBC84\uD504NPC-removebg-preview_6"
+  - first:
+      213: 7571211216957972653
+    second: "\uBC84\uD504NPC-removebg-preview_7"
+  - first:
+      213: -8536498510549710622
+    second: "\uBC84\uD504NPC-removebg-preview_8"
+  - first:
+      213: -4368832047668082329
+    second: "\uBC84\uD504NPC-removebg-preview_9"
+  - first:
+      213: 7263802848518770129
+    second: "\uBC84\uD504NPC-removebg-preview_10"
+  - first:
+      213: -801428534936745027
+    second: "\uBC84\uD504NPC-removebg-preview_11"
+  - first:
+      213: -1341142498444697141
+    second: "\uBC84\uD504NPC-removebg-preview_12"
+  - first:
+      213: 7821080489886987227
+    second: "\uBC84\uD504NPC-removebg-preview_13"
+  - first:
+      213: -5064249233462622662
+    second: "\uBC84\uD504NPC-removebg-preview_14"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_0"
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 255
+        width: 86
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb7634c2960a5c770800000000000000
+      internalID: 8630480634500048830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_1"
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 127
+        width: 87
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c9a3bfec0d384c80800000000000000
+      internalID: -8338347584306042428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_2"
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 255
+        width: 87
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9474c87e217eb5e80800000000000000
+      internalID: -8188697429062957239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_3"
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 127
+        width: 85
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a4944e5f6b7adf10800000000000000
+      internalID: 2295282678351828131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_4"
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 255
+        width: 90
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24f616befe94ccbd0800000000000000
+      internalID: -2608628789359317182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_5"
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 127
+        width: 85
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 128f6bac3abf243f0800000000000000
+      internalID: -917894693130930143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_6"
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 255
+        width: 90
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f018a61268f9184b0800000000000000
+      internalID: -5439891476451786481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_7"
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 127
+        width: 87
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da0ab32ec78521960800000000000000
+      internalID: 7571211216957972653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_8"
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 255
+        width: 89
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e8880d35d3488980800000000000000
+      internalID: -8536498510549710622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_9"
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 127
+        width: 86
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 769c663566ace53c0800000000000000
+      internalID: -4368832047668082329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_10"
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 0
+        width: 85
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dd8e6894363ec460800000000000000
+      internalID: 7263802848518770129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_11"
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 0
+        width: 85
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbbcb3e5ef0c0e4f0800000000000000
+      internalID: -801428534936745027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_12"
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 0
+        width: 85
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc1260bd00e436de0800000000000000
+      internalID: -1341142498444697141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_13"
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 0
+        width: 88
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd3b377844f0a8c60800000000000000
+      internalID: 7821080489886987227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC84\uD504NPC-removebg-preview_14"
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 0
+        width: 89
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a368a69572c28b9b0800000000000000
+      internalID: -5064249233462622662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "\uBC84\uD504NPC-removebg-preview_0": 8630480634500048830
+      "\uBC84\uD504NPC-removebg-preview_1": -8338347584306042428
+      "\uBC84\uD504NPC-removebg-preview_10": 7263802848518770129
+      "\uBC84\uD504NPC-removebg-preview_11": -801428534936745027
+      "\uBC84\uD504NPC-removebg-preview_12": -1341142498444697141
+      "\uBC84\uD504NPC-removebg-preview_13": 7821080489886987227
+      "\uBC84\uD504NPC-removebg-preview_14": -5064249233462622662
+      "\uBC84\uD504NPC-removebg-preview_2": -8188697429062957239
+      "\uBC84\uD504NPC-removebg-preview_3": 2295282678351828131
+      "\uBC84\uD504NPC-removebg-preview_4": -2608628789359317182
+      "\uBC84\uD504NPC-removebg-preview_5": -917894693130930143
+      "\uBC84\uD504NPC-removebg-preview_6": -5439891476451786481
+      "\uBC84\uD504NPC-removebg-preview_7": 7571211216957972653
+      "\uBC84\uD504NPC-removebg-preview_8": -8536498510549710622
+      "\uBC84\uD504NPC-removebg-preview_9": -4368832047668082329
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

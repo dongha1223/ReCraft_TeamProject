@@ -215,7 +215,7 @@
 #info-cost-icon {
     width: 22px;
     height: 22px;
-    background-image: url('../Screenshots/신념_아이콘.png');
+    background-image: url('../Screenshots/Assets/신념_아이콘.png');
     -unity-background-scale-mode: scale-to-fit;
     margin-right: 4px;
     flex-shrink: 0;
@@ -256,6 +256,6 @@
     right: 0;
     width: 320px;
     height: 740px;
-    background-image: url('../Screenshots/샵걸_이미지.png');
+    background-image: url('../Screenshots/NPC/샵걸_이미지.png');
     -unity-background-scale-mode: scale-to-fit;
 }
