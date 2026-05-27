@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.PraySkillBehaviour
   _prayAnimTrigger: Pray
   _prayDuration: 1
-  _sparkleEffectPrefab: {fileID: 1020653043921505558, guid: 30b4740489cd32f4b8b39c4b5113e06f, type: 3}
+  _sparkleEffectPrefab: {fileID: 3727375521864013067, guid: a70808aae2aaffe46a50e58d6dfb724f, type: 3}
   _sparkleLifetime: 1
   _aboveEffectPrefab: {fileID: 2610316740608799962, guid: 61dd2b389b063b149ae9a7f2f18d832b, type: 3}
   _aboveEffectYOffset: 1.75
