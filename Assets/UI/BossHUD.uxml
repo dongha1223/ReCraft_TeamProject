@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="BossHUD.uss"/>
+    <ui:VisualElement name="boss-hud-root">
+        <ui:VisualElement name="boss-hud-wrapper">
+            <ui:VisualElement name="boss-hud-panel">
+                <ui:Label name="boss-name-label" text="위그드라실"/>
+                <ui:VisualElement name="boss-hp-row">
+                    <ui:VisualElement class="boss-gem"/>
+                    <ui:VisualElement name="boss-hp-bar-bg">
+                        <ui:VisualElement name="boss-hp-bar-fill"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="boss-gem"/>
+                </ui:VisualElement>
+                <ui:Label name="boss-race-label" text="장로엔트"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

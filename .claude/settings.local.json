@@ -53,7 +53,8 @@
       "PowerShell(Select-String -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\StagePrefab\\\\StageBossRoot2.prefab\" -Pattern \"BossMainController|_parts\" -Context 0,8 | Select-Object -First 20 | ForEach-Object { $_.Line })",
       "PowerShell(\\(Get-Content \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\StagePrefab\\\\StageBossRoot2.prefab\"\\) | Select-String \"BossMainController\" -Context 0,15 | ForEach-Object { $_.Context.PreContext; $_.Line; $_.Context.PostContext })",
       "PowerShell(Select-String *)",
-      "PowerShell(Select-String -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\StagePrefab\\\\StageBossRoot2.prefab\" -Pattern \"BossPartHP\" -Context 2,0 | ForEach-Object { $_.Context.PreContext; $_.Line } | Select-Object -First 20)"
+      "PowerShell(Select-String -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\StagePrefab\\\\StageBossRoot2.prefab\" -Pattern \"BossPartHP\" -Context 2,0 | ForEach-Object { $_.Context.PreContext; $_.Line } | Select-Object -First 20)",
+      "Bash(Select-Object -ExpandProperty Name)"
     ]
   }
 }
