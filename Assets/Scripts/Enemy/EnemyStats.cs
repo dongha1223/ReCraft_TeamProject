@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,6 +6,12 @@ namespace _2D_Roguelike
 {
     public class EnemyStats : MonoBehaviour, IDamageable, IDotReceiver
     {
+        /// <summary>데미지를 받을 때마다 발행 (currentHp, maxHp).</summary>
+        public event Action<float, float> OnHPChanged;
+
+        /// <summary>사망 확정 시 발행. BossMainController 등이 구독해 패턴 루프를 종료한다.</summary>
+        public event Action OnDeadEvent;
+
         [Header("스탯")]
         [SerializeField] private float _maxHp = 70f;
 
@@ -84,6 +91,8 @@ namespace _2D_Roguelike
                     _statusController.ApplyStatus(spec);
             }
 
+            OnHPChanged?.Invoke(_currentHp, _maxHp);
+
             if (_currentHp <= 0f)
             {
                 _isDead = true;
@@ -110,6 +119,8 @@ namespace _2D_Roguelike
             _currentHp = Mathf.Max(0f, _currentHp - amount);
             SpawnDamageText(amount, FloatingTextType.StatusEffect);
 
+            OnHPChanged?.Invoke(_currentHp, _maxHp);
+
             if (_currentHp <= 0f)
             {
                 _isDead = true;
@@ -130,6 +141,7 @@ namespace _2D_Roguelike
         {
             Debug.Log($"[EnemyStats] {name} 사망.");
             if (_brain != null) _brain.enabled = false;
+            OnDeadEvent?.Invoke();
             SafeSetTrigger(AnimDie);
 
             // 처치 시 플레이어 태그 토큰 게이지 획득
