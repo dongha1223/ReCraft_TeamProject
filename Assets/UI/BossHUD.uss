@@ -1,0 +1,123 @@
+/* ── 전체 화면 루트 ─────────────────────────────────────────────── */
+#boss-hud-root {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: visible;
+}
+
+/* ── 슬라이드 래퍼 (C#에서 top 값 제어) ─────────────────────────── */
+#boss-hud-wrapper {
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    overflow: visible;
+    align-items: center;
+}
+
+/* ── 메인 패널 프레임 ──────────────────────────────────────────── */
+#boss-hud-panel {
+    width: 100%;
+    background-color: rgba(10, 6, 18, 0.94);
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-top-color: rgb(108, 83, 43);
+    border-bottom-color: rgb(108, 83, 43);
+    border-left-color: rgb(108, 83, 43);
+    border-right-color: rgb(108, 83, 43);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    padding-left: 14px;
+    padding-right: 14px;
+    align-items: center;
+}
+
+/* ── 보스 이름 ─────────────────────────────────────────────────── */
+#boss-name-label {
+    width: 100%;
+    font-size: 22px;
+    color: rgb(255, 248, 218);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin-bottom: 6px;
+}
+
+/* ── HP 행 (젬 + 바) ───────────────────────────────────────────── */
+#boss-hp-row {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 6px;
+}
+
+/* ── 보라색 젬 장식 ────────────────────────────────────────────── */
+.boss-gem {
+    width: 30px;
+    height: 30px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: rgb(60, 18, 88);
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-top-color: rgb(160, 85, 210);
+    border-bottom-color: rgb(160, 85, 210);
+    border-left-color: rgb(160, 85, 210);
+    border-right-color: rgb(160, 85, 210);
+    flex-shrink: 0;
+}
+
+/* ── HP 바 배경 ──────────────────────────────────────────────────  */
+#boss-hp-bar-bg {
+    flex-grow: 1;
+    height: 26px;
+    background-color: rgb(16, 7, 22);
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-color: rgb(72, 40, 92);
+    border-bottom-color: rgb(72, 40, 92);
+    border-left-color: rgb(72, 40, 92);
+    border-right-color: rgb(72, 40, 92);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin-left: 6px;
+    margin-right: 6px;
+    overflow: hidden;
+}
+
+/* ── HP 채움 바 ──────────────────────────────────────────────────  */
+#boss-hp-bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(200, 28, 28);
+    transition-property: width;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+}
+
+/* ── 종족/타입 레이블 ───────────────────────────────────────────── */
+#boss-race-label {
+    width: 100%;
+    font-size: 17px;
+    color: rgb(215, 200, 175);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
