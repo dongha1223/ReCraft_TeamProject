@@ -42,7 +42,18 @@
       "mcp__UnityMCP__delete_script",
       "Bash(grep -A 30 \"fileID: 7227042614296148696$\" \"C:/ReCraft_TeamProject/Assets/Scenes/InGameScene.unity\")",
       "Bash(python3 *)",
-      "Bash(Get-Content *)"
+      "Bash(Get-Content *)",
+      "Bash(powershell *)",
+      "Bash(dir \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\StagePrefab\\\\\" 2>/dev/null)",
+      "PowerShell(Rename-Item *)",
+      "PowerShell(Move-Item *)",
+      "PowerShell(Select-String -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\StagePrefab\\\\StageBossRoot2.prefab\" -Pattern \"BossFistPattern|_leftArm|_rightArm|_leftFist|_rightFist|_leftSpawnPoint|_rightSpawnPoint|_playerTransform\" -Context 0,1 | ForEach-Object { $_.Line })",
+      "PowerShell(Select-String -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\StagePrefab\\\\StageBossRoot2.prefab\" -Pattern \"BossFirePillarPattern|_headRenderer|_wallLeft|_wallRight\" -Context 0,1 | ForEach-Object { $_.Line })",
+      "PowerShell(Select-String -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scenes\\\\InGameScene.unity\" -Pattern \"_playerTransform\" -Context 0,1 | ForEach-Object { $_.Line })",
+      "PowerShell(Select-String -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\StagePrefab\\\\StageBossRoot2.prefab\" -Pattern \"BossMainController|_parts\" -Context 0,8 | Select-Object -First 20 | ForEach-Object { $_.Line })",
+      "PowerShell(\\(Get-Content \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\StagePrefab\\\\StageBossRoot2.prefab\"\\) | Select-String \"BossMainController\" -Context 0,15 | ForEach-Object { $_.Context.PreContext; $_.Line; $_.Context.PostContext })",
+      "PowerShell(Select-String *)",
+      "PowerShell(Select-String -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\StagePrefab\\\\StageBossRoot2.prefab\" -Pattern \"BossPartHP\" -Context 2,0 | ForEach-Object { $_.Context.PreContext; $_.Line } | Select-Object -First 20)"
     ]
   }
 }
