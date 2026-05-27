@@ -25,11 +25,11 @@ MonoBehaviour:
     castDuration: 0.6
   - chargeThreshold: 0.83
     hitCount: 5
-    attackRadius: 2.5
+    attackRadius: 3
     castDuration: 1.5
   - chargeThreshold: 1.67
     hitCount: 8
-    attackRadius: 3
+    attackRadius: 4
     castDuration: 2
   _enemyLayer:
     serializedVersion: 2

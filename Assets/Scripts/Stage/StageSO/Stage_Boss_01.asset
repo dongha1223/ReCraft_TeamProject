@@ -18,4 +18,4 @@ MonoBehaviour:
   reward:
     itemChoiceCount: 0
     bonusGold: 0
-  bgm: {fileID: 8300000, guid: c20f138ddbc24964390fe3edb21383bb, type: 3}
+  bgm: {fileID: 8300000, guid: dad4abd4012b2e148ae2d39ba256fe27, type: 3}
