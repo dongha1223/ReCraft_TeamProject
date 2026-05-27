@@ -23,8 +23,16 @@ namespace _2D_Roguelike
         [Tooltip("순간이동 이펙트 프리팹 (출발·도착 위치에 생성)")]
         [SerializeField] private GameObject _teleportEffectPrefab;
 
-        private bool  _isOnCooldown;
-        private float _cooldownTimer;
+        private bool     _isOnCooldown;
+        private float    _cooldownTimer;
+        private Animator _animator;
+
+        private static readonly int AnimExplode = Animator.StringToHash("Explode");
+
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+        }
 
         // ── IInteractable ─────────────────────────────────────────────────
 
@@ -43,15 +51,22 @@ namespace _2D_Roguelike
 
             int nextIndex = (_platformIndex + 1) % _platformManager.PlatformCount;
 
+            // 텔레포트 애니메이션 (Explode 트리거 — Idle 자동 복귀)
+            SafeSetTrigger(AnimExplode);
+
             // 출발 이펙트
             SpawnEffect(transform.position);
 
             // 플레이어 이동
             _platformManager.TeleportPlayerToPlatform(nextIndex);
 
-            // 도착 이펙트
+            // 도착 이펙트 + 도착 오벨리스크 애니메이션
             var dest = _platformManager.GetObelisk(nextIndex);
-            if (dest != null) SpawnEffect(dest.position);
+            if (dest != null)
+            {
+                SpawnEffect(dest.position);
+                dest.GetComponent<ObeliskTeleporter>()?.PlayTeleportAnim();
+            }
 
             // 쿨타임 시작
             StartCoroutine(CooldownCoroutine());
@@ -78,12 +93,23 @@ namespace _2D_Roguelike
         public float CooldownRemaining => Mathf.Max(0f, _cooldownTimer);
         public bool  IsOnCooldown      => _isOnCooldown;
 
+        /// <summary>도착 오벨리스크에서도 같은 애니메이션을 재생할 때 외부에서 호출</summary>
+        public void PlayTeleportAnim() => SafeSetTrigger(AnimExplode);
+
         // ── 유틸 ─────────────────────────────────────────────────────────
 
         private void SpawnEffect(Vector3 pos)
         {
             if (_teleportEffectPrefab != null)
                 Instantiate(_teleportEffectPrefab, pos, Quaternion.identity);
+        }
+
+        /// <summary>파라미터가 없는 애니메이터에서도 안전하게 트리거</summary>
+        private void SafeSetTrigger(int hash)
+        {
+            if (_animator == null) return;
+            foreach (var p in _animator.parameters)
+                if (p.nameHash == hash) { _animator.SetTrigger(hash); return; }
         }
     }
 }

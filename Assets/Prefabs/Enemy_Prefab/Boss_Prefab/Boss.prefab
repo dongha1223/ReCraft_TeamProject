@@ -62,6 +62,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5634870333919383666}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4000088908787224041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 898665978089262221}
+  m_Layer: 0
+  m_Name: DamageSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &898665978089262221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000088908787224041}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.005, y: 0.387, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5634870333919383666}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5842430641834511994
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +142,8 @@ GameObject:
   - component: {fileID: 8012485930002570232}
   - component: {fileID: 1971834483727886011}
   - component: {fileID: 8734390509811535009}
-  m_Layer: 0
+  - component: {fileID: 4823208385946395533}
+  m_Layer: 11
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,13 +160,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.49, y: 5.74, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5859663828942979771}
   - {fileID: 9043249154259454432}
   - {fileID: 3027498927711254805}
   - {fileID: 3161219326361173509}
+  - {fileID: 2323426099781702211}
+  - {fileID: 898665978089262221}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4677959242319201594
@@ -232,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossStats
   _maxHp: 1000
   _phase2HpRatio: 0.5
-  _damageSpawnPos: {fileID: 0}
+  _damageSpawnPos: {fileID: 898665978089262221}
   _hitClips: []
   _heavyHitClips: []
 --- !u!114 &913203973200705459
@@ -247,10 +281,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e991de7c346e794a8676facb0457a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossPatternExecutor
-  _phase1CooldownMin: 2
-  _phase1CooldownMax: 4
-  _aimIndicatorPrefab: {fileID: 0}
-  _projectilePrefab: {fileID: 0}
+  _phase1CooldownMin: 5
+  _phase1CooldownMax: 10
+  _aimIndicatorPrefab: {fileID: 4694582562624452857, guid: 4a017f32c47e37645949a9570dbd0666, type: 3}
+  _projectilePrefab: {fileID: 3176890818879784640, guid: f6441432bf0b8f64fa08cac1a35f28c0, type: 3}
   _projectileSpawnPoints:
   - {fileID: 5859663828942979771}
   - {fileID: 9043249154259454432}
@@ -259,27 +293,27 @@ MonoBehaviour:
   _aimInterval: 0.6
   _aimDuration: 1.5
   _projectileDamage: 18
-  _projectileKnockback: 4
+  _projectileKnockback: 0
   _fireInterval: 0.3
-  _blackMinionPrefab: {fileID: 0}
-  _whiteMinionPrefab: {fileID: 0}
+  _blackMinionPrefab: {fileID: 3105289019824467760, guid: cfe070e1317932e4abfd149fb8fdf1d3, type: 3}
+  _whiteMinionPrefab: {fileID: 8900064109889912888, guid: 0b06c457b63be4c489856d39675e65fe, type: 3}
   _pattern21SpawnOffsetX: 3
   _pattern21BottomY: -2
-  _pattern21VerticalStep: 2
+  _pattern21VerticalStep: 1
   _pattern22Offsets:
-  - {x: 3, y: 3}
+  - {x: 3, y: 1}
   - {x: 3, y: -1}
   - {x: -3, y: -1}
-  - {x: -3, y: 3}
+  - {x: -3, y: 1}
   _pattern23Offsets:
   - {x: 4, y: 3}
+  - {x: 4, y: 2}
   - {x: 4, y: 1}
-  - {x: 4, y: -1}
-  - {x: 4, y: -3}
-  _phase2CooldownMin: 2.5
-  _phase2CooldownMax: 4
-  _phase2ZoneSpec: {fileID: 0}
-  _patternA_IncludePlayerPlatform: 0
+  - {x: 4, y: 0}
+  _phase2CooldownMin: 5
+  _phase2CooldownMax: 10
+  _phase2ZoneSpec: {fileID: 11400000, guid: 249f5871809a8c0479f9765c4bbfdf3b, type: 2}
+  _patternA_IncludePlayerPlatform: 1
   _patternC_RepeatCount: 4
   _patternC_RepeatDelay: 3
 --- !u!114 &6817398022787351875
@@ -294,8 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12ab1628ac027d438fca9ea38858dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossController
-  _animator: {fileID: 0}
-  _transitionObeliskPrefab: {fileID: 0}
+  _animator: {fileID: 3922981820255324370}
+  _transitionObeliskPrefab: {fileID: 419498817712623841, guid: b1d625af0138f6943996acec9da144e6, type: 3}
   _transitionObeliskSpawnPoint: {fileID: 0}
   _survivalRadius: 3
   _screenShakeDuration: 0.6
@@ -303,6 +337,11 @@ MonoBehaviour:
   _terrainChangDelay: 4
   _phase2MaxDashes: 1
   _platformManager: {fileID: 0}
+  _phase1Root: {fileID: 0}
+  _spawnPoint_Boss: {fileID: 0}
+  _bossStageCenterPoint: {fileID: 0}
+  _bossOrthoSize: 7.5
+  _cameraTransitionDuration: 1.5
 --- !u!114 &6783428480635361243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +394,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
   _flashColor: {r: 1, g: 1, b: 1, a: 1}
   _flashTime: 0.25
+--- !u!61 &4823208385946395533
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367007413265675398}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.09, y: 2.26}
+    newSize: {x: 2.09, y: 2.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.09, y: 2.26}
+  m_EdgeRadius: 0
 --- !u!1 &8224130832069586891
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +466,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.879, y: 0.036, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5634870333919383666}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8955008266801550805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2323426099781702211}
+  m_Layer: 0
+  m_Name: ObeliskPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2323426099781702211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8955008266801550805}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.014, y: -0.835, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

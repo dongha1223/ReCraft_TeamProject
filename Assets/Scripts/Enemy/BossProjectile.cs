@@ -31,8 +31,10 @@ public class BossProjectile : ProjectileBase
     public override void Setup(Vector3 targetPosition, HitInfo info)
     {
         base.Setup(targetPosition, info);
-        // 목표 위치를 향해 직선 이동
+        // 목표 위치를 향해 직선 이동, 스프라이트를 진행 방향으로 회전
         Vector3 dir = (targetPosition - transform.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
         movementRigidBody2D.MoveTo(dir);
     }
 

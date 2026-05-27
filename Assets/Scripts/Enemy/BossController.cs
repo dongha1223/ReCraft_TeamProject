@@ -25,7 +25,7 @@ namespace _2D_Roguelike
         [SerializeField] private Transform  _transitionObeliskSpawnPoint;
         [Tooltip("오벨리스크 생존 반경 — 이 범위 밖 플레이어를 사망시킨다")]
         [SerializeField] private float      _survivalRadius = 3f;
-        [Tooltip("화면 흔들림 지속 시간 (초)")]
+        [Tooltip("화면 흔들림 초기 지속 시간 — 이 시간 후 오벨리스크가 스폰됨. 흔들림 자체는 오벨리스크 제거까지 지속")]
         [SerializeField] private float      _screenShakeDuration  = 0.6f;
         [Tooltip("화면 흔들림 강도")]
         [SerializeField] private float      _screenShakeIntensity = 0.25f;
@@ -39,10 +39,25 @@ namespace _2D_Roguelike
         [Header("Phase 2 — 플랫폼")]
         [SerializeField] private PlatformManager _platformManager;
 
+        [Header("지형 전환")]
+        [Tooltip("Phase 1 바닥 루트 오브젝트 — Phase 2 전환 시 비활성화, 보스 사망 시 재활성화")]
+        [SerializeField] private GameObject _phase1Root;
+        [Tooltip("보스 사망 후 플레이어를 이동시킬 스폰 포인트 (StageManager spawnPoint와 동일 Transform)")]
+        [SerializeField] private Transform  _spawnPoint_Boss;
+
+        [Header("카메라")]
+        [Tooltip("보스전 중 카메라를 고정할 중앙 위치 (없으면 보스 자신의 위치 사용)")]
+        [SerializeField] private Transform _bossStageCenterPoint;
+        [Tooltip("보스전 중 카메라 orthographic size — 기본값보다 클수록 더 넓게 보임")]
+        [SerializeField] private float     _bossOrthoSize            = 10f;
+        [Tooltip("카메라 줌·위치 전환 시간 (초)")]
+        [SerializeField] private float     _cameraTransitionDuration = 1.5f;
+
         // ── 내부 상태 ─────────────────────────────────────────────────────
-        private BossPhase          _phase = BossPhase.Phase1;
-        private BossStats          _stats;
+        private BossPhase           _phase = BossPhase.Phase1;
+        private BossStats           _stats;
         private BossPatternExecutor _patternExecutor;
+        private CameraFollow        _camFollow;
 
         private PlayerController   _playerController;
         private PlayerDash         _playerDash;
@@ -54,7 +69,7 @@ namespace _2D_Roguelike
         private bool IsFrozen       => _frozenCount      > 0;
 
         // ── Animator 해시 ─────────────────────────────────────────────────
-        private static readonly int AnimDie   = Animator.StringToHash("Die");
+        private static readonly int AnimDie    = Animator.StringToHash("Die");
         private static readonly int AnimPhase2 = Animator.StringToHash("Phase2");
 
         // ── 공개 이벤트 ──────────────────────────────────────────────────
@@ -83,6 +98,17 @@ namespace _2D_Roguelike
                 _playerController = playerGO.GetComponent<PlayerController>();
                 _playerDash       = playerGO.GetComponent<PlayerDash>();
                 _playerStats      = playerGO.GetComponent<PlayerStats>();
+            }
+
+            // 카메라 캐싱 + 보스전 진입 연출
+            _camFollow = Camera.main?.GetComponent<CameraFollow>();
+            if (_camFollow != null)
+            {
+                Vector3 center = _bossStageCenterPoint != null
+                    ? _bossStageCenterPoint.position
+                    : transform.position;
+                _camFollow.SetFixedWorldPos(center);
+                _camFollow.ZoomTo(_bossOrthoSize, _cameraTransitionDuration);
             }
 
             // BossStats 이벤트 구독
@@ -119,9 +145,22 @@ namespace _2D_Roguelike
             RestorePlayerAbilities();
 
             _platformManager?.DisablePlatforms();
+
+            // 바닥 복원 → 플레이어 복귀 (순서 중요: 바닥 먼저 활성화한 뒤 이동)
+            if (_phase1Root != null) _phase1Root.SetActive(true);
+            if (_spawnPoint_Boss != null && _playerStats != null)
+                _playerStats.transform.position = _spawnPoint_Boss.position;
+
             _animator?.SetTrigger(AnimDie);
 
             OnBossDead?.Invoke();
+
+            // 카메라 플레이어 추적 복귀
+            if (_camFollow != null)
+            {
+                _camFollow.ClearFixedWorldPos();
+                _camFollow.ResetZoom(_cameraTransitionDuration);
+            }
         }
 
         // ── Phase 2 전환 연출 코루틴 ─────────────────────────────────────
@@ -132,8 +171,9 @@ namespace _2D_Roguelike
             StopAllPatterns();
             _stats.SetInvincible(true);
 
-            // ② 화면 흔들림
-            yield return StartCoroutine(ScreenShakeCoroutine(_screenShakeDuration, _screenShakeIntensity));
+            // ② 화면 흔들림 시작 — 오벨리스크가 제거될 때까지 지속 (총 duration = 초기 딜레이 + 대피 시간)
+            _camFollow?.Shake(_screenShakeDuration + _terrainChangDelay, _screenShakeIntensity);
+            yield return new WaitForSeconds(_screenShakeDuration);
 
             // ③ 보스 아래 오벨리스크 생성 (생존 판정용)
             GameObject transObelisk = null;
@@ -153,11 +193,12 @@ namespace _2D_Roguelike
                     KillPlayer();
             }
 
-            // ⑥ 전환용 오벨리스크 제거
+            // ⑥ 전환용 오벨리스크 제거 — 이 시점에 흔들림도 자연스럽게 종료
             if (transObelisk != null)
                 Destroy(transObelisk);
 
-            // ⑦ 플랫폼 활성화 + 플레이어 이동
+            // ⑦ Phase1 바닥 비활성화 → 플랫폼 활성화 + 플레이어 이동
+            if (_phase1Root != null) _phase1Root.SetActive(false);
             _platformManager?.ActivatePlatforms();
             _platformManager?.TeleportPlayerToPlatform(0);
 
@@ -187,7 +228,6 @@ namespace _2D_Roguelike
         private void KillPlayer()
         {
             if (_playerStats == null) return;
-            // IgnoreInvincibility로 확실히 처리
             _playerStats.TakeDamage(new HitInfo
             {
                 Damage              = 99999f,
@@ -206,33 +246,6 @@ namespace _2D_Roguelike
             _patternExecutor.StopAll();
         }
 
-        // ── 화면 흔들림 ───────────────────────────────────────────────────
-
-        /// <summary>
-        /// 카메라를 흔드는 단순 구현.
-        /// Cinemachine 등 별도 카메라 시스템 사용 시 이 코루틴을 교체할 것.
-        /// </summary>
-        private IEnumerator ScreenShakeCoroutine(float duration, float intensity)
-        {
-            Camera cam = Camera.main;
-            if (cam == null) yield break;
-
-            Vector3 originalPos = cam.transform.localPosition;
-            float   elapsed     = 0f;
-
-            while (elapsed < duration)
-            {
-                float x = Random.Range(-1f, 1f) * intensity;
-                float y = Random.Range(-1f, 1f) * intensity;
-                cam.transform.localPosition = originalPos + new Vector3(x, y, 0f);
-
-                elapsed += Time.deltaTime;
-                yield return null;
-            }
-
-            cam.transform.localPosition = originalPos;
-        }
-
         // ── IStatusLockable ───────────────────────────────────────────────
 
         public void ApplyActionLock(bool cancelOngoing)
@@ -241,7 +254,7 @@ namespace _2D_Roguelike
             if (cancelOngoing)
             {
                 StopAllPatterns();
-                _phase = BossPhase.Phase1; // 스턴 해제 후 루프를 재개할 기준 상태 보존
+                _phase = BossPhase.Phase1;
             }
             else
             {
@@ -255,7 +268,6 @@ namespace _2D_Roguelike
             if (!wasCancelled)
                 _frozenCount = Mathf.Max(0, _frozenCount - 1);
 
-            // 잠금 해제 후 Phase에 맞는 루프 재개
             if (!IsActionLocked && _phase == BossPhase.Phase1)
                 _patternExecutor.StartPhase1Loop();
             else if (!IsActionLocked && _phase == BossPhase.Phase2)

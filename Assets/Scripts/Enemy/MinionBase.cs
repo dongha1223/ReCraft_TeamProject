@@ -64,10 +64,14 @@ namespace _2D_Roguelike
         private IEnumerator LifetimeCoroutine()
         {
             // 포탈 전조 이펙트 재생
+            GameObject portalFX = null;
             if (_portalEffectPrefab != null)
-                Instantiate(_portalEffectPrefab, transform.position, Quaternion.identity);
+                portalFX = Instantiate(_portalEffectPrefab, transform.position, Quaternion.identity);
 
             yield return new WaitForSeconds(_predelay);
+
+            if (portalFX != null)
+                Destroy(portalFX);
 
             // 사망 전 패턴 실행
             if (!_stats.IsDead)
