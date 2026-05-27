@@ -134,177 +134,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sprite-sheet 1_0
+      name: warrockProjectile_0
       rect:
         serializedVersion: 2
         x: 0
         y: 128
         width: 128
         height: 128
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 425b10251d7565780800000000000000
-      internalID: -8694665474056538844
+      spriteID: f340081a4ccdfcc4ca95e05cc95b28a0
+      internalID: -132262425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite-sheet 1_1
+      name: warrockProjectile_1
       rect:
         serializedVersion: 2
         x: 128
         y: 128
         width: 128
         height: 128
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e67d25e03ede22910800000000000000
-      internalID: 1811271559610029934
+      spriteID: 0356a3df24de1a9438677b42b9407d55
+      internalID: -2124836242
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite-sheet 1_2
+      name: warrockProjectile_2
       rect:
         serializedVersion: 2
         x: 256
         y: 128
         width: 128
         height: 128
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c06917513ec6d9b60800000000000000
-      internalID: 7754473855975003660
+      spriteID: 51c7ae92ea5f674489832246f8582918
+      internalID: -394343136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite-sheet 1_3
+      name: warrockProjectile_3
       rect:
         serializedVersion: 2
         x: 384
         y: 128
         width: 128
         height: 128
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d3ffe33eb4c6c90a0800000000000000
-      internalID: -6873499858083315907
+      spriteID: 34f3cfb06c16d29409ec8f2dc966d590
+      internalID: 2089441157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite-sheet 1_4
+      name: warrockProjectile_4
       rect:
         serializedVersion: 2
         x: 512
         y: 128
         width: 128
         height: 128
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7f0b1e773024708a0800000000000000
-      internalID: -6339025367837069065
+      spriteID: 52682f0ac8efae24da3ec7f7ac2402ec
+      internalID: 396066846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite-sheet 1_5
+      name: warrockProjectile_5
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 128
         height: 128
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5abca931b904e4050800000000000000
-      internalID: 5786633606010686373
+      spriteID: 2a4b884dbb2e3674e8aea97b384d3f59
+      internalID: -909226332
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite-sheet 1_6
+      name: warrockProjectile_6
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 128
         height: 128
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 32b8f96c51b29c720800000000000000
-      internalID: 2866870010324683555
+      spriteID: e1101077762b1dc4dab99dd7e0e5c38e
+      internalID: -1861944498
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite-sheet 1_7
+      name: warrockProjectile_7
       rect:
         serializedVersion: 2
         x: 256
         y: 0
         width: 128
         height: 128
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 74e9cb0acb97e5640800000000000000
-      internalID: 5070624081523285575
+      spriteID: d67958f0cd23ba5409226ee60180d83e
+      internalID: -763939491
       vertices: []
       indices: 
       edges: []
@@ -323,16 +323,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":6,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      sprite-sheet 1_0: -8694665474056538844
-      sprite-sheet 1_1: 1811271559610029934
-      sprite-sheet 1_2: 7754473855975003660
-      sprite-sheet 1_3: -6873499858083315907
-      sprite-sheet 1_4: -6339025367837069065
-      sprite-sheet 1_5: 5786633606010686373
-      sprite-sheet 1_6: 2866870010324683555
-      sprite-sheet 1_7: 5070624081523285575
+      warrockProjectile_0: -132262425
+      warrockProjectile_1: -2124836242
+      warrockProjectile_2: -394343136
+      warrockProjectile_3: 2089441157
+      warrockProjectile_4: 396066846
+      warrockProjectile_5: -909226332
+      warrockProjectile_6: -1861944498
+      warrockProjectile_7: -763939491
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
