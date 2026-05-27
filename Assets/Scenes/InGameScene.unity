@@ -188,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1310855587590548692, guid: 6d9e15cf222120f43a01ec7f14d1764d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2513723458239149980, guid: 6d9e15cf222120f43a01ec7f14d1764d, type: 3}
       propertyPath: m_Name
@@ -237,7 +237,7 @@ PrefabInstance:
     - target: {fileID: 7190104882312539823, guid: 6d9e15cf222120f43a01ec7f14d1764d, type: 3}
       propertyPath: _playerDash
       value: 
-      objectReference: {fileID: 1555964797}
+      objectReference: {fileID: 0}
     - target: {fileID: 7190104882312539823, guid: 6d9e15cf222120f43a01ec7f14d1764d, type: 3}
       propertyPath: _cameraFollow
       value: 
@@ -245,11 +245,11 @@ PrefabInstance:
     - target: {fileID: 7190104882312539823, guid: 6d9e15cf222120f43a01ec7f14d1764d, type: 3}
       propertyPath: _playerAttack
       value: 
-      objectReference: {fileID: 1555964796}
+      objectReference: {fileID: 0}
     - target: {fileID: 7190104882312539823, guid: 6d9e15cf222120f43a01ec7f14d1764d, type: 3}
       propertyPath: _playerController
       value: 
-      objectReference: {fileID: 1555964798}
+      objectReference: {fileID: 0}
     - target: {fileID: 7622560859890424622, guid: 6d9e15cf222120f43a01ec7f14d1764d, type: 3}
       propertyPath: _playerTransform
       value: 
@@ -268,6 +268,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7028659280421243353, guid: c5d54048f3e5e504698447ce36d5b22d, type: 3}
   m_PrefabInstance: {fileID: 5946723767902292578}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &181286322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1279689300087702137, guid: 1dbd272981361ad46b593cc7a0098078, type: 3}
+  m_PrefabInstance: {fileID: 2731444132847718975}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &182787752
 GameObject:
@@ -1269,8 +1274,8 @@ MonoBehaviour:
     root: {fileID: 1788801078}
     spawnPoint: {fileID: 724346404}
   - data: {fileID: 11400000, guid: 7bf50f6e23e79b941bdf44c9d58427e1, type: 2}
-    root: {fileID: 0}
-    spawnPoint: {fileID: 0}
+    root: {fileID: 181286322}
+    spawnPoint: {fileID: 1826442475}
   - data: {fileID: 11400000, guid: bc4a7c3f64eab994887ccc5ac9d26423, type: 2}
     root: {fileID: 1267994488}
     spawnPoint: {fileID: 1492102210}
@@ -2845,6 +2850,11 @@ Transform:
   - {fileID: 424922687}
   m_Father: {fileID: 1788801079}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1826442475 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4680903705149539024, guid: 1dbd272981361ad46b593cc7a0098078, type: 3}
+  m_PrefabInstance: {fileID: 2731444132847718975}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1972474596 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8873508750120443315, guid: 536979e21582597469052e5aaf3afe63, type: 3}
@@ -7341,11 +7351,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4491644059559834463, guid: 181e0d313f3496046b7b66659ca1a7b7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4909315905268736209, guid: 181e0d313f3496046b7b66659ca1a7b7, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4909315905268736209, guid: 181e0d313f3496046b7b66659ca1a7b7, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
@@ -11887,9 +11897,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageBossRoot
       objectReference: {fileID: 0}
+    - target: {fileID: 30565074480662199, guid: c87b34fbaeb8ff840aa7b4e45eec616d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4331817838829738276, guid: c87b34fbaeb8ff840aa7b4e45eec616d, type: 3}
       propertyPath: _phase1CooldownMax
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504353594988069580, guid: c87b34fbaeb8ff840aa7b4e45eec616d, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5683701858494795268, guid: c87b34fbaeb8ff840aa7b4e45eec616d, type: 3}
       propertyPath: m_LocalPosition.x
