@@ -54,7 +54,11 @@
       "PowerShell(\\(Get-Content \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\StagePrefab\\\\StageBossRoot2.prefab\"\\) | Select-String \"BossMainController\" -Context 0,15 | ForEach-Object { $_.Context.PreContext; $_.Line; $_.Context.PostContext })",
       "PowerShell(Select-String *)",
       "PowerShell(Select-String -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\StagePrefab\\\\StageBossRoot2.prefab\" -Pattern \"BossPartHP\" -Context 2,0 | ForEach-Object { $_.Context.PreContext; $_.Line } | Select-Object -First 20)",
-      "Bash(Select-Object -ExpandProperty Name)"
+      "Bash(Select-Object -ExpandProperty Name)",
+      "Bash(Select-String -Pattern \"phase2Destroyed|cooldownMin|cooldownMax|phase2Transition|maxHp|phase2Hp\")",
+      "Bash(git checkout *)",
+      "Bash(grep -v \"^.*m_Name: $\")",
+      "mcp__UnityMCP__manage_material"
     ]
   }
 }

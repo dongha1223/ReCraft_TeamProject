@@ -15,6 +15,9 @@ namespace _2D_Roguelike
     public class BossController : MonoBehaviour, IStatusLockable
     {
         // ── 참조 ──────────────────────────────────────────────────────────
+        [Header("데이터 SO")]
+        [SerializeField] private BossControllerDataSO _data;
+
         [Header("컴포넌트 참조")]
         [SerializeField] private Animator _animator;
 
@@ -91,6 +94,18 @@ namespace _2D_Roguelike
 
         private void Start()
         {
+            if (_data != null)
+            {
+                if (_data.TransitionObeliskPrefab != null) _transitionObeliskPrefab = _data.TransitionObeliskPrefab;
+                _survivalRadius           = _data.SurvivalRadius;
+                _screenShakeDuration      = _data.ScreenShakeDuration;
+                _screenShakeIntensity     = _data.ScreenShakeIntensity;
+                _terrainChangDelay        = _data.TerrainChangDelay;
+                _phase2MaxDashes          = _data.Phase2MaxDashes;
+                _bossOrthoSize            = _data.BossOrthoSize;
+                _cameraTransitionDuration = _data.CameraTransitionDuration;
+            }
+
             // 플레이어 캐싱
             var playerGO = GameObject.FindWithTag("Player");
             if (playerGO != null)

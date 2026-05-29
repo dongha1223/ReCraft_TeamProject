@@ -37,6 +37,7 @@ namespace _2D_Roguelike
         private FormSkillController  _formSkillController;
         private KnockbackReceiver    _knockback;
         private Collider2D[]         _ownColliders;
+        private readonly Collider2D[] _platformBuffer = new Collider2D[8];
 
         private int  _jumpCount;
         private bool _isGrounded;
@@ -185,19 +186,19 @@ namespace _2D_Roguelike
         // 플레이어-플랫폼 콜라이더 쌍만 IgnoreCollision → 몬스터는 영향 없음
         private IEnumerator DropThroughPlatform()
         {
-            Collider2D[] platforms = Physics2D.OverlapBoxAll(FeetCenter, _feetBoxSize, 0f, _platformLayer);
+            int count = Physics2D.OverlapBoxNonAlloc(FeetCenter, _feetBoxSize, 0f, _platformBuffer, _platformLayer);
 
-            foreach (var platform in platforms)
+            for (int i = 0; i < count; i++)
                 foreach (var own in _ownColliders)
-                    Physics2D.IgnoreCollision(own, platform, true);
+                    Physics2D.IgnoreCollision(own, _platformBuffer[i], true);
 
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -4f);
 
             yield return _waitDropThrough;
 
-            foreach (var platform in platforms)
+            for (int i = 0; i < count; i++)
                 foreach (var own in _ownColliders)
-                    Physics2D.IgnoreCollision(own, platform, false);
+                    Physics2D.IgnoreCollision(own, _platformBuffer[i], false);
         }
 
         // ─── 방향 전환 ────────────────────────────────────────────────────

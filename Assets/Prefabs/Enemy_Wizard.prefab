@@ -405,6 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba5cbf084e2ded145a53c742dcc73492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EnemyRangedController
+  _data: {fileID: 11400000, guid: 4e7f4cdaa83a3da4abf169de2d24c11d, type: 2}
   _moveSpeed: 2
   _patrolDistance: 3
   _detectionRange: 10
@@ -438,6 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d70d61cdc6fb7469e7658a475c7d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EnemyStats
+  _data: {fileID: 11400000, guid: 4e7f4cdaa83a3da4abf169de2d24c11d, type: 2}
   _maxHp: 70
   _damageSpawnPos: {fileID: 0}
 --- !u!114 &5848955428172590524

@@ -11,6 +11,16 @@ namespace _2D_Roguelike
 
         private static readonly int AnimAttack = Animator.StringToHash("Attack");
 
+        protected override void ApplyData(EnemyDataSO data)
+        {
+            base.ApplyData(data);
+            if (data is MeleeEnemyDataSO d)
+            {
+                _attackDamage   = d.AttackDamage;
+                _knockbackForce = d.KnockbackForce;
+            }
+        }
+
         protected override IEnumerator AttackCoroutine()
         {
             _canAttack   = false;

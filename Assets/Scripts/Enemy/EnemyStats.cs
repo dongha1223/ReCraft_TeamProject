@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace _2D_Roguelike
@@ -11,6 +12,9 @@ namespace _2D_Roguelike
 
         /// <summary>사망 확정 시 발행. BossMainController 등이 구독해 패턴 루프를 종료한다.</summary>
         public event Action OnDeadEvent;
+
+        [Header("데이터 SO")]
+        [SerializeField] private EnemyDataSO _data;
 
         [Header("스탯")]
         [SerializeField] private float _maxHp = 70f;
@@ -35,17 +39,35 @@ namespace _2D_Roguelike
         private static readonly int AnimDie = Animator.StringToHash("Die");
         private static readonly int AnimHit = Animator.StringToHash("Hit");
 
+        private HashSet<int> _validTriggerHashes;
+
         public bool IsDead       => _isDead;
         public bool IsInvincible => false;
 
         private void Awake()
         {
+            if (_data != null)
+            {
+                _maxHp         = _data.MaxHp;
+                _hitClips      = _data.HitClips;
+                _heavyHitClips = _data.HeavyHitClips;
+            }
             _currentHp        = _maxHp;
             _animator         = GetComponent<Animator>();
             _brain            = GetComponent<EnemyBrainBase>();
             _damageFlash      = GetComponent<DamageFlash>();
             _knockback        = GetComponent<KnockbackReceiver>();
             _statusController = GetComponent<StatusController>();
+            CacheTriggerHashes();
+        }
+
+        private void CacheTriggerHashes()
+        {
+            _validTriggerHashes = new HashSet<int>();
+            if (_animator == null) return;
+            foreach (var p in _animator.parameters)
+                if (p.type == AnimatorControllerParameterType.Trigger)
+                    _validTriggerHashes.Add(p.nameHash);
         }
 
         private void Start()
@@ -55,18 +77,12 @@ namespace _2D_Roguelike
             _hitEffectSpawner = HitEffectSpawner.Instance;
         }
 
-        /// <summary>파라미터가 존재할 때만 SetTrigger — 없으면 조용히 무시</summary>
+        /// <summary>파라미터가 존재할 때만 SetTrigger — Awake에 캐싱된 HashSet으로 O(1) 체크</summary>
         private void SafeSetTrigger(int hash)
         {
             if (_animator == null) return;
-            foreach (var param in _animator.parameters)
-            {
-                if (param.nameHash == hash)
-                {
-                    _animator.SetTrigger(hash);
-                    return;
-                }
-            }
+            if (_validTriggerHashes.Contains(hash))
+                _animator.SetTrigger(hash);
         }
 
         public void TakeDamage(HitInfo info)
@@ -74,7 +90,6 @@ namespace _2D_Roguelike
             if (_isDead) return;
 
             _currentHp = Mathf.Max(0f, _currentHp - info.Damage);
-            Debug.Log($"[EnemyStats] {name} HP: {_currentHp}/{_maxHp}  (-{info.Damage})");
 
             SpawnDamageText(info.Damage);
 
@@ -139,7 +154,6 @@ namespace _2D_Roguelike
 
         private void OnDead()
         {
-            Debug.Log($"[EnemyStats] {name} 사망.");
             if (_brain != null) _brain.enabled = false;
             OnDeadEvent?.Invoke();
             SafeSetTrigger(AnimDie);

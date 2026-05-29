@@ -16,6 +16,9 @@ namespace _2D_Roguelike
         public static event Action OnBossEngaged;
         public static event Action OnBossDead;
 
+        [Header("데이터 SO")]
+        [SerializeField] private BossMainDataSO _data;
+
         [Header("파츠 목록")]
         [Tooltip("Boss_Body, Boss_Head, Boss_left, Boss_right 순서로 연결")]
         [SerializeField] private BossPartHP[] _parts;
@@ -65,6 +68,16 @@ namespace _2D_Roguelike
         private void Awake()
         {
             _animator = GetComponent<Animator>();
+            if (_data != null)
+            {
+                _phase2DestroyedCount     = _data.Phase2DestroyedCount;
+                _cooldownMin              = _data.CooldownMin;
+                _cooldownMax              = _data.CooldownMax;
+                if (_data.Phase1Patterns != null) _phase1Patterns           = _data.Phase1Patterns;
+                if (_data.Phase2Patterns != null) _phase2Patterns           = _data.Phase2Patterns;
+                _phase2TransitionTrigger  = _data.Phase2TransitionTrigger;
+                _phase2TransitionDuration = _data.Phase2TransitionDuration;
+            }
 
             // 자식 컴포넌트에서 커스텀 패턴 수집
             var customs = GetComponentsInChildren<BossCustomPatternBase>();

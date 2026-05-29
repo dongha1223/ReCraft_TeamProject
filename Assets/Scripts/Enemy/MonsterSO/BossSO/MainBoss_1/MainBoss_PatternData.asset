@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf7dfb667bec9e4694d688ad6f9f162, type: 3}
+  m_Name: MainBoss_PatternData
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossPatternDataSO
+  _phase1CooldownMin: 5
+  _phase1CooldownMax: 10
+  _aimIndicatorPrefab: {fileID: 4694582562624452857, guid: 4a017f32c47e37645949a9570dbd0666, type: 3}
+  _projectilePrefab: {fileID: 3176890818879784640, guid: f6441432bf0b8f64fa08cac1a35f28c0, type: 3}
+  _aimInterval: 0.6
+  _aimDuration: 1.5
+  _projectileDamage: 18
+  _projectileKnockback: 0
+  _fireInterval: 0.3
+  _blackMinionPrefab: {fileID: 3105289019824467760, guid: cfe070e1317932e4abfd149fb8fdf1d3, type: 3}
+  _whiteMinionPrefab: {fileID: 8900064109889912888, guid: 0b06c457b63be4c489856d39675e65fe, type: 3}
+  _pattern21SpawnOffsetX: 3
+  _pattern21BottomY: -2
+  _pattern21VerticalStep: 1
+  _pattern22Offsets:
+  - {x: 3, y: 1}
+  - {x: 3, y: -1}
+  - {x: -3, y: -1}
+  - {x: -3, y: 1}
+  _pattern23Offsets:
+  - {x: 4, y: 3}
+  - {x: 4, y: 2}
+  - {x: 4, y: 1}
+  - {x: 4, y: 0}
+  _phase2CooldownMin: 5
+  _phase2CooldownMax: 10
+  _phase2ZoneSpec: {fileID: 11400000, guid: 249f5871809a8c0479f9765c4bbfdf3b, type: 2}
+  _patternA_IncludePlayerPlatform: 1
+  _patternC_RepeatCount: 4
+  _patternC_RepeatDelay: 3

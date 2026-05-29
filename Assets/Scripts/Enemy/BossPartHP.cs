@@ -10,6 +10,9 @@ namespace _2D_Roguelike
     /// </summary>
     public class BossPartHP : MonoBehaviour, IDamageable
     {
+        [Header("데이터 SO")]
+        [SerializeField] private BossPartHPDataSO _data;
+
         [SerializeField] private float _maxHp = 1000f;
 
         [Tooltip("이 파츠에 가해지는 데미지 배율 (머리=약점이면 1.5 등)")]
@@ -32,6 +35,12 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
+            if (_data != null)
+            {
+                _maxHp            = _data.MaxHp;
+                _damageMultiplier = _data.DamageMultiplier;
+                _hitClips         = _data.HitClips;
+            }
             _currentHp   = _maxHp;
             _damageFlash = GetComponent<DamageFlash>();
         }
