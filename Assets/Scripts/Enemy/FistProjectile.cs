@@ -11,17 +11,43 @@ namespace _2D_Roguelike
     [RequireComponent(typeof(CapsuleCollider2D))]
     public class FistProjectile : MonoBehaviour
     {
+        [Header("데이터 SO")]
+        [SerializeField] private FistProjectileDataSO _data;
+
         [SerializeField] private float _moveSpeed     = 15f;
         [SerializeField] private float _damage        = 25f;
         [SerializeField] private float _maxTravelTime = 3f;
 
+        [Header("조준 레이저")]
+        [SerializeField] private Material _laserMaterial;
+        [SerializeField] private float    _laserLength = 15f;
+
         private CapsuleCollider2D _collider;
+        private LineRenderer      _aimLaser;
         private Vector2           _fireDir;
         private Coroutine         _moveRoutine;
 
         private void Awake()
         {
+            if (_data != null)
+            {
+                _moveSpeed     = _data.MoveSpeed;
+                _damage        = _data.Damage;
+                _maxTravelTime = _data.MaxTravelTime;
+            }
             _collider = GetComponent<CapsuleCollider2D>();
+            _aimLaser = GetComponent<LineRenderer>();
+            if (_aimLaser != null)
+            {
+                if (_laserMaterial != null) _aimLaser.material = _laserMaterial;
+                _aimLaser.positionCount = 2;
+                _aimLaser.useWorldSpace = true;
+                _aimLaser.startWidth    = 0.08f;
+                _aimLaser.endWidth      = 0.02f;
+                _aimLaser.startColor    = new Color(1f, 0f, 0f, 0.85f);
+                _aimLaser.endColor      = new Color(1f, 0.1f, 0.1f, 0.25f);
+                _aimLaser.enabled       = false;
+            }
         }
 
         private void OnEnable()
@@ -54,10 +80,12 @@ namespace _2D_Roguelike
             transform.position = worldPos;
             _collider.enabled  = false;
 
-            float angle        = Mathf.Atan2(fireDir.y, fireDir.x) * Mathf.Rad2Deg;
+            // 스프라이트 기준 방향이 +Y(90도)이므로 -90 보정
+            float angle        = Mathf.Atan2(fireDir.y, fireDir.x) * Mathf.Rad2Deg - 90f;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
             gameObject.SetActive(true);
+            SetLaser(true, worldPos, fireDir);
         }
 
         /// <summary>대기 단계: 스폰 위치에 표시, 기본 방향, 콜라이더 OFF</summary>
@@ -73,13 +101,15 @@ namespace _2D_Roguelike
         public void UpdateAim(Vector2 dir)
         {
             _fireDir           = dir;
-            float angle        = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            float angle        = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            SetLaser(true, transform.position, dir);
         }
 
         /// <summary>발사: 콜라이더 ON, 직선 이동 시작</summary>
         public void Fire()
         {
+            SetLaser(false);
             _collider.enabled = true;
             if (_moveRoutine != null) StopCoroutine(_moveRoutine);
             _moveRoutine = StartCoroutine(MoveRoutine());
@@ -88,7 +118,23 @@ namespace _2D_Roguelike
         /// <summary>비활성화 (풀 반환)</summary>
         public void Hide()
         {
+            SetLaser(false);
             gameObject.SetActive(false);
+        }
+
+        public void SetLaserVisible(bool visible)
+        {
+            if (_aimLaser == null) return;
+            _aimLaser.enabled = visible;
+        }
+
+        private void SetLaser(bool active, Vector3 origin = default, Vector2 dir = default)
+        {
+            if (_aimLaser == null) return;
+            _aimLaser.enabled = active;
+            if (!active) return;
+            _aimLaser.SetPosition(0, origin);
+            _aimLaser.SetPosition(1, origin + (Vector3)(dir.normalized * _laserLength));
         }
 
         // ── 내부 ─────────────────────────────────────────────────────────

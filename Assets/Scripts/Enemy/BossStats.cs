@@ -10,6 +10,9 @@ namespace _2D_Roguelike
     /// </summary>
     public class BossStats : MonoBehaviour, IDamageable, IDotReceiver
     {
+        [Header("데이터 SO")]
+        [SerializeField] private BossStatsSO _data;
+
         [Header("스탯")]
         [SerializeField] private float _maxHp = 1000f;
         [Tooltip("Phase 2 진입 HP 비율 (0.5 = 50%)")]
@@ -54,6 +57,13 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
+            if (_data != null)
+            {
+                _maxHp         = _data.MaxHp;
+                _phase2HpRatio = _data.Phase2HpRatio;
+                _hitClips      = _data.HitClips;
+                _heavyHitClips = _data.HeavyHitClips;
+            }
             _currentHp        = _maxHp;
             _animator         = GetComponent<Animator>();
             _damageFlash      = GetComponent<DamageFlash>();

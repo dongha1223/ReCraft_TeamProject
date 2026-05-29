@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04223453997d5a44a4dedb11a6fa948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossStats
+  _data: {fileID: 11400000, guid: 683ed669b341665419e96fb34f9b368a, type: 2}
   _maxHp: 1000
   _phase2HpRatio: 0.5
   _damageSpawnPos: {fileID: 898665978089262221}
@@ -281,6 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e991de7c346e794a8676facb0457a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossPatternExecutor
+  _data: {fileID: 11400000, guid: 96d4dd5969f82294781ab7dd8d86e084, type: 2}
   _phase1CooldownMin: 5
   _phase1CooldownMax: 10
   _aimIndicatorPrefab: {fileID: 4694582562624452857, guid: 4a017f32c47e37645949a9570dbd0666, type: 3}
@@ -328,6 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12ab1628ac027d438fca9ea38858dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossController
+  _data: {fileID: 11400000, guid: fe9bd98089e227644b0e6c5df518b67c, type: 2}
   _animator: {fileID: 3922981820255324370}
   _transitionObeliskPrefab: {fileID: 419498817712623841, guid: b1d625af0138f6943996acec9da144e6, type: 3}
   _transitionObeliskSpawnPoint: {fileID: 0}

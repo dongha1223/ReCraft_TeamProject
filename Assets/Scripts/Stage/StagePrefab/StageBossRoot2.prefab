@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc55517de30af684bbd55d786d970da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.FistProjectile
+  _data: {fileID: 11400000, guid: 8cbd672cf9cd8a4499e16d069b56787b, type: 2}
   _moveSpeed: 15
   _damage: 25
   _maxTravelTime: 3
@@ -303,6 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0edb44ac7f7a24ca038632417302ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossPartHP
+  _data: {fileID: 11400000, guid: 7eee92ebe098b124d9331affb717a81b, type: 2}
   _maxHp: 2000
   _damageMultiplier: 1
   _rootStatusController: {fileID: 1377959465218455403}
@@ -319,6 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96261e384fb92ef42a9e86fb0115a9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossBreathEffect
+  _data: {fileID: 11400000, guid: f91b06cef8fd40b4b8ab8e2506a73097, type: 2}
   _breathSpeed: 0.6
   _breathAmount: 0.01
 --- !u!1 &1310855587590548692
@@ -704,6 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0edb44ac7f7a24ca038632417302ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossPartHP
+  _data: {fileID: 11400000, guid: 6e881f573e724dd4cba7698dcdcec07a, type: 2}
   _maxHp: 1000
   _damageMultiplier: 1
   _rootStatusController: {fileID: 0}
@@ -1042,6 +1046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0edb44ac7f7a24ca038632417302ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossPartHP
+  _data: {fileID: 11400000, guid: 6e97345b51c77cb46bbfe03459cd9146, type: 2}
   _maxHp: 1000
   _damageMultiplier: 1
   _rootStatusController: {fileID: 1377959465218455403}
@@ -1357,6 +1362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc55517de30af684bbd55d786d970da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.FistProjectile
+  _data: {fileID: 11400000, guid: 8cbd672cf9cd8a4499e16d069b56787b, type: 2}
   _moveSpeed: 15
   _damage: 25
   _maxTravelTime: 3
@@ -1594,6 +1600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0edb44ac7f7a24ca038632417302ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossPartHP
+  _data: {fileID: 11400000, guid: 42f8c3378b86b59418c7df92c1a54345, type: 2}
   _maxHp: 2000
   _damageMultiplier: 1.5
   _rootStatusController: {fileID: 1377959465218455403}
@@ -1888,6 +1895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4419275325b891341b74a4df94bd6357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossMainController
+  _data: {fileID: 11400000, guid: 56f8ed103611cb94eb5db87824156a89, type: 2}
   _parts:
   - {fileID: 8844127222311758042}
   - {fileID: 8821296259546817520}
@@ -1921,6 +1929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4258ec95686bd124a9f7120c2c9c9b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossFirePillarPattern
+  _data: {fileID: 11400000, guid: 028eb3a9099b4e845a214edbcf1db143, type: 2}
   _headRenderer: {fileID: 197757529971146532}
   _wallLeft: {fileID: 2971447113285095187}
   _wallRight: {fileID: 6555076189993393673}
@@ -1966,6 +1975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 167d4557f7f23004a962585042bb7936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossFistPattern
+  _data: {fileID: 11400000, guid: a89b7cb18f8dd6743aafe8213b3c5c94, type: 2}
   _leftArm: {fileID: 2962540320998201448}
   _rightArm: {fileID: 7711336017804117520}
   _leftFist: {fileID: 2568437049074441120}

@@ -47,6 +47,9 @@ namespace _2D_Roguelike
         public static event Action OnBossEngaged;
         public static event Action OnBossDead;
 
+        [Header("데이터 SO")]
+        [SerializeField] private BossArcherDataSO _data;
+
         [Header("참조")]
         [SerializeField] private Animator _animator;
 
@@ -125,6 +128,26 @@ namespace _2D_Roguelike
             _rb           = GetComponent<Rigidbody2D>();
             _areaExecutor = GetComponent<AreaSkillExecutor>();
             _patrolOrigin = transform.position;
+            if (_data != null)
+            {
+                _moveSpeed            = _data.MoveSpeed;
+                _chaseStartRange      = _data.ChaseStartRange;
+                _chaseStopRange       = _data.ChaseStopRange;
+                _patrolDistance       = _data.PatrolDistance;
+                _patrolChangeMin      = _data.PatrolChangeMin;
+                _patrolChangeMax      = _data.PatrolChangeMax;
+                _cooldownMin          = _data.CooldownMin;
+                _cooldownMax          = _data.CooldownMax;
+                if (_data.Patterns           != null) _patterns            = _data.Patterns;
+                if (_data.Attack2Spec        != null) _attack2Spec         = _data.Attack2Spec;
+                _attack2BoxCount              = _data.Attack2BoxCount;
+                _attack2BoxStep               = _data.Attack2BoxStep;
+                _attack2BoxInterval           = _data.Attack2BoxInterval;
+                _attack2PreDelay              = _data.Attack2PreDelay;
+                if (_data.Attack2EffectPrefab != null) _attack2EffectPrefab = _data.Attack2EffectPrefab;
+                _attack2EffectOffsetY         = _data.Attack2EffectOffsetY;
+                _attack2DamageDelay           = _data.Attack2DamageDelay;
+            }
             _patrolChangeDuration = Random.Range(_patrolChangeMin, _patrolChangeMax);
         }
 

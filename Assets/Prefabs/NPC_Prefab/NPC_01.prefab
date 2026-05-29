@@ -85,12 +85,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -9197614001361547850, guid: fb78391a4b4cda14d8884cb7b26ec7c9, type: 3}
+  m_Sprite: {fileID: -9197614001361547850, guid: 520ae18abd2e6af488f1e56cc2637012, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.67, y: 4.6}
+  m_Size: {x: 1.55, y: 4.1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -155,8 +155,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 3.63}
-    newSize: {x: 1.67, y: 4.6}
+    oldSize: {x: 1.55, y: 4.1}
+    newSize: {x: 1.55, y: 4.1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -177,6 +177,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.NPCController
   _dialogueData: {fileID: 11400000, guid: 565ac80bd32a42243935c9df0deb842a, type: 2}
   _fKeyPrompt: {fileID: 0}
+  _onYesChosen:
+    m_PersistentCalls:
+      m_Calls: []
+  _onNoChosen:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8040854781909800597
 GameObject:
   m_ObjectHideFlags: 0

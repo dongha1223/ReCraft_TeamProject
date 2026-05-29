@@ -53,7 +53,6 @@ namespace _2D_Roguelike
             if (IsInvincible && !info.IgnoreInvincibility) return;
 
             _currentHp = Mathf.Max(0f, _currentHp - info.Damage);
-            Debug.Log($"[PlayerStats] HP: {_currentHp}/{_maxHp}");
 
             SpawnFloatingText(info.Damage, FloatingTextType.Damage);
             _damageFlash?.CallDamageFlash();

@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09fbb363a2311d543b73849de01d018a, type: 3}
+  m_Name: ArcherBoss_Data
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossArcherDataSO
+  _moveSpeed: 2
+  _chaseStartRange: 7
+  _chaseStopRange: 5
+  _patrolDistance: 4
+  _patrolChangeMin: 1
+  _patrolChangeMax: 3
+  _cooldownMin: 3
+  _cooldownMax: 6
+  _patterns:
+  - patternName: Attack1
+    steps:
+    - type: 0
+      paramName: Attack1
+    waits: []
+    recoveryTime: 6
+  - patternName: Attack2
+    steps:
+    - type: 0
+      paramName: Attack2
+    waits: []
+    recoveryTime: 6
+  - patternName: Attack3
+    steps:
+    - type: 0
+      paramName: Attack3
+    waits: []
+    recoveryTime: 6
+  - patternName: DashJump
+    steps:
+    - type: 1
+      paramName: IsDash
+    - type: 2
+      paramName: IsDash
+    - type: 0
+      paramName: JumpAttack
+    waits:
+    - 0.5
+    - 0
+    recoveryTime: 5
+  - patternName: BlockMelee
+    steps:
+    - type: 0
+      paramName: Block
+    - type: 1
+      paramName: IsMelee
+    - type: 2
+      paramName: IsMelee
+    waits:
+    - 1
+    - 1
+    recoveryTime: 5
+  _attack2Spec: {fileID: 11400000, guid: 10746bbb53638754aa9c8b5a68d32a95, type: 2}
+  _attack2BoxCount: 4
+  _attack2BoxStep: 1.5
+  _attack2BoxInterval: 0.3
+  _attack2PreDelay: 0.5
+  _attack2EffectPrefab: {fileID: 1911976551703256359, guid: 5d58def4933dcc94999f4190565cc561, type: 3}
+  _attack2EffectOffsetY: 0
+  _attack2DamageDelay: 0.5

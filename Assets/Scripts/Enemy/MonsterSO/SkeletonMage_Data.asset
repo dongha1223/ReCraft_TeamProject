@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfb517419adf80043a6c5a4c71e6cbd0, type: 3}
+  m_Name: SkeletonMage_Data
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EmissionEnemyDataSO
+  _maxHp: 70
+  _moveSpeed: 2
+  _patrolDistance: 3
+  _detectionRange: 5
+  _attackRange: 5
+  _attackCooldown: 5
+  _preAttackDelay: 0
+  _platformYThreshold: 5
+  _ledgeCheckOffsetX: 0.4
+  _ledgeCheckOffsetY: -0.1
+  _ledgeCheckDist: 0.8
+  _hitClips:
+  - {fileID: 8300000, guid: 74198389e177d0948b63ca9a3fb22801, type: 3}
+  _heavyHitClips: []
+  _attackDamage: 8
+  _knockbackForce: 2
+  _windupDuration: 0.8
+  _projectileCount: 6
+  _fireInterval: 0
+  _projectilePrefab: {fileID: 4658659450437205736, guid: d7581e90f8cfdcc42a7c9343898a3d50, type: 3}

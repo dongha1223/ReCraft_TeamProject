@@ -9,6 +9,9 @@ namespace _2D_Roguelike
     /// </summary>
     public abstract class EnemyBrainBase : MonoBehaviour, IStatusLockable
     {
+        [Header("데이터 SO")]
+        [SerializeField] protected EnemyDataSO _data;
+
         [Header("이동")]
         [SerializeField] protected float _moveSpeed      = 2f;
         [SerializeField] protected float _patrolDistance = 3f;
@@ -61,6 +64,21 @@ namespace _2D_Roguelike
             _animator     = GetComponent<Animator>();
             _knockback    = GetComponent<KnockbackReceiver>();
             _patrolOrigin = transform.position;
+            if (_data != null) ApplyData(_data);
+        }
+
+        protected virtual void ApplyData(EnemyDataSO data)
+        {
+            _moveSpeed          = data.MoveSpeed;
+            _patrolDistance     = data.PatrolDistance;
+            _detectionRange     = data.DetectionRange;
+            _attackRange        = data.AttackRange;
+            _attackCooldown     = data.AttackCooldown;
+            _preAttackDelay     = data.PreAttackDelay;
+            _platformYThreshold = data.PlatformYThreshold;
+            _ledgeCheckOffsetX  = data.LedgeCheckOffsetX;
+            _ledgeCheckOffsetY  = data.LedgeCheckOffsetY;
+            _ledgeCheckDist     = data.LedgeCheckDist;
         }
 
         protected virtual void Start()
