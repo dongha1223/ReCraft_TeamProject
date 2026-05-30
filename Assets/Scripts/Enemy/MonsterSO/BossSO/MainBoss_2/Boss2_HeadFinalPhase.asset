@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab7d26ab6edc6804b85d265412ef5518, type: 3}
+  m_Name: Boss2_HeadFinalPhase
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossHeadFinalPhaseDataSO
+  _fallLocalY: 2
+  _fallTiltAngle: 20
+  _fallDuration: 1.5
+  _slamShakeDuration: 0.45
+  _slamShakeMagnitude: 0.4
+  _pauseAfterFall: 1
+  _floatLocalY: 5
+  _riseDuration: 2.5
+  _bobAmplitude: 0.15
+  _bobFrequency: 0.8

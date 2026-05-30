@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Boss2_Head_HP
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossPartHPDataSO
   _maxHp: 2000
-  _damageMultiplier: 1.5
+  _damageMultiplier: 1
   _hitClips: []

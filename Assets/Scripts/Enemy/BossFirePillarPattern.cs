@@ -88,6 +88,11 @@ namespace _2D_Roguelike
                 if (_data.CraterSprite  != null) _craterSprite  = _data.CraterSprite;
                 if (_data.FireSprites   != null && _data.FireSprites.Length > 0) _fireSprites = _data.FireSprites;
             }
+            // Cancel() 호출 시 _originalHeadColor가 default(Color(0,0,0,0))로 남아
+            // 머리가 투명해지는 버그 방지 — 패턴 실행 전에 미리 캐시
+            if (_headRenderer != null)
+                _originalHeadColor = _headRenderer.color;
+
             BuildPool();
         }
 

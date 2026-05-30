@@ -342,5 +342,27 @@ namespace _2D_Roguelike
                 yield return null;
             }
         }
-    }
+    
+
+/// <summary>
+        /// 머리 최종 페이즈 진입 시 모든 패턴(루프·커스텀·상시)을 즉시 중단한다.
+        /// </summary>
+        public void StopAllPatternsForHeadPhase()
+        {
+            if (_patternLoopHandle != null)
+            {
+                StopCoroutine(_patternLoopHandle);
+                _patternLoopHandle = null;
+            }
+            _state = BossMainState.Idle;
+
+            if (_customPatterns != null)
+                foreach (var c in _customPatterns.Values)
+                    c.Cancel();
+
+            if (_passivePatterns != null)
+                foreach (var p in _passivePatterns)
+                    p?.Cancel();
+        }
+}
 }
