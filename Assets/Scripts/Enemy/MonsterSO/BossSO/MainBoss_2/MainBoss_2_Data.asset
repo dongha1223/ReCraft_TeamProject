@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9ae1db02f5744b42b240fede3299112, type: 3}
   m_Name: MainBoss_2_Data
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossMainDataSO
-  _phase2DestroyedCount: 2
+  _phase2DestroyedCount: 10
   _cooldownMin: 2
   _cooldownMax: 4
   _phase1Patterns:
-  - patternName: FirePillar
+  - patternName: HeavyAttack
     steps: []
     waits: []
     recoveryTime: 1.5
   _phase2Patterns:
-  - patternName: FirePillar
+  - patternName: HeavyAttack
     steps: []
     waits: []
     recoveryTime: 1.5

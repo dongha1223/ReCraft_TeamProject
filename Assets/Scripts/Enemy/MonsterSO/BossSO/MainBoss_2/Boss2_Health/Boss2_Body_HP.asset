@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57111c0f6e21f2348a9960866d3535e3, type: 3}
   m_Name: Boss2_Body_HP
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossPartHPDataSO
-  _maxHp: 2000
+  _maxHp: 500
   _damageMultiplier: 1
   _hitClips: []

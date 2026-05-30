@@ -58,7 +58,9 @@
       "Bash(Select-String -Pattern \"phase2Destroyed|cooldownMin|cooldownMax|phase2Transition|maxHp|phase2Hp\")",
       "Bash(git checkout *)",
       "Bash(grep -v \"^.*m_Name: $\")",
-      "mcp__UnityMCP__manage_material"
+      "mcp__UnityMCP__manage_material",
+      "mcp__UnityMCP__script_apply_edits",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\ReCraft_TeamProject\\\\Assets\" -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.Name -match \"Razer|razer\" -and $_.FullName -notmatch \"Screenshots\" } | Select-Object FullName)"
     ]
   }
 }

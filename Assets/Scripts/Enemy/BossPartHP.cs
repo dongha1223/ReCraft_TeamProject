@@ -27,11 +27,14 @@ namespace _2D_Roguelike
 
         private float            _currentHp;
         private bool             _isDead;
+        private bool             _forceInvincible;
         private DamageFlash      _damageFlash;
         private HitEffectSpawner _hitEffectSpawner;
 
         public bool IsDead       => _isDead;
-        public bool IsInvincible => _isDead;
+        public bool IsInvincible => _isDead || _forceInvincible;
+
+        public void SetForceInvincible(bool value) => _forceInvincible = value;
 
         private void Awake()
         {
@@ -52,7 +55,7 @@ namespace _2D_Roguelike
 
         public void TakeDamage(HitInfo info)
         {
-            if (_isDead) return;
+            if (_isDead || _forceInvincible) return;
 
             float damage = info.Damage * _damageMultiplier;
             _currentHp = Mathf.Max(0f, _currentHp - damage);
@@ -88,8 +91,9 @@ namespace _2D_Roguelike
         /// <summary>스테이지 재진입 시 파츠를 초기 상태로 복원한다.</summary>
         public void Reset()
         {
-            _isDead    = false;
-            _currentHp = _maxHp;
+            _isDead          = false;
+            _forceInvincible = false;
+            _currentHp       = _maxHp;
 
             if (!gameObject.activeSelf)
                 gameObject.SetActive(true);

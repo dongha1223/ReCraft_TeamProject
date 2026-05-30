@@ -221,5 +221,12 @@ namespace _2D_Roguelike
             if (_playerAttack     != null) _playerAttack.enabled     = enabled;
             if (_playerDash       != null) _playerDash.enabled       = enabled;
         }
-    }
+    
+
+/// <summary>छठ레이저 페이즈 진입 시 입 벌리기 애니메이션을 외부에서 시작한다.</summary>
+        public Coroutine OpenMouth()  => StartCoroutine(PlayRoarSprites(forward: true));
+
+        /// <summary>레이저 페이즈 종료 시 입 다물기 애니메이션을 외부에서 시작한다.</summary>
+        public Coroutine CloseMouth() => StartCoroutine(PlayRoarSprites(forward: false));
+}
 }
