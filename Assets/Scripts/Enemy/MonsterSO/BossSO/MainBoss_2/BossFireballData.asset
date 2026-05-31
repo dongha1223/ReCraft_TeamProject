@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0cb11e56e246b428700ff9ae3711aa, type: 3}
+  m_Name: BossFireballData
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossFireballDataSO
+  SpawnY: 12
+  FallSpeed: 3
+  BallCount: 5
+  SpawnInterval: 1
+  SpawnXRange: 0
+  DestroyBelowY: -8
+  HitDamage: 40
+  DebrisDamage: 3
+  DebrisDuration: 4
+  DebrisTickInterval: 1
+  DebrisWidth: 0.6
+  DebrisHeight: 0.25
+  PatternCooldown: 7
+  FallSprites:
+  - {fileID: 4303495881414705061, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: -5449078150454201125, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 534754805354645308, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 178150763842401557, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: -1537003500452952154, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 3548272812928053185, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 5983321246963365504, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: -6073402210753664572, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: -6919327155192389715, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: -662376000478725663, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: -1161034790151248158, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: -7400757869254880992, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 5840743691108856418, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 5772327288297537934, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  ImpactSprites:
+  - {fileID: -6806442288545290163, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 7988102610709471477, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: -1841386768531971285, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 8861888640762223390, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 1837037902006957932, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: -2950283917478855722, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 7333505794998425922, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 4190104699702137573, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 5351798514678707944, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 7831336162778158093, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: -4607880568249420095, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 3750740984720306032, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: -5983743858942131973, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  - {fileID: 6000617256376190003, guid: 4100b1b8f6526b74fb2c3b7fc9334d77, type: 3}
+  FireballPrefab: {fileID: 7152132370221163696, guid: e5a2892e0269e964e95dbbfad5342063, type: 3}

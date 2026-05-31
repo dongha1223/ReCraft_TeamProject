@@ -136,8 +136,14 @@ namespace _2D_Roguelike
         private void HandleBossDead()
         {
             SetWalls(false);
-            _cameraFollow?.ClearFixedWorldPos();
-            _cameraFollow?.ResetZoom(_zoomDuration);
+
+            if (_cameraFollow != null)
+            {
+                _cameraFollow.ClearOverrideTarget(); // 인트로 중 사망 시 오버라이드 타깃 안전 해제
+                _cameraFollow.RestoreOffset();       // Y 오프셋 복원 (인트로 미완료 대비)
+                _cameraFollow.ClearFixedWorldPos();  // 보스방 고정 해제 → 플레이어 추적 복귀
+                _cameraFollow.ResetZoom(_zoomDuration); // 줌 부드럽게 복원
+            }
         }
 
         // ── 투명벽 ────────────────────────────────────────────────────────

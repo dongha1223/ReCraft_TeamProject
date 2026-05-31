@@ -57,6 +57,10 @@ namespace _2D_Roguelike
 
         private Dictionary<string, BossCustomPatternBase> _customPatterns;
 
+        // ── 공개 프로퍼티 ─────────────────────────────────────────────────
+        public string BossName => _data != null ? _data.BossName : "";
+        public string BossRace => _data != null ? _data.BossRace : "";
+
         // ── IStatusLockable ───────────────────────────────────────────────
         private int  _actionLockCount;
         private int  _frozenCount;

@@ -6,37 +6,64 @@
             <ui:VisualElement name="enhance-main">
                 <ui:VisualElement name="enhance-left">
                     <ui:VisualElement name="upgrade-grid">
-                        <!-- 용기 행 -->
-                        <ui:VisualElement name="row-courage" class="upgrade-row">
-                            <ui:VisualElement class="category-section">
-                                <ui:VisualElement class="category-icon" />
-                                <ui:Label class="category-label" text="용기" />
+                        <!-- 물리 공격력(좌) + 스킬 공격력(우) 분할 행 -->
+                        <ui:VisualElement name="row-courage" class="upgrade-row-split">
+                            <ui:VisualElement class="upgrade-row row-half">
+                                <ui:VisualElement class="category-section">
+                                    <ui:VisualElement class="category-icon" name="icon-courage" />
+                                    <ui:Label class="category-label" text="물리 공격력" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="node-chain">
+                                    <ui:VisualElement class="chain-connector" />
+                                    <ui:VisualElement name="courage-node-0" class="upgrade-node">
+                                        <ui:Label class="node-level" text="0" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="chain-connector" />
+                                    <ui:VisualElement name="courage-node-1" class="upgrade-node">
+                                        <ui:Label class="node-level" text="0" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="chain-connector" />
+                                    <ui:VisualElement name="courage-node-2" class="upgrade-node">
+                                        <ui:Label class="node-level" text="0" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="chain-connector" />
+                                    <ui:VisualElement name="courage-node-3" class="upgrade-node">
+                                        <ui:Label class="node-level" text="0" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement class="node-chain">
-                                <ui:VisualElement class="chain-connector" />
-                                <ui:VisualElement name="courage-node-0" class="upgrade-node">
-                                    <ui:Label class="node-level" text="0" />
+                            <ui:VisualElement class="col-divider" />
+                            <ui:VisualElement class="upgrade-row row-half">
+                                <ui:VisualElement class="category-section">
+                                    <ui:VisualElement class="category-icon" name="icon-skill" />
+                                    <ui:Label class="category-label" text="스킬 공격력" />
                                 </ui:VisualElement>
-                                <ui:VisualElement class="chain-connector" />
-                                <ui:VisualElement name="courage-node-1" class="upgrade-node">
-                                    <ui:Label class="node-level" text="0" />
-                                </ui:VisualElement>
-                                <ui:VisualElement class="chain-connector" />
-                                <ui:VisualElement name="courage-node-2" class="upgrade-node">
-                                    <ui:Label class="node-level" text="0" />
-                                </ui:VisualElement>
-                                <ui:VisualElement class="chain-connector" />
-                                <ui:VisualElement name="courage-node-3" class="upgrade-node">
-                                    <ui:Label class="node-level" text="0" />
+                                <ui:VisualElement class="node-chain">
+                                    <ui:VisualElement class="chain-connector" />
+                                    <ui:VisualElement name="skill-node-0" class="upgrade-node">
+                                        <ui:Label class="node-level" text="0" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="chain-connector" />
+                                    <ui:VisualElement name="skill-node-1" class="upgrade-node">
+                                        <ui:Label class="node-level" text="0" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="chain-connector" />
+                                    <ui:VisualElement name="skill-node-2" class="upgrade-node">
+                                        <ui:Label class="node-level" text="0" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="chain-connector" />
+                                    <ui:VisualElement name="skill-node-3" class="upgrade-node">
+                                        <ui:Label class="node-level" text="0" />
+                                    </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement class="row-divider" />
-                        <!-- 강인함 행 -->
+                        <!-- 체력 행 (구 강인함) -->
                         <ui:VisualElement name="row-endurance" class="upgrade-row">
                             <ui:VisualElement class="category-section">
-                                <ui:VisualElement class="category-icon" />
-                                <ui:Label class="category-label" text="강인함" />
+                                <ui:VisualElement class="category-icon" name="icon-health" />
+                                <ui:Label class="category-label" text="체력" />
                             </ui:VisualElement>
                             <ui:VisualElement class="node-chain">
                                 <ui:VisualElement class="chain-connector" />

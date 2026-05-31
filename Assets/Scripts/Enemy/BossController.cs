@@ -83,6 +83,8 @@ namespace _2D_Roguelike
 
         // ── 공개 프로퍼티 ─────────────────────────────────────────────────
         public BossPhase CurrentPhase => _phase;
+        public string    BossName     => _data != null ? _data.BossName : "";
+        public string    BossRace     => _data != null ? _data.BossRace : "";
 
         // ── 생명주기 ──────────────────────────────────────────────────────
 

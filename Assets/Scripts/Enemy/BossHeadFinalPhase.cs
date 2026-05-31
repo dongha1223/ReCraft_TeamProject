@@ -29,6 +29,9 @@ namespace _2D_Roguelike
         [Header("레이저 패턴 (공중 부유 시 활성)")]
         [SerializeField] private BossHeadLaserPattern _laserPattern;
 
+        [Header("화염구 낙하 패턴 (공중 부유 시 반복)")]
+        [SerializeField] private BossFireballPattern _fireballPattern;
+
         [Header("플랫폼 (머리 상승 시 밑에서 함께 등장)")]
         [SerializeField] private Transform[] _platforms;
         [Tooltip("플랫폼이 시작하는 오프셋 (최종 위치보다 얼마나 아래에서 시작할지)")]
@@ -50,6 +53,7 @@ namespace _2D_Roguelike
         private int          _destroyedCount;
         private bool         _triggered;
         private Coroutine    _routineHandle;
+        private Coroutine    _fireballLoopHandle;
         private CameraFollow _cameraFollow;
         private Vector3[]    _platformFinalPositions;
 
@@ -117,7 +121,18 @@ namespace _2D_Roguelike
         private void HandleBossDead()
         {
             _laserPattern?.StopLasers();
+            _fireballPattern?.Cancel();
+            if (_fireballLoopHandle != null)
+            {
+                StopCoroutine(_fireballLoopHandle);
+                _fireballLoopHandle = null;
+            }
             StopRoutine();
+
+            // BossPartHP.gameObject.SetActive(false)는 HP 컴포넌트 오브젝트만 끔.
+            // 비주얼 루트(_headTransform)를 여기서 명시적으로 비활성화한다.
+            if (_headTransform != null)
+                _headTransform.gameObject.SetActive(false);
         }
 
         private void OnNonHeadPartDestroyed()
@@ -168,6 +183,10 @@ namespace _2D_Roguelike
                 yield return StartCoroutine(_laserPattern.OpenMouthRoutine());
             _laserPattern?.ActivateLasers();
 
+            // 화염구 낙하 패턴 반복 시작
+            if (_fireballPattern != null)
+                _fireballLoopHandle = StartCoroutine(FireballLoop());
+
             // 무한 bob
             float elapsed = 0f;
             while (true)
@@ -177,6 +196,13 @@ namespace _2D_Roguelike
                     floatLocalPos + Vector3.up * (Mathf.Sin(elapsed * _bobAngularFreq) * _bobAmplitude);
                 yield return null;
             }
+        }
+
+        // 화염구 패턴을 계속 반복 실행한다 (레이저와 병렬)
+        private IEnumerator FireballLoop()
+        {
+            while (true)
+                yield return _fireballPattern.BeginExecute();
         }
 
         // ── 플랫폼 제어 ───────────────────────────────────────────────────
@@ -197,12 +223,16 @@ namespace _2D_Roguelike
         {
             if (_platforms == null || _platformFinalPositions == null) yield break;
 
-            // 활성화 + 시작 위치(아래)로 세팅
-            for (int i = 0; i < _platforms.Length; i++)
+            int count = _platforms.Length;
+
+            // 시작 위치(아래) 미리 계산 — 루프 내 매 프레임 Vector3 할당 방지
+            var startPositions = new Vector3[count];
+            for (int i = 0; i < count; i++)
             {
                 if (_platforms[i] == null) continue;
                 var p = _platformFinalPositions[i];
-                _platforms[i].position = new Vector3(p.x, p.y - _platformRiseOffset, p.z);
+                startPositions[i]      = new Vector3(p.x, p.y - _platformRiseOffset, p.z);
+                _platforms[i].position = startPositions[i];
                 _platforms[i].gameObject.SetActive(true);
             }
 
@@ -214,19 +244,16 @@ namespace _2D_Roguelike
                 float raw = Mathf.Clamp01(elapsed * invDuration);
                 float t   = 1f - (1f - raw) * (1f - raw); // easeOut
 
-                for (int i = 0; i < _platforms.Length; i++)
+                for (int i = 0; i < count; i++)
                 {
                     if (_platforms[i] == null) continue;
-                    var p = _platformFinalPositions[i];
-                    _platforms[i].position = Vector3.Lerp(
-                        new Vector3(p.x, p.y - _platformRiseOffset, p.z),
-                        p, t);
+                    _platforms[i].position = Vector3.Lerp(startPositions[i], _platformFinalPositions[i], t);
                 }
                 yield return null;
             }
 
             // 최종 위치 확정
-            for (int i = 0; i < _platforms.Length; i++)
+            for (int i = 0; i < count; i++)
                 if (_platforms[i] != null)
                     _platforms[i].position = _platformFinalPositions[i];
         }

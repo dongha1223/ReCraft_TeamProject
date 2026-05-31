@@ -31,8 +31,7 @@ namespace _2D_Roguelike
         [Header("레이저 볼 (LaserPivot 중앙, 입 열릴 때만 활성)")]
         [SerializeField] private GameObject _razerBall;
 
-        
-[Header("레이저 오브젝트 (LaserPivot 자식)")]
+        [Header("레이저 오브젝트 (LaserPivot 자식)")]
         [SerializeField] private GameObject _laserRight;
         [SerializeField] private GameObject _laserLeft;
         [SerializeField] private GameObject _laserUp;
@@ -56,8 +55,9 @@ namespace _2D_Roguelike
         private float _laserHitLength;
         private float _laserHalfWidth;
 
-        private Coroutine _tickRoutine;
-        private Coroutine _rotateRoutine;
+        private Coroutine  _tickRoutine;
+        private Coroutine  _rotateRoutine;
+        private IDamageable _cachedPlayerDamageable;
 
         // ── 생명주기 ──────────────────────────────────────────────────────
 
@@ -80,6 +80,8 @@ namespace _2D_Roguelike
                 var go = GameObject.FindWithTag("Player");
                 if (go != null) _playerTransform = go.transform;
             }
+            if (_playerTransform != null)
+                _playerTransform.TryGetComponent(out _cachedPlayerDamageable);
             SetLasersActive(false);
         }
 
@@ -151,27 +153,25 @@ namespace _2D_Roguelike
 
         private void ApplyDamage()
         {
-            if (_playerTransform.TryGetComponent<IDamageable>(out var target))
+            if (_cachedPlayerDamageable == null) return;
+            _cachedPlayerDamageable.TakeDamage(new HitInfo
             {
-                target.TakeDamage(new HitInfo
-                {
-                    AttackId       = AttackIdGenerator.Next(),
-                    Damage         = _damagePerTick,
-                    DamageType     = DamageType.Magic,
-                    SourcePosition = _mouthPoint != null ? _mouthPoint.position : transform.position,
-                    KnockbackForce = 0f,
-                });
-            }
+                AttackId       = AttackIdGenerator.Next(),
+                Damage         = _damagePerTick,
+                DamageType     = DamageType.Magic,
+                SourcePosition = _mouthPoint != null ? _mouthPoint.position : transform.position,
+                KnockbackForce = 0f,
+            });
         }
 
         // ── 반시계 회전 ───────────────────────────────────────────────────
 
         private IEnumerator RotatePivot()
         {
+            if (_laserPivot == null) yield break;
             while (true)
             {
-                if (_laserPivot != null)
-                    _laserPivot.Rotate(0f, 0f, _rotationSpeed * Time.deltaTime);
+                _laserPivot.Rotate(0f, 0f, _rotationSpeed * Time.deltaTime);
                 yield return null;
             }
         }
@@ -200,7 +200,7 @@ namespace _2D_Roguelike
 
         // ── 유틸 ─────────────────────────────────────────────────────────
 
-private void SetLasersActive(bool active)
+        private void SetLasersActive(bool active)
         {
             if (_razerBall  != null) _razerBall.SetActive(active);
             if (_laserRight != null) _laserRight.SetActive(active);

@@ -5,6 +5,10 @@ namespace _2D_Roguelike
     [CreateAssetMenu(fileName = "BossMainData", menuName = "2D Roguelike/Boss/Boss Main Data")]
     public class BossMainDataSO : ScriptableObject
     {
+        [Header("보스 정보")]
+        [SerializeField] private string _bossName = "";
+        [SerializeField] private string _bossRace = "";
+
         [Header("페이즈 전환 조건")]
         [SerializeField] private int _phase2DestroyedCount = 2;
 
@@ -22,6 +26,8 @@ namespace _2D_Roguelike
         [SerializeField] private string _phase2TransitionTrigger  = "";
         [SerializeField] private float  _phase2TransitionDuration = 1f;
 
+        public string        BossName                 => _bossName;
+        public string        BossRace                 => _bossRace;
         public int           Phase2DestroyedCount     => _phase2DestroyedCount;
         public float         CooldownMin              => _cooldownMin;
         public float         CooldownMax              => _cooldownMax;

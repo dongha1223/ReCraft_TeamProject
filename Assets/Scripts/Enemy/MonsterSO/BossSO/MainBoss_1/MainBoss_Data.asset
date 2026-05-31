@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9ae1db02f5744b42b240fede3299112, type: 3}
   m_Name: MainBoss_Data
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossMainDataSO
+  _bossName: "\uC9C0\uC625\uC758 \uC811\uACAC\uC790"
+  _bossRace: "\uC601\uCCB4"
   _phase2DestroyedCount: 2
   _cooldownMin: 2
   _cooldownMax: 4
