@@ -10,8 +10,10 @@ namespace _2D_Roguelike
         private PlayerStats             _playerStats;
         private FormSkillController     _formSkillController;
         private TagTokenBank            _tagTokenBank;
+        private FormManager             _formManager;
 
         private VisualElement _hpBarFill;
+        private VisualElement _portraitCircle;
         private Label         _hpLabel;
         private VisualElement _skillACooldown;
         private VisualElement _skillSCooldown;
@@ -39,9 +41,11 @@ namespace _2D_Roguelike
                 _playerStats         = playerGO.GetComponent<PlayerStats>();
                 _formSkillController = playerGO.GetComponent<FormSkillController>();
                 _tagTokenBank        = playerGO.GetComponent<TagTokenBank>();
+                _formManager         = playerGO.GetComponent<FormManager>();
             }
 
             var root = GetComponent<UIDocument>().rootVisualElement;
+            _portraitCircle  = root.Q<VisualElement>("portrait-circle");
             _hpBarFill       = root.Q<VisualElement>("hp-bar-fill");
             _hpLabel         = root.Q<Label>("hp-label");
             _skillACooldown  = root.Q<VisualElement>("skill-a-cooldown");
@@ -54,6 +58,12 @@ namespace _2D_Roguelike
             _goldIcon         = root.Q<VisualElement>("gold-icon");
             _panel            = root.panel;
             StartCoroutine(CacheGoldIconWorldPos());
+
+            if (_formManager != null)
+            {
+                _formManager.OnFormSwapped += OnFormSwapped;
+                RefreshPortrait(_formManager.Current);
+            }
 
             if (_tagTokenBank != null)
             {
@@ -78,6 +88,9 @@ namespace _2D_Roguelike
 
         private void OnDestroy()
         {
+            if (_formManager != null)
+                _formManager.OnFormSwapped -= OnFormSwapped;
+
             if (_tagTokenBank != null)
                 _tagTokenBank.OnGaugeChanged -= OnTokenGaugeChanged;
 
@@ -95,6 +108,19 @@ namespace _2D_Roguelike
             UpdateHP();
             UpdateSkillCooldowns();
             UpdateEnemyCount();
+        }
+
+        // ── 초상화 갱신 ──────────────────────────────────────────────
+        private void OnFormSwapped(FormDefinition _, FormDefinition next) => RefreshPortrait(next);
+
+        private void RefreshPortrait(FormDefinition form)
+        {
+            if (_portraitCircle == null) return;
+            var icon = form?.Icon;
+            if (icon != null)
+                _portraitCircle.style.backgroundImage = new StyleBackground(icon);
+            else
+                _portraitCircle.style.backgroundImage = StyleKeyword.None;
         }
 
         // ── HP 바 갱신 ────────────────────────────────────────────────

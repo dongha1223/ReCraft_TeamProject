@@ -155,6 +155,53 @@ Transform:
   - {fileID: 1819473584}
   m_Father: {fileID: 1246561610}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &50506713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 50506714}
+  - component: {fileID: 50506715}
+  m_Layer: 0
+  m_Name: GoldChestSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &50506714
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50506713}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.88, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 859551035}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &50506715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50506713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61257ed1422257044abfa5c39e3cd923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.GoldChestSpawner
+  _goldChestPrefab: {fileID: 4321053247585940586, guid: bf70a21077e90594ca410809422e798f, type: 3}
+  _spawnPoint: {fileID: 0}
+  _goldAmount: 30
 --- !u!4 &51206753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5819420625137337105, guid: c87b34fbaeb8ff840aa7b4e45eec616d, type: 3}
@@ -361,6 +408,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3608561066614029191, guid: 6d9e15cf222120f43a01ec7f14d1764d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2143263675}
+    - targetCorrespondingSourceObject: {fileID: 3608561066614029191, guid: 6d9e15cf222120f43a01ec7f14d1764d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2021817942}
     - targetCorrespondingSourceObject: {fileID: 6351595181745481886, guid: 6d9e15cf222120f43a01ec7f14d1764d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1246561610}
@@ -514,6 +564,53 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &205168740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 205168741}
+  - component: {fileID: 205168742}
+  m_Layer: 0
+  m_Name: GoldChestSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &205168741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205168740}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.88, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2091866813}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &205168742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205168740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61257ed1422257044abfa5c39e3cd923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.GoldChestSpawner
+  _goldChestPrefab: {fileID: 4321053247585940586, guid: bf70a21077e90594ca410809422e798f, type: 3}
+  _spawnPoint: {fileID: 0}
+  _goldAmount: 30
 --- !u!1 &206281819
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,6 +884,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2928621924486789474, guid: b46e0141256772c468186651e6837534, type: 3}
   m_PrefabInstance: {fileID: 7507210415885630535}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &355450519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 355450520}
+  - component: {fileID: 355450521}
+  m_Layer: 0
+  m_Name: GoldChestSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &355450520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355450519}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.88, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 421246542}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &355450521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355450519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61257ed1422257044abfa5c39e3cd923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.GoldChestSpawner
+  _goldChestPrefab: {fileID: 4321053247585940586, guid: bf70a21077e90594ca410809422e798f, type: 3}
+  _spawnPoint: {fileID: 0}
+  _goldAmount: 30
 --- !u!1 &356000346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2637,6 +2781,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1810355394}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &781460593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 781460594}
+  - component: {fileID: 781460595}
+  m_Layer: 0
+  m_Name: GoldChestSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &781460594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781460593}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.88, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1552628684}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &781460595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781460593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61257ed1422257044abfa5c39e3cd923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.GoldChestSpawner
+  _goldChestPrefab: {fileID: 4321053247585940586, guid: bf70a21077e90594ca410809422e798f, type: 3}
+  _spawnPoint: {fileID: 0}
+  _goldAmount: 30
 --- !u!1 &802049070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2753,6 +2944,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5469061245094524321, guid: 6344c98a4355e304bb4d8164094c082f, type: 3}
   m_PrefabInstance: {fileID: 5410759214938201457}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &985007040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 985007041}
+  - component: {fileID: 985007042}
+  m_Layer: 0
+  m_Name: GoldChestSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &985007041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985007040}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 13, y: 7.58, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 118752262}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &985007042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985007040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61257ed1422257044abfa5c39e3cd923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.GoldChestSpawner
+  _goldChestPrefab: {fileID: 4321053247585940586, guid: bf70a21077e90594ca410809422e798f, type: 3}
+  _spawnPoint: {fileID: 0}
+  _goldAmount: 30
 --- !u!4 &1025584189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4143295774836797829, guid: bf70a21077e90594ca410809422e798f, type: 3}
@@ -3049,8 +3287,8 @@ Transform:
   m_GameObject: {fileID: 1114902719}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.75, z: 0}
+  m_LocalScale: {x: 1, y: 1.375, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 507782647}
@@ -3357,6 +3595,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0edb44ac7f7a24ca038632417302ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossPartHP
+--- !u!1 &1353035227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1353035228}
+  - component: {fileID: 1353035229}
+  m_Layer: 0
+  m_Name: GoldChestSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1353035228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353035227}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.88, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 907365824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1353035229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353035227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61257ed1422257044abfa5c39e3cd923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.GoldChestSpawner
+  _goldChestPrefab: {fileID: 4321053247585940586, guid: bf70a21077e90594ca410809422e798f, type: 3}
+  _spawnPoint: {fileID: 0}
+  _goldAmount: 30
 --- !u!1 &1361247724
 GameObject:
   m_ObjectHideFlags: 0
@@ -4149,7 +4434,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02228846ae2748044b69b11806b97620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.InventoryController
-  _jobPortrait: {fileID: 2800000, guid: e5d2722cdc7c0d445bceb9dd9023ff2b, type: 3}
 --- !u!114 &1597286721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4320,6 +4604,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1511ccae7919cfc46b603b9b337fdc94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.BaseInput
+--- !u!1 &1686731890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1686731891}
+  - component: {fileID: 1686731892}
+  m_Layer: 0
+  m_Name: GoldChestSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1686731891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686731890}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.88, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1267994489}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1686731892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686731890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61257ed1422257044abfa5c39e3cd923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.GoldChestSpawner
+  _goldChestPrefab: {fileID: 4321053247585940586, guid: bf70a21077e90594ca410809422e798f, type: 3}
+  _spawnPoint: {fileID: 0}
+  _goldAmount: 30
 --- !u!1 &1697326572
 GameObject:
   m_ObjectHideFlags: 0
@@ -4937,6 +5268,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 659359e64d2bb86409639945e8a6b280, type: 3}
+--- !u!1 &2021817941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2021817942}
+  - component: {fileID: 2021817943}
+  m_Layer: 0
+  m_Name: GoldChestSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2021817942
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021817941}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.88, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 159435821}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2021817943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021817941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61257ed1422257044abfa5c39e3cd923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.GoldChestSpawner
+  _goldChestPrefab: {fileID: 4321053247585940586, guid: bf70a21077e90594ca410809422e798f, type: 3}
+  _spawnPoint: {fileID: 0}
+  _goldAmount: 30
 --- !u!1 &2055994279
 GameObject:
   m_ObjectHideFlags: 0
@@ -4978,6 +5356,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3477670125369257948, guid: b35cb8c426950c243bca31ed8a466caf, type: 3}
   m_PrefabInstance: {fileID: 8660681496035990482}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2117343921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2117343922}
+  - component: {fileID: 2117343923}
+  m_Layer: 0
+  m_Name: GoldChestSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2117343922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117343921}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.88, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 726960076}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2117343923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117343921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61257ed1422257044abfa5c39e3cd923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.GoldChestSpawner
+  _goldChestPrefab: {fileID: 4321053247585940586, guid: bf70a21077e90594ca410809422e798f, type: 3}
+  _spawnPoint: {fileID: 0}
+  _goldAmount: 30
 --- !u!4 &2142142111 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4975748290939055805, guid: b35cb8c426950c243bca31ed8a466caf, type: 3}
@@ -5140,6 +5565,63 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!1001 &837946030991687953
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4321053247585940586, guid: bf70a21077e90594ca410809422e798f, type: 3}
+      propertyPath: m_Name
+      value: GoldChest
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351428339026964912, guid: ad88bf50277c2d54b9cdb17749510528, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351428339026964912, guid: ad88bf50277c2d54b9cdb17749510528, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351428339026964912, guid: ad88bf50277c2d54b9cdb17749510528, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351428339026964912, guid: ad88bf50277c2d54b9cdb17749510528, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351428339026964912, guid: ad88bf50277c2d54b9cdb17749510528, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351428339026964912, guid: ad88bf50277c2d54b9cdb17749510528, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351428339026964912, guid: ad88bf50277c2d54b9cdb17749510528, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351428339026964912, guid: ad88bf50277c2d54b9cdb17749510528, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351428339026964912, guid: ad88bf50277c2d54b9cdb17749510528, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351428339026964912, guid: ad88bf50277c2d54b9cdb17749510528, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ad88bf50277c2d54b9cdb17749510528, type: 3}
 --- !u!1001 &2034441078189064527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5356,7 +5838,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 683047445401817402, guid: 6b01697f4b3a6fc4aae71e622f514a85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 355450520}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b01697f4b3a6fc4aae71e622f514a85, type: 3}
 --- !u!1001 &2507469665825275414
@@ -5537,7 +6022,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1142394147668706754, guid: 1dbd272981361ad46b593cc7a0098078, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 985007041}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dbd272981361ad46b593cc7a0098078, type: 3}
 --- !u!1001 &3548918334810710183
@@ -9359,11 +9847,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4491644059559834463, guid: 181e0d313f3496046b7b66659ca1a7b7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4909315905268736209, guid: 181e0d313f3496046b7b66659ca1a7b7, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4909315905268736209, guid: 181e0d313f3496046b7b66659ca1a7b7, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
@@ -13564,7 +14052,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1237487737118960466, guid: ff176a28fdf127745a87762d55b13d56, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 50506714}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff176a28fdf127745a87762d55b13d56, type: 3}
 --- !u!1001 &5410759214938201457
@@ -13817,7 +14308,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7856336679564457465, guid: f5ea632431d023c44a06b4abd085def2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1686731891}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5ea632431d023c44a06b4abd085def2, type: 3}
 --- !u!1001 &5946723767902292578
@@ -13890,7 +14384,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7022207758897369558, guid: c5d54048f3e5e504698447ce36d5b22d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2117343922}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5d54048f3e5e504698447ce36d5b22d, type: 3}
 --- !u!1001 &7227042614296148696
@@ -13979,7 +14476,10 @@ PrefabInstance:
       objectReference: {fileID: 2055994280}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5683701858494795268, guid: c87b34fbaeb8ff840aa7b4e45eec616d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1353035228}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 580142996828303557, guid: c87b34fbaeb8ff840aa7b4e45eec616d, type: 3}
       insertIndex: -1
@@ -14111,7 +14611,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7186285309145928670, guid: b46e0141256772c468186651e6837534, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 781460594}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4176951334251518095, guid: b46e0141256772c468186651e6837534, type: 3}
       insertIndex: -1
@@ -14252,7 +14755,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3477670125369257948, guid: b35cb8c426950c243bca31ed8a466caf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 205168741}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b35cb8c426950c243bca31ed8a466caf, type: 3}
 --- !u!1001 &8660880035991021420
@@ -14330,3 +14836,4 @@ SceneRoots:
   - {fileID: 2507469665825275414}
   - {fileID: 3548918334810710183}
   - {fileID: 7534236801076315709}
+  - {fileID: 837946030991687953}

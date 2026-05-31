@@ -8,13 +8,16 @@ namespace _2D_Roguelike
     /// </summary>
     public class InventoryService
     {
+        public const int MaxCapacity = 9;
+
         private readonly List<ItemInstance> _items = new();
 
-        public IReadOnlyList<ItemInstance> Items => _items;
+        public IReadOnlyList<ItemInstance> Items  => _items;
+        public bool                        IsFull => _items.Count >= MaxCapacity;
 
         public void Add(ItemInstance item)
         {
-            if (item == null || _items.Contains(item)) return;
+            if (item == null || _items.Contains(item) || IsFull) return;
             _items.Add(item);
         }
 

@@ -23,18 +23,15 @@ namespace _2D_Roguelike
         public bool  CanInteract  => _definition != null;
         public float HoldDuration => _holdDuration;
 
-        public void OnFocused()
-        {
-            _spriteRenderer.color = new Color(1f, 0.88f, 0.25f); // 노란 하이라이트
-        }
+        private static readonly Color _highlightColor = new Color(1f, 0.88f, 0.25f);
 
-        public void OnUnfocused()
-        {
-            _spriteRenderer.color = Color.white;
-        }
+        public void OnFocused()   => _spriteRenderer.color = _highlightColor;
+        public void OnUnfocused() => _spriteRenderer.color = Color.white;
 
         public void OnInteract(PlayerStatController statController)
         {
+            if (statController.InventoryService.IsFull) return;
+
             // F 단누름: 수집 후 즉시 장착
             var instance = new ItemInstance(_definition);
             statController.InventoryService.Add(instance);
