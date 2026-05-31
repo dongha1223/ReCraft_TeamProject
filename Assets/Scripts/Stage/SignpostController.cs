@@ -13,8 +13,6 @@ namespace _2D_Roguelike
         [Header("설정")]
         [Tooltip("StageManager가 런타임에 자동 주입 — 직접 수정 불필요")]
         [SerializeField] private bool _isLastStage = false;
-        [Tooltip("StageManager가 런타임에 자동 주입 — 직접 수정 불필요")]
-        [SerializeField] private bool _isBossStage = false;
 
         [Header("참조 — 비워두면 자동 탐색")]
         [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -30,12 +28,8 @@ namespace _2D_Roguelike
         /// <summary>StageManager가 스테이지 활성화 시 자동 주입 — Inspector 값을 덮어씀</summary>
         public void SetIsLastStage(bool isLast) => _isLastStage = isLast;
 
-        /// <summary>보스 스테이지이면 OnAllEnemiesDead 대신 BossController.OnBossDead를 구독</summary>
-        public void SetIsBossStage(bool isBoss)
-        {
-            _isBossStage = isBoss;
-            RefreshSubscription();
-        }
+        /// <summary>스테이지 종류 정보 수신 — 현재는 구독 방식이 통일되어 처리 불필요</summary>
+        public void SetIsBossStage(bool isBoss) { }
 
         // ── IInteractable ─────────────────────────────────────────────
 
@@ -101,9 +95,8 @@ namespace _2D_Roguelike
             // OnEnable 시점에 StageManager가 없었을 수 있으므로 재구독
             RefreshSubscription();
 
-            // 이미 전멸 상태로 시작하는 일반 스테이지 대응
-            if (!_isBossStage && !_isActivated
-                && StageManager.Instance != null && StageManager.Instance.AllEnemiesDead)
+            // 이미 전멸 상태로 시작하는 스테이지 대응 (적 0마리 스테이지)
+            if (!_isActivated && StageManager.Instance != null && StageManager.Instance.AllEnemiesDead)
             {
                 _isActivated = true;
                 UpdateAlpha();
@@ -116,19 +109,17 @@ namespace _2D_Roguelike
         {
             UnsubscribeAll();
 
-            if (_isBossStage)
-            {
-                BossController.OnBossDead += HandleClearConditionMet;
-            }
-            else if (StageManager.Instance != null)
-            {
+            // 보스/미드보스/일반 스테이지 모두 OnAllEnemiesDead로 판정.
+            // 현재 씬의 모든 보스(BossMainController, BossArcherController, MidBossController)는
+            // EnemyStats 또는 BossMainController.HandleBossDeath()를 통해
+            // StageManager.OnEnemyDied()를 호출하므로 이 단일 경로로 처리 가능.
+            if (StageManager.Instance != null)
                 StageManager.Instance.OnAllEnemiesDead += HandleClearConditionMet;
-            }
         }
 
         private void UnsubscribeAll()
         {
-            BossController.OnBossDead               -= HandleClearConditionMet;
+            BossController.OnBossDead -= HandleClearConditionMet; // 안전망 유지
             if (StageManager.Instance != null)
                 StageManager.Instance.OnAllEnemiesDead -= HandleClearConditionMet;
         }

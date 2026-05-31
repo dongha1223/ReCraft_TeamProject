@@ -12,6 +12,8 @@ namespace _2D_Roguelike
 
         private VisualElement _wrapper;
         private VisualElement _fill;
+        private Label         _nameLabel;
+        private Label         _raceLabel;
 
         private BossStats    _bossStats;
         private BossPartHP[] _bossParts;
@@ -25,8 +27,10 @@ namespace _2D_Roguelike
         private void Awake()
         {
             var root = GetComponent<UIDocument>().rootVisualElement;
-            _wrapper  = root.Q("boss-hud-wrapper");
-            _fill     = root.Q("boss-hp-bar-fill");
+            _wrapper    = root.Q("boss-hud-wrapper");
+            _fill       = root.Q("boss-hp-bar-fill");
+            _nameLabel  = root.Q<Label>("boss-name-label");
+            _raceLabel  = root.Q<Label>("boss-race-label");
 
             _currentY              = SlideHideY;
             _wrapper.style.top     = SlideHideY;
@@ -65,6 +69,10 @@ namespace _2D_Roguelike
                 _bossStats  = stats;
                 _bossParts  = null;
                 _totalMaxHp = stats.MaxHp;
+
+                var ctrl = stats.GetComponent<BossController>();
+                SetBossLabels(ctrl != null ? ctrl.BossName : "",
+                              ctrl != null ? ctrl.BossRace  : "");
                 return;
             }
 
@@ -75,6 +83,15 @@ namespace _2D_Roguelike
             _totalMaxHp = 0f;
             if (_bossParts != null)
                 foreach (var p in _bossParts) _totalMaxHp += p.GetMaxHP();
+
+            SetBossLabels(bmc != null ? bmc.BossName : "",
+                          bmc != null ? bmc.BossRace  : "");
+        }
+
+        private void SetBossLabels(string bossName, string bossRace)
+        {
+            if (_nameLabel != null) _nameLabel.text = bossName;
+            if (_raceLabel != null) _raceLabel.text = bossRace;
         }
 
         private void HandleBossDead()
