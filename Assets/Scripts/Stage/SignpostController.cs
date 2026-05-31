@@ -127,7 +127,7 @@ namespace _2D_Roguelike
         private void HandleClearConditionMet()
         {
 #if UNITY_EDITOR
-            Debug.Log($"[Signpost] 클리어 조건 충족 — '{gameObject.scene.name}' (보스스테이지={_isBossStage})");
+            Debug.Log($"[Signpost] 클리어 조건 충족 — '{gameObject.scene.name}'");
 #endif
             _isActivated = true;
             UpdateAlpha();

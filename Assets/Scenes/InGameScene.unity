@@ -1727,7 +1727,7 @@ MonoBehaviour:
     root: {fileID: 159435823}
     spawnPoint: {fileID: 159435822}
   _playerTransform: {fileID: 1540201796}
-  _startStageIndex: 11
+  _startStageIndex: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
