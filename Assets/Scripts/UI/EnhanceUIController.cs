@@ -35,6 +35,7 @@ namespace _2D_Roguelike
         private Label         _infoNextDesc;
 
         private PlayerStatController  _playerStatCtrl;
+        private PlayerStats           _playerStats;
         private EnhanceNodeDefinition _selectedDef;
         private int                   _selectedNodeIndex = -1;
 
@@ -65,7 +66,10 @@ namespace _2D_Roguelike
 
             var playerGO = GameObject.FindWithTag("Player");
             if (playerGO != null)
+            {
                 _playerStatCtrl = playerGO.GetComponent<PlayerStatController>();
+                _playerStats    = playerGO.GetComponent<PlayerStats>();
+            }
 
             ApplyAllSavedModifiers();
             RegisterNodeCallbacks(root);
@@ -132,9 +136,17 @@ namespace _2D_Roguelike
                 return;
             }
 
+            var statSvc    = _playerStatCtrl?.StatService;
+            float oldMaxHp = statSvc?.GetFinalValue(StatType.MaxHp) ?? 0f;
+
             int newLevel = currentLevel + 1;
             EnhanceSaveService.SetLevel(_selectedDef.nodeId, newLevel);
             ApplyModifiers(_selectedDef, newLevel);
+
+            float hpDelta = (statSvc?.GetFinalValue(StatType.MaxHp) ?? 0f) - oldMaxHp;
+            if (hpDelta > 0f)
+                _playerStats?.Heal(hpDelta);
+
             RefreshAllNodeLevels();
             RefreshInfoPanel(_selectedDef, newLevel);
             DialogueUIController.Instance?.ShowEnhanceFeedback(_successFeedback);

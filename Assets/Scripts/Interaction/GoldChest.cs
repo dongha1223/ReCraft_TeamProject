@@ -20,6 +20,22 @@ namespace _2D_Roguelike
             _animator = GetComponent<Animator>();
         }
 
+        private void OnEnable()
+        {
+            _opened = false;
+            if (_animator != null)
+            {
+                _animator.Rebind();
+                _animator.Update(0f);
+            }
+        }
+
+        public void Init(int goldAmount, int coinCount = 5)
+        {
+            _goldAmount = goldAmount;
+            _coinCount  = coinCount;
+        }
+
         public void OnFocused()   { }
         public void OnUnfocused() { }
 

@@ -16,8 +16,21 @@
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url("../Screenshots/Logo.jpg");
+    background-image: url("../Screenshots/배경.png");
     -unity-background-scale-mode: stretch-to-fill;
+}
+
+/* 타이틀 텍스트 */
+.title-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 35%;
+    -unity-text-align: middle-center;
+    font-size: 52px;
+    color: rgb(212, 175, 55);
+    -unity-font-style: bold;
+    letter-spacing: 4px;
 }
 
 /* 콘텐츠 루트 - 하단 중앙 정렬 */
