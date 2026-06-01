@@ -9,7 +9,7 @@ namespace _2D_Roguelike
 
         public event Action OnGoldChanged;
 
-        private int _gold;
+        [SerializeField] private int _gold;
         private StageManager _stageManager;
 
         public int Gold => _gold;
@@ -54,5 +54,14 @@ namespace _2D_Roguelike
             _gold = 0;
             OnGoldChanged?.Invoke();
         }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            _gold = Mathf.Max(0, _gold);
+            if (Application.isPlaying)
+                OnGoldChanged?.Invoke();
+        }
+#endif
     }
 }

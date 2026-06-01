@@ -25,6 +25,10 @@ namespace _2D_Roguelike
 
         [Header("효과")]
 
+        [Header("상점")]
+        [Tooltip("상점 판매 가격. 0이면 판매 불가 아이템으로 취급")]
+        public int price = 100;
+
         [Header("드랍 설정")]
         [Tooltip("가중치가 높을수록 드랍 확률 상승")]
         public float baseDropWeight = 1f;

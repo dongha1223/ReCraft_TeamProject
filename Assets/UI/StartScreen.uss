@@ -20,17 +20,15 @@
     -unity-background-scale-mode: stretch-to-fill;
 }
 
-/* 타이틀 텍스트 */
-.title-label {
+/* 타이틀 이미지 */
+.title-image {
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 35%;
-    -unity-text-align: middle-center;
-    font-size: 52px;
-    color: rgb(212, 175, 55);
-    -unity-font-style: bold;
-    letter-spacing: 4px;
+    align-self: center;
+    top: 7%;
+    width: 1500px;
+    height: 600px;
+    background-image: url("../Screenshots/Assets/Title_Text.png");
+    -unity-background-scale-mode: scale-to-fit;
 }
 
 /* 콘텐츠 루트 - 하단 중앙 정렬 */

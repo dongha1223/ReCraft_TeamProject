@@ -4,8 +4,8 @@
     <!-- 게임 로고 이미지 (전체화면 배경) -->
     <ui:VisualElement name="logo-image" class="logo-image" />
 
-    <!-- 타이틀 텍스트 -->
-    <ui:Label name="title-label" text="SACRAMENT OF CONFESSION" class="title-label" />
+    <!-- 타이틀 이미지 -->
+    <ui:VisualElement name="title-image" class="title-image" />
 
     <!-- 프롬프트 영역 - 화면 하단 중앙 -->
     <ui:VisualElement name="content-root" class="content-root">
