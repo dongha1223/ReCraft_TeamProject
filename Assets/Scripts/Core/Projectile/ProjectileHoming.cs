@@ -9,10 +9,13 @@ public class ProjectileHoming : ProjectileBase
     {
         base.Setup(target, info);
         this.target = target;
+        if (target != null)
+            movementRigidBody2D.MoveTo((target.position - transform.position).normalized);
     }
 
     public override void Process()
     {
+        if (target == null) { OnLifetimeExpired(); return; }
         movementRigidBody2D.MoveTo((target.position - transform.position).normalized);
     }
 }

@@ -47,10 +47,11 @@ namespace _2D_Roguelike
 
         protected override IEnumerator AttackCoroutine()
         {
-            _canAttack   = false;
-            _isAttacking = true;
+            // 빨간 선(전조) 시작 시점에 방향 고정
+            float lockedDir = _player != null
+                ? (_player.position.x > transform.position.x ? 1f : -1f)
+                : (transform.localScale.x >= 0f ? 1f : -1f);
 
-            // 전조 연출 — transform 변경 없이 활성화만 (방향은 localScale.x 플립에 의해 자동 반영)
             _animator?.SetTrigger(AnimWindup);
             _windupIndicator?.SetActive(true);
 
@@ -59,11 +60,10 @@ namespace _2D_Roguelike
 
             _windupIndicator?.SetActive(false);
 
-            // 바라보는 방향으로 수평 직선 발사
+            // 고정된 방향으로 수평 발사 (Y 고정)
             if (_projectilePrefab != null)
             {
-                Vector3 fireDir   = new Vector3(Mathf.Sign(transform.localScale.x), 0f, 0f);
-                Vector3 targetPos = _spawnPoint.position + fireDir * 100f;
+                Vector3 targetPos = _spawnPoint.position + new Vector3(lockedDir * 100f, 0f, 0f);
 
                 var go = Instantiate(_projectilePrefab, _spawnPoint.position, Quaternion.identity);
                 go.GetComponent<ProjectileBase>()?.Setup(targetPos, new HitInfo

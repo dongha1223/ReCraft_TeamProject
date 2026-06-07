@@ -79,7 +79,13 @@
       "PowerShell($content = Get-Content \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\StagePrefab\\\\StageBossRoot2.prefab\" -Raw; @\\(\"8844127222311758042\",\"2962540320998201448\",\"7711336017804117520\",\"8821296259546817520\"\\) | ForEach-Object { $fileID = $_; $idx = $content.IndexOf\\(\"&$fileID\"\\); if \\($idx -ge 0\\) { $chunk = $content.Substring\\($idx, 500\\); $goFileID = [regex]::Match\\($chunk, 'm_GameObject:\\\\s+\\\\{fileID:\\\\s+\\(\\\\d+\\)'\\).Groups[1].Value; $goIdx = $content.IndexOf\\(\"--- !u!1 &$goFileID\"\\); $goChunk = $content.Substring\\([Math]::Max\\(0,$goIdx\\), 600\\); $name = [regex]::Match\\($goChunk, 'm_Name:\\\\s+\\([^\\\\r\\\\n]+\\)'\\).Groups[1].Value.Trim\\(\\); Write-Host \"BossPartHP &$fileID => GO $goFileID => Name: '$name'\" } })",
       "Bash(del \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\GoldChestPickup.cs\")",
       "Bash(del \"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Scripts\\\\Stage\\\\GoldChestPickup.cs.meta\")",
-      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Screenshots\\\\Assets\\\\Title_Text.png\"\\); \"$\\($img.Width\\) x $\\($img.Height\\)\"; $img.Dispose\\(\\))"
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Screenshots\\\\Assets\\\\Title_Text.png\"\\); \"$\\($img.Width\\) x $\\($img.Height\\)\"; $img.Dispose\\(\\))",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\"C:\\\\ReCraft_TeamProject\\\\Assets\\\\Screenshots\\\\타일_다양-Photoroom.png\"\\); Write-Host \"Width: $\\($img.Width\\), Height: $\\($img.Height\\)\"; $img.Dispose\\(\\))",
+      "Bash(python -c \"from PIL import Image; print\\('PIL available'\\)\")",
+      "Bash(pip install *)",
+      "Bash(python *)",
+      "mcp__UnityMCP__get_sha",
+      "Bash(findstr \"guid\")"
     ]
   }
 }

@@ -1,60 +1,39 @@
-using NUnit.Framework;
 using UnityEngine;
 
-public enum ProjectileType {Straight, Homing, QuadraticHoming, CubicHoming }
+public enum ProjectileType { Straight, Homing, QuadraticHoming, CubicHoming }
+
 public class ProjectileEmisson : MonoBehaviour
 {
-    [SerializeField]
-    private ProjectileType  projectileType = ProjectileType.Straight;
-    [SerializeField]
-    private int             projectileCount = 3;
-    [SerializeField]
-    private float           cooldownTime = 2f;
-    [SerializeField]
-    private GameObject[]    projectiles;
-    [SerializeField]
-    private Transform       projectileSpawnPoint;
-    [SerializeField]
-    private Transform       target;
+    [SerializeField] private ProjectileType projectileType   = ProjectileType.Straight;
+    [SerializeField] private int            projectileCount  = 3;
+    [SerializeField] private float          cooldownTime     = 2f;
+    [SerializeField] private GameObject[]   projectiles;
+    [SerializeField] private Transform      projectileSpawnPoint;
+    [SerializeField] private Transform      target;
 
-    private int             currentProjectileIndex = 0;
-    private float           currentAttackRate = 0;
-    private float           currentCooldownTime = 0;
-    private float           attackRate = 0.05f; //발사체 사이의 간격
+    private int   _currentIndex;
+    private float _lastFireTime;
+    private float _lastCooldownTime;
 
-    public bool             IsSkillAvailable => (Time.time - currentCooldownTime > cooldownTime);
+    private const float FireInterval = 0.05f;
 
-    private void Update()
-    {
-        OnSkill();
-    }
+    public bool IsSkillAvailable => Time.time - _lastCooldownTime > cooldownTime;
+
+    private void Update() => OnSkill();
 
     public void OnSkill()
     {
-        // 스킬이 사용 가능한 상태인지 검사(쿨타임)
-        if ( IsSkillAvailable == false ) return;
+        if (!IsSkillAvailable) return;
+        if (Time.time - _lastFireTime <= FireInterval) return;
 
-        /*GameObject clone = GameObject.Instantiate(projectiles[(int)projectileType], projectileSpawnPoint.position, Quaternion.identity);
-        clone.GetComponent<ProjectileBase>().Setup(target,1);
-        currentCooldownTime = Time.time; */
+        Instantiate(projectiles[(int)projectileType], projectileSpawnPoint.position, Quaternion.identity);
+        _currentIndex++;
+        _lastFireTime = Time.time;
 
-        // attackRate 주기로 발사체 생성
-
-        if ( Time.time - currentAttackRate > attackRate)
+        if (_currentIndex >= projectileCount)
         {
-            GameObject clone = GameObject.Instantiate(projectiles[(int)projectileType], projectileSpawnPoint.position, Quaternion.identity);
-            //clone.GetComponent<ProjectileBase>().Setup(target, 1, projectileCount, currentProjectileIndex);
-            
-            currentProjectileIndex ++;
-            currentAttackRate = Time.time;
-
-        }
-
-        // ProjectileCount 개수만큼 발사체를 생성한 후 쿨타임 초기화
-        if ( currentProjectileIndex >= projectileCount )
-        {
-            currentProjectileIndex = 0;
-            currentCooldownTime    = Time.time;
+            _currentIndex    = 0;
+            _lastCooldownTime = Time.time;
         }
     }
 }
