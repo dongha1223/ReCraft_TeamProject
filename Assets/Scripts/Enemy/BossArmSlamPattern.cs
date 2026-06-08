@@ -157,24 +157,25 @@ namespace _2D_Roguelike
 
         // ── 피해 판정 ────────────────────────────────────────────────────
 
+        private static readonly Collider2D[] _slamHitBuffer = new Collider2D[4];
+
         private void ApplySlamDamage(Transform arm, Vector3 originalLocalPos)
         {
-            if (_playerTransform == null) return;
-
             Vector3 armWorld = arm.parent != null
                              ? arm.parent.TransformPoint(originalLocalPos)
                              : originalLocalPos;
 
-            float playerX = _playerTransform.position.x;
-            float playerY = _playerTransform.position.y;
+            // OverlapBox: 팔 위치 중심으로 좌우 slamRangeX, 상하 slamRangeY 범위
+            var size  = new Vector2(_slamRangeX * 2f, _slamRangeY * 2f);
+            int count = Physics2D.OverlapBoxNonAlloc(armWorld, size, 0f, _slamHitBuffer);
 
-            bool inRangeX = playerX >= armWorld.x - _slamRangeX && playerX <= armWorld.x + _slamRangeX;
-            bool inRangeY = playerY >= armWorld.y               && playerY <= armWorld.y + _slamRangeY;
-
-            if (!inRangeX || !inRangeY) return;
-
-            if (_playerTransform.TryGetComponent<IDamageable>(out var target))
+            for (int i = 0; i < count; i++)
             {
+                if (!_slamHitBuffer[i].CompareTag("Player")) continue;
+
+                var target = _slamHitBuffer[i].GetComponentInParent<IDamageable>();
+                if (target == null) continue;
+
                 target.TakeDamage(new HitInfo
                 {
                     AttackId       = AttackIdGenerator.Next(),
@@ -183,6 +184,7 @@ namespace _2D_Roguelike
                     SourcePosition = armWorld,
                     KnockbackForce = _slamKnockback,
                 });
+                break; // 플레이어는 한 명
             }
         }
 
@@ -218,8 +220,8 @@ namespace _2D_Roguelike
             if (arm == null) return;
 
             Gizmos.color = new Color(1f, 0.4f, 0f, 0.35f);
-            Vector3 center = arm.position + Vector3.up * (_slamRangeY * 0.5f);
-            Gizmos.DrawWireCube(center, new Vector3(_slamRangeX * 2f, _slamRangeY, 0.1f));
+            // ApplySlamDamage와 동일: arm 위치 중심, 상하 slamRangeY 대칭
+            Gizmos.DrawWireCube(arm.position, new Vector3(_slamRangeX * 2f, _slamRangeY * 2f, 0.1f));
         }
 #endif
     }

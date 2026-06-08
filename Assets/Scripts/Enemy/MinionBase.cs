@@ -21,7 +21,8 @@ namespace _2D_Roguelike
         protected Transform  _player;
         protected EnemyStats _stats;
 
-        private Coroutine _lifetimeHandle;
+        private Coroutine  _lifetimeHandle;
+        private GameObject _portalFX;
 
         // ── 생명주기 ──────────────────────────────────────────────────────
 
@@ -55,6 +56,7 @@ namespace _2D_Roguelike
                 StopCoroutine(_lifetimeHandle);
                 _lifetimeHandle = null;
             }
+            if (_portalFX != null) Destroy(_portalFX);
             OnForceCleanup();
             Destroy(gameObject);
         }
@@ -63,15 +65,17 @@ namespace _2D_Roguelike
 
         private IEnumerator LifetimeCoroutine()
         {
-            // 포탈 전조 이펙트 재생
-            GameObject portalFX = null;
+            // 포탈 전조 이펙트 재생 — 필드에 저장하여 ForceCleanup 시 정리 가능
             if (_portalEffectPrefab != null)
-                portalFX = Instantiate(_portalEffectPrefab, transform.position, Quaternion.identity);
+                _portalFX = Instantiate(_portalEffectPrefab, transform.position, Quaternion.identity);
 
             yield return new WaitForSeconds(_predelay);
 
-            if (portalFX != null)
-                Destroy(portalFX);
+            if (_portalFX != null)
+            {
+                Destroy(_portalFX);
+                _portalFX = null;
+            }
 
             // 사망 전 패턴 실행
             if (!_stats.IsDead)

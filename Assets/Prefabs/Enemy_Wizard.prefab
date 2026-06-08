@@ -427,6 +427,7 @@ MonoBehaviour:
   _projectilePrefab: {fileID: 1576396758319343985, guid: c486a95a3df4f9a4d987f30308a064a3, type: 3}
   _spawnPoint: {fileID: 829411367020565937}
   _windupIndicator: {fileID: 2402637249286965575}
+  _useHomingSetup: 1
 --- !u!114 &7005310041534395738
 MonoBehaviour:
   m_ObjectHideFlags: 0

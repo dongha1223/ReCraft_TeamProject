@@ -94,6 +94,12 @@ namespace _2D_Roguelike
             _patternExecutor = GetComponent<BossPatternExecutor>();
         }
 
+        private void OnEnable()
+        {
+            // BossMainController와 동일 — EnemySpawner가 탐색하지 않는 보스를 직접 등록
+            StageManager.Instance?.RegisterEnemy();
+        }
+
         private void Start()
         {
             if (_data != null)
@@ -170,6 +176,7 @@ namespace _2D_Roguelike
 
             _animator?.SetTrigger(AnimDie);
 
+            StageManager.Instance?.OnEnemyDied();
             OnBossDead?.Invoke();
 
             // 카메라 플레이어 추적 복귀

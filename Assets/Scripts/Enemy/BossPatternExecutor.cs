@@ -264,6 +264,7 @@ namespace _2D_Roguelike
                 if (proj != null)
                 {
                     proj.SetPhase2Mode(phase2Mode);
+                    proj.OnZoneSpawned += zone => _activeDamageZones.Add(zone);
                     proj.Setup(storedPositions[i], new HitInfo
                     {
                         Damage         = _projectileDamage,
