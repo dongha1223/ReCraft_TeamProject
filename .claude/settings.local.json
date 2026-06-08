@@ -85,7 +85,8 @@
       "Bash(pip install *)",
       "Bash(python *)",
       "mcp__UnityMCP__get_sha",
-      "Bash(findstr \"guid\")"
+      "Bash(findstr \"guid\")",
+      "Bash(Format-List)"
     ]
   }
 }

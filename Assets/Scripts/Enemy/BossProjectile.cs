@@ -26,6 +26,9 @@ public class BossProjectile : ProjectileBase
     /// <summary>발사 전 BossPatternExecutor가 호출해 Phase 2 동작 여부를 설정한다.</summary>
     public void SetPhase2Mode(bool enabled) => _isPhase2Mode = enabled;
 
+    /// <summary>장판 스폰 시 BossPatternExecutor가 추적 목록에 등록할 수 있도록 콜백 설정.</summary>
+    public System.Action<GameObject> OnZoneSpawned;
+
     // ── ProjectileBase 구현 ───────────────────────────────────────────────
 
     public override void Setup(Vector3 targetPosition, HitInfo info)
@@ -71,6 +74,7 @@ public class BossProjectile : ProjectileBase
         var zone = Object.Instantiate(_damageZonePrefab, transform.position, Quaternion.identity);
         var actor = zone.GetComponent<AreaZoneActor>();
         actor?.Initialize(null, _damageZoneSpec);
+        OnZoneSpawned?.Invoke(zone);
     }
 
     // ── Gizmos ────────────────────────────────────────────────────────────

@@ -14,6 +14,8 @@ namespace _2D_Roguelike
         [SerializeField] private GameObject _projectilePrefab;
         [SerializeField] private Transform  _spawnPoint;
         [SerializeField] private GameObject _windupIndicator;
+        // 유도 투사체(ProjectileHomingTimed 등) 사용 시 true — Transform 오버로드로 Setup 호출
+        [SerializeField] private bool        _useHomingSetup = false;
 
         private static readonly int AnimWindup = Animator.StringToHash("Windup");
 
@@ -60,17 +62,18 @@ namespace _2D_Roguelike
 
             _windupIndicator?.SetActive(false);
 
-            // 고정된 방향으로 수평 발사 (Y 고정)
             if (_projectilePrefab != null)
             {
-                Vector3 targetPos = _spawnPoint.position + new Vector3(lockedDir * 100f, 0f, 0f);
-
-                var go = Instantiate(_projectilePrefab, _spawnPoint.position, Quaternion.identity);
-                go.GetComponent<ProjectileBase>()?.Setup(targetPos, new HitInfo
+                var go   = Instantiate(_projectilePrefab, _spawnPoint.position, Quaternion.identity);
+                var proj = go.GetComponent<ProjectileBase>();
+                if (proj != null)
                 {
-                    Damage         = _attackDamage,
-                    KnockbackForce = _knockbackForce
-                });
+                    var hitInfo = new HitInfo { Damage = _attackDamage, KnockbackForce = _knockbackForce };
+                    if (_useHomingSetup && _player != null)
+                        proj.Setup(_player, hitInfo);   // 유도 투사체: Transform 추적
+                    else
+                        proj.Setup(_spawnPoint.position + new Vector3(lockedDir * 100f, 0f, 0f), hitInfo);
+                }
             }
 
             yield return new WaitForSeconds(Mathf.Max(0f, _attackCooldown - _windupDuration));
