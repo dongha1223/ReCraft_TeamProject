@@ -12,15 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ad4f278939a0d4ba275ee3522b3848, type: 3}
   m_Name: VeteranVigilante_Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.DialogueData
-  _npcName: "선대 비질란테"
+  _npcName: "\uC120\uB300 \uBE44\uC9C8\uB780\uD14C \uAC00\uB808\uC2A4"
   _lines:
-  - "..."
-  _hasChoice: 0
+  - "\"...\uC654\uAD70. \uC5EC\uAE30\uAE4C\uC9C0 \uC62C \uC904\uC740 \uBAB0\uB790\uC5B4.\""
+  - "\"\uBC1B\uAC70\uB77C, \uB098\uB294 \uC774\uC81C \uBABB \uC4F0\uACA0\uC5B4.\""
+  _hasChoice: 1
   _repeatDialogue: 0
-  _yesResponse:
-  _noResponse:
-  _retalkLine: "..."
-  _choiceConfirmLabel:
-  _choiceNoLabel:
+  _yesResponse: 
+  _noResponse: 
+  _yesLines:
+  - "\"\u2026\uBB34\uC2A8.. \uB9D0\uC744..?\""
+  - "\uCE74\uC5D8 : \"\uBD84\uB178\uB294 \uC5F0\uB8CC\uB77C\uACE0\uC694. \uC4F0\uBA74
+    \uC55E\uC73C\uB85C \uAC04\uB2E4\uACE0.\""
+  - "\"\u2026\uADF8\uB7F0 \uB9D0\uC744 \uD588\uC5C8\uB098.\""
+  - "\uCE74\uC5D8 : \"\uADF8 \uB355\uC5D0 \uC81C\uAC00 \uC5EC\uAE30\uAE4C\uC9C0 \uC654\uC5B4\uC694.\""
+  - "\"\u2026\uADF8\uB807\uB2E4\uBA74...\""
+  _noLines:
+  - "\"\u2026\uADF8\uB798. \uD55C\uC2EC\uD558\uC9C0.\""
+  - "\"\uCE74\uC5D8, \uADF8 '\uBD84\uB178'\uB77C\uB294 \uAC83\uC774 \uC5B4\uB514\uB85C
+    \uAC00\uB294\uC9C0 \uC54C\uACE0 \uC788\uB098?\""
+  - "\uCE74\uC5D8 : \"..\uB2F9\uC5F0\uD788 \uADF8 \uC545\uB9C8 \uC790\uC2DD \uC544\uB2D9\uB2C8\uAE4C?\""
+  - "\"\u2026\uB124 \uC0DD\uAC01\uB300\uB85C\uBA74 \uC88B\uC73C\uB828\uB9CC...\""
+  _yesRetalkLines:
+  - "\"..\uAE38\uC744 \uC783\uC9C0\uB294 \uC54A\uC740 \uAC83 \uAC19\uAD70.\""
+  - "\"\uC815\uB9D0 \uB2E4\uD589\uC774\uC57C.\""
+  _noRetalkLines:
+  - "\"...\uC544\uC9C1 \uADF8 \uBC29\uD5A5\uC778\uAC00...... \uADF8\uB7FC, \uB354
+    \uD560 \uB9D0 \uC5C6\uB124...\""
+  _retalkLine: ...
+  _choiceConfirmLabel: "\uC120\uD589"
+  _choiceNoLabel: "\uC545\uD589"
   _confirmLabels: []
   _cancelLabels: []
+  _yesEffects:
+  - {fileID: 11400000, guid: c181395bc998b7b4db71fef3a4c2efe3, type: 2}
+  _noEffects:
+  - {fileID: 11400000, guid: a49e49be5cc895448bd0c963a5f8b61b, type: 2}
+  - {fileID: 11400000, guid: 2584d1234f93b164ab86bd89df60e0cb, type: 2}

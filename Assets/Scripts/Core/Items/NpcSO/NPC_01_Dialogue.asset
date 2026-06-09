@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.DialogueData
   _npcName: NPC
   _lines:
-  - "\uC548\uB155!\t"
-  - "\uBC25 \uBA39\uC744\uB798??"
+  - "안녕!\t"
+  - "밥 먹을래??"
   _hasChoice: 1
   _repeatDialogue: 0
-  _yesResponse: "\uC5EC\uAE30\uC788\uC5B4!\n"
-  _noResponse: "\uC774\uAC78 \uC548\uBA39\uC5B4 \u3160\u3160"
-  _retalkLine: "\uC774\uC81C\uB294 \uC548\uC904\uAC70\uC57C!"
-  _choiceConfirmLabel: 
-  _choiceNoLabel: 
+  _yesResponse: "여기있어!\n"
+  _noResponse: "이걸 안먹어 ㅠㅠ"
+  _retalkLine: "이제는 안줄거야!"
+  _choiceConfirmLabel:
+  _choiceNoLabel:
   _confirmLabels: []
   _cancelLabels: []

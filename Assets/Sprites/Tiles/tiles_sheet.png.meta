@@ -168,7 +168,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 240
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -233,10 +233,10 @@ TextureImporter:
       name: tile_lava_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 777
-        width: 240
-        height: 240
+        x: 0
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,10 +255,10 @@ TextureImporter:
       name: tile_lava_1
       rect:
         serializedVersion: 2
-        x: 264
-        y: 769
-        width: 240
-        height: 240
+        x: 256
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -277,10 +277,10 @@ TextureImporter:
       name: tile_lava_2
       rect:
         serializedVersion: 2
-        x: 516
-        y: 776
-        width: 240
-        height: 240
+        x: 512
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,10 +299,10 @@ TextureImporter:
       name: tile_lava_3
       rect:
         serializedVersion: 2
-        x: 772
-        y: 777
-        width: 240
-        height: 240
+        x: 768
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,10 +321,10 @@ TextureImporter:
       name: tile_lava_4
       rect:
         serializedVersion: 2
-        x: 1030
-        y: 777
-        width: 240
-        height: 240
+        x: 1024
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -343,10 +343,10 @@ TextureImporter:
       name: tile_grass_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 520
-        width: 240
-        height: 240
+        x: 0
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -365,10 +365,10 @@ TextureImporter:
       name: tile_grass_1
       rect:
         serializedVersion: 2
-        x: 264
-        y: 522
-        width: 240
-        height: 240
+        x: 256
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -387,10 +387,10 @@ TextureImporter:
       name: tile_grass_2
       rect:
         serializedVersion: 2
-        x: 518
-        y: 520
-        width: 240
-        height: 240
+        x: 512
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -409,10 +409,10 @@ TextureImporter:
       name: tile_grass_3
       rect:
         serializedVersion: 2
-        x: 773
-        y: 521
-        width: 240
-        height: 240
+        x: 768
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -431,10 +431,10 @@ TextureImporter:
       name: tile_grass_4
       rect:
         serializedVersion: 2
-        x: 1030
-        y: 521
-        width: 240
-        height: 240
+        x: 1024
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -453,10 +453,10 @@ TextureImporter:
       name: tile_stone_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 247
-        width: 240
-        height: 240
+        x: 0
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -475,10 +475,10 @@ TextureImporter:
       name: tile_stone_1
       rect:
         serializedVersion: 2
-        x: 263
-        y: 249
-        width: 240
-        height: 240
+        x: 256
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -497,10 +497,10 @@ TextureImporter:
       name: tile_stone_2
       rect:
         serializedVersion: 2
-        x: 517
-        y: 249
-        width: 240
-        height: 240
+        x: 512
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -519,10 +519,10 @@ TextureImporter:
       name: tile_stone_3
       rect:
         serializedVersion: 2
-        x: 771
-        y: 266
-        width: 240
-        height: 240
+        x: 768
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -541,10 +541,10 @@ TextureImporter:
       name: tile_stone_4
       rect:
         serializedVersion: 2
-        x: 1030
-        y: 267
-        width: 240
-        height: 240
+        x: 1024
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -565,8 +565,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 240
-        height: 240
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -587,8 +587,8 @@ TextureImporter:
         serializedVersion: 2
         x: 256
         y: 0
-        width: 240
-        height: 240
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -609,8 +609,8 @@ TextureImporter:
         serializedVersion: 2
         x: 512
         y: 0
-        width: 240
-        height: 240
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -631,8 +631,8 @@ TextureImporter:
         serializedVersion: 2
         x: 768
         y: 0
-        width: 240
-        height: 240
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -653,8 +653,8 @@ TextureImporter:
         serializedVersion: 2
         x: 1024
         y: 0
-        width: 240
-        height: 240
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

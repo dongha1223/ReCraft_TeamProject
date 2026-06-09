@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9006417653775737527}
   - component: {fileID: 7858940085005115521}
   m_Layer: 0
-  m_Name: StageMidNPCRoot
+  m_Name: "\uC2E0\uC131\uAE30\uC0ACNPCRoot"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -671,6 +671,10 @@ PrefabInstance:
     - target: {fileID: 4306224007931707632, guid: d400a8d23b5004246ac7c28b98bd6257, type: 3}
       propertyPath: m_Name
       value: NPC_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306224007931707632, guid: d400a8d23b5004246ac7c28b98bd6257, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

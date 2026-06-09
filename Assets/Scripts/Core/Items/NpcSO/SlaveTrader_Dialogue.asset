@@ -12,18 +12,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ad4f278939a0d4ba275ee3522b3848, type: 3}
   m_Name: SlaveTrader_Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.DialogueData
-  _npcName: "\uB178\uC608\uC0C1\uC778"
+  _npcName: "\uB178\uC608 \uC0C1\uC778 \uBCA0\uB85C\uC2A4"
   _lines:
-  - "\uC190\uB2D8, \uC7A0\uAE54 \uB4E4\uC5B4\uBCF4\uC2DC\uACA0\uC18C?"
-  - "\uC694\uC998 \uAF3D \uC4F8\uB9CC\uD55C \uB178\uC608\uB4E4\uC774 \uB4E4\uC5B4\uC654\uB2E4\uC624."
-  - "\uD558\uB098 \uB370\uB824\uAC00\uBA74 \uD6C4\uD68C\uD558\uC9C0 \uC54A\uC744
-    \uAC83\uC774\uC624."
+  - "\"3\uBC88 \uB77C\uC778 \uBE68\uB9AC \uC6C0\uC9C1\uC5EC!\""
+  - "\uB178\uC608 A : \"\uBC1C\uC774 \uD0C0\uACE0 \uC788\uC5B4\uC694...;;\""
+  - "\"\uADF8\uAC74 \uB124 \uBB38\uC81C\uC9C0! \uBE68\uB9AC \uAC74\uB108\uBA74 \uC548
+    \uD0C0\uC796\uC544!\""
   _hasChoice: 1
   _repeatDialogue: 0
   _yesResponse: "\uB0B4 \uB178\uC608\uB97C..!!"
   _noResponse: "\uAC15\uB3C4 \uB140\uC11D.."
+  _yesLines:
+  - "\"\uB2F9\uC2E0, \uBB50\uC57C? \uC5EC\uAE34 \uB0B4 \uC0AC\uC720 \uAD6C\uC5ED\uC774\uC57C!\""
+  - "\"\uB2E4 \uACC4\uC57D\uB41C \uB140\uC11D\uB4E4\uC774\uB77C\uACE0!\""
+  - "\"\uC774..\uC774\uAC74 \uC7AC\uC0B0 \uCE68\uD574\uC57C! \uACE0\uC18C\uD560 \uAC70\uC57C!\""
+  - "\uB178\uC608 A : \"\uC815\uB9D0 \uAC10\uC0AC\uD569\uB2C8\uB2E4!, \uC800\uD770
+    \uC774\uC81C \uC5B4\uB514\uB85C \uAC00\uC57C \uD569\uB2C8\uAE4C?\""
+  _noLines:
+  - "\"\uBB50, \uBB50\uC57C \uB2F9\uC2E0! \uADF8\uAC70 \uC774\uB9AC \uC548 \uB0B4\uB194?!\""
+  - "\"\uAC00, \uAC00\uC838\uAC00! \uD558\uC9C0\uB9CC \uB098\uD55C\uD14C \uC190\uB300\uBA74
+    \uB2F9\uAD6D\uC5D0 \uC2E0\uACE0\uD55C\uB2E4\uACE0!\""
+  - "\uB178\uC608 A : \"\uC800, \uC800\uD76C\uB294\u2026 \uC5B4\uB5BB\uAC8C \uB418\uB294
+    \uAC74\uAC00\uC694\u2026?\""
+  _yesRetalkLines:
+  - "\"\uC81C\uBC1C \uB0A0 \uB0B4\uBC84\uB824\uB46C.. \uC800 \uB140\uC11D\uB4E4\uC740
+    \uB354 \uC774\uC0C1 \uAC74\uB4E4\uC9C0 \uC54A\uC744 \uAC70\uB2C8\uAE4C...!\""
+  - "\uB178\uC608 A : \"\uB355\uBD84\uC5D0 \uC0B4\uC558\uC2B5\uB2C8\uB2E4. \uC6B0\uB9AC
+    \uBAA8\uB450\uAC00 \uC774 \uC740\uD61C\uB97C \uC78A\uC9C0 \uC54A\uC744 \uAC70\uC5D0\uC694..!\""
+  _noRetalkLines:
+  - "\"\uB354 \uC774\uC0C1 \uBCF4\uAE30 \uC2EB\uC5B4!, \uC800\uB9AC \uAC00!!!!!\""
+  - "\uB178\uC608 A : \"(\uC6D0\uB9DD\uC2A4\uB7EC\uC6C0\uC774 \uAE43\uB4E0 \uCC44
+    \uACC1\uB208\uC9C8 \uD558\uACE0 \uC788\uB2E4)\""
   _retalkLine: "\uC800\uB9AC \uAEBC\uC838\uB77C"
   _choiceConfirmLabel: "\uC120\uD589"
   _choiceNoLabel: "\uC545\uD589"
   _confirmLabels: []
   _cancelLabels: []
+  _yesEffects:
+  - {fileID: 11400000, guid: 14449ae5eb97b1c44a58b7e364535250, type: 2}
+  - {fileID: 11400000, guid: 110548ad76bf2c94eb24364b4090c30d, type: 2}
+  _noEffects:
+  - {fileID: 11400000, guid: f8b53313de94e1d42af3fb7a540c7b0f, type: 2}
+  - {fileID: 11400000, guid: 5388753ca996a7148ad322766d9b366d, type: 2}

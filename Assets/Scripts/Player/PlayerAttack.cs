@@ -72,6 +72,7 @@ namespace _2D_Roguelike
         private void Start()
         {
             _statController?.StatService.SetBaseValue(StatType.AttackPower, _comboSteps[0].damage);
+            _statController?.StatService.SetBaseValue(StatType.AttackSpeed, 1f);
         }
 
         private void Update()
@@ -118,12 +119,18 @@ namespace _2D_Roguelike
                     SfxManager.Instance.PlayOneShot(step.swingClip, transform.position, _swingVolume, pitch);
                 }
 
+                // AttackSpeed 배율 적용 (1.0 = 기본속도, 1.2 = 20% 빠름)
+                float speedMult  = _statController != null
+                    ? _statController.StatService.GetFinalValue(StatType.AttackSpeed)
+                    : 1f;
+                float speedDiv   = Mathf.Max(speedMult, 0.1f); // 0 나누기 방지
+
                 // 히트박스 판정 타이밍 대기
-                yield return new WaitForSeconds(step.hitTiming);
+                yield return new WaitForSeconds(step.hitTiming / speedDiv);
                 ApplyHitbox(step);
 
                 // 나머지 모션 재생 시간 대기
-                float remaining = step.duration - step.hitTiming;
+                float remaining = (step.duration - step.hitTiming) / speedDiv;
                 yield return new WaitForSeconds(remaining);
 
                 _comboIndex++;

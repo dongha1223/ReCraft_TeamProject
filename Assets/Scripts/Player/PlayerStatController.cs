@@ -29,6 +29,11 @@ namespace _2D_Roguelike
             StatService.SetBaseValue(StatType.MagicPower,    1f);
             StatService.SetBaseValue(StatType.CriticalPower, 1.5f);
 
+            // NPC 버프 전용 스탯 기본값 (1.0 = 배율 없음)
+            StatService.SetBaseValue(StatType.AttackSpeed, 1f);
+            StatService.SetBaseValue(StatType.DropRate,    1f);
+            StatService.SetBaseValue(StatType.ExpBonus,    1f);
+
             // 2. 효과 실행기 등록
             var registry = new EffectExecutorRegistry();
             registry.Register<StatModifierEffectDefinition>(new StatModifierEffectExecutor());
@@ -49,6 +54,12 @@ namespace _2D_Roguelike
             // 4. 장착 변경 시 자동 재계산
             EquipmentService.OnItemEquipped   += OnEquipmentChanged;
             EquipmentService.OnItemUnequipped += OnEquipmentChanged;
+        }
+
+        private void Start()
+        {
+            // BeliefManager에 StatService 등록 (ExpBonus 배율 적용을 위해)
+            BeliefManager.Instance?.RegisterPlayerStatService(StatService);
         }
 
         private void OnDestroy()

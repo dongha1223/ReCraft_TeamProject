@@ -92,7 +92,13 @@ namespace _2D_Roguelike
             int count = Mathf.Min(_stageData.reward.itemChoiceCount, spawnPoints.Length);
             if (count <= 0) return;
 
-            List<ItemDefinition> drops = DropSystem.RollDrops(_itemDatabase, _stageData.mapTheme, count);
+            // 플레이어 StatService에서 DropRate 배율 읽기 (NPC 버프 반영)
+            StatService statService = null;
+            var player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+                statService = player.GetComponent<PlayerStatController>()?.StatService;
+
+            List<ItemDefinition> drops = DropSystem.RollDrops(_itemDatabase, _stageData.mapTheme, count, statService);
 
             for (int i = 0; i < drops.Count; i++)
             {
