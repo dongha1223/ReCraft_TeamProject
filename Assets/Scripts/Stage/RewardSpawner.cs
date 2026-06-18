@@ -19,13 +19,15 @@ namespace _2D_Roguelike
         [Tooltip("비워두면 '##--REWARD_SPAWNS--##' 자식에서 자동 탐색")]
         [SerializeField] private Transform[] _spawnPoints;
 
-        private bool _spawned = false;
+        private bool        _spawned = false;
+        private Transform[] _resolvedSpawnPoints;
 
         // ── 생명주기 ─────────────────────────────────────────────────
 
         private void OnEnable()
         {
             _spawned = false;
+            _resolvedSpawnPoints = null;
 
             if (StageManager.Instance != null)
             {
@@ -84,19 +86,25 @@ namespace _2D_Roguelike
         {
             if (_stageData == null || _itemDatabase == null || _itemPickupPrefab == null) return;
 
-            Transform[] spawnPoints = ResolveSpawnPoints();
+            Transform[] spawnPoints = _resolvedSpawnPoints ??= ResolveSpawnPoints();
             if (spawnPoints == null || spawnPoints.Length == 0) return;
 
             int count = Mathf.Min(_stageData.reward.itemChoiceCount, spawnPoints.Length);
             if (count <= 0) return;
 
-            List<ItemDefinition> drops = DropSystem.RollDrops(_itemDatabase, _stageData.mapTheme, count);
+            // 플레이어 StatService에서 DropRate 배율 읽기 (NPC 버프 반영)
+            StatService statService = null;
+            var player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+                statService = player.GetComponent<PlayerStatController>()?.StatService;
+
+            List<ItemDefinition> drops = DropSystem.RollDrops(_itemDatabase, _stageData.mapTheme, count, statService);
 
             for (int i = 0; i < drops.Count; i++)
             {
                 if (spawnPoints[i] == null) continue;
 
-                GameObject go = Instantiate(_itemPickupPrefab, spawnPoints[i].position, Quaternion.identity);
+                GameObject go = Instantiate(_itemPickupPrefab, spawnPoints[i].position, Quaternion.identity, transform);
                 var pickup = go.GetComponent<ItemPickup>();
                 pickup?.Init(drops[i]);
             }

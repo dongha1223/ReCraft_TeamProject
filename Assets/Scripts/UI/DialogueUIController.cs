@@ -41,9 +41,11 @@ namespace _2D_Roguelike
         private DialogueData _currentData;
         private int          _lineIndex;
         private int          _selectedIndex;    // 0=대화, 1=취소
-        private bool         _isPanelVisible;   // 패널 완전히 열린 후에만 키 입력 수락
-        private bool         _isTyping;         // 타이프라이터 진행 중
-        private bool         _showingResponse;  // 선택 후 반응 문구 표시 중
+        private bool         _isPanelVisible;    // 패널 완전히 열린 후에만 키 입력 수락
+        private bool         _isTyping;          // 타이프라이터 진행 중
+        private bool         _showingResponse;   // 선택 후 반응 문구 표시 중
+        private string[]     _responseLines;     // 선택 후 다중 대사 배열 (YesLines/NoLines)
+        private int          _responseLineIndex; // 현재 출력 중인 반응 대사 인덱스
         private string       _currentResponseText;
         private Coroutine    _typewriterCoroutine;
 
@@ -181,6 +183,8 @@ namespace _2D_Roguelike
             _currentData         = data;
             _lineIndex           = 0;
             _showingResponse     = false;
+            _responseLines       = null;
+            _responseLineIndex   = 0;
             _currentResponseText = null;
             _onYes               = onYes;
             _onNo                = onNo;
@@ -196,8 +200,16 @@ namespace _2D_Roguelike
             // 타이핑 중이면 전체 텍스트 즉시 표시 (스킵)
             if (_isTyping) { SkipTypewriter(); return; }
 
-            // 반응 문구 표시 중 → 닫기
-            if (_showingResponse) { StartCoroutine(CloseSequence()); return; }
+            // 반응 문구 표시 중
+            if (_showingResponse)
+            {
+                // 다중 대사 배열이 있고 아직 남은 줄이 있으면 다음 줄 출력
+                if (_responseLines != null && _responseLineIndex < _responseLines.Length)
+                    ShowNextResponseLine();
+                else
+                    StartCoroutine(CloseSequence());
+                return;
+            }
 
             _lineIndex++;
             if (_lineIndex >= _currentData.Lines.Length)
@@ -205,7 +217,12 @@ namespace _2D_Roguelike
                 if (_currentData.HasChoice)
                 {
                     _onYes?.Invoke();
-                    ShowResponse(_currentData.YesResponse);
+                    // YesLines 배열 우선, 없으면 단일 YesResponse 폴백
+                    var lines = _currentData.YesLines;
+                    if (lines != null && lines.Length > 0)
+                        ShowResponseLines(lines);
+                    else
+                        ShowResponse(_currentData.YesResponse);
                 }
                 else
                 {
@@ -223,12 +240,25 @@ namespace _2D_Roguelike
             if (!_isPanelVisible) return;
             if (_isTyping) { SkipTypewriter(); return; }
 
-            if (_showingResponse) { StartCoroutine(CloseSequence()); return; }
+            // 반응 문구 표시 중
+            if (_showingResponse)
+            {
+                if (_responseLines != null && _responseLineIndex < _responseLines.Length)
+                    ShowNextResponseLine();
+                else
+                    StartCoroutine(CloseSequence());
+                return;
+            }
 
             if (_currentData.HasChoice)
             {
                 _onNo?.Invoke();
-                ShowResponse(_currentData.NoResponse);
+                // NoLines 배열 우선, 없으면 단일 NoResponse 폴백
+                var lines = _currentData.NoLines;
+                if (lines != null && lines.Length > 0)
+                    ShowResponseLines(lines);
+                else
+                    ShowResponse(_currentData.NoResponse);
             }
             else
             {
@@ -273,7 +303,26 @@ namespace _2D_Roguelike
             _onYes               = null;
             _onNo                = null;
             _showingResponse     = false;
+            _responseLines       = null;
+            _responseLineIndex   = 0;
             _currentResponseText = null;
+        }
+
+        /// <summary>다중 대사 배열로 반응 시작 — 첫 줄 출력 후 이후 줄은 Continue로 진행</summary>
+        private void ShowResponseLines(string[] lines)
+        {
+            if (!IsActive || lines == null || lines.Length == 0) return;
+            _responseLines     = lines;
+            _responseLineIndex = 0;
+            ShowNextResponseLine();
+        }
+
+        /// <summary>다중 반응 대사 배열에서 다음 줄 출력</summary>
+        private void ShowNextResponseLine()
+        {
+            if (_responseLines == null || _responseLineIndex >= _responseLines.Length) return;
+            ShowResponse(_responseLines[_responseLineIndex]);
+            _responseLineIndex++;
         }
 
         private void ShowResponse(string text)
@@ -329,8 +378,10 @@ namespace _2D_Roguelike
         private void SkipTypewriter()
         {
             StopTypewriterIfRunning();
-            _dialogueText.text = _showingResponse ? _currentResponseText : _currentData.Lines[_lineIndex];
-            _isTyping          = false;
+            _dialogueText.text = _showingResponse
+                ? (_currentResponseText ?? "")
+                : _currentData.Lines[_lineIndex];
+            _isTyping = false;
         }
 
         private void SetSelection(int index)
@@ -374,6 +425,8 @@ namespace _2D_Roguelike
             _onYes               = null;
             _onNo                = null;
             _showingResponse     = false;
+            _responseLines       = null;
+            _responseLineIndex   = 0;
             _currentResponseText = null;
         }
 

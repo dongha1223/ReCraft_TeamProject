@@ -9,6 +9,9 @@ namespace _2D_Roguelike
     /// </summary>
     public class BossBreathEffect : MonoBehaviour
     {
+        [Header("데이터 SO")]
+        [SerializeField] private BossBreathEffectDataSO _data;
+
         [SerializeField] private float _breathSpeed  = 1.2f;  // 초당 사이클 수
         [SerializeField] private float _breathAmount = 0.03f; // 최대 스케일 변화량 (±3%)
 
@@ -17,6 +20,11 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
+            if (_data != null)
+            {
+                _breathSpeed  = _data.BreathSpeed;
+                _breathAmount = _data.BreathAmount;
+            }
             Vector3 s = transform.localScale;
             _baseSize = new Vector3(Mathf.Abs(s.x), Mathf.Abs(s.y), Mathf.Abs(s.z));
         }

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 916b673aad6118d4cb1d04c2a1d5736f, type: 3}
+  m_Name: Orc_Data
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.MeleeEnemyDataSO
+  _maxHp: 70
+  _moveSpeed: 2
+  _patrolDistance: 3
+  _detectionRange: 5
+  _attackRange: 1
+  _attackCooldown: 1.5
+  _preAttackDelay: 0.5
+  _platformYThreshold: 1.5
+  _ledgeCheckOffsetX: 0.4
+  _ledgeCheckOffsetY: -0.1
+  _ledgeCheckDist: 0.8
+  _hitClips:
+  - {fileID: 8300000, guid: 74198389e177d0948b63ca9a3fb22801, type: 3}
+  _heavyHitClips: []
+  _attackDamage: 10
+  _knockbackForce: 4

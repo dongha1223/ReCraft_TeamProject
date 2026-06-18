@@ -60,6 +60,26 @@ namespace _2D_Roguelike
 
         // ── 초기화 ────────────────────────────────────────────────────────
 
+        protected override void ApplyData(EnemyDataSO data)
+        {
+            base.ApplyData(data);
+            if (data is MidBossDataSO d)
+            {
+                _attackDamage   = d.AttackDamage;
+                _knockbackForce = d.KnockbackForce;
+                _slamCooldown   = d.SlamCooldown;
+                _jumpForce      = d.JumpForce;
+                _jumpHangTime   = d.JumpHangTime;
+                _slamDownSpeed  = d.SlamDownSpeed;
+                _slamLandTime   = d.SlamLandTime;
+                _boxStep        = d.BoxStep;
+                _boxInterval    = d.BoxInterval;
+                _slamEndLag     = d.SlamEndLag;
+                if (d.SlamSpec         != null) _slamSpec         = d.SlamSpec;
+                if (d.SlamEffectPrefab != null) _slamEffectPrefab = d.SlamEffectPrefab;
+            }
+        }
+
         protected override void Awake()
         {
             base.Awake();

@@ -18,6 +18,9 @@ namespace _2D_Roguelike
 
         public int TotalBelief => _totalBelief;
 
+        /// <summary>ExpBonus 배율 읽기용 — 플레이어 StatService 참조 (런타임에 캐싱)</summary>
+        private StatService _playerStatService;
+
         private void Awake()
         {
             if (Instance != null) { Destroy(gameObject); return; }
@@ -59,10 +62,34 @@ namespace _2D_Roguelike
             _monsterStageClearCount = 0;
         }
 
+        /// <summary>
+        /// 플레이어 StatService를 등록한다.
+        /// PlayerStatController.Start()에서 호출하거나, 첫 AddBelief 시 자동 탐색한다.
+        /// </summary>
+        public void RegisterPlayerStatService(StatService statService)
+        {
+            _playerStatService = statService;
+        }
+
         public void AddBelief(int amount)
         {
             if (amount <= 0) return;
-            _totalBelief += amount;
+
+            // ExpBonus 배율 적용 (기본 1.0)
+            if (_playerStatService == null)
+            {
+                // 미등록 시 플레이어에서 자동 탐색 (1회)
+                var player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
+                    _playerStatService = player.GetComponent<PlayerStatController>()?.StatService;
+            }
+
+            float expMult = _playerStatService != null
+                ? _playerStatService.GetFinalValue(StatType.ExpBonus)
+                : 1f;
+
+            int finalAmount = Mathf.RoundToInt(amount * Mathf.Max(expMult, 0.01f));
+            _totalBelief += finalAmount;
             Save();
         }
 

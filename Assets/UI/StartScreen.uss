@@ -16,8 +16,19 @@
     top: 0;
     right: 0;
     bottom: 0;
-    background-image: url("../Screenshots/Logo.jpg");
+    background-image: url("../Screenshots/배경.png");
     -unity-background-scale-mode: stretch-to-fill;
+}
+
+/* 타이틀 이미지 */
+.title-image {
+    position: absolute;
+    align-self: center;
+    top: 7%;
+    width: 1500px;
+    height: 600px;
+    background-image: url("../Screenshots/Assets/Title_Text.png");
+    -unity-background-scale-mode: scale-to-fit;
 }
 
 /* 콘텐츠 루트 - 하단 중앙 정렬 */

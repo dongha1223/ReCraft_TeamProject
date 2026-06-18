@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.FormDefinition
   _formId: form-guid-001
   _displayName: "\uC804\uC0AC\uD3FC"
-  _icon: {fileID: 4723107735738678597, guid: 6d0ae9a84ef967c4caf5958c73cb09f1, type: 3}
+  _icon: {fileID: -5870531620452011917, guid: 59c5e04b9657fd54589543cf6d47a750, type: 3}
   _animatorController: {fileID: 9100000, guid: 2ca7610334a76bd42b68162e490ab4b9, type: 2}
   _idleSprite: {fileID: 4723107735738678597, guid: 6d0ae9a84ef967c4caf5958c73cb09f1, type: 3}
   _baseScale: {x: 3, y: 3, z: 3}

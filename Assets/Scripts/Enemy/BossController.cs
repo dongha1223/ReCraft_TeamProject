@@ -15,6 +15,9 @@ namespace _2D_Roguelike
     public class BossController : MonoBehaviour, IStatusLockable
     {
         // ── 참조 ──────────────────────────────────────────────────────────
+        [Header("데이터 SO")]
+        [SerializeField] private BossControllerDataSO _data;
+
         [Header("컴포넌트 참조")]
         [SerializeField] private Animator _animator;
 
@@ -80,6 +83,8 @@ namespace _2D_Roguelike
 
         // ── 공개 프로퍼티 ─────────────────────────────────────────────────
         public BossPhase CurrentPhase => _phase;
+        public string    BossName     => _data != null ? _data.BossName : "";
+        public string    BossRace     => _data != null ? _data.BossRace : "";
 
         // ── 생명주기 ──────────────────────────────────────────────────────
 
@@ -89,8 +94,26 @@ namespace _2D_Roguelike
             _patternExecutor = GetComponent<BossPatternExecutor>();
         }
 
+        private void OnEnable()
+        {
+            // BossMainController와 동일 — EnemySpawner가 탐색하지 않는 보스를 직접 등록
+            StageManager.Instance?.RegisterEnemy();
+        }
+
         private void Start()
         {
+            if (_data != null)
+            {
+                if (_data.TransitionObeliskPrefab != null) _transitionObeliskPrefab = _data.TransitionObeliskPrefab;
+                _survivalRadius           = _data.SurvivalRadius;
+                _screenShakeDuration      = _data.ScreenShakeDuration;
+                _screenShakeIntensity     = _data.ScreenShakeIntensity;
+                _terrainChangDelay        = _data.TerrainChangDelay;
+                _phase2MaxDashes          = _data.Phase2MaxDashes;
+                _bossOrthoSize            = _data.BossOrthoSize;
+                _cameraTransitionDuration = _data.CameraTransitionDuration;
+            }
+
             // 플레이어 캐싱
             var playerGO = GameObject.FindWithTag("Player");
             if (playerGO != null)
@@ -153,6 +176,7 @@ namespace _2D_Roguelike
 
             _animator?.SetTrigger(AnimDie);
 
+            StageManager.Instance?.OnEnemyDied();
             OnBossDead?.Invoke();
 
             // 카메라 플레이어 추적 복귀

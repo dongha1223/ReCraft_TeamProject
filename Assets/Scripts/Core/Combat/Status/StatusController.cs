@@ -10,6 +10,7 @@ namespace _2D_Roguelike
     public class StatusController : MonoBehaviour
     {
         private readonly Dictionary<StatusEffectType, StatusEffectBase> _activeEffects = new();
+        private readonly List<StatusEffectType> _toRemove = new();
         private StatusResistance _resistance;
 
         private void Awake()
@@ -20,28 +21,10 @@ namespace _2D_Roguelike
         private void Update()
         {
             if (_activeEffects.Count == 0) return;
-
             float dt = Time.deltaTime;
-            List<StatusEffectType> toRemove = null;
-
             foreach (var pair in _activeEffects)
-            {
                 pair.Value.OnUpdate(dt);
-
-                if (pair.Value.IsFinished)
-                {
-                    toRemove ??= new List<StatusEffectType>();
-                    toRemove.Add(pair.Key);
-                }
-            }
-
-            if (toRemove == null) return;
-
-            foreach (var type in toRemove)
-            {
-                _activeEffects[type].OnRemove();
-                _activeEffects.Remove(type);
-            }
+            RemoveFinished();
         }
 
         /// <summary>
@@ -75,27 +58,25 @@ namespace _2D_Roguelike
         public void OnHitReceived(HitInfo hitInfo)
         {
             if (_activeEffects.Count == 0) return;
-
-            List<StatusEffectType> toRemove = null;
-
             foreach (var pair in _activeEffects)
-            {
                 pair.Value.OnHitReceived(hitInfo);
+            RemoveFinished();
+        }
 
+        private void RemoveFinished()
+        {
+            foreach (var pair in _activeEffects)
                 if (pair.Value.IsFinished)
-                {
-                    toRemove ??= new List<StatusEffectType>();
-                    toRemove.Add(pair.Key);
-                }
-            }
+                    _toRemove.Add(pair.Key);
 
-            if (toRemove == null) return;
+            if (_toRemove.Count == 0) return;
 
-            foreach (var type in toRemove)
+            foreach (var type in _toRemove)
             {
                 _activeEffects[type].OnRemove();
                 _activeEffects.Remove(type);
             }
+            _toRemove.Clear();
         }
 
         public bool HasEffect(StatusEffectType type) => _activeEffects.ContainsKey(type);

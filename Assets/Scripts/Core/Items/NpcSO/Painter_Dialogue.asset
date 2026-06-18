@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ad4f278939a0d4ba275ee3522b3848, type: 3}
+  m_Name: Painter_Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.DialogueData
+  _npcName: "\uC2E0\uBE44\uB85C\uC6B4 \uD654\uAC00"
+  _lines:
+  - "\"\uC7A0\uAE50, \uB2F9\uC2E0\uC744 \uADF8\uB824\uC904\uAC8C\uC694. \uC7A0\uAE50
+    \uC11C \uC788\uC5B4\uC904\uB798\uC694?\""
+  - "\"\uADF8\uB798\uC694, \uB4F1\uB9CC \uBD10\uB3C4 \uC54C \uAC83 \uAC19\uC544\uC694.
+    \uB2F9\uC2E0\uC774 \uBB34\uC5C7\uC778\uC9C0 \uB9D0\uC774\uC8E0.\""
+  _hasChoice: 1
+  _repeatDialogue: 0
+  _yesResponse: 
+  _noResponse: 
+  _yesLines:
+  - "\"\uADF8\uB0E5 \uC11C \uC788\uC73C\uBA74 \uB3FC\uC694. \uD3C9\uC18C\uCC98\uB7FC.\""
+  - "\"\uBB34\uAC70\uC6CC \uBCF4\uC5EC, \uC804\uBD80...\""
+  - "\"\uB098\uC911\uC758 \uB2F9\uC2E0\uC774\uAC70\uB098. \uC544\uB2C8\uBA74 \uC6D0\uB798\uC758
+    \uB2F9\uC2E0\uC774\uAC70\uB098.\""
+  - "\"\uC774\uC81C \uAC00\uB3C4 \uC88B\uC544\uC694, \uC624\uB798 \uC11C \uC788\uC5C8\uC796\uC544.\""
+  _noLines:
+  - "\"\uB2E4 \uADF8\uB9AC\uACE0 \uB098\uC11C \uD310\uB2E8\uD574\uC694.\""
+  - "\"........\uB2E4 \uADF8\uB824\uB0B4\uACE0 \uC2F6\uC5C8\uB294\uB370\u2026\""
+  _yesRetalkLines:
+  - "\"\uB610 \uC654\uB124\uC694, \uC5BC\uAD74\uC740 \uC544\uC9C1 \uBE44\uC5B4 \uC788\uC5B4
+    \uBCF4\uC5EC\uC694..\""
+  - "\"\uC5B8\uC81C\uCBE4 \uCC44\uC6CC\uC9C0\uB824\uB098..\""
+  _noRetalkLines:
+  - "\"...\uC774\uC81C, \uB2F9\uC2E0 \uAC19\uC740 \uAC74 \uB2E4\uC2DC \uBABB\uBD10...\""
+  _retalkLine: 
+  _choiceConfirmLabel: "\uC120\uD589"
+  _choiceNoLabel: "\uC545\uD589"
+  _confirmLabels: []
+  _cancelLabels: []
+  _yesEffects: []
+  _noEffects:
+  - {fileID: 11400000, guid: 4844beddd491b6840be15c2182bab209, type: 2}

@@ -96,6 +96,9 @@ namespace _2D_Roguelike
         [Tooltip("반복 간 딜레이 (초) — 이 시간 안에 플레이어가 플랫폼 이동 가능")]
         [SerializeField] private float _patternC_RepeatDelay  = 3f;
 
+        [Header("데이터 SO")]
+        [SerializeField] private BossPatternDataSO _data;
+
         // ── 내부 상태 ─────────────────────────────────────────────────────
         private Transform         _player;
         private PlatformManager   _platformManager;
@@ -111,6 +114,31 @@ namespace _2D_Roguelike
         private void Awake()
         {
             _platformManager = FindFirstObjectByType<PlatformManager>();
+            if (_data != null)
+            {
+                _phase1CooldownMin              = _data.Phase1CooldownMin;
+                _phase1CooldownMax              = _data.Phase1CooldownMax;
+                if (_data.AimIndicatorPrefab != null) _aimIndicatorPrefab = _data.AimIndicatorPrefab;
+                if (_data.ProjectilePrefab   != null) _projectilePrefab   = _data.ProjectilePrefab;
+                _aimInterval                    = _data.AimInterval;
+                _aimDuration                    = _data.AimDuration;
+                _projectileDamage               = _data.ProjectileDamage;
+                _projectileKnockback            = _data.ProjectileKnockback;
+                _fireInterval                   = _data.FireInterval;
+                if (_data.BlackMinionPrefab  != null) _blackMinionPrefab  = _data.BlackMinionPrefab;
+                if (_data.WhiteMinionPrefab  != null) _whiteMinionPrefab  = _data.WhiteMinionPrefab;
+                _pattern21SpawnOffsetX          = _data.Pattern21SpawnOffsetX;
+                _pattern21BottomY               = _data.Pattern21BottomY;
+                _pattern21VerticalStep          = _data.Pattern21VerticalStep;
+                if (_data.Pattern22Offsets   != null) _pattern22Offsets   = _data.Pattern22Offsets;
+                if (_data.Pattern23Offsets   != null) _pattern23Offsets   = _data.Pattern23Offsets;
+                _phase2CooldownMin              = _data.Phase2CooldownMin;
+                _phase2CooldownMax              = _data.Phase2CooldownMax;
+                if (_data.Phase2ZoneSpec     != null) _phase2ZoneSpec     = _data.Phase2ZoneSpec;
+                _patternA_IncludePlayerPlatform = _data.PatternA_IncludePlayerPlatform;
+                _patternC_RepeatCount           = _data.PatternC_RepeatCount;
+                _patternC_RepeatDelay           = _data.PatternC_RepeatDelay;
+            }
         }
 
         private void Start()
@@ -236,6 +264,7 @@ namespace _2D_Roguelike
                 if (proj != null)
                 {
                     proj.SetPhase2Mode(phase2Mode);
+                    proj.OnZoneSpawned += zone => _activeDamageZones.Add(zone);
                     proj.Setup(storedPositions[i], new HitInfo
                     {
                         Damage         = _projectileDamage,

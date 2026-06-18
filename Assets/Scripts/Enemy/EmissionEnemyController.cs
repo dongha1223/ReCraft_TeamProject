@@ -25,6 +25,20 @@ namespace _2D_Roguelike
 
         private static readonly int AnimWindup = Animator.StringToHash("Windup");
 
+        protected override void ApplyData(EnemyDataSO data)
+        {
+            base.ApplyData(data);
+            if (data is EmissionEnemyDataSO d)
+            {
+                _attackDamage    = d.AttackDamage;
+                _knockbackForce  = d.KnockbackForce;
+                _windupDuration  = d.WindupDuration;
+                _projectileCount = d.ProjectileCount;
+                _fireInterval    = d.FireInterval;
+                if (d.ProjectilePrefab != null) _projectilePrefab = d.ProjectilePrefab;
+            }
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();

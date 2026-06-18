@@ -16,6 +16,9 @@ namespace _2D_Roguelike
         public static event Action OnBossEngaged;
         public static event Action OnBossDead;
 
+        [Header("데이터 SO")]
+        [SerializeField] private BossMainDataSO _data;
+
         [Header("파츠 목록")]
         [Tooltip("Boss_Body, Boss_Head, Boss_left, Boss_right 순서로 연결")]
         [SerializeField] private BossPartHP[] _parts;
@@ -54,6 +57,10 @@ namespace _2D_Roguelike
 
         private Dictionary<string, BossCustomPatternBase> _customPatterns;
 
+        // ── 공개 프로퍼티 ─────────────────────────────────────────────────
+        public string BossName => _data != null ? _data.BossName : "";
+        public string BossRace => _data != null ? _data.BossRace : "";
+
         // ── IStatusLockable ───────────────────────────────────────────────
         private int  _actionLockCount;
         private int  _frozenCount;
@@ -65,6 +72,16 @@ namespace _2D_Roguelike
         private void Awake()
         {
             _animator = GetComponent<Animator>();
+            if (_data != null)
+            {
+                _phase2DestroyedCount     = _data.Phase2DestroyedCount;
+                _cooldownMin              = _data.CooldownMin;
+                _cooldownMax              = _data.CooldownMax;
+                if (_data.Phase1Patterns != null) _phase1Patterns           = _data.Phase1Patterns;
+                if (_data.Phase2Patterns != null) _phase2Patterns           = _data.Phase2Patterns;
+                _phase2TransitionTrigger  = _data.Phase2TransitionTrigger;
+                _phase2TransitionDuration = _data.Phase2TransitionDuration;
+            }
 
             // 자식 컴포넌트에서 커스텀 패턴 수집
             var customs = GetComponentsInChildren<BossCustomPatternBase>();
@@ -329,5 +346,27 @@ namespace _2D_Roguelike
                 yield return null;
             }
         }
-    }
+    
+
+/// <summary>
+        /// 머리 최종 페이즈 진입 시 모든 패턴(루프·커스텀·상시)을 즉시 중단한다.
+        /// </summary>
+        public void StopAllPatternsForHeadPhase()
+        {
+            if (_patternLoopHandle != null)
+            {
+                StopCoroutine(_patternLoopHandle);
+                _patternLoopHandle = null;
+            }
+            _state = BossMainState.Idle;
+
+            if (_customPatterns != null)
+                foreach (var c in _customPatterns.Values)
+                    c.Cancel();
+
+            if (_passivePatterns != null)
+                foreach (var p in _passivePatterns)
+                    p?.Cancel();
+        }
+}
 }

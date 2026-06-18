@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace _2D_Roguelike
@@ -39,6 +40,16 @@ namespace _2D_Roguelike
         {
             // Inspector 수치를 기본값으로 StatService에 등록
             _statController?.StatService.SetBaseValue(StatType.MaxHp, _maxHp);
+            _currentHp = _maxHp; // 임시 기본값 — 다음 프레임에 모디파이어 반영 후 갱신
+
+            // 모든 Start()가 완료된 뒤(EnhanceUIController.ApplyAllSavedModifiers 포함)
+            // MaxHp를 다시 읽어 가득 찬 상태로 시작한다.
+            StartCoroutine(FullRestoreAfterInit());
+        }
+
+        private IEnumerator FullRestoreAfterInit()
+        {
+            yield return null; // 한 프레임 대기 — 모든 Start() 실행 보장
             _currentHp = MaxHp;
         }
 
@@ -53,7 +64,6 @@ namespace _2D_Roguelike
             if (IsInvincible && !info.IgnoreInvincibility) return;
 
             _currentHp = Mathf.Max(0f, _currentHp - info.Damage);
-            Debug.Log($"[PlayerStats] HP: {_currentHp}/{_maxHp}");
 
             SpawnFloatingText(info.Damage, FloatingTextType.Damage);
             _damageFlash?.CallDamageFlash();
@@ -93,12 +103,10 @@ namespace _2D_Roguelike
         {
             if (IsDead) return;
 
-            float actual = Mathf.Min(amount, _maxHp - _currentHp);  // 최대 체력 초과 방지
+            float actual = Mathf.Min(amount, MaxHp - _currentHp);  // MaxHp 프로퍼티 — 아이템/강화 반영값
             if (actual <= 0f) return;
 
             _currentHp += actual;
-            Debug.Log($"[PlayerStats] Heal +{actual}  HP: {_currentHp}/{_maxHp}");
-
             SpawnFloatingText(actual, FloatingTextType.Heal);
         }
 
@@ -116,7 +124,6 @@ namespace _2D_Roguelike
 
         private void OnDead()
         {
-            Debug.Log("[PlayerStats] Player died.");
             // TODO: 게임 오버 처리
         }
     }

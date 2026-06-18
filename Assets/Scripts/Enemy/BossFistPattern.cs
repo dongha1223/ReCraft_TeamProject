@@ -18,6 +18,9 @@ namespace _2D_Roguelike
     {
         public override string PatternId => "FistAttack";
 
+        [Header("데이터 SO")]
+        [SerializeField] private BossFistPatternDataSO _data;
+
         [Header("팔 파츠 (생존 여부 체크)")]
         [SerializeField] private BossPartHP _leftArm;
         [SerializeField] private BossPartHP _rightArm;
@@ -60,6 +63,13 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
+            if (_data != null)
+            {
+                _aimDuration    = _data.AimDuration;
+                _respawnDelay   = _data.RespawnDelay;
+                _idleDelay      = _data.IdleDelay;
+                _rightArmOffset = _data.RightArmOffset;
+            }
             if (_leftArm  != null) _leftArm.OnPartDestroyed  += () => _leftArmAlive  = false;
             if (_rightArm != null) _rightArm.OnPartDestroyed += () => _rightArmAlive = false;
 
@@ -130,9 +140,14 @@ namespace _2D_Roguelike
                 float aimElapsed = 0f;
                 while (aimElapsed < _aimDuration)
                 {
-                    Vector2 dir = ((Vector2)(_playerTransform.position - spawnPos)).normalized;
-                    fist.UpdateAim(dir);
-                    if (!IsBossFrozen) aimElapsed += Time.deltaTime;
+                    bool frozen = IsBossFrozen;
+                    fist.SetLaserVisible(!frozen);
+                    if (!frozen)
+                    {
+                        Vector2 dir = ((Vector2)(_playerTransform.position - spawnPos)).normalized;
+                        fist.UpdateAim(dir);
+                        aimElapsed += Time.deltaTime;
+                    }
                     yield return null;
                 }
 

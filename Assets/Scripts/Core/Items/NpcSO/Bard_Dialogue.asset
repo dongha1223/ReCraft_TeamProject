@@ -12,20 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ad4f278939a0d4ba275ee3522b3848, type: 3}
   m_Name: Bard_Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.DialogueData
-  _npcName: "\uC74C\uC720\uC2DC\uC778"
+  _npcName: "\uC74C\uC720\uC2DC\uC778 \uC624\uB80C"
   _lines:
-  - "\uFEFF\"\uC624, \uC190\uB2D8\uC774\uB124! \uD654\uC5FC \uC9C0\uB300\uC758 \uC601\uC6C5
+  - "\"\uC624, \uC190\uB2D8\uC774\uB124! \uD654\uC5FC \uC9C0\uB300\uC758 \uC601\uC6C5
     \uCE74\uC5D8\uC758 \uB178\uB798\uB97C \uB4E4\uC5B4\uBCF4\uACA0\uC18C?\""
-  - "\uFEFF\"\uB0B4\uAC00 \uC9C1\uC811 \uC9C0\uC740 \uAC70\uB77C\uC624!\""
+  - "\"\uD55C\uBC88 \uB4E4\uC5B4 \uBCF4\uC2DC\uC624, \uB0B4\uAC00 \uC9C1\uC811 \uC9C0\uC740
+    \uAC70\uB77C\uC624~!\""
   _hasChoice: 1
   _repeatDialogue: 0
   _yesResponse: "\"\uD2C0\uB9B0 \uBD80\uBD84\uC774\uC694? \uADF8\uB7FC \uADF8\uB0A0\uC758
     \uC9C4\uC2E4\uC740...\""
   _noResponse: "\"\uB2E5\uCE58\uB77C\uB2C8.. \uC774 \uC5BC\uB9C8\uB098 \uD6CC\uB96D\uD55C
     \uC601\uC6C5\uB2F4\uC778\uB370...?\""
+  _yesLines:
+  - "\"\uD2C0\uB9B0 \uBD80\uBD84\uC774\uC694? \uB098\uB294 \uC0DD\uC874\uD55C \uBCD1\uC0AC\uB4E4\uC5D0\uAC8C
+    \uC9C1\uC811 \uB4E4\uC740 \uB0B4\uC6A9\uC73C\uB85C \uC9C0\uC740 \uAC70 \uB2E4\uB9CC..\""
+  - "\"..\uB9C8\uC744?... \uC9C0\uB098\uAC00\uAE30\uB9CC \uD588\uC18C?\""
+  - "\"......\uC54C\uACA0\uC18C, \uACE0\uCE58\uB9AC\uB2E4.\""
+  - "\"..\uADF8\uB807\uB2E4\uBA74, \uB2F9\uC2E0\uC774 \uCE74\uC5D8\uC774\uC624?\""
+  _noLines:
+  - "\"\uC65C\uC694? \uD6CC\uB96D\uD55C \uC601\uC6C5\uB2F4\uC778\uB370\u3161\""
+  - "\"\uADF8 \uB0A0 \uC0DD\uC874\uD55C \uBCD1\uC0AC\uB4E4\uC5D0\uAC8C \uC9C1\uC811
+    \uB4E4\uC740 \uB0B4\uC6A9\uC778..\u3161\""
+  - "\".............\"\n\"\u2026\uB2F9\uC2E0\uC774, \uADF8 \uCE74\uC5D8\uC774\uC624?\""
+  _yesRetalkLines:
+  - "\"\uC2DC\uAC04 \uC788\uC73C\uBA74, \uC5B8\uC81C\uB4E0 \uC624\uC2DC\uC624, \uC0C8
+    \uB178\uB798\uB97C \uB4E4\uB824\uB4DC\uB9AC\uC8E0~!\""
+  _noRetalkLines:
+  - "\"\uC55E\uC73C\uB85C \uB2F9\uC2E0 \uAC19\uC740 \uC0AC\uB78C\uC5D0\uAC90 \uB178\uB798\uB294
+    \uC5C6\uC18C!!\""
   _retalkLine: "\"\uB098\uC911\uC5D0 \uB610 \uC628\uB2E4\uBA74 \uC0C8 \uB178\uB798\uB97C
     \uB4E4\uB824 \uB4DC\uB9AC\uACA0\uC18C~\""
   _choiceConfirmLabel: "\uC120\uD589"
   _choiceNoLabel: "\uC545\uD589"
   _confirmLabels: []
   _cancelLabels: []
+  _yesEffects:
+  - {fileID: 11400000, guid: 9b542e419ae7c774289378837631eab8, type: 2}
+  _noEffects:
+  - {fileID: 11400000, guid: 1285d4bf5b5454348981014cae64582b, type: 2}

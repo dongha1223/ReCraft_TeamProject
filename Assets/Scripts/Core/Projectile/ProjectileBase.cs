@@ -49,7 +49,7 @@ public abstract class ProjectileBase : MonoBehaviour
 
         if (_maxDistance > 0f)
         {
-            if (Vector3.Distance(transform.position, _startPosition) >= _maxDistance)
+            if ((transform.position - _startPosition).sqrMagnitude >= _maxDistance * _maxDistance)
             { OnDistanceExceeded(); return; }
         }
 

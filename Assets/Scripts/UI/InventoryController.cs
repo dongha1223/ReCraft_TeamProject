@@ -16,10 +16,9 @@ namespace _2D_Roguelike
         private const int DetailSynCount = 2;
         private const string SlotSelected = "inv-item-slot--selected";
 
-        [SerializeField] private Texture2D _jobPortrait;
-
         // ── UI 참조 ───────────────────────────────────────────────────
         private VisualElement _overlay;
+        private VisualElement _jobSlot;
 
         // 왼쪽: 시너지
         private VisualElement[] _synSlots;
@@ -45,7 +44,18 @@ namespace _2D_Roguelike
 
         // ── 상태 ─────────────────────────────────────────────────────
         private PlayerStatController _stat;
+        private FormManager          _formManager;
         private int _selectedSlot = -1;
+
+        // RefreshSynergyPanel 재사용 버퍼 — 매 호출마다 new 방지
+        private readonly HashSet<string>               _synSeen     = new();
+        private readonly List<InscriptionDefinition>   _synInscList = new();
+
+        // 레어도별 색상 캐싱
+        private static readonly StyleColor _colorCommon    = new(new Color(0.85f, 0.85f, 0.85f));
+        private static readonly StyleColor _colorRare      = new(new Color(0.40f, 0.62f, 1.00f));
+        private static readonly StyleColor _colorUnique    = new(new Color(1.00f, 0.60f, 0.20f));
+        private static readonly StyleColor _colorLegendary = new(new Color(1.00f, 0.85f, 0.10f));
 
         public static bool IsOpen { get; private set; }
 
@@ -79,9 +89,7 @@ namespace _2D_Roguelike
                 _itemSlots[i] = root.Q<VisualElement>($"item-slot-{i}");
 
             // 직업 슬롯 초상화 설정
-            var jobSlot = root.Q<VisualElement>("job-slot");
-            if (_jobPortrait != null)
-                jobSlot.style.backgroundImage = new StyleBackground(_jobPortrait);
+            _jobSlot = root.Q<VisualElement>("job-slot");
 
             // 오른쪽 상세 정보 캐싱
             _detailEmpty       = root.Q<VisualElement>("detail-empty");
@@ -103,16 +111,24 @@ namespace _2D_Roguelike
                 _detailSynCounts[i] = root.Q<Label>($"detail-syn-count-{i}");
             }
 
-            // 플레이어 스탯 컨트롤러 탐색
+            // 플레이어 컴포넌트 탐색
             var player = GameObject.FindWithTag("Player");
             if (player != null)
-                _stat = player.GetComponent<PlayerStatController>();
+            {
+                _stat        = player.GetComponent<PlayerStatController>();
+                _formManager = player.GetComponent<FormManager>();
+            }
 
             if (_stat != null)
             {
                 _stat.EquipmentService.OnItemEquipped   += OnEquipmentChanged;
                 _stat.EquipmentService.OnItemUnequipped += OnEquipmentChanged;
             }
+
+            if (_formManager != null)
+                _formManager.OnFormSwapped += OnFormSwapped;
+
+            RefreshJobPortrait();
         }
 
         private void OnDestroy()
@@ -122,6 +138,9 @@ namespace _2D_Roguelike
                 _stat.EquipmentService.OnItemEquipped   -= OnEquipmentChanged;
                 _stat.EquipmentService.OnItemUnequipped -= OnEquipmentChanged;
             }
+
+            if (_formManager != null)
+                _formManager.OnFormSwapped -= OnFormSwapped;
         }
 
         private void Update()
@@ -188,6 +207,19 @@ namespace _2D_Roguelike
         private void OnEquipmentChanged(ItemInstance _)
         {
             if (IsOpen) RefreshAll();
+        }
+
+        private void OnFormSwapped(FormDefinition _, FormDefinition next) => RefreshJobPortrait(next);
+
+        private void RefreshJobPortrait() => RefreshJobPortrait(_formManager?.Current);
+
+        private void RefreshJobPortrait(FormDefinition form)
+        {
+            if (_jobSlot == null) return;
+            var icon = form?.Icon;
+            _jobSlot.style.backgroundImage = icon != null
+                ? new StyleBackground(icon)
+                : StyleKeyword.None;
         }
 
         private void RefreshAll()
@@ -296,31 +328,28 @@ namespace _2D_Roguelike
         {
             if (_stat == null) { HideAllSynergySlots(); return; }
 
-            var equippedItems = _stat.EquipmentService.EquippedItems;
+            // 재사용 버퍼 초기화
+            _synSeen.Clear();
+            _synInscList.Clear();
 
-            // 장착 아이템에서 각인 목록 수집 (중복 제거, 순서 유지)
-            var seen     = new HashSet<string>();
-            var inscList = new List<InscriptionDefinition>();
-
-            foreach (var item in equippedItems)
+            foreach (var item in _stat.EquipmentService.EquippedItems)
             {
                 if (item.Definition.inscriptions == null) continue;
                 foreach (var entry in item.Definition.inscriptions)
                 {
                     if (entry.inscription == null) continue;
-                    if (seen.Add(entry.inscription.inscriptionId))
-                        inscList.Add(entry.inscription);
+                    if (_synSeen.Add(entry.inscription.inscriptionId))
+                        _synInscList.Add(entry.inscription);
                 }
             }
 
             for (int i = 0; i < SynergySlotMax; i++)
             {
-                if (i >= inscList.Count) { _synSlots[i].style.display = DisplayStyle.None; continue; }
+                if (i >= _synInscList.Count) { _synSlots[i].style.display = DisplayStyle.None; continue; }
 
-                var insc  = inscList[i];
+                var insc  = _synInscList[i];
                 int count = _stat.InscriptionService.GetCount(insc);
 
-                // 1개 이상 활성화된 각인만 표시
                 if (count <= 0) { _synSlots[i].style.display = DisplayStyle.None; continue; }
 
                 _synSlots[i].style.display = DisplayStyle.Flex;
@@ -328,13 +357,12 @@ namespace _2D_Roguelike
                 if (insc.icon != null)
                     _synIcons[i].style.backgroundImage = new StyleBackground(insc.icon);
 
-                _synCurCounts[i].text = count.ToString(); // 현재 개수 (큰 숫자)
+                _synCurCounts[i].text = count.ToString();
                 _synNames[i].text     = insc.displayName;
                 _synCounts[i].text    = BuildTierCountText(insc);
             }
 
-            // 슬롯 최대치 초과분 숨김
-            for (int i = inscList.Count; i < SynergySlotMax; i++)
+            for (int i = _synInscList.Count; i < SynergySlotMax; i++)
                 _synSlots[i].style.display = DisplayStyle.None;
         }
 
@@ -366,10 +394,10 @@ namespace _2D_Roguelike
 
         private static StyleColor RarityColor(ItemRarity rarity) => rarity switch
         {
-            ItemRarity.Common    => new StyleColor(new Color(0.85f, 0.85f, 0.85f)),
-            ItemRarity.Rare      => new StyleColor(new Color(0.40f, 0.62f, 1.00f)),
-            ItemRarity.Unique    => new StyleColor(new Color(1.00f, 0.60f, 0.20f)),
-            ItemRarity.Legendary => new StyleColor(new Color(1.00f, 0.85f, 0.10f)),
+            ItemRarity.Common    => _colorCommon,
+            ItemRarity.Rare      => _colorRare,
+            ItemRarity.Unique    => _colorUnique,
+            ItemRarity.Legendary => _colorLegendary,
             _                    => new StyleColor(Color.white)
         };
     }

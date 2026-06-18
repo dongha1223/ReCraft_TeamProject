@@ -20,6 +20,9 @@ namespace _2D_Roguelike
     {
         public override string PatternId => "FirePillar";
 
+        [Header("데이터 SO")]
+        [SerializeField] private BossFirePillarDataSO _data;
+
         [Header("참조")]
         [Tooltip("Boss_Head SpriteRenderer — 눈 붉게 빛내기용")]
         [SerializeField] private SpriteRenderer _headRenderer;
@@ -72,6 +75,24 @@ namespace _2D_Roguelike
 
         private void Awake()
         {
+            if (_data != null)
+            {
+                _spawnY        = _data.SpawnY;
+                _pillarCount   = _data.PillarCount;
+                _spawnInterval = _data.SpawnInterval;
+                _minSpacing    = _data.MinSpacing;
+                _pillarWidth   = _data.PillarWidth;
+                _pillarHeight  = _data.PillarHeight;
+                _glowColor     = _data.GlowColor;
+                if (_data.PillarPrefab  != null) _pillarPrefab  = _data.PillarPrefab;
+                if (_data.CraterSprite  != null) _craterSprite  = _data.CraterSprite;
+                if (_data.FireSprites   != null && _data.FireSprites.Length > 0) _fireSprites = _data.FireSprites;
+            }
+            // Cancel() 호출 시 _originalHeadColor가 default(Color(0,0,0,0))로 남아
+            // 머리가 투명해지는 버그 방지 — 패턴 실행 전에 미리 캐시
+            if (_headRenderer != null)
+                _originalHeadColor = _headRenderer.color;
+
             BuildPool();
         }
 

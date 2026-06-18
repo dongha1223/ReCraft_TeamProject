@@ -243,6 +243,42 @@
     white-space: normal;
 }
 
+/* ── 좌우 분할 행 (물리 공격력 + 스킬 공격력) ───────────────── */
+.upgrade-row-split {
+    flex-direction: row;
+    align-items: stretch;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.row-half {
+    flex: 1;
+    min-width: 0;
+}
+
+.col-divider {
+    width: 1px;
+    background-color: rgb(70, 55, 25);
+    align-self: stretch;
+    margin: 8px 4px;
+}
+
+/* ── 카테고리 아이콘 배경 ─────────────────────────────────────── */
+#icon-courage {
+    background-image: url('../Screenshots/Assets/Attack.png');
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+#icon-skill {
+    background-image: url('../Screenshots/Assets/Skill_Attack.png');
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+#icon-health {
+    background-image: url('../Screenshots/Assets/Health.png');
+    -unity-background-scale-mode: scale-to-fit;
+}
+
 /* ── NPC 초상화 ─────────────────────────────────────────────── */
 #portrait-panel {
     width: 300px;

@@ -8,6 +8,7 @@ namespace _2D_Roguelike
     /// - dropThemes가 비어있는 아이템은 모든 테마에서 드랍 가능 (공용 아이템)
     /// - dropThemes에 현재 테마가 포함된 아이템만 드랍 풀에 진입
     /// - baseDropWeight 기반 가중치 랜덤, 중복 없이 count개 반환
+    /// - StatType.DropRate 모디파이어가 있으면 전체 weight에 배율 적용
     /// </summary>
     public static class DropSystem
     {
@@ -17,14 +18,21 @@ namespace _2D_Roguelike
         /// <param name="database">전체 아이템 DB</param>
         /// <param name="theme">현재 스테이지 테마 (Start/Shop/Boss면 None 전달)</param>
         /// <param name="count">선택지로 보여줄 아이템 수</param>
+        /// <param name="statService">플레이어 StatService (null이면 배율 미적용)</param>
         /// <returns>가중치 랜덤으로 선정된 아이템 목록 (count 이하)</returns>
-        public static List<ItemDefinition> RollDrops(ItemDatabaseSO database, MapTheme theme, int count)
+        public static List<ItemDefinition> RollDrops(ItemDatabaseSO database, MapTheme theme, int count,
+                                                     StatService statService = null)
         {
             if (database == null || database.items == null || count <= 0)
                 return new List<ItemDefinition>();
 
+            // DropRate 배율 읽기 (기본 1.0)
+            float dropRateMult = statService != null
+                ? statService.GetFinalValue(StatType.DropRate)
+                : 1f;
+
             // 1. 드랍 풀 필터링
-            var pool = BuildPool(database.items, theme);
+            var pool = BuildPool(database.items, theme, dropRateMult);
 
             // 2. 풀이 부족하면 count 조정
             int pickCount = Mathf.Min(count, pool.Count);
@@ -53,9 +61,11 @@ namespace _2D_Roguelike
             public float weight;
         }
 
-        private static List<WeightedEntry> BuildPool(ItemDefinition[] allItems, MapTheme theme)
+        private static List<WeightedEntry> BuildPool(ItemDefinition[] allItems, MapTheme theme,
+                                                      float dropRateMult = 1f)
         {
             var pool = new List<WeightedEntry>(allItems.Length);
+            float clampedMult = Mathf.Max(dropRateMult, 0.01f); // 음수·0 방지
 
             foreach (var item in allItems)
             {
@@ -77,7 +87,7 @@ namespace _2D_Roguelike
                 }
 
                 if (isCommon || themeMatch)
-                    pool.Add(new WeightedEntry { item = item, weight = item.baseDropWeight });
+                    pool.Add(new WeightedEntry { item = item, weight = item.baseDropWeight * clampedMult });
             }
 
             return pool;

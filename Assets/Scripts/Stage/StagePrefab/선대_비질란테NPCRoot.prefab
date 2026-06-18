@@ -483,7 +483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8758358020329850733}
   m_Layer: 0
-  m_Name: StageShop2Root
+  m_Name: "\uC120\uB300_\uBE44\uC9C8\uB780\uD14CNPCRoot"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

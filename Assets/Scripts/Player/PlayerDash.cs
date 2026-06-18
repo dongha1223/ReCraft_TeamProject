@@ -182,7 +182,7 @@ namespace _2D_Roguelike
                 yield return new WaitForSeconds(_postDashHangTime);
 
             // 중력 복원
-            _rb.gravityScale = 3;
+            _rb.gravityScale = _originalGravityScale;
         }
 
         /// <summary>

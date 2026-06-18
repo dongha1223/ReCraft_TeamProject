@@ -14,8 +14,22 @@ namespace _2D_Roguelike
         [SerializeField] private GameObject _projectilePrefab;
         [SerializeField] private Transform  _spawnPoint;
         [SerializeField] private GameObject _windupIndicator;
+        // 유도 투사체(ProjectileHomingTimed 등) 사용 시 true — Transform 오버로드로 Setup 호출
+        [SerializeField] private bool        _useHomingSetup = false;
 
         private static readonly int AnimWindup = Animator.StringToHash("Windup");
+
+        protected override void ApplyData(EnemyDataSO data)
+        {
+            base.ApplyData(data);
+            if (data is RangedEnemyDataSO d)
+            {
+                _attackDamage   = d.AttackDamage;
+                _knockbackForce = d.KnockbackForce;
+                _windupDuration = d.WindupDuration;
+                if (d.ProjectilePrefab != null) _projectilePrefab = d.ProjectilePrefab;
+            }
+        }
 
         protected override void OnEnable()
         {
@@ -35,10 +49,11 @@ namespace _2D_Roguelike
 
         protected override IEnumerator AttackCoroutine()
         {
-            _canAttack   = false;
-            _isAttacking = true;
+            // 빨간 선(전조) 시작 시점에 방향 고정
+            float lockedDir = _player != null
+                ? (_player.position.x > transform.position.x ? 1f : -1f)
+                : (transform.localScale.x >= 0f ? 1f : -1f);
 
-            // 전조 연출 — transform 변경 없이 활성화만 (방향은 localScale.x 플립에 의해 자동 반영)
             _animator?.SetTrigger(AnimWindup);
             _windupIndicator?.SetActive(true);
 
@@ -47,18 +62,18 @@ namespace _2D_Roguelike
 
             _windupIndicator?.SetActive(false);
 
-            // 바라보는 방향으로 수평 직선 발사
             if (_projectilePrefab != null)
             {
-                Vector3 fireDir   = new Vector3(Mathf.Sign(transform.localScale.x), 0f, 0f);
-                Vector3 targetPos = _spawnPoint.position + fireDir * 100f;
-
-                var go = Instantiate(_projectilePrefab, _spawnPoint.position, Quaternion.identity);
-                go.GetComponent<ProjectileBase>()?.Setup(targetPos, new HitInfo
+                var go   = Instantiate(_projectilePrefab, _spawnPoint.position, Quaternion.identity);
+                var proj = go.GetComponent<ProjectileBase>();
+                if (proj != null)
                 {
-                    Damage         = _attackDamage,
-                    KnockbackForce = _knockbackForce
-                });
+                    var hitInfo = new HitInfo { Damage = _attackDamage, KnockbackForce = _knockbackForce };
+                    if (_useHomingSetup && _player != null)
+                        proj.Setup(_player, hitInfo);   // 유도 투사체: Transform 추적
+                    else
+                        proj.Setup(_spawnPoint.position + new Vector3(lockedDir * 100f, 0f, 0f), hitInfo);
+                }
             }
 
             yield return new WaitForSeconds(Mathf.Max(0f, _attackCooldown - _windupDuration));

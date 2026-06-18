@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355ec2c267a965e458d6dbd09dd86543, type: 3}
+  m_Name: Boss2_FirePillar
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossFirePillarDataSO
+  _spawnY: 3
+  _pillarCount: 10
+  _spawnInterval: 0.3
+  _minSpacing: 1.5
+  _pillarWidth: 2
+  _pillarHeight: 5
+  _glowColor: {r: 1, g: 0, b: 0, a: 1}
+  _pillarPrefab: {fileID: 6573041854076382564, guid: e113d91d1810db2449fcd7adba785fd2, type: 3}
+  _craterSprite: {fileID: -3840868423550604586, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  _fireSprites:
+  - {fileID: 8561300068696528039, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: 7368279547845422032, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: 6984490022400108798, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: -8207229047641819192, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: 6958167208418305748, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: -7068793340901225036, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: 6276548595216587131, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: 1278966761009219739, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: 7452710420683916835, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: -5767919484351466094, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: 6381636838972309701, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: -3775329494096011479, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: 3926751240236768415, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: -2130630046630658520, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: 655683401120620042, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: -2044744473596920000, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: 8481370483513208888, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: -6847773304098206783, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: -4227536955878785511, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}
+  - {fileID: 1096312207721487295, guid: 492134841dc993b4f8cad16e88ce4aee, type: 3}

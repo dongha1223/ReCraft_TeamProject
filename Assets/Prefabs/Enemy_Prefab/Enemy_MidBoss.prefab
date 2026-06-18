@@ -476,6 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d70d61cdc6fb7469e7658a475c7d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.EnemyStats
+  _data: {fileID: 11400000, guid: 3b7f34ab1502df645ac70e314cd82629, type: 2}
   _maxHp: 200
   _damageSpawnPos: {fileID: 3493434922150175202}
 --- !u!114 &200628091312166943
@@ -490,6 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e03b0671b98a931468b9bed9c431f68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.MidBossController
+  _data: {fileID: 11400000, guid: 3b7f34ab1502df645ac70e314cd82629, type: 2}
   _moveSpeed: 2
   _patrolDistance: 3
   _detectionRange: 10

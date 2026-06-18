@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 788a3ef9e3649884e91463abedf3d7de, type: 3}
+  m_Name: MainBoss_ControllerData
+  m_EditorClassIdentifier: Assembly-CSharp::_2D_Roguelike.BossControllerDataSO
+  _transitionObeliskPrefab: {fileID: 419498817712623841, guid: b1d625af0138f6943996acec9da144e6, type: 3}
+  _survivalRadius: 3
+  _screenShakeDuration: 0.6
+  _screenShakeIntensity: 0.25
+  _terrainChangDelay: 4
+  _phase2MaxDashes: 1
+  _bossOrthoSize: 7.5
+  _cameraTransitionDuration: 1.5
