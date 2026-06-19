@@ -6504,7 +6504,7 @@ MonoBehaviour:
     root: {fileID: 629669429}
     spawnPoint: {fileID: 901249930}
   _playerTransform: {fileID: 1540201796}
-  _startStageIndex: 11
+  _startStageIndex: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -20119,7 +20119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 340984328688256553, guid: 03950289630b0214bb1b9a8a3ee945be, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 340984328688256553, guid: 03950289630b0214bb1b9a8a3ee945be, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
@@ -25231,7 +25231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9219828487096450182, guid: 03950289630b0214bb1b9a8a3ee945be, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9219828487096450182, guid: 03950289630b0214bb1b9a8a3ee945be, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
@@ -32699,6 +32699,14 @@ PrefabInstance:
       propertyPath: _comboSteps.Array.data[1].hitboxOffset.x
       value: 0.51
       objectReference: {fileID: 0}
+    - target: {fileID: 3525059119601629895, guid: 9749594eff514ac4f98a435eff445600, type: 3}
+      propertyPath: _startingFormSlot0
+      value: 
+      objectReference: {fileID: 11400000, guid: 97890e31f502f8947a5047c2b74bb20f, type: 2}
+    - target: {fileID: 3525059119601629895, guid: 9749594eff514ac4f98a435eff445600, type: 3}
+      propertyPath: _startingFormSlot1
+      value: 
+      objectReference: {fileID: 11400000, guid: 3074906662835d44eb0b87b93e2fd669, type: 2}
     - target: {fileID: 4155503037009357505, guid: 9749594eff514ac4f98a435eff445600, type: 3}
       propertyPath: m_Name
       value: Player
@@ -43929,6 +43937,70 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131434, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1.0436
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131434, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0436
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131434, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0436
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131434, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.586
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131435, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131435, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_Size.y
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131435, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -7053902416148927116, guid: 988603d735608094cbddcbedd25117f1, type: 3}
+    - target: {fileID: 7344520606072131435, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131437, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.84565425
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131437, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0990949
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131437, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.022414207
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131437, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.005603552
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131437, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131437, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131437, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344520606072131437, guid: fa4b588d9336b0449890f7114856353a, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.15
+      objectReference: {fileID: 0}
     - target: {fileID: 8096802373759538788, guid: fa4b588d9336b0449890f7114856353a, type: 3}
       propertyPath: m_ColliderPaths.Array.size
       value: 0
@@ -44024,7 +44096,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7566245203521804597, guid: f5ea632431d023c44a06b4abd085def2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7673168678959169825, guid: f5ea632431d023c44a06b4abd085def2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -44717,6 +44789,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 700827265}
     m_Modifications:
+    - target: {fileID: 1949449820067699901, guid: 536979e21582597469052e5aaf3afe63, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.505
+      objectReference: {fileID: 0}
     - target: {fileID: 3637582822371007533, guid: 536979e21582597469052e5aaf3afe63, type: 3}
       propertyPath: m_IsActive
       value: 0
